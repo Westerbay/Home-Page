@@ -5,18 +5,23 @@
 }
 
 body {
-	color: white;
-	background: rgb(50, 50, 50);
+	background: white;
 	text-align: center;
 }
 
 body > article {
 	position: relative;
-	background: rgb(100, 100, 100);
+	background: rgb(240, 240, 240);
 	padding: 2em 2em 1em 2em;
 	margin: 5%;
-	display: inline-block;
 	max-width: 800px;
+	box-shadow: 10px 10px 10px rgb(30, 30, 30);
+	border: 1px solid black;
+	transform: translateX(200%);
+	opacity: 0;
+	transition: 1.5s;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 h1, h2 {
@@ -25,10 +30,11 @@ h1, h2 {
 }
 
 article > h1 {
-	background: orange;
+	background: #ffc96b;
 	color: black;
 	width: 80%;
 	margin: auto;
+	border: 1px solid black;
 }
 
 article > * {

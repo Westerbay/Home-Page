@@ -9,7 +9,7 @@
 		<link href='css/footer.css' rel='stylesheet'>
 		<link href='css/header.css' rel='stylesheet'>
 	</head>
-	<body onload='selectEyefox()'>
+	<body onload='main()'>
 	
 	
 		<header>
@@ -21,7 +21,7 @@
 		<!-- Profile -->
 		<article id='profile'>
 			<h1>👤 Profile : </h1>
-			<p>Currently in my second year of engineering studies, I am seeking an assistant engineer-level internship in the field of computer science.</p>
+			<p>Currently in my second year of engineering studies, I am seeking an assistant engineer-level internship in the field of computer science, especially in game developpment.</p>
 		</article>
 		
 		
@@ -34,20 +34,20 @@
 					<h3>Engineer diploma</h3>
 					<p><time datetime="2023">2023</time>-Now</p>
 				</section>	
-				<p>Preparing an engineer diploma, equivalent to a Master's degree. First year with honours 1<sup>st</sup> class.</p>			
+				<p>Preparing an engineer diploma, equivalent to a Master's degree. First year with honours 1<sup>st</sup> class, first out of 70.</p>			
 			</section>
 			<section>
 				<h2>University of Caen Normandy</h2>
+				<section>
+					<h3>Licence 2 - IT</h3>
+					<p><time datetime="2022">2022</time>-<time datetime="2023">2023</time></p>
+				</section>
+				<p>Second year of a Bachelor's degree in Computer Science, with honours 1<sup>st</sup> class, first out of 200.</p>
 				<section>
 					<h3>Licence 1 - Maths</h3>
 					<p><time datetime="2021">2021</time>-<time datetime="2022">2022</time></p>
 				</section>
 				<p>First year of a Bachelor's degree in Mathematics, with honours 1<sup>st</sup> class.</p>
-				<section>
-					<h3>Licence 2 - IT</h3>
-					<p><time datetime="2022">2022</time>-<time datetime="2023">2023</time></p>
-				</section>
-				<p>Second year of a Bachelor's degree in Computer Science, with honours 1<sup>st</sup> class.</p>
 			</section>
 			<section>
 				<h2>Lycée Dumont D'Urville - Caen</h2>
@@ -62,6 +62,8 @@
 		
 		<!-- Projetcs -->
 		<article id='projects'>
+			<button type='button' id='project8' onclick="buttonLeft()"><</button>
+			<button type='button' id='project8' onclick="buttonRight()">></button>	
 			<h1>Projects</h1>
 			<header>
 				<button type='button' id='project1' onclick="selectEyefox()">05/2022</button>
@@ -73,9 +75,59 @@
 				<button type='button' id='project7' onclick="selectGDC()">05/2024</button>
 				<button type='button' id='project8' onclick="selectNation()">Now</button>
 			</header>
-			<section id='projectContent'>
-				<h2>Project</h2>
-			</section>
+			<aside id='aside'>
+				<div id='container'>
+				
+					<!-- Puzzle -->
+					<figure>
+						<img src='img/project/puzzle.png' alt='PuzzleGame'>
+						<figcaption>Puzzle Game</figcaption>
+					</figure>
+					
+					<!-- Card Game -->
+					<figure>
+						<img src='img/project/battle.png' alt='CardGame'>
+						<figcaption>Card Game</figcaption>
+					</figure>
+					
+					<!-- Minidex -->
+					<figure>
+						<img src='img/project/minidex.png' alt='Pokedex'>
+						<figcaption>Pokedex</figcaption>
+					</figure>
+					
+					<!-- Adds up -->
+					<figure>
+						<img src='img/project/AddsUp.png' alt='CalculationGame'>
+						<figcaption>Calculation game</figcaption>
+					</figure>
+					
+					<!-- Lindenmayer -->
+					<figure>
+						<img src='img/project/Lindenmayer.png' alt='L-Systems'>
+						<figcaption>L-Systems Interpretor</figcaption>
+					</figure>
+					
+					<!-- Sudoku -->
+					<figure>
+						<img src='img/project/TaquinSudoku.png' alt='Taquin&Sudoku'>
+						<figcaption>Taquin & Sudoku</figcaption>
+					</figure>
+					
+					<!-- GDC -->
+					<figure>
+						<img src='img/project/GDC.png' alt='CarRace'>
+						<figcaption>Car Race</figcaption>
+					</figure>
+					
+					<!-- Nation -->
+					<figure>
+						<img src='img/project/nation.png' alt='CalculationGame'>
+						<figcaption>Strategy Game</figcaption>
+					</figure>
+				
+				</div>
+			</aside>
 			<script src="script/project.js"></script>
 		</article>
 		
@@ -99,7 +151,7 @@
 		<article id='language'>
 			<h1>Languages</h1>
 			<p>French 🇫🇷</p> <p>First language</p>
-			<p>English 🇬🇧</p> <p>B2 825 TOEIC</p>
+			<p>English 🇬🇧</p> <p>Advanced</p>
 			<p>Japanese 🇯🇵</p> <p>Beginner</p>
 		</article>
 		
