@@ -1,0 +1,46 @@
+/* Projects */
+
+#projects {
+	padding-left: 0;
+	padding-right: 0;
+	position: relative;
+}
+
+#projects section {
+	margin-left: 1em;
+	margin-right: 1em;
+}
+
+#projects img {
+	height: 20em;
+}
+
+#projects h3 {
+	margin-bottom: 2em;
+}
+
+#projects header {
+	width: 100%;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+	transform: translateY(-5em);
+}
+
+#projects button {
+	all: unset;
+	cursor: pointer;
+	text-decoration: none;
+	color: white;
+	background: darkblue;
+	padding: 1em 5px 1em 5px;
+}
+
+#projects button:hover {
+	background: blue;
+}
+
+#projects section > img:first-child {
+	height: 8em;
+	right: 2em;
+	position: absolute;
+}

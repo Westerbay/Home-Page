@@ -34,7 +34,7 @@ function selectBattle() {
 	selectedProject = projectBattle;
 	projectContent.innerHTML = `
 				<img src='img/logo/Python.png' alt='python'>
-				<h2>Eyefox Puzzle</h2>
+				<h2>Card Game</h2>
 				<h3>Personnal Project</h3>
 				<p>
 					This game is a python project where you have to reproduce the left's grid by modifying the right's grid. How does it work?  Tap a square to swap its face and its neighbors' face. Be careful, the difficulty is considerably growing up every 30 levels. 
@@ -49,7 +49,7 @@ function selectMinidex() {
 	selectedProject = projectMinidex;
 	projectContent.innerHTML = `
 				<img src='img/logo/Python.png' alt='python'>
-				<h2>Eyefox Puzzle</h2>
+				<h2>Minidex [FR]</h2>
 				<h3>Personnal Project</h3>
 				<p>
 					This game is a python project where you have to reproduce the left's grid by modifying the right's grid. How does it work?  Tap a square to swap its face and its neighbors' face. Be careful, the difficulty is considerably growing up every 30 levels. 
@@ -64,7 +64,7 @@ function selectAddsUp() {
 	selectedProject = projectAddsUp;
 	projectContent.innerHTML = `
 				<img src='img/logo/Python.png' alt='python'>
-				<h2>Eyefox Puzzle</h2>
+				<h2>It Adds Up</h2>
 				<h3>Personnal Project</h3>
 				<p>
 					This game is a python project where you have to reproduce the left's grid by modifying the right's grid. How does it work?  Tap a square to swap its face and its neighbors' face. Be careful, the difficulty is considerably growing up every 30 levels. 
@@ -79,8 +79,8 @@ function selectLindenmayer() {
 	selectedProject = projectLindenmayer;
 	projectContent.innerHTML = `
 				<img src='img/logo/Java.png' alt='Java'>
-				<h2>Eyefox Puzzle</h2>
-				<h3>Personnal Project</h3>
+				<h2>L-Systems</h2>
+				<h3>School Project</h3>
 				<p>
 					This game is a python project where you have to reproduce the left's grid by modifying the right's grid. How does it work?  Tap a square to swap its face and its neighbors' face. Be careful, the difficulty is considerably growing up every 30 levels. 
 				</p>
@@ -94,7 +94,7 @@ function selectTaquinSudoku() {
 	selectedProject = projectTaquinSudoku;
 	projectContent.innerHTML = `
 				<img src='img/logo/Python.png' alt='python'>
-				<h2>Eyefox Puzzle</h2>
+				<h2>Taquin's Sudoku</h2>
 				<h3>Personnal Project</h3>
 				<p>
 					This game is a python project where you have to reproduce the left's grid by modifying the right's grid. How does it work?  Tap a square to swap its face and its neighbors' face. Be careful, the difficulty is considerably growing up every 30 levels. 
@@ -109,8 +109,8 @@ function selectGDC() {
 	selectedProject = projectGDC;
 	projectContent.innerHTML = `
 				<img src='img/logo/C.png' alt='C'>
-				<h2>Eyefox Puzzle</h2>
-				<h3>Personnal Project</h3>
+				<h2>Race Event</h2>
+				<h3>School Project</h3>
 				<p>
 					This game is a python project where you have to reproduce the left's grid by modifying the right's grid. How does it work?  Tap a square to swap its face and its neighbors' face. Be careful, the difficulty is considerably growing up every 30 levels. 
 				</p>
@@ -124,7 +124,7 @@ function selectNation() {
 	selectedProject = projectNation;
 	projectContent.innerHTML = `
 				<img src='img/logo/Java.png' alt='java'>
-				<h2>Eyefox Puzzle</h2>
+				<h2>Nation's Waltz</h2>
 				<h3>Personnal Project</h3>
 				<p>
 					This game is a python project where you have to reproduce the left's grid by modifying the right's grid. How does it work?  Tap a square to swap its face and its neighbors' face. Be careful, the difficulty is considerably growing up every 30 levels. 

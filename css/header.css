@@ -1,0 +1,16 @@
+body > header {
+	color: black;
+	background: orange;
+	padding: 2em 2em 2em 10%;
+	text-align: left;
+	margin-bottom: 3em;
+}
+
+body > header p:first-child {
+	font-size: 2em;
+}
+
+body > header p {
+	font-size: 1.7em;
+}
+

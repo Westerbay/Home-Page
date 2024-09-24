@@ -1,0 +1,22 @@
+/* Languages */
+#language {
+	width: 20em;
+}
+
+#language p {
+	display: inline-block;
+	width: 45%;
+}
+
+#language p:nth-child(even) {
+	text-align: left;
+}
+
+#language p:nth-child(odd) {
+	text-align: right;
+}
+
+#language h1 {
+	grid-column: 1 / span 2;
+}
+
