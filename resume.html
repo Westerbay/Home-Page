@@ -6,28 +6,32 @@
 		<link href='css/resume.css' rel='stylesheet'>
 		<link href='css/project.css' rel='stylesheet'>
 		<link href='css/languages.css' rel='stylesheet'>
-		<link href='css/footer.css' rel='stylesheet'>
 		<link href='css/header.css' rel='stylesheet'>
+		<link href='css/skull.css' rel='stylesheet'>
 	</head>
 	<body onload='main()'>
 	
-	
 		<header>
-			<p>Mathis Dubuisson</p>
-			<p>Engineer Student - Computer Science </p>
+			<img src='img/pp.png' alt=''>
+			<p>Wester </p>
 		</header>
 		
+		<aside>
+			<a href='abop.pdf' download='CV.pdf'>Download CV</a>
+			<p>Mathis Dubuisson</p>
+			<p>Engineer Student - Computer Science </p>
+		</aside>
 		
 		<!-- Profile -->
 		<article id='profile'>
-			<h1>👤 Profile : </h1>
+			<h1>Profile : </h1>
 			<p>Currently in my second year of engineering studies, I am seeking an assistant engineer-level internship in the field of computer science, especially in game developpment.</p>
 		</article>
 		
 		
 		<!-- Education -->		
 		<article id='education'>
-			<h1>👨‍🎓 Education : </h1>
+			<h1>Education : </h1>
 			<section>
 				<h2>National graduate school of engineering and research - Caen</h2>
 				<section>
@@ -62,8 +66,10 @@
 		
 		<!-- Projetcs -->
 		<article id='projects'>
-			<button type='button' id='project8' onclick="buttonLeft()"><</button>
-			<button type='button' id='project8' onclick="buttonRight()">></button>	
+			<img src='img/logo/Python.png' alt='' class='LogoCode'>
+			<img src='img/logo/Python.png' alt='' class='LogoCode'>
+			<button type='button' onclick="buttonLeft()">&lt;</button>
+			<button type='button' onclick="buttonRight()">&gt;</button>	
 			<h1>Projects</h1>
 			<header>
 				<button type='button' id='project1' onclick="selectEyefox()">05/2022</button>
@@ -148,7 +154,7 @@
 		
 		
 		<!-- Language -->
-		<article id='language'>
+		<article id='language' class='block'>
 			<h1>Languages</h1>
 			<p>French 🇫🇷</p> <p>First language</p>
 			<p>English 🇬🇧</p> <p>Advanced</p>
@@ -157,7 +163,7 @@
 		
 		
 		<!-- Interests -->
-		<article id='interests'>
+		<article id='interests' class='block'>
 			<h1>Interests</h1>
 			<p>Practice and listen piano 🎹</p>
 			<p>Coding softwares, especially games ⌨️</p>

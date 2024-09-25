@@ -30,6 +30,36 @@ function main() {
 		element.style.transform = "translateX(0)";
 		element.style.opacity = 100;
 	}
+	for (var element of document.getElementsByTagName("aside")) {
+		element.style.transform = "translateX(0)";
+		element.style.opacity = 100;
+	}
+}
+
+function changeLogo2(logoName1, logoName2) {
+	var logo = document.getElementsByClassName("LogoCode");
+	var logo1 = logo[0];
+	var logo2 = logo[1];
+	
+	logo1.classList.add('fade-out');
+	logo2.classList.add('fade-out');
+	
+	setTimeout(function() {
+		logo1.src = 'img/logo/' + logoName1 + '.png';
+		logo2.src = 'img/logo/' + logoName2 + '.png';
+		
+		logo1.onload = function() {
+			logo1.classList.remove('fade-out');
+		};
+		logo2.onload = function() {
+			logo2.classList.remove('fade-out');
+		};
+	}, 500);
+	
+}
+
+function changeLogo(logo) {
+	changeLogo2(logo, logo);
 }
 
 function selectEyefox() {
@@ -37,6 +67,7 @@ function selectEyefox() {
 	projectEyefox.style.background = hoverColor;
 	selectedProject = projectEyefox;
 	container.style.transform = "translateX(0)";
+	changeLogo('Python');
 }
 
 function selectBattle() {
@@ -44,6 +75,7 @@ function selectBattle() {
 	projectBattle.style.background = hoverColor;
 	selectedProject = projectBattle;
 	container.style.transform = "translateX(-" + containerWidth + "em)";
+	changeLogo('Python');
 }
 
 function selectMinidex() {
@@ -51,6 +83,7 @@ function selectMinidex() {
 	projectMinidex.style.background = hoverColor;
 	selectedProject = projectMinidex;
 	container.style.transform = "translateX(-" + containerWidth*2 + "em)";
+	changeLogo('Python');
 }
 
 function selectAddsUp() {
@@ -58,6 +91,7 @@ function selectAddsUp() {
 	projectAddsUp.style.background = hoverColor;
 	selectedProject = projectAddsUp;
 	container.style.transform = "translateX(-" + containerWidth*3 + "em)";
+	changeLogo('Python');
 }
 
 function selectLindenmayer() {
@@ -65,6 +99,7 @@ function selectLindenmayer() {
 	projectLindenmayer.style.background = hoverColor;
 	selectedProject = projectLindenmayer;
 	container.style.transform = "translateX(-" + containerWidth*4 + "em)";
+	changeLogo('Java');
 }
 
 function selectTaquinSudoku() {
@@ -72,6 +107,7 @@ function selectTaquinSudoku() {
 	projectTaquinSudoku.style.background = hoverColor;
 	selectedProject = projectTaquinSudoku;
 	container.style.transform = "translateX(-" + containerWidth*5 + "em)";
+	changeLogo('Python');
 }
 
 function selectGDC() {
@@ -79,6 +115,7 @@ function selectGDC() {
 	projectGDC.style.background = hoverColor;
 	selectedProject = projectGDC;
 	container.style.transform = "translateX(-" + containerWidth*6 + "em)";
+	changeLogo2('cpp', 'C');
 }
 
 function selectNation() {
@@ -86,6 +123,7 @@ function selectNation() {
 	projectNation.style.background = hoverColor;
 	selectedProject = projectNation;
 	container.style.transform = "translateX(-" + containerWidth*7 + "em)";
+	changeLogo('Java');
 }
 
 var tabFunction = [

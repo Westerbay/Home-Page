@@ -1,16 +1,34 @@
-body > header {
+body > aside {
 	color: black;
-	background: #ffc96b;
-	padding: 2em 2em 2em 10%;
+	background: rgb(200, 200, 200);
+	padding: 2em 2em 2em 5%;
 	text-align: left;
+	width: 60%;
+	min-width: 600px;
+	margin: auto;
+	margin-top: 5em;
 	margin-bottom: 3em;
+	position: relative;
+	transform: translateX(50%);
+	opacity: 0;
+	transition: 1.5s;
 }
 
-body > header p:first-child {
+body > aside p:first-child {
 	font-size: 2em;
 }
 
-body > header p {
+body > aside p {
 	font-size: 1.7em;
+}
+
+body > aside a {
+	text-decoration: none;
+	position: absolute;
+	top: 15%;
+	right: 2em;
+	color: white;
+	background: #e84f36;
+	padding: 2%;
 }
 

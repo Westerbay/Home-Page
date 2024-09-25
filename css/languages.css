@@ -1,6 +1,7 @@
 /* Languages */
-#language {
-	width: 20em;
+
+.block {
+	width: 28em;
 }
 
 #language p {

@@ -1,27 +1,13 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-	background: white;
-	text-align: center;
-}
-
 body > article {
 	position: relative;
-	background: rgb(240, 240, 240);
+	background: white;
 	padding: 2em 2em 1em 2em;
 	margin: 5%;
-	max-width: 800px;
-	box-shadow: 10px 10px 10px rgb(30, 30, 30);
-	border: 1px solid black;
-	transform: translateX(200%);
+	max-width: 1050px;
+	transform: translateX(50%);
 	opacity: 0;
 	transition: 1.5s;
-	margin-left: auto;
-	margin-right: auto;
+	display: inline-block;
 }
 
 h1, h2 {
@@ -30,11 +16,14 @@ h1, h2 {
 }
 
 article > h1 {
-	background: #ffc96b;
+	background: #49BABE;
 	color: black;
 	width: 80%;
 	margin: auto;
-	border: 1px solid black;
+}
+
+#skills {
+	width: 85%;
 }
 
 article > * {
@@ -57,13 +46,7 @@ article section section h3 {
 }
 
 article img {
-	height: 6em;
+	height: 7em;
 	padding: 1em;
-}
-
-@media screen and (max-width: 670px) {
-	body {
-		font-size:0.68em;
-	}
 }
 
