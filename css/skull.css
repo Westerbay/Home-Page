@@ -60,7 +60,13 @@ footer h2 {
 
 @media screen and (max-width: 670px) {
 	body {
-		font-size:0.68em;
+		font-size: 0.68em;
+	}
+}
+
+@media screen and (min-width: 1600px) {
+	body {
+		font-size: 1.26em;
 	}
 }
 
