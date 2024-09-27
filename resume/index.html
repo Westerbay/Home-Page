@@ -2,19 +2,22 @@
 <html lang='en'>
 	<head>
 		<title>Resume</title>
+		<meta name="robots" content="noindex, nofollow">
 		<meta charset='utf-8'>
 		<link href='css/resume.css' rel='stylesheet'>
 		<link href='css/project.css' rel='stylesheet'>
 		<link href='css/languages.css' rel='stylesheet'>
 		<link href='css/header.css' rel='stylesheet'>
-		<link href='css/skull.css' rel='stylesheet'>
+		<link href='../css/skull.css' rel='stylesheet'>
 	</head>
-	<body onload='main()'>
+	<body onload='main();selectEyefox()'>
 	
 		<header>
-			<img src='img/pp.png' alt=''>
+			<a href='../index.html' target='_blank'><img src='../img/pp.png' alt=''></a>
 			<p>Wester </p>
 		</header>
+		
+		<script src="../script/background.js"></script>
 		
 		<aside>
 			<a href='abop.pdf' download='CV.pdf'>Download CV</a>
@@ -59,78 +62,55 @@
 					<h3>Baccalauréat</h3>
 					<p><time datetime="2018">2018</time>-<time datetime="2021">2021</time></p>
 				</section>
-				<p>Baccalauréat on Mathematics and Digital Science and Computer Science, equivalent to High school Diploma, with honours 1<sup>st</sup> class.</p>
+				<p>Baccalauréat on Mathematics and Digital Science and Computer Science, equivalent to High school Diploma, with honours 1<sup>st</sup> class. Won the team academic mathematics olympiad <time datetime="2021">2021</time>.</p>
 			</section>
 		</article>
 		
 		
 		<!-- Projetcs -->
 		<article id='projects'>
-			<img src='img/logo/Python.png' alt='' class='LogoCode'>
-			<img src='img/logo/Python.png' alt='' class='LogoCode'>
 			<button type='button' onclick="buttonLeft()">&lt;</button>
 			<button type='button' onclick="buttonRight()">&gt;</button>	
 			<h1>Projects</h1>
 			<header>
 				<button type='button' id='project1' onclick="selectEyefox()">05/2022</button>
 				<button type='button' id='project2' onclick="selectBattle()">06/2022</button>
-				<button type='button' id='project3' onclick="selectMinidex()">07/2022</button>
-				<button type='button' id='project4' onclick="selectAddsUp()">03/2023</button>
 				<button type='button' id='project5' onclick="selectLindenmayer()">05/2023</button>
 				<button type='button' id='project6' onclick="selectTaquinSudoku()">08/2023</button>
 				<button type='button' id='project7' onclick="selectGDC()">05/2024</button>
-				<button type='button' id='project8' onclick="selectNation()">Now</button>
 			</header>
 			<aside id='aside'>
 				<div id='container'>
 				
 					<!-- Puzzle -->
-					<figure>
-						<img src='img/project/puzzle.png' alt='PuzzleGame'>
+					<a href='../Project/EyefoxPuzzle.html' target='_blank'><figure>
+						<img src='../img/project/puzzle.png' alt='PuzzleGame'>
 						<figcaption>Puzzle Game</figcaption>
-					</figure>
+					</figure></a>
 					
 					<!-- Card Game -->
-					<figure>
-						<img src='img/project/battle.png' alt='CardGame'>
+					<a href='../Project/BattleBrawlersCardGame.html' target='_blank'><figure>
+						<img src='../img/project/battle.png' alt='CardGame'>
 						<figcaption>Card Game</figcaption>
-					</figure>
-					
-					<!-- Minidex -->
-					<figure>
-						<img src='img/project/minidex.png' alt='Pokedex'>
-						<figcaption>Pokedex</figcaption>
-					</figure>
-					
-					<!-- Adds up -->
-					<figure>
-						<img src='img/project/AddsUp.png' alt='CalculationGame'>
-						<figcaption>Calculation game</figcaption>
-					</figure>
+					</figure></a>
 					
 					<!-- Lindenmayer -->
-					<figure>
-						<img src='img/project/Lindenmayer.png' alt='L-Systems'>
+					<a href='https://github.com/Westerbay/L-Systems' target='_blank'><figure>
+						<img src='../img/project/Lindenmayer.png' alt='L-Systems'>
 						<figcaption>L-Systems Interpretor</figcaption>
-					</figure>
+					</figure></a>
 					
 					<!-- Sudoku -->
-					<figure>
-						<img src='img/project/TaquinSudoku.png' alt='Taquin&Sudoku'>
+					<a href='../Project/TaquinSudoku.html' target='_blank'><figure>
+						<img src='../img/project/TaquinSudoku.png' alt='Taquin&Sudoku'>
 						<figcaption>Taquin & Sudoku</figcaption>
-					</figure>
+					</figure></a>
 					
 					<!-- GDC -->
-					<figure>
-						<img src='img/project/GDC.png' alt='CarRace'>
+					<a href='../Project/BattleBrawlersCardGame.html' target='_blank'><figure>
+						<img src='../img/project/GDC.png' alt='CarRace'>
 						<figcaption>Car Race</figcaption>
-					</figure>
-					
-					<!-- Nation -->
-					<figure>
-						<img src='img/project/nation.png' alt='CalculationGame'>
-						<figcaption>Strategy Game</figcaption>
-					</figure>
+					</figure></a>
 				
 				</div>
 			</aside>
@@ -142,13 +122,13 @@
 		<article id='skills'>
 			<h1>Skills</h1>
 			<p>
-				<img src='img/logo/Python.png' alt='Python'>
-				<img src='img/logo/Java.png' alt='Java'>
-				<img src='img/logo/C.png' alt='C'>
-				<img src='img/logo/cpp.png' alt='C++'>
-				<img src='img/logo/SQL.png' alt='SQL'>
-				<img src='img/logo/HTML.png' alt='HTML'>
-				<img src='img/logo/CSS.png' alt='CSS'>
+				<img src='../img/logo/Python.png' alt='Python'>
+				<img src='../img/logo/Java.png' alt='Java'>
+				<img src='../img/logo/C.png' alt='C'>
+				<img src='../img/logo/cpp.png' alt='C++'>
+				<img src='../img/logo/SQL.png' alt='SQL'>
+				<img src='../img/logo/HTML.png' alt='HTML'>
+				<img src='../img/logo/CSS.png' alt='CSS'>
 			</p>
 		</article>
 		
