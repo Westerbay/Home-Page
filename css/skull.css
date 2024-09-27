@@ -2,12 +2,12 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    overflow-x: hidden;
 }
 
 body {
 	background: rgb(240, 240, 240);
 	text-align: center;
+	overflow-x: hidden;
 }
 
 body > header {
