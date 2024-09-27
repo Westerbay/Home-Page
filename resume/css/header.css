@@ -32,3 +32,9 @@ body > aside a {
 	padding: 2%;
 }
 
+@media (prefers-color-scheme: dark) {
+	body > aside {
+		color: black;
+	}
+}
+

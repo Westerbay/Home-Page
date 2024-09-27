@@ -3,7 +3,8 @@ body > article {
 	background: white;
 	padding: 2em 2em 1em 2em;
 	margin: 5%;
-	max-width: 1050px;
+	max-width: 70%;
+	min-width: 650px;
 	transform: translateX(50%);
 	opacity: 0;
 	transition: 1.5s;
@@ -23,7 +24,11 @@ article > h1 {
 }
 
 #skills {
-	width: 85%;
+	width: 60%;
+}
+
+body > article#language, body > article#interests {
+	min-width: 200px;
 }
 
 article > * {
@@ -46,7 +51,14 @@ article section section h3 {
 }
 
 article img {
-	height: 6em;
+	height: 5em;
 	padding: 1em;
+}
+
+@media (prefers-color-scheme: dark) {
+	article > h1 {
+		background: #f7d287;
+		color: black;
+	}
 }
 
