@@ -32,7 +32,7 @@ body > aside a {
 	padding: 2%;
 }
 
-@media (prefers-color-scheme: dark) {
+@media screen and (forced-colors: active) {
 	body > aside {
 		color: black;
 	}
