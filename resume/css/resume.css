@@ -63,7 +63,7 @@ article img {
 
 @media screen and (max-width: 455px) {
 	body > article {
-		min-width: 350px;
+		min-width: 340px;
 	}
 	article section section {
 		padding: 1em 4em 1em 4em;

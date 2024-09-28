@@ -102,11 +102,20 @@
 		height: 15em;
 	}
 	#projects figure {	
-		transform: translateX(-2em);
+		transform: translateX(-7.6%);
 	}
 	#projects > button {
 		font-size: 1em;
 		padding-bottom: 10px;
+	}
+}
+
+@media screen and (max-width: 360px) {
+	#projects img {
+		height: 13em;
+	}
+	#projects figure {	
+		transform: translateX(-15%);
 	}
 }
 
