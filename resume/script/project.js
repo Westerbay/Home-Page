@@ -2,7 +2,7 @@ var backgroundColor = "rgb(40, 40, 40)";
 var hoverColor = "grey";
 
 var container = document.getElementById("container");
-var containerWidth = 39;
+var containerWidth = 100/5;
 
 var projectEyefox = document.getElementById("project1");
 var projectBattle = document.getElementById("project2");
@@ -29,28 +29,28 @@ function selectBattle() {
 	selectedProject.style.background = backgroundColor;
 	projectBattle.style.background = hoverColor;
 	selectedProject = projectBattle;
-	container.style.transform = "translateX(-" + containerWidth + "em)";
+	container.style.transform = "translateX(-" + containerWidth + "%)";
 }
 
 function selectLindenmayer() {
 	selectedProject.style.background = backgroundColor;
 	projectLindenmayer.style.background = hoverColor;
 	selectedProject = projectLindenmayer;
-	container.style.transform = "translateX(-" + containerWidth*2 + "em)";
+	container.style.transform = "translateX(-" + containerWidth*2 + "%)";
 }
 
 function selectTaquinSudoku() {
 	selectedProject.style.background = backgroundColor;
 	projectTaquinSudoku.style.background = hoverColor;
 	selectedProject = projectTaquinSudoku;
-	container.style.transform = "translateX(-" + containerWidth*3 + "em)";
+	container.style.transform = "translateX(-" + containerWidth*3 + "%)";
 }
 
 function selectGDC() {
 	selectedProject.style.background = backgroundColor;
 	projectGDC.style.background = hoverColor;
 	selectedProject = projectGDC;
-	container.style.transform = "translateX(-" + containerWidth*4 + "em)";
+	container.style.transform = "translateX(-" + containerWidth*4 + "%)";
 }
 
 

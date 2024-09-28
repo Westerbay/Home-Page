@@ -25,14 +25,15 @@ body > header nav a {
 	margin-right: 10px;
 }
 
-body > header figure {
+body > header aside {
 	display: flex;
 	align-items: center;
 	font-size: 1.6em;
 }
 
-body > header > a > figure img {
+body > header > aside > a img {
 	width: 150px;
 	padding-right: 1em;	
+	vertical-align: middle;
 }
 

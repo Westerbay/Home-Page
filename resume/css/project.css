@@ -31,7 +31,6 @@
 }
 
 #projects aside {
-	width: 39em;
 	overflow-x: hidden;
 	position: relative;
 	margin: auto;
@@ -47,7 +46,7 @@
 }
 
 #projects img {
-	height: 20em;
+	height: 28em;
 }
 
 #projects > button {
@@ -77,8 +76,8 @@
 
 #projects figcaption {
 	font-style: bold;
-	font-size: 1.5em;
-	padding: 10px;
+	font-size: 1.7em;
+	padding: 20px;
 }
 
 #projects a {
@@ -92,7 +91,11 @@
 	color: orange;
 }
 
-
+@media screen and (max-width: 1100px) {
+	#projects img {
+		height: 20em;
+	}
+}
 
 @media screen and (max-width: 600px) {
 	#projects img {
