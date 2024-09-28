@@ -1,0 +1,28 @@
+footer {
+	background: black;
+	color: white;
+	padding: 1em;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+}
+
+footer > aside {
+	text-align:left;
+	display: flex;
+	margin-top: 1em;
+	margin: auto;
+	align-items: center;
+}
+
+footer a {
+	text-decoration: none;
+	color: white;
+	font-size:0.8em;
+}
+
+footer img {
+	height: 2em;
+	text-align: right;
+	margin-right: 20px;
+}
+

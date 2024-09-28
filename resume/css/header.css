@@ -14,6 +14,10 @@ body > aside {
 	transition: 1.5s;
 }
 
+address {
+	margin-top: 5px;
+}
+
 body > aside p:first-child {
 	font-size: 2em;
 }
@@ -32,9 +36,9 @@ body > aside a {
 	padding: 2%;
 }
 
-@media screen and (forced-colors: active) {
+@media screen and (max-width: 650px) {
 	body > aside {
-		color: black;
+		min-width: 450px;
 	}
 }
 

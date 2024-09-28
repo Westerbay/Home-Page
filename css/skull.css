@@ -4,75 +4,22 @@
     box-sizing: border-box;
 }
 
-body {
-	background: rgb(240, 240, 240);
-	text-align: center;
+html, body {
 	overflow-x: hidden;
 }
 
-body > header {
-	color: white;
-	font-size: 2em;
-	background: black;
-	text-align: left;
-	display: flex;
-	width: 100%;
-	align-items: center;
-}
-
-body > header img {
-	vertical-align: middle;	
-	width: 150px;
-	padding-right: 1em;	
-}
-
-footer {
-	background: black;
-	color: white;
-	padding: 1em;
-	display: grid;
-	grid-template-columns: 1fr 3fr 2fr;
-}
-
-footer > section {
-	text-align:left;
-	display: grid;
-	grid-template-columns: 2fr 3fr;
-	margin-top: 1em;
-}
-
-footer a {
-	text-decoration: none;
-	color: white;
-	font-size:0.8em;
-}
-
-footer h2 {
-	text-align: right;
-	transform: translateY(-15px);
-}
-
-@media screen and (max-width: 750px) {
-	footer {
-		display: block;
-	}
-}
-
-@media screen and (max-width: 670px) {
-	body {
-		font-size: 0.68em;
-	}
-}
-
-@media screen and (min-width: 1600px) {
-	body {
-		font-size: 1.26em;
-	}
+body {
+	background: rgb(235, 235, 235);
+	text-align: center;
 }
 
 .circle {
     position: fixed;
     border-radius: 50%;
 	opacity: 0.6;
+}
+
+a:hover {
+	color: orange
 }
 

@@ -1,0 +1,34 @@
+body > header  {
+	color: white;
+	font-size: 2em;
+	background: black;
+	text-align: left;
+	width: 100%;
+	align-items: center;
+	display: grid;
+	grid-template-columns: 4fr 1fr;	
+}
+
+body > header a {
+	text-decoration: none;
+	color: white;
+	text-align: center;
+	font-size: 0.7em;
+}
+
+body > header nav {
+	display: grid;
+	grid-template-columns: 1fr 1fr;	
+}
+
+body > header figure {
+	display: flex;
+	align-items: center;
+	font-size: 1.6em;
+}
+
+body > header > a > figure img {
+	width: 150px;
+	padding-right: 1em;	
+}
+

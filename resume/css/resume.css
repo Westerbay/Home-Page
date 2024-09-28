@@ -24,7 +24,7 @@ article > h1 {
 }
 
 #skills {
-	width: 60%;
+	width: 70%;
 }
 
 body > article#language, body > article#interests {
@@ -59,6 +59,12 @@ article img {
 	article > h1 {
 		background: #f7d287;
 		color: black;
+	}
+}
+
+@media screen and (max-width: 800px) {
+	body > article {
+		min-width: 400px;
 	}
 }
 
