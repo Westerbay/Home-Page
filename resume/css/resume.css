@@ -55,16 +55,25 @@ article img {
 	padding: 1em;
 }
 
-@media screen and (forced-colors: active) {
-	article > h1 {
-		background: #f7d287;
-		color: black;
-	}
-}
-
 @media screen and (max-width: 800px) {
 	body > article {
 		min-width: 400px;
 	}
 }
+
+@media screen and (max-width: 455px) {
+	body > article {
+		min-width: 350px;
+	}
+	article section section {
+		padding: 1em 4em 1em 4em;
+	}
+}
+
+@media screen and (max-width: 360px) {
+	body > article {
+		min-width: 290px;
+	}
+}
+
 

@@ -42,3 +42,15 @@ body > aside a {
 	}
 }
 
+@media screen and (max-width: 550px) {
+	body > aside {
+		min-width: 350px;
+	}
+}
+
+@media screen and (max-width: 360px) {
+	body > aside {
+		min-width: 290px;
+	}
+}
+

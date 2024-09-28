@@ -17,8 +17,12 @@ body > header a {
 }
 
 body > header nav {
-	display: grid;
-	grid-template-columns: 1fr 1fr;	
+	display: flex;
+	align-items: center;
+}
+
+body > header nav a {
+	margin-right: 10px;
 }
 
 body > header figure {
