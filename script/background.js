@@ -14,7 +14,7 @@ function random(a, b) {
 function setBackground() {
 	for (let i = 0; i < nbCircle; i++) {
 		const circle = document.createElement('div');
-		const size = random(50, 200);
+		const size = random(50, 270); //200 avant
 		const row = i % nbRow;
 		const column = Math.floor(i / nbRow);
 		var positionX = random(100/nbRow * row, 100/nbRow * (row+1));

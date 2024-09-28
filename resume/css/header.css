@@ -1,6 +1,6 @@
 body > aside {
 	color: black;
-	background: rgb(200, 200, 200);
+	background: rgb(175, 175, 175);
 	padding: 2em 2em 2em 5%;
 	text-align: left;
 	width: 60%;
@@ -9,7 +9,7 @@ body > aside {
 	margin-top: 5em;
 	margin-bottom: 3em;
 	position: relative;
-	transform: translateX(50%);
+	transform: translateX(200px);
 	opacity: 0;
 	transition: 1.5s;
 }

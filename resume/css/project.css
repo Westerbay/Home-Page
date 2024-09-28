@@ -84,6 +84,12 @@
 #projects a {
 	text-decoration: none;
 	color: black;
+	margin-right: 2em;
+	margin-left: 2em;
+}
+
+#projects figure:hover {
+	color: orange;
 }
 
 

@@ -5,7 +5,7 @@ body > article {
 	margin: 5%;
 	max-width: 70%;
 	min-width: 650px;
-	transform: translateX(50%);
+	transform: translateX(200px);
 	opacity: 0;
 	transition: 1.5s;
 	display: inline-block;
@@ -53,6 +53,32 @@ article section section h3 {
 article img {
 	height: 5em;
 	padding: 1em;
+}
+
+#education > section {
+	padding-bottom: 3em;
+	padding-top: 1em;
+	max-width: 90%;
+	margin: auto;
+}
+
+#education > section::after {
+	content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%; 
+    transform: translateX(-50%); 
+    width: 65%; 
+    border-bottom: 2px solid rgb(50, 50, 50);
+}
+
+#education > section:last-child {
+	padding-bottom: 1em;
+	border-bottom: 0px solid black;
+}
+
+#education > section:last-child::after {
+	display: none;
 }
 
 @media screen and (max-width: 800px) {
