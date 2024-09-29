@@ -12,6 +12,16 @@
 	transition: transform 0.5s ease;
 }
 
+.more {
+	background: #e84f36;
+	padding: 0.6em;
+	margin: auto;
+	margin-top: 1em;
+	display: block;
+	width: 150px;
+	text-align: center;
+}
+
 #dl a:hover {
 	color: white;
 	transform: scale(115%);
@@ -19,6 +29,7 @@
 
 #dl {
 	width: 100%;
+	margin-top: 0;
 }
 
 #dl section img {

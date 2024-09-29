@@ -2,6 +2,7 @@ body > aside {
 	display: grid;
 	align-items: center;
 	margin-bottom: 4em;
+	margin-top: 4em;
 	margin-right: auto;
 	margin-left: auto;
 	width: 80%;
@@ -52,6 +53,9 @@ body > aside section {
 }
 
 @media screen and (max-width: 1080px) {
+	#pp {
+		display: none;
+	}
 	body > aside {
 		display: flex;
     	flex-direction: column;
