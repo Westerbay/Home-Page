@@ -83,8 +83,7 @@
 #projects a {
 	text-decoration: none;
 	color: black;
-	margin-right: 2em;
-	margin-left: 2em;
+	width: 100%;
 }
 
 #projects figure:hover {
@@ -101,30 +100,24 @@
 	#projects img {
 		height: 18em;
 	}
-	#projects figure {	
-		transform: translateX(-10px);
-	}
 }
 
 @media screen and (max-width: 455px) {
 	#projects img {
 		height: 15em;
 	}
-	#projects figure {	
-		transform: translateX(-7.6%);
-	}
 	#projects > button {
 		font-size: 1em;
 		padding-bottom: 10px;
+	}
+	#projects aside {
+		min-width: 280px;
 	}
 }
 
 @media screen and (max-width: 360px) {
 	#projects img {
 		height: 13em;
-	}
-	#projects figure {	
-		transform: translateX(-15%);
 	}
 }
 

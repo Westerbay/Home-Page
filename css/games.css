@@ -1,0 +1,71 @@
+body > aside {
+	display: grid;
+	align-items: center;
+	margin-bottom: 4em;
+	margin-right: auto;
+	margin-left: auto;
+	width: 80%;
+}
+
+body > aside:nth-child(odd) {
+	grid-template-columns: 5fr 4fr;
+	color: white;
+	background: rgb(30, 30, 30);
+}
+
+body > aside:nth-child(even) {
+	grid-template-columns: 4fr 5fr;
+	color: black;
+	background: white;
+}
+
+li {
+	margin: 1em;
+	margin-left: 2em;
+	margin-right: 2em;
+}
+
+body > aside img {
+	width: 90%;
+}
+
+body > aside h2, body > aside p {	
+	padding-bottom: 1em;
+	padding-top: 1em;
+}
+
+body > aside section {
+	padding: 3em;
+	vertical-align: middle;
+	text-align: left;
+}
+
+@media screen and (min-width: 1080px) {
+	body > aside:nth-child(odd) img {
+		margin-left: 10%;
+	}
+
+	body > aside:nth-child(even) img {
+		margin-right: 10%;
+}
+}
+
+@media screen and (max-width: 1080px) {
+	body > aside {
+		display: flex;
+    	flex-direction: column;
+    	width: 100%;
+    	margin: 0;
+	}
+	body > aside section {
+		order: 2;
+	}
+	body > aside img {
+		width: 100%;
+		margin: auto;
+	}
+	iframe {
+		min-height: 30em;
+	}
+}
+

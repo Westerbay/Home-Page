@@ -20,6 +20,12 @@ body {
 	opacity: 0.6;
 }
 
+a,
+a:visited {
+	text-decoration: none;
+	color: white;
+}
+
 a:hover {
 	color: orange
 }

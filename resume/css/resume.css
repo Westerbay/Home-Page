@@ -91,14 +91,23 @@ article img {
 	body > article {
 		min-width: 340px;
 	}
-	article section section {
-		padding: 1em 4em 1em 4em;
-	}
 }
 
 @media screen and (max-width: 360px) {
 	body > article {
 		min-width: 290px;
+	}
+	article section section {
+		padding: 1em 2em 1em 2em;
+	}
+}
+
+@media screen and (max-width: 800px) {
+	body {
+		font-size: 0.8em;
+	}
+	article section section {
+		padding: 1em 4em 1em 4em;
 	}
 }
 
