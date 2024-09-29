@@ -11,6 +11,7 @@ body > aside:nth-child(odd) {
 	grid-template-columns: 5fr 4fr;
 	color: white;
 	background: rgb(30, 30, 30);
+	border: 1px solid rgb(30, 30, 30);
 }
 
 body > aside:nth-child(even) {

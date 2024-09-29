@@ -35,6 +35,7 @@
 iframe {
 	width: 100%;
 	height: 100%;
+	border: 1px solid rgb(50, 50, 50);
 }
 
 body > aside aside {
@@ -46,9 +47,9 @@ body > aside aside {
 
 #slider {
 	display: grid;
-	width: 300%;
+	width: 400%;
 	animation: slide 10s infinite;
-	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
 	height: 100%;
 }
 
@@ -66,17 +67,27 @@ body > aside aside {
 	    transform: translateX(0); 
 	}
   	33% {
-    	transform: translateX(-33%); 
+    	transform: translateX(-25%); 
   	}
   	56% {
-    	transform: translateX(-33%); 
+    	transform: translateX(-25%); 
   	}
   	66% {
-    	transform: translateX(-66.66%); 
+    	transform: translateX(-50%); 
   	}
   	90% {
-    	transform: translateX(-66.66%); 
+    	transform: translateX(-50%); 
   	}
+  	100% {
+  		transform: translateX(-75%); 
+  	}
+}
+
+@media screen and (max-width: 1080px) {
+	#dl a {
+		margin: auto;
+		margin-bottom: 1em;
+	}
 }
 
 
