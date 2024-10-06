@@ -17,8 +17,8 @@ h1, h2 {
 }
 
 article > h1 {
-	background: #49BABE;
-	color: black;
+	background: rgb(20, 20, 20);
+	color: white;
 	width: 80%;
 	margin: auto;
 }

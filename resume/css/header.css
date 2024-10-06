@@ -1,10 +1,10 @@
 body > aside {
-	color: black;
-	background: rgb(170, 170, 170);
+	color: white;
+	background: rgb(20, 20, 20);
 	padding: 2em 2em 2em 5%;
 	text-align: left;
-	width: 60%;
-	min-width: 600px;
+	max-width: 70%;
+	min-width: 400px;
 	margin: auto;
 	margin-top: 5em;
 	margin-bottom: 3em;
