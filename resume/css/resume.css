@@ -98,7 +98,7 @@ article img {
 		min-width: 290px;
 	}
 	article section section {
-		padding: 1em 2em 1em 2em;
+		padding: 1em;
 	}
 }
 
@@ -107,7 +107,7 @@ article img {
 		font-size: 0.8em;
 	}
 	article section section {
-		padding: 1em 4em 1em 4em;
+		padding: 1em 2em 1em 2em;
 	}
 }
 
