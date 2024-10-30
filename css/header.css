@@ -6,23 +6,20 @@ body > header  {
 	width: 100%;
 	align-items: center;
 	display: grid;
-	grid-template-columns: 4fr 1fr;	
+	grid-template-columns: 2fr 1fr;	
 }
 
 body > header a {
 	text-decoration: none;
 	color: white;
 	text-align: center;
-	font-size: 0.7em;
+	font-size: 0.5em;
 }
 
 body > header nav {
-	display: flex;
+	display: grid;
 	align-items: center;
-}
-
-body > header nav a {
-	margin-right: 10px;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
 body > header aside {

@@ -14,8 +14,9 @@
 		<link href='../css/header.css' rel='stylesheet'>
 		<link href='../css/media.css' rel='stylesheet'>
 		<link rel="icon" href="../img/logo.png">
+		<script src="script/nav.js"></script>
 	</head>
-	<body onload='main();selectEyefox()'>
+	<body onload="main();selectEyefox();show('profile')">
 	
 		<header>
 			<aside>
@@ -23,13 +24,16 @@
 				<a href='../index.html' target='_blank'><p>Wester</p></a>
 			</aside>
 			<nav>
-				<a href='../index.html' target='_blank'>Games</a>
+				<a href="#" onclick="show('profile')">Profile</a>
+				<a href="#" onclick="show('education')">Education</a>
+				<a href="#" onclick="show('projects')">Projects</a>
+				<a href="#" onclick="show('skills')">Skills</a>
 			</nav>
 		</header>
 		
 		<script src="../script/background.js"></script>
 		
-		<aside>
+		<aside class='profile'>
 			<a href='CV.pdf' download='CV.pdf'>Download CV</a>
 			<p>Mathis Dubuisson</p>
 			<p>Engineering Student - Computer Science </p>
@@ -40,14 +44,14 @@
 		</aside>
 		
 		<!-- Profile -->
-		<article id='profile'>
+		<article id='profile' class='profile'>
 			<h1>Profile : </h1>
 			<p>Currently in my second year of engineering studies, I am seeking a 16-week assistant engineer-level internship in the field of computer science, particularly in software development.</p>
 		</article>
 		
 		
 		<!-- Education -->		
-		<article id='education'>
+		<article id='education' class='education'>
 			<h1>Education : </h1>
 			<section>
 				<h2>ENSICAEN, National graduate school of engineering and research - France</h2>
@@ -82,7 +86,7 @@
 		
 		
 		<!-- Projetcs -->
-		<article id='projects'>
+		<article id='projects' class='projects'>
 			<button type='button' onclick="buttonLeft()">&lt;</button>
 			<button type='button' onclick="buttonRight()">&gt;</button>	
 			<h1>Projects</h1>
@@ -91,49 +95,38 @@
 				<button type='button' id='project2' onclick="selectBattle()">06/2022</button>
 				<button type='button' id='project5' onclick="selectLindenmayer()">05/2023</button>
 				<button type='button' id='project6' onclick="selectTaquinSudoku()">08/2023</button>
-				<button type='button' id='project7' onclick="selectGDC()">05/2024</button>
 			</header>
-			<aside id='aside'>
+			<aside>
 				<div id='container'>
 				
 					<!-- Puzzle -->
-					<a href='../EyefoxPuzzle.html' target='_blank'><figure>
+					<a href='../EyefoxPuzzle.html' target='_blank'>
 						<img src='../img/project/puzzle.png' alt='PuzzleGame'>
-						<figcaption>Puzzle Game</figcaption>
-					</figure></a>
+					</a>
 					
 					<!-- Card Game -->
-					<a href='../BattleBrawlersCardGame.html' target='_blank'><figure>
-						<img src='../img/project/battle.png' alt='CardGame'>
-						<figcaption>Card Game</figcaption>
-					</figure></a>
+					<a href='../BattleBrawlersCardGame.html' target='_blank'>
+						<img src='../img/games/sliderBattle1.png' alt='CardGame'>
+					</a>
 					
 					<!-- Lindenmayer -->
-					<a href='https://github.com/Westerbay/L-Systems' target='_blank'><figure>
+					<a href='https://github.com/Westerbay/L-Systems' target='_blank'>
 						<img src='../img/project/Lindenmayer.png' alt='L-Systems'>
-						<figcaption>L-Systems Interpreter</figcaption>
-					</figure></a>
+					</a>
 					
 					<!-- Sudoku -->
-					<a href='https://westerbay.itch.io/taquins-sudoku' target='_blank'><figure>
+					<a href='https://westerbay.itch.io/taquins-sudoku' target='_blank'>
 						<img src='../img/project/TaquinSudoku.png' alt='Taquin&Sudoku'>
-						<figcaption>Taquin & Sudoku</figcaption>
-					</figure></a>
-					
-					<!-- GDC -->
-					<a><figure>
-						<img src='../img/project/GDC.png' alt='CarRace'>
-						<figcaption>Car Race [School project 1<sup>st</sup>] </figcaption>
-					</figure></a>
+					</a>
 				
 				</div>
 			</aside>
-			<script src="script/project.js"></script>
 		</article>
 		
+		<script src="script/project.js"></script>
 		
 		<!-- Skills -->
-		<article id='skills'>
+		<article id='skills' class='skills'>
 			<h1>Skills</h1>
 			<p>
 				<img src='../img/logo/Python.png' alt='Python'>
@@ -148,7 +141,7 @@
 		
 		
 		<!-- Language -->
-		<article id='language' class='block'>
+		<article id='language' class='block skills'>
 			<h1>Languages</h1>
 			<p>English &#x1F1EC;&#x1F1E7;</p> <p>Semi-Fluent</p>
 			<p>Japanese &#x1F1EF;&#x1F1F5;</p> <p>Beginner</p>
@@ -156,7 +149,7 @@
 		
 		
 		<!-- Interests -->
-		<article id='interests' class='block'>
+		<article id='interests' class='block skills'>
 			<h1>Interests</h1>
 			<p>Practice and listen piano 🎹</p>
 			<p>Coding softwares, especially games ⌨️</p>

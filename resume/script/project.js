@@ -2,13 +2,12 @@ var backgroundColor = "rgb(40, 40, 40)";
 var hoverColor = "grey";
 
 var container = document.getElementById("container");
-var containerWidth = 100/5;
+var containerWidth = 100/4;
 
 var projectEyefox = document.getElementById("project1");
 var projectBattle = document.getElementById("project2");
 var projectLindenmayer = document.getElementById("project5");
 var projectTaquinSudoku = document.getElementById("project6");
-var projectGDC = document.getElementById("project7");
 var selectedProject = projectEyefox;
 
 var corrButton = new Map();
@@ -16,7 +15,6 @@ corrButton.set(projectEyefox, 0);
 corrButton.set(projectBattle, 1);
 corrButton.set(projectLindenmayer, 2);
 corrButton.set(projectTaquinSudoku, 3);
-corrButton.set(projectGDC, 4);
 
 function selectEyefox() {
 	selectedProject.style.background = backgroundColor;
@@ -46,20 +44,12 @@ function selectTaquinSudoku() {
 	container.style.transform = "translateX(-" + containerWidth*3 + "%)";
 }
 
-function selectGDC() {
-	selectedProject.style.background = backgroundColor;
-	projectGDC.style.background = hoverColor;
-	selectedProject = projectGDC;
-	container.style.transform = "translateX(-" + containerWidth*4 + "%)";
-}
-
 
 var tabFunction = [
 	selectEyefox, 
 	selectBattle,
 	selectLindenmayer,
-	selectTaquinSudoku,
-	selectGDC
+	selectTaquinSudoku
 ];
 
 function buttonRight() {

@@ -9,8 +9,6 @@ body > aside {
 	margin-top: 5em;
 	margin-bottom: 3em;
 	position: relative;
-	transform: translateX(200px);
-	opacity: 0;
 	transition: 1.5s;
 }
 
@@ -33,7 +31,7 @@ body > aside a {
 	right: 2em;
 	color: white;
 	background: #e84f36;
-	padding: 2%;
+	padding: 1.5%;
 }
 
 @media screen and (max-width: 650px) {
