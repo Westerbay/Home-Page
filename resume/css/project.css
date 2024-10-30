@@ -115,6 +115,15 @@
 	}
 }
 
+@media screen and (max-width: 800px) {
+	#projects img {
+		height: 15em;
+	}
+	#projects {
+		height: 21em;
+	}
+}
+
 @media screen and (max-width: 455px) {
 	#projects aside {
 		min-width: 280px;

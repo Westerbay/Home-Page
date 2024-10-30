@@ -81,7 +81,7 @@ article img {
 
 @media screen and (max-width: 800px) {
 	body > article {
-		min-width: 380px;
+		min-width: 350px;
 	}
 }
 
