@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang='en'>
+	<head>
+		<title>Lindenmayer</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta charset='UTF-8'>
+		<link href='../style/skull.css' rel='stylesheet'>
+		<link href='../style/footer.css' rel='stylesheet'>
+		<link href='../style/header.css' rel='stylesheet'>
+		<link href='../style/media.css' rel='stylesheet'>
+		<link href='style/project.css' rel='stylesheet'>
+		<link href='style/download.css' rel='stylesheet'>
+		<link href='style/system.css' rel='stylesheet'>
+		<link rel="icon" href="../img/logo.png">
+		<script>
+			function main() {
+				const video = document.getElementById('lindenmayer_pres');
+				video.currentTime = 0;
+				video.controls = false;
+				video.play();
+				video.addEventListener('timeupdate', () => {
+					if (video.currentTime >= 5.52675) {
+						video.currentTime = 0;
+						video.play();
+					}
+				});
+			}				
+		</script>
+	</head>
+	<body onLoad="main();">
+
+		<header>
+			<a href='../index.html'>
+				<figure>
+					<img src='../img/logo.png' alt=''>
+					<figcaption>Wester</figcaption>
+				</figure>
+			</a>
+			<nav>
+				<a href='../index.html'>Home</a>
+				<a href='index.html'>Project</a>
+				<a href='../prototype/index.html'>Prototype</a>	
+			</nav>		
+		</header>
+		
+		<!-- Img/DL -->
+		<aside id='dl'>
+			<section>
+				<h2>Fractals generator L-System</h2>
+				<p>This project is an L-System interpreter developed as a university project. L-Systems are formal systems used to model plant growth, create fractals, and generate algorithmic patterns. This interpreter takes user-defined L-System rules and axioms, generating the resulting character sequence for a given number of iterations, which can then be visualized graphically.</p>
+				<aside id='buttons_dl'>
+				<a href="download/L-Systems.jar" download="L-Systems.jar">Download <img src='../img/logo/java.png' alt=''></a>
+				</aside>
+			</section>
+			<aside>
+				<div id='slider'>
+					<img src='img/screenshots/sliderLindenmayer1.png' alt=''>
+					<img src='img/screenshots/sliderLindenmayer2.png' alt=''>
+					<img src='img/screenshots/sliderLindenmayer3.png' alt=''>
+					<img src='img/screenshots/sliderLindenmayer1.png' alt=''>
+				</div>
+			</aside>
+		</aside>
+		
+		<aside>
+			<section>
+				<h2>Lindenmayer Systems</h2>
+				<p><strong>L-Systems</strong> were developed by Hungarian biologist Lindenmayer to describe the growth of biological forms, like algae or ferns. An L-System consists of:</p>
+				<ul>
+					<li><strong>Axiom:</strong> An initial string of characters.</li>
+					<li><strong>Production Rules:</strong> A set of rewrite rules defining how each symbol in the string is transformed from one iteration to the next.</li>
+					<li><strong>Rotation Angle:</strong> Used for graphical visualization with defined angles at each iteration.</li>
+				</ul>
+				<p>L-Systems are commonly used for generating fractals and simulating biological structures.</p>
+			</section>
+			<!-- Video -->
+			<video id="lindenmayer_pres" autoplay playsinline muted>
+				<source src="media/lindenmayer.mp4" type="video/mp4">
+				Cannot support the video
+			</video>
+		</aside>
+		
+		<aside>
+			<img src='img/screenshots/Lindenmayer.png' alt=''>
+			<section>
+				<h2>Key Features:</h2>
+				<ul>
+					<li><strong>L-System Interpretation:</strong> Supports user-defined rules and axioms to generate L-System sequences.</li>
+					<li><strong>Graphical Visualization:</strong> Uses Java's graphical capabilities to visualize the generated L-System patterns.</li>
+					<li><strong>Customization:</strong> Users can define rules, axiom, rotation angle, and number of iterations.</li>
+				</ul>
+			</section>
+		</aside>
+		
+		<footer>
+			<aside>
+				<img src='../img/logo/itchIO.png' alt='Itch.io'>
+				<section>
+					<h3>Itch.io : </h3>
+					<a href='https://westerbay.itch.io/'>westerbay.itch.io</a>
+				</section>
+			</aside>
+			<aside>
+				<img src='../img/logo/yt.png' alt='Youtube'>
+				<section>
+					<h3>Youtube : </h3>
+					<a href='https://www.youtube.com/@Westerbay'>youtube.com/@Westerbay</a>
+				</section>
+			</aside>
+			<aside>
+				<img src='../img/logo/github.svg' alt='Github'>
+				<section>
+					<h3>Github : </h3>
+					<a href='https://github.com/Westerbay'>github.com/Westerbay</a>
+				</section>
+			</aside>
+		</footer>
+		
+		
+	</body>
+</html>
+ 

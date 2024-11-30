@@ -4,95 +4,64 @@
 		<title>Battle Brawlers Card Game</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta charset='UTF-8'>
-		<link href='css/games.css' rel='stylesheet'>
-		<link href='css/skull.css' rel='stylesheet'>
-		<link href='css/footer.css' rel='stylesheet'>
-		<link href='css/header.css' rel='stylesheet'>
-		<link href='css/media.css' rel='stylesheet'>
-		<link href='css/download.css' rel='stylesheet'>
-		<link rel="icon" href="img/logo.png">
+		<link href='../style/skull.css' rel='stylesheet'>
+		<link href='../style/footer.css' rel='stylesheet'>
+		<link href='../style/header.css' rel='stylesheet'>
+		<link href='../style/media.css' rel='stylesheet'>
+		<link href='style/prototype.css' rel='stylesheet'>
+		<link href='style/download.css' rel='stylesheet'>
+		<link href='style/fox.css' rel='stylesheet'>
+		<link rel="icon" href="../img/logo.png">
 	</head>
-	<body onload='main()'>
+	<body>
 	
 		<header>
-			<aside>
-				<a href='index.html'><img src='img/logo.png' alt=''></a>
-				<a href='index.html'><p>Wester</p></a>
-			</aside>
+			<a href='../index.html'>
+				<figure>
+					<img src='../img/logo.png' alt=''>
+					<figcaption>Wester</figcaption>
+				</figure>
+			</a>
 			<nav>
-			</nav>
+				<a href='../index.html'>Home</a>
+				<a href='../project/index.html'>Project</a>
+				<a href='index.html' class='selected'>Prototype</a>	
+			</nav>		
 		</header>
 		
-		<script src="script/background.js"></script>
-		
-		<!-- Img/DL -->
-		<aside id='dl'>
+		<aside>
 			<section>
-				<h2>[Demo] - Battle Brawlers Card Game</h2>
-				<p>Welcome to Battle Brawlers Card Game, a turn-based strategy game where every card, every Brawler, and every move counts! This demo gives you a taste of the action, letting you jump into thrilling battles and test your tactical skills.</p>
-				<a href="games/BattleBrawlers.zip" download="Battle Brawlers Card Game.zip">Download <img src='img/logo/Python.png' alt=''></a>
+				<h2>Battle Brawlers Card Game</h2>
+				<p>Battle Brawlers Card Game is a turn-based strategy game where every card, every Brawler, and every move counts!</p>
+				<p>It was inspired by a childhood game on DS called Bakugan Battle Brawlers. It is a hybrid strategy and action game. Players engage in turn-based battles by strategically placing Brawlers onto the battlefield, aiming to land them on Gate Cards. Once two Brawlers land on the same card, a battle ensues, resolved through mini-games like rapid button presses. The game emphasizes planning, timing, and skillful execution, blending tactical decision-making with fast-paced action.</p>
 			</section>
 			<aside>
 				<div id='slider'>
-					<img src='img/games/sliderBattle1.png' alt=''>
-					<img src='img/games/sliderBattle2.png' alt=''>
-					<img src='img/games/sliderBattle3.png' alt=''>
-					<img src='img/games/sliderBattle1.png' alt=''>
+					<img src='img/screenshots/sliderBattle1.png' alt=''>
+					<img src='img/screenshots/sliderBattle2.png' alt=''>
+					<img src='img/screenshots/sliderBattle3.png' alt=''>
+					<img src='img/screenshots/sliderBattle1.png' alt=''>
 				</div>
 			</aside>
 		</aside>
 		
-		<!-- Description With Gameplay, Language -->
-		<aside>
-			<section>
-				<h2>Battle Brawlers Card Game - [Demo]</h2>
-				<p>In Battle Brawlers Card Game, it's all about mastering both cards and Brawlers. The game is played with 3 bots in a turn-based format, where each player chooses from 3 types of cards (Bronze, Silver and Gold) and selects 3 unique Brawlers, each with their own types.</p>
-				<ul>
-					<li><strong>Card Phases:</strong> At the start of the game, each player places one card face-down on the board. In each subsequent turn, you can choose to either place another card or position a Brawler on an existing card.</li>
-					<li><strong>Brawler Battles:</strong> When two Brawlers land on the same card, a battle begins. Each Brawler gets a boost or penalty based on the card they’re fighting on, then a mini-game triggers (Symbol-matching, Click, Turn)</li>
-				</ul>
-				<p>The player who wins the mini-game scores 1 point. The game continues until one player collects 3 points and claims victory!</p>
-			</section>
-			<!-- Video -->
-			<iframe
-				src="https://www.youtube.com/embed/GuGViIbmlI8?mute=1&autoplay=1&controls=0&disablekb=1&modestbranding=1&rel=0&fs=0&loop=1&playlist=GuGViIbmlI8" 
-				title="YouTube video player"
-				allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-				referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-			</iframe>
-		</aside>
-		
-		<aside>
-			<img src='img/games/coverBattle.png' alt=''>
-			<section>
-				<h2>Key Features:</h2>
-				<ul>
-					<li><strong>Strategic Deck Building:</strong> Choose 1 card from each tier (Bronze, Silver, Gold) and 3 Brawlers to create your ideal lineup.
-</li>
-					<li><strong>Turn-Based Action:</strong> Outthink your opponents by playing cards and Brawlers at the perfect moment.</li>
-					<li><strong>Funny Mini-Games:</strong> Every battle ends in a fast-paced mini-game, master them to secure points!</li>
-				</ul>
-				<p>The Battle Brawlers Card Game [Demo] offers a taste of what's to come. A multiplayer support and an adventure can be considered.</p>
-			</section>
-		</aside>
-		
 		<footer>
 			<aside>
-				<img src='img/logo/itchIO.png' alt='Itch.io'>
+				<img src='../img/logo/itchIO.png' alt='Itch.io'>
 				<section>
 					<h3>Itch.io : </h3>
 					<a href='https://westerbay.itch.io/'>westerbay.itch.io</a>
 				</section>
 			</aside>
 			<aside>
-				<img src='img/logo/yt.png' alt='Youtube'>
+				<img src='../img/logo/yt.png' alt='Youtube'>
 				<section>
 					<h3>Youtube : </h3>
 					<a href='https://www.youtube.com/@Westerbay'>youtube.com/@Westerbay</a>
 				</section>
 			</aside>
 			<aside>
-				<img src='img/logo/github.svg' alt='Github'>
+				<img src='../img/logo/github.svg' alt='Github'>
 				<section>
 					<h3>Github : </h3>
 					<a href='https://github.com/Westerbay'>github.com/Westerbay</a>

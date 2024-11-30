@@ -19,6 +19,10 @@ body {
 	font-size: 1.1em;
 }
 
+.selected {
+	text-decoration: underline;
+}
+
 a,
 a:visited {
 	text-decoration: none;
