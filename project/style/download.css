@@ -1,6 +1,6 @@
 #dl a {
 	text-decoration: none;
-	width: 170px;
+	width: 180px;
 	background: #e84f36;
 	padding: 1em;
 	border-radius: 20px;
@@ -29,6 +29,7 @@
 
 #dl section img {
 	width: 1.4em;
+	height: 1.4em;
 	margin-left: 5%;
 	padding: 0;
 	vertical-align: middle;

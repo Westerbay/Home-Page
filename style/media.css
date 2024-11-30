@@ -9,7 +9,7 @@
 	}
 }
 
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 680px) {
 	header {
 		display: block;
 		height: auto;
