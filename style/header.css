@@ -1,0 +1,36 @@
+header {
+	display: flex;
+	background: rgb(10, 10, 10);
+	color: white;
+}
+
+header figure {
+	width: 17vw;
+	height: 15vh;
+	display: flex;
+	align-items: center;
+}
+
+header img {
+	height: 100%;
+	width: auto;
+	margin-right: 1em;
+}
+
+header figcaption {
+	font-size: 2em;
+}
+
+header a {
+	color: white;
+}
+
+header nav {
+	width: 83vw;
+	display: flex;
+	align-items: center;
+	justify-content: right;
+	gap: 1em;
+	padding-right: 10em;
+}
+

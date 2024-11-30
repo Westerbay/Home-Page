@@ -1,0 +1,30 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+	overflow-x: hidden;
+}
+
+body {
+	background-image: url('../img/background.jpg'); 
+ 	background-size: cover;
+ 	background-attachment: fixed;
+  	background-position: center;
+  	background-repeat: no-repeat;
+	text-align: center;
+	font-family: Verdana, sans-serif;
+	font-size: 1.1em;
+}
+
+a,
+a:visited {
+	text-decoration: none;
+}
+
+a:hover {
+	color: orange
+}
+

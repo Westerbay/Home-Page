@@ -1,0 +1,51 @@
+#dl a {
+	text-decoration: none;
+	width: 170px;
+	background: #e84f36;
+	padding: 1em;
+	border-radius: 20px;
+	display: block;
+	font-size: 1.1em;
+	transition: transform 0.5s ease;
+	color: white;
+	margin-right: 7%;
+}
+
+#buttons_dl {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+}
+
+#dl a:hover {
+	color: white;
+	transform: scale(115%);
+}
+
+#dl {
+	width: 100%;
+	margin-top: 0;
+}
+
+#dl section img {
+	width: 1.4em;
+	margin-left: 5%;
+	padding: 0;
+	vertical-align: middle;
+}
+
+#dl section p {
+	margin-bottom: 2em;
+}
+
+@media screen and (max-width: 500px) {
+	#buttons_dl {
+		display: block;
+	}
+	#dl a {
+		margin: auto;
+		margin-bottom: 1em;
+	}
+}
+
+

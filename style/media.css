@@ -1,0 +1,33 @@
+@media screen and (max-width: 750px) {
+	footer > aside {
+		width: 270px;
+		margin: auto;
+		margin-bottom: 2em;
+	}
+	footer {
+		display: block;
+	}
+}
+
+@media screen and (max-width: 550px) {
+	header {
+		display: block;
+		height: auto;
+	}
+	header figure img {
+		margin-right: 2em;
+	}
+	header figure {
+		width: 250px;
+		margin: auto;
+	}
+	header nav {
+		width: 100vw;
+		padding: 1.5em;
+		background: rgb(20, 20, 20);
+		align-items: center;
+		justify-content: center;
+		gap: 1em;
+	}
+}
+
