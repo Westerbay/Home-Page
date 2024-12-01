@@ -4,62 +4,48 @@
 		<title>Home</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta charset='UTF-8'>
-		<link href='css/games.css' rel='stylesheet'>
-		<link href='css/download.css' rel='stylesheet'>
-		<link href='css/skull.css' rel='stylesheet'>
-		<link href='css/footer.css' rel='stylesheet'>
-		<link href='css/header.css' rel='stylesheet'>
-		<link href='css/media.css' rel='stylesheet'>
+		<link href='style/skull.css' rel='stylesheet'>
+		<link href='style/footer.css' rel='stylesheet'>
+		<link href='style/header.css' rel='stylesheet'>
+		<link href='style/media.css' rel='stylesheet'>
+		<link href='style/home.css' rel='stylesheet'>
 		<link rel="icon" href="img/logo.png">
 	</head>
-	<body onload='main()'>
+	<body>
 	
 		<header>
-			<aside>
-				<a href='index.html'><img src='img/logo.png' alt=''></a>
-				<a href='index.html'><p>Wester</p></a>
-			</aside>
+			<a href='index.html'>
+				<figure>
+					<img src='img/logo.png' alt=''>
+					<figcaption>Wester</figcaption>
+				</figure>
+			</a>
 			<nav>
-			</nav>
+				<a href='index.html' class='selected'>Home</a>
+				<a href='project/index.html'>Project</a>
+				<a href='prototype/index.html'>Prototype</a>	
+			</nav>		
 		</header>
 		
-		<script src="script/background.js"></script>
-		
 		<aside>
 			<section>
-				<h2>About me</h2>
-				<p>I'm an independent developer and a software engineering student creating games from scratch in my free time for fun. As I continue to build my own game engine, I use assets from itch.io to bring my projects to life. All my Python-based games are powered by Pygame, so be aware that some features might be limited due to its capabilities. Stay tuned as I continue developing and refining my games!</p>
+				<h2>Welcome !</h2>
+				<p>I'm an engineering student passionate about coding for fun and learning. My focus is primarily on exploring game development mechanics, but I enjoy experimenting across various domains. You'll find two main sections here: </p>
+				<ul>
+					<li><a href='prototype/index.html'>Prototypes</a>, showcasing experimental concepts and ideas.</li>
+					<li><a href='project/index.html'>Projects</a>, featuring my complete creations.</li>
+				</uL>
+				<p>Dive in to discover how I bring my ideas to life through code!</p>
 			</section>
-			<img id="pp" src="img/pp.png" alt=''>
+			<aside>
+				<div id='slider'>
+					<img src='img/slider1.png' alt=''>
+					<img src='img/slider1.png' alt=''>
+					<img src='img/slider3.png' alt=''>
+					<img src='img/slider1.png' alt=''>
+				</div>
+			</aside>
 		</aside>
-		
-		<aside>
-			<section>
-				<h2>Eyefox Puzzle</h2>
-				<p>Eyefox Puzzle is a challenging puzzle game built with Python. Your goal is to replicate the left grid by strategically flipping tiles on the right. Each click affects multiple tiles, creating a clever logic puzzle that tests your problem-solving skills. With progressively harder levels and a limited number of moves, can you master the grid?</p>
-				<a class='more' href='EyefoxPuzzle.html'>More about</a>
-			</section>
-			<iframe
-				src="https://www.youtube.com/embed/ML-BLn1C11E?mute=1&autoplay=1&controls=0&disablekb=1&modestbranding=1&rel=0&fs=0&loop=1&playlist=ML-BLn1C11E" 
-				title="YouTube video player"
-				allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-				referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-			</iframe>
-		</aside>		
-		
-		<aside>
-			<iframe
-				src="https://www.youtube.com/embed/GuGViIbmlI8?mute=1&autoplay=1&controls=0&disablekb=1&modestbranding=1&rel=0&fs=0&loop=1&playlist=GuGViIbmlI8" 
-				title="YouTube video player"
-				allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-				referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-			</iframe>
-			<section>
-				<h2>Battle Brawlers Card Game</h2>
-				<p>Battle Brawlers Card Game is a turn-based strategy card game developed in Python. Choose from Bronze, Silver, and Gold cards and command powerful Brawlers to outsmart your opponents. Place your cards, battle for buffs or debuffs, and compete in fast-paced mini-games. Be the first to earn 3 points to win! This demo is just the beginning, with more exciting adventures to come. No multiplayer.</p>
-				<a class='more' href='BattleBrawlersCardGame.html'>More about</a>
-			</section>
-		</aside>				
 		
 		<footer>
 			<aside>
@@ -84,7 +70,6 @@
 				</section>
 			</aside>
 		</footer>
-		
 		
 	</body>
 </html>
