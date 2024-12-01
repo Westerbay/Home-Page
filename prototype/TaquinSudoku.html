@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang='en'>
 	<head>
-		<title>Prototype</title>
+		<title>Taquin's Sudoku</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta charset='UTF-8'>
 		<link href='../style/skull.css' rel='stylesheet'>
 		<link href='../style/footer.css' rel='stylesheet'>
 		<link href='../style/header.css' rel='stylesheet'>
 		<link href='../style/media.css' rel='stylesheet'>
-		<link href='style/home.css' rel='stylesheet'>
+		<link href='style/prototype.css' rel='stylesheet'>
+		<link href='style/download.css' rel='stylesheet'>
+		<link href='style/fox.css' rel='stylesheet'>
 		<link rel="icon" href="../img/logo.png">
-		<script src="fragment/script.js"></script>
-		
 	</head>
-	<body onLoad="display();">
-
+	<body>
+	
 		<header>
 			<a href='../index.html'>
 				<figure>
@@ -24,20 +24,27 @@
 			</a>
 			<nav>
 				<a href='../index.html'>Home</a>
-				<a href='index.html'>Project</a>
-				<a href='../prototype/index.html' class="selected">Prototype</a>	
+				<a href='../project/index.html'>Project</a>
+				<a href='index.html' class='selected'>Prototype</a>	
 			</nav>		
 		</header>
-		<aside id="slider">
-			<article id="left">
-			</article>
-			<article id="main">
-			</article>
-			<article id="right">
-			</article>
-			<img id="previousButton" src="../img/left.png" alt="left" onClick="left()" >
-			<img id="nextButton" src="../img/right.png" alt="right" onClick="right()" >
-		</aside>			
+		
+		<aside>
+			<section>
+				<h2>Taquin's Sudoku [2023]</h2>
+				<p>This project is a game where you can play the classic 15-puzzle (sliding puzzle), Sudoku, and a new hybrid mode that combines both.</p>
+				<p>In the hybrid mode, the tiles of the sliding puzzle are hidden, and to reveal them, you must solve a Sudoku puzzle. This unique combination challenges both logic and strategy for a fresh gaming experience.</p>
+			</section>
+			<aside>
+				<div id='slider'>
+					<img src='img/screenshots/taquin1.png' alt=''>
+					<img src='img/screenshots/taquin2.png' alt=''>
+					<img src='img/screenshots/taquin3.png' alt=''>
+					<img src='img/screenshots/taquin1.png' alt=''>
+				</div>
+			</aside>
+		</aside>
+		
 		<footer>
 			<aside>
 				<img src='../img/logo/itchIO.png' alt='Itch.io'>
@@ -61,6 +68,7 @@
 				</section>
 			</aside>
 		</footer>
+		
 		
 	</body>
 </html>
