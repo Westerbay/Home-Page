@@ -99,7 +99,7 @@ function left() {
 
 let startX;
 let endX;
-let minSwipeDistance = 30;
+let minSwipeDistance = 100;
 
 document.addEventListener('touchstart', function(event) {
 	startX = event.touches[0].pageX;
