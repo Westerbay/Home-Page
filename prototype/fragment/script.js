@@ -1,26 +1,50 @@
 let articlesArray = {
 	0 : {
-		"title" : "Eyefox Puzzle",
-		"img" : "img/screenshots/coverFox.png",
-		"alt" : "EyefoxPuzzle",
-		"desc" : "In Eyefox Puzzle, your goal is simple: replicate the grid on the left by manipulating the grid on the right. Each level begins with two grids, one on the left and one on the right.",
-		"href" : "EyefoxPuzzle.html"
+		"title" : "High School Project",
+		"img" : "img/screenshots/highschool1.png",
+		"alt" : "HighSchoolProject",
+		"desc" : "This project is a 2D platformer build with Python, featuring gravity and collision physics.",
+		"href" : "HighSchoolProject.html"
 	},
 	1 : {
-		"title" : "Lindenmayer",
-		"img" : "img/screenshots/sliderLindenmayer3.png",
-		"alt" : "Lindenmayer",
-		"desc" : "This project is an L-System interpreter developed as a university project. L-Systems are formal systems used to model plant growth, create fractals, and generate algorithmic patterns.",
-		"href" : "Lindenmayer.html"
+		"title" : "Farworld",
+		"img" : "img/screenshots/farworld3.png",
+		"alt" : "Farworld",
+		"desc" : "This project is a card game build with Python in french. It was a group effort for the final semester of the first year in a Bachelor's degree in Mathematics.",
+		"href" : "Farworld.html"
 	},
 	2 : {
-		"title" : "Eyefox Puzzle",
-		"img" : "img/screenshots/coverFox.png",
-		"alt" : "EyefoxPuzzle",
-		"desc" : "In Eyefox Puzzle, your goal is simple: replicate the grid on the left by manipulating the grid on the right. Each level begins with two grids, one on the left and one on the right.",
-		"href" : "EyefoxPuzzle.html"
+		"title" : "Battle Brawlers Card Game",
+		"img" : "img/screenshots/battle.png",
+		"alt" : "BattleBrawlersCardGame",
+		"desc" : "Battle Brawlers Card Game is a turn-based strategy game where every card, every Brawler, and every move counts!",
+		"href" : "BattleBrawlersCardGame.html"
+	},
+	3 : {
+		"title" : "Minidex",
+		"img" : "img/screenshots/minidex.png",
+		"alt" : "Minidex",
+		"desc" : "This project is a a web scraping tool in Python to extract Pokémon data from the French website Poképédia.",
+		"href" : "Minidex.html"
+	},
+	4 : {
+		"title" : "It adds up",
+		"img" : "img/screenshots/math2.png",
+		"alt" : "ItAddsUp",
+		"desc" : "This project is a Python version of The Countdown Game.",
+		"href" : "ItAddsUp.html"
+	},
+	5 : {
+		"title" : "Taquin's Sudoku",
+		"img" : "img/screenshots/taquin1.png",
+		"alt" : "TaquinSudoku",
+		"desc" : "This project is a game where you can play the classic 15-puzzle (sliding puzzle), Sudoku, and a new hybrid mode that combines both.",
+		"href" : "TaquinSudoku.html"
 	}
 };
+
+let index = 2;
+const size = 6;
 
 function createArticle(article) {
 	content = `<h2>${article['title']}</h2>`;
@@ -39,29 +63,37 @@ for (var article in articlesArray) {
 }
 
 function display() {
-	const mean = Math.floor(Object.keys(articles).length / 2);
-	document.getElementById("left").innerHTML = articles[mean - 1];
-	document.getElementById("main").innerHTML = articles[mean];
-	document.getElementById("right").innerHTML = articles[mean + 1];
+	let leftIndex = (index - 1 + size) % size;
+	let rightIndex = (index + 1) % size;
+	document.getElementById("right").innerHTML = articles[rightIndex];
+	document.getElementById("left").innerHTML = articles[leftIndex];
+	document.getElementById("main").innerHTML = articles[index];
 }
 
-function right() {
-	var tmp = document.getElementById("left").innerHTML;
+function update() {
 	document.getElementById("right").classList.add('hidden');
 	document.getElementById("left").classList.add('hidden');
 	document.getElementById("main").classList.add('hidden');
+	let leftIndex = (index - 1 + size) % size;
+	let rightIndex = (index + 1) % size;
 	setTimeout(() => {
-		document.getElementById("right").innerHTML = document.getElementById("main").innerHTML;
-		document.getElementById("left").innerHTML = document.getElementById("main").innerHTML;
-		document.getElementById("main").innerHTML = tmp;
+		document.getElementById("right").innerHTML = articles[rightIndex];
+		document.getElementById("left").innerHTML = articles[leftIndex];
+		document.getElementById("main").innerHTML = articles[index];
 		document.getElementById("right").classList.remove('hidden');
 		document.getElementById("left").classList.remove('hidden');
 		document.getElementById("main").classList.remove('hidden');
-	}, 200);	
+	}, 200);
+}
+
+function right() {
+	index = (index + 1) % size;
+	update();
 }
 
 function left() {
-	right();
+	index = (index - 1 + size) % size;
+	update();
 }
 
 
