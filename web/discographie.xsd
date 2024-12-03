@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="discographie">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="groupes"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="groupes">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="groupe"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="groupe">
+    <xs:complexType mixed="true">
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="disques"/>
+        <xs:element ref="musiciens"/>
+      </xs:choice>
+      <xs:attribute name="id" use="required" type="xs:NCName"/>
+      <xs:attribute name="img" use="required" type="xs:NCName"/>
+      <xs:attribute name="url" use="required" type="xs:anyURI"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="disques">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="disque"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="disque">
+    <xs:complexType mixed="true">
+      <xs:attribute name="annee" use="required" type="xs:integer"/>
+      <xs:attribute name="groupe" use="required" type="xs:NCName"/>
+      <xs:attribute name="id" use="required" type="xs:NCName"/>
+      <xs:attribute name="img" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="musiciens">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="musicien"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="musicien">
+    <xs:complexType mixed="true">
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="bio"/>
+        <xs:element ref="instruments"/>
+      </xs:choice>
+      <xs:attribute name="groupe" use="required" type="xs:NCName"/>
+      <xs:attribute name="id" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="bio">
+    <xs:complexType>
+      <xs:attribute name="mort" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="naissance" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="instruments" type="xs:string"/>
+</xs:schema>
