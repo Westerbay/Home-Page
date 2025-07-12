@@ -1,36 +1,50 @@
 header {
-	display: flex;
-	background: rgb(10, 10, 10);
-	color: white;
+	background-color: white;
+	box-shadow: 0 6px 4px rgba(0, 0, 0, 0.3);
+	position: relative;
+	padding: 0 5%;
+	text-align: center;
 }
 
-header figure {
-	width: 30%;
-	height: 15vh;
+header > a {
 	display: flex;
-	align-items: center;
+	margin-left: 5%;
 }
 
 header img {
-	height: 100%;
-	width: auto;
-	margin-right: 1em;
+	height: 65px;	
 }
 
-header figcaption {
-	font-size: 2em;
+header .selected {
+	color: #4a70e4;
+	border-bottom: 1px solid #4a70e4;
 }
 
-header a {
-	color: white;
+header nav a {
+	margin: 1em;
 }
 
-header nav {
-	width: 83vw;
-	display: flex;
-	align-items: center;
-	justify-content: right;
-	gap: 1em;
-	padding-right: 10em;
+@media (min-width: 760px) {
+	header {
+		height: 75px;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
 }
-
+@media (max-width: 760px) {
+	header nav {
+		padding: 1em 0;
+	}
+	header a {
+		width: 200px;
+		margin: auto;
+	}
+}
+@media (max-width: 425px) {
+	header nav a {
+		display: block;
+		width: 100px;
+		margin: 1em auto;
+	}
+}

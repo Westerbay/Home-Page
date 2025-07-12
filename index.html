@@ -1,76 +1,70 @@
 <!DOCTYPE html>
 <html lang='en'>
 	<head>
-		<title>Home</title>
+		<title>Wester - Home</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta charset='UTF-8'>
 		<link href='style/skull.css' rel='stylesheet'>
 		<link href='style/footer.css' rel='stylesheet'>
 		<link href='style/header.css' rel='stylesheet'>
-		<link href='style/media.css' rel='stylesheet'>
 		<link href='style/home.css' rel='stylesheet'>
-		<link rel="icon" href="img/logo.png">
+		<link rel="icon" href="img/icon.png">
+		<script src="script/skull.js"></script>
 	</head>
 	<body>
-	
-		<header>
-			<a href='index.html'>
-				<figure>
-					<img src='img/logo.png' alt=''>
-					<figcaption>Wester</figcaption>
-				</figure>
-			</a>
-			<nav>
-				<a href='index.html' class='selected'>Home</a>
-				<a href='project/index.html'>Project</a>
-				<a href='prototype/index.html'>Prototype</a>	
-			</nav>		
-		</header>
-		
-		<aside>
-			<section>
-				<h2>Welcome !</h2>
-				<p>I'm an engineering student passionate about coding for fun and learning. My focus is primarily on exploring game development mechanics, but I enjoy experimenting across various domains. You'll find two main sections here: </p>
-				<ul>
-					<li><a href='prototype/index.html'>Prototypes</a>, showcasing experimental concepts and ideas.</li>
-					<li><a href='project/index.html'>Projects</a>, featuring my complete creations.</li>
-				</uL>
-				<p>Dive in to discover how I bring my ideas to life through code!</p>
+		<div id="main">
+			<aside>
+				<section>
+					<h2>Hey,</h2>
+					<h2>I'm Mathis <span>Dubuisson</span></h2>
+					<p>I am an engineering student at <a href="https://www.ensicaen.fr/" target="_blank">ENSICAEN</a> (National Graduate School of Engineering and Research Center) in France, class of 2026.</p>
+					<p>Here you will find my personal projects, technical creations, and prototypes developed during my studies and beyond.</p>
+					<a href="#about" id="aboutButton" class="actionButton">About me</a>
+				</section>
+				<img src="img/pp.png" alt="">
+			</aside>
+			<section id="about" class="hidden content">
+				<h2>Education</h2>
+				<aside>
+					<img src="logo/ensicaen.png" alt="ENSICAEN">
+					<div>
+						<p><a href="https://www.ensicaen.fr/" target="_blank">ENSICAEN</a> student (class of 2026) in Computer Science, focuses on software architecture, with a specialization in Image, Sound and Artificial Intelligence (2<sup>nd</sup> year of Master).</p>
+						<p>I completed the first two years of French bachelor's degrees. First year in Mathematics and the second year in Computer Science at the University of Caen Normandy (<a href="https://www.unicaen.fr/" target="_blank">UNICAEN</a>).</p>
+					</div>
+					
+				</aside>
+				<h2>Interest</h2>
+				<aside>
+					<img src="img/piano.png" alt="Piano" class="circle">
+					<div>
+						<p>What drives me most is bringing ideas to life. This is why I develop games as personal projects and explore ways to create visual art through mathematics and physics.</p>
+						<p>I also have a strong interest in piano, both as a listener and a player. I also enjoy playing video games and chess in my free time.</p>
+					</div>
+				</aside>
 			</section>
-			<aside>
-				<div id='slider'>
-					<img src='img/slider1.png' alt=''>
-					<img src='img/slider2.png' alt=''>
-					<img src='img/slider3.png' alt=''>
-					<img src='img/slider1.png' alt=''>
-				</div>
-			</aside>
-		</aside>
-		
-		<footer>
-			<aside>
-				<img src='img/logo/itchIO.png' alt='Itch.io'>
+			<script src="script/home.js"></script>
+
+			<div class="explore">
 				<section>
-					<h3>Itch.io : </h3>
-					<a href='https://westerbay.itch.io/'>westerbay.itch.io</a>
+					<h2>Project</h2>
+					<figure>
+						<img src="img/abop.png" alt="">
+					</figure>
+					<p>Completed and operational creations. These projects are either fully developed or still being improved, but they are already functional and showcase concrete results.</p>
+					<a href="Project.html" class="actionButton">About</a>
 				</section>
-			</aside>
-			<aside>
-				<img src='img/logo/yt.png' alt='Youtube'>
 				<section>
-					<h3>Youtube : </h3>
-					<a href='https://www.youtube.com/@Westerbay'>youtube.com/@Westerbay</a>
+					<h2>Prototype</h2>
+					<figure>
+						<img src="img/bachelor.png" alt="">
+					</figure>
+					<p>Here you'll find projects that are up and running. Some are finished, others still evolving, but all of them are working and usable.</p>
+					<a href="Prototype.html" class="actionButton">About</a>
 				</section>
-			</aside>
-			<aside>
-				<img src='img/logo/github.svg' alt='Github'>
-				<section>
-					<h3>Github : </h3>
-					<a href='https://github.com/Westerbay'>github.com/Westerbay</a>
-				</section>
-			</aside>
-		</footer>
-		
+			</div>
+			
+		</div>
+		<script>load("Home");</script>
 	</body>
 </html>
  

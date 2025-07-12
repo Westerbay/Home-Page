@@ -1,28 +1,16 @@
 footer {
-	background: black;
-	color: white;
-	padding: 2em;
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-}
-
-footer > aside {
-	text-align:left;
+	height: 60px;
+	background-color: rgb(250, 250, 250);
+	box-shadow: 0 0 6px 4px rgba(0, 0, 0, 0.3);
 	display: flex;
-	margin-top: 1em;
-	margin: auto;
 	align-items: center;
 }
 
-footer a {
-	text-decoration: none;
-	color: white;
-	font-size:0.8em;
+footer nav {
+	margin: auto;
 }
 
-footer img {
-	height: 2em;
-	text-align: right;
-	margin-right: 20px;
+footer nav img {
+	height: 30px;
+	margin: 0 1em;
 }
-

@@ -1,122 +1,108 @@
-body > aside {
-	display: grid;
-	align-items: center;
-	margin-right: auto;
-	margin-left: auto;
-	width: 100%;
-	min-height: 75vh;
-	grid-template-columns: 4fr 6fr;
-	color: black;
-	background: white;
+#main aside:nth-of-type(odd) {
+	grid-template-columns: 4fr 2fr;
 }
 
-body > aside a {
-	color: black;
-	text-decoration: underline;
-	font-weight:bold;
+#main aside:nth-of-type(even) {
+	grid-template-columns: 2fr 4fr;
 }
 
-#slider img {
-	height: 100%;
-	width: 100%;
+#main aside:nth-of-type(odd) div {
+	grid-column: 1;
+	grid-row: 1;
+}
+
+#main aside:nth-of-type(odd) img {
+	grid-row: 1;
+	grid-column: 2;
+}
+
+#main p {
+	margin: 1em 0;
+}
+
+#main aside img {
+	width: 400px;
+	display: block;
 	margin: auto;
 }
 
-
-li {
-	margin: 1em;
-	margin-left: 2em;
-	margin-right: 2em;
+#aboutButton::after {
+	content: " ▼";
 }
 
-body > aside img {
-	height: 70%;
+#aboutButton.hidden::after {
+	content: " ▲";
 }
 
-body > aside h2, body > aside p {	
-	padding-bottom: 1em;
-	padding-top: 1em;
+#about {
+	margin-bottom: 8em;
 }
 
-body > aside section {
-	padding: 3em;
-	vertical-align: middle;
-	text-align: left;
+#about.hidden {
+	display: none;
 }
 
-
-body > aside aside {
-	overflow: hidden;
-	position: relative;
-	height: 100%;
-	width: 100%;
+#about aside img {
+	width: 200px;
 }
 
-#slider {
-	display: grid;
-	width: 400%;
-	animation: slide 10s infinite;
-	grid-template-columns: 1fr 1fr 1fr 1fr;
-	height: 100%;
+.explore img {
+	width: 300px;
+	margin: auto;
+	display: block;
 }
 
-@keyframes slide {
- 	0% {
-		transform: translateX(0); 
-  	}
-	23% {
-	    transform: translateX(0); 
+.explore .actionButton {
+	margin: auto;
+}
+
+@media (min-width: 1150px) {
+	#main aside {
+		display: grid;
+		align-items: center;
 	}
-  	33% {
-    	transform: translateX(-25%); 
-  	}
-  	56% {
-    	transform: translateX(-25%); 
-  	}
-  	66% {
-    	transform: translateX(-50%); 
-  	}
-  	90% {
-    	transform: translateX(-50%); 
-  	}
-  	100% {
-  		transform: translateX(-75%); 
-  	}
-}
-
-@media screen and (min-width: 1080px) {
-	body > aside:nth-child(even) img {
-		margin-left: 10%;
-	}
-
-	body > aside:nth-child(odd) img {
-		margin-right: 10%;
-	}
-	
-}
-
-@media screen and (max-width: 1180px) {
-	#pp {
-		display: none;
-	}
-	body > aside aside {
-		overflow-y: auto;
-	}
-	body > aside {
+	.explore {
 		display: flex;
-    	flex-direction: column;
-    	width: 100%;
-    	margin: 0;
-		min-height: 78vh;
+		margin: 2em;
 	}
-	body > aside section {
-		order: 2;
+	#main .explore section {
+		width: 500px;
 	}
-	body > aside img {
-		width: 100%;
+	#main section {
+		width: 65%;
 	}
-	iframe {
-		min-height: 30em;
+}
+@media (max-width: 1150px) {
+	#main aside img {
+		width: 300px;
+	}
+	#about aside img {
+		width: 100px;
+		margin: 1em;
+	}
+	#about aside:nth-of-type(odd) img {
+		float: right;
+	}
+	#about aside:nth-of-type(even) img {
+		float: left;
+	}
+	.explore section {
+		margin: auto;
+		margin-bottom: 6em;
+		width: 70%;
+		min-width: 350px;		
+	}
+}
+
+@media (max-width: 600px) {
+	#about aside:nth-of-type(odd) img {
+		float: none;
+	}
+	#about aside:nth-of-type(even) img {
+		float: none;
+	}
+	#about aside img {
+		margin: auto;
 	}
 }
 
