@@ -2,13 +2,12 @@ header {
 	background-color: white;
 	box-shadow: 0 6px 4px rgba(0, 0, 0, 0.3);
 	position: relative;
-	padding: 0 5%;
+	padding: 0 10%;
 	text-align: center;
 }
 
 header > a {
 	display: flex;
-	margin-left: 5%;
 }
 
 header img {

@@ -9,7 +9,6 @@ function makeHeader() {
             <a href="index.html" id="navHome">Home</a>
             <a href="Project.html" id="navProject">Project</a>
             <a href="Prototype.html" id="navPrototype">Prototype</a>
-            <a>☰</a>
         </nav>
     `;
     document.body.insertBefore(header, document.body.firstChild);
