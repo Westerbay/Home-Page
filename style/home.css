@@ -1,30 +1,30 @@
-#main {
+main {
     padding: 3em 0 3em 0;
 }
 
-#main aside:nth-of-type(odd) {
+main aside:nth-of-type(odd) {
 	grid-template-columns: 4fr 2fr;
 }
 
-#main aside:nth-of-type(even) {
+main aside:nth-of-type(even) {
 	grid-template-columns: 2fr 4fr;
 }
 
-#main aside:nth-of-type(odd) div {
+main aside:nth-of-type(odd) div {
 	grid-column: 1;
 	grid-row: 1;
 }
 
-#main aside:nth-of-type(odd) img {
+main aside:nth-of-type(odd) img {
 	grid-row: 1;
 	grid-column: 2;
 }
 
-#main p {
+main p {
 	margin: 1em 0;
 }
 
-#main aside img {
+main aside img {
 	width: 400px;
 	display: block;
 	margin: auto;
@@ -61,7 +61,7 @@
 }
 
 @media (min-width: 1150px) {
-	#main aside {
+	main aside {
 		display: grid;
 		align-items: center;
 	}
@@ -69,15 +69,15 @@
 		display: flex;
 		margin: 2em;
 	}
-	#main .explore section {
+	main .explore section {
 		width: 500px;
 	}
-	#main section {
+	main section {
 		width: 65%;
 	}
 }
 @media (max-width: 1150px) {
-	#main aside img {
+	main aside img {
 		width: 300px;
 	}
 	#about aside img {

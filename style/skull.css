@@ -10,12 +10,12 @@ body {
 	font-size: 1.1em;
 }
 
-#main {
+main {
 	background-image: url('../img/background.png'); 
 	min-height: 100vh;
 }
 
-#main section {
+main section {
 	margin: 4em auto;
 	background-color: rgba(255, 255, 255, 0.9);
 	box-shadow: 12px 12px 2px 1px rgb(0 0 0 / 0.6);
@@ -23,7 +23,7 @@ body {
 	max-width: 85%;
 }
 
-#main .explore section {
+main .explore section {
 	margin: 6em auto;
 	position: relative;
 }
@@ -47,7 +47,7 @@ body {
 	transform: translate(-50%, -2.5em);
 }
 
-#main span,
+main span,
 a.actionButton:hover,
 a.actionButton:visited:hover  {
 	color: orange;
