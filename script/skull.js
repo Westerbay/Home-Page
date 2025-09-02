@@ -7,6 +7,7 @@ function makeHeader() {
         </a>
         <nav>
             <a href="https://westerbay.github.io/Home-Page/" id="navHome">Home</a>
+            <a href="https://westerbay.github.io/Home-Page/About.html" id="navAbout">About</a>
             <a href="https://westerbay.github.io/Home-Page/Project.html" id="navProject">Project</a>
             <a href="https://westerbay.github.io/Home-Page/Prototype.html" id="navPrototype">Prototype</a>
         </nav>

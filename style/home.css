@@ -30,20 +30,8 @@ main aside img {
 	margin: auto;
 }
 
-#aboutButton::after {
-	content: " ▼";
-}
-
-#aboutButton.hidden::after {
-	content: " ▲";
-}
-
 #about {
 	margin-bottom: 8em;
-}
-
-#about.hidden {
-	display: none;
 }
 
 #about aside img {
