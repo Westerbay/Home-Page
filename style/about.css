@@ -1,9 +1,3 @@
-main figure img {
-    width: 100%;
-    max-height: 120px;
-    max-width: 120px;    
-}
-
 #skill {
     margin: auto;
     text-align: center;
@@ -29,17 +23,27 @@ main > h2::after {
     margin: 0 1em;
 }
 
-main figcaption {
-    font-weight: bold;
-}
-
-main figure {
+.skill-item {
     display: inline-block;
     position: relative;    
     margin: 2em 4em;
+    width: 140px;
+    text-align: center;
 }
 
-main .rating {
+.skill-item img {
+    width: 100%;
+    max-height: 120px;
+    max-width: 120px;    
+}
+
+.skill-name {
+    display: block;
+    font-weight: bold;
+    margin-top: 0.5em;
+}
+
+.rating {
     position: relative;
     background: #eee;
     border-radius: 10px;
@@ -50,7 +54,7 @@ main .rating {
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
-main .rating::before {
+.rating::before {
     content: "";
     position: absolute;
     top: 0;
@@ -60,4 +64,8 @@ main .rating::before {
     border-radius: inherit;
     transition: width 0.6s ease;
     background: var(--gradient, linear-gradient(90deg, #00c853, #ffeb3b, #ff5722));
+}
+
+#skill span {
+    color: black;
 }
