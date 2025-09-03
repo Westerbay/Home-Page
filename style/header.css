@@ -23,7 +23,7 @@ header nav a {
 	margin: 1em;
 }
 
-@media (min-width: 760px) {
+@media (min-width: 850px) {
 	header {
 		height: 75px;
 		display: flex;
@@ -31,7 +31,7 @@ header nav a {
 		justify-content: space-between;
 	}
 }
-@media (max-width: 760px) {
+@media (max-width: 850px) {
 	header nav {
 		padding: 1em 0;
 	}
