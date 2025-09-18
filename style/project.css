@@ -20,6 +20,9 @@ main > h2::after {
     margin: 0 1em;
 }
 
+main .academic {
+    color: rgb(51, 102, 150);
+}
 
 main section p {
     margin: 10px auto;
