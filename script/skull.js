@@ -30,10 +30,14 @@ function makeFooter() {
 }
 
 function registerVisit() {
+    var hostname = window.location.hostname;
+    if (window.location.pathname != "/") {
+        hostname += window.location.pathname;
+    }
     fetch("https://wester.games/opensitecounter/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ hostname: window.location.hostname })
+        body: JSON.stringify({ hostname: hostname })
     })
 }
 
