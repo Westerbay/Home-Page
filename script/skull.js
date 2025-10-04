@@ -29,9 +29,18 @@ function makeFooter() {
     document.body.appendChild(footer);
 }
 
+function registerVisit() {
+    fetch("https://wester.games/opensitecounter/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ hostname: window.location.hostname })
+    })
+}
+
 function load(pagename) {
     makeHeader();
     makeFooter();
+    registerVisit();
     try {
         const idNav = `nav${pagename}`;
         const navElement = document.getElementById(idNav);
