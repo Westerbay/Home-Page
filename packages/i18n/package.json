@@ -1,0 +1,19 @@
+{
+  "name": "@workspace/i18n",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node compile.mjs",
+    "typecheck": "tsc --noEmit"
+  },
+  "exports": {
+    "./messages": "./src/generated/messages.js",
+    "./runtime": "./src/generated/runtime.js",
+    "./server": "./src/generated/server.js"
+  },
+  "devDependencies": {
+    "@inlang/paraglide-js": "2.23.1",
+    "typescript": "5.9.3"
+  }
+}

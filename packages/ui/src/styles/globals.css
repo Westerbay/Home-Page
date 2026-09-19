@@ -1,0 +1,74 @@
+@import "tailwindcss";
+@import "@fontsource-variable/geist";
+@import "@fontsource-variable/space-grotesk";
+@source "../../../../apps/web/src";
+:root {
+  --surface: #fffefc;
+  --ink: #252525;
+  --accent-fill: #e99245;
+  --on-accent: #252525;
+  --line: #dedcd7;
+  --raised: #f8f7f4;
+  --secondary: #686868;
+  --accent: #e99245;
+  --image: #f3f2ef;
+  --heading: "Space Grotesk Variable", sans-serif;
+}
+.dark {
+  --surface: #1b1b1b;
+  --ink: #ededed;
+  --accent-fill: #eaa566;
+  --on-accent: #202020;
+  --line: #3b3b3b;
+  --raised: #252525;
+  --secondary: #aaaaaa;
+  --accent: #eaa566;
+  --image: #2c2c2c;
+}
+.button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  font-size: 11px;
+  font-weight: 500;
+  border: 1px solid transparent;
+  transition: transform 0.2s;
+}
+.button:disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+.button:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 5px;
+}
+.button-default {
+  padding: 14px 20px;
+  min-height: 46px;
+}
+.button-icon {
+  width: 40px;
+  height: 40px;
+}
+.button-primary {
+  background: var(--accent-fill);
+  color: var(--on-accent);
+}
+.button-primary:hover {
+  transform: translateY(-2px);
+}
+.button-ghost {
+  background: transparent;
+  color: inherit;
+}
+.button-outline {
+  border-color: var(--line);
+  background: transparent;
+  color: inherit;
+}
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    transition: none;
+  }
+}

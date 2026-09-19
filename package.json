@@ -1,0 +1,31 @@
+{
+  "name": "mathis-portfolio",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@12.4.1",
+  "engines": {
+    "node": ">=24 <25",
+    "pnpm": ">=12"
+  },
+  "scripts": {
+    "dev": "pnpm i18n:build && pnpm --filter @portfolio/web dev",
+    "build": "pnpm i18n:build && pnpm --filter @portfolio/web build && node scripts/prepare-pages.mjs",
+    "i18n:build": "pnpm --filter @workspace/i18n build",
+    "typecheck": "pnpm -r --if-present typecheck",
+    "lint": "eslint apps/web/src packages/ui/src",
+    "format": "prettier --write apps packages scripts docs .github *.json *.yaml *.md *.ts *.js",
+    "format:check": "prettier --check apps packages scripts docs .github *.json *.yaml *.md *.ts *.js",
+    "test": "node --test apps/web/test/unit/*.test.mjs",
+    "test:e2e": "playwright test",
+    "check": "pnpm format:check && pnpm build && pnpm lint && pnpm typecheck && pnpm test",
+    "preview": "node scripts/serve.mjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.58.2",
+    "@tanstack/eslint-config": "0.3.2",
+    "eslint": "9.36.0",
+    "prettier": "3.8.3",
+    "typescript": "5.9.3"
+  }
+}

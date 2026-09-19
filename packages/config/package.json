@@ -1,0 +1,9 @@
+{
+  "name": "@workspace/config",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./profile": "./src/profile.json",
+    "./typescript/*": "./typescript/*.json"
+  }
+}

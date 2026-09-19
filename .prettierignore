@@ -1,0 +1,9 @@
+design/
+node_modules/
+dist/
+packages/i18n/src/generated/
+apps/web/src/routeTree.gen.ts
+pnpm-lock.yaml
+packages/i18n/project.inlang/README.md
+packages/i18n/project.inlang/.meta.json
+packages/i18n/project.inlang/cache/
