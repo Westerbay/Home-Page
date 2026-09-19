@@ -1,55 +1,61 @@
 # Architecture
 
-## Frontières
+## Boundaries
 
-`apps/web` compose React et TanStack Start/Router.
-Les routes déclarent navigation, chargement et métadonnées ; les fonctionnalités
-possèdent leurs composants et données sous `src/features`.
-`src/lib` contient les petites intégrations transversales.
+`apps/web` combines React with TanStack Start and Router. Routes declare
+navigation and metadata; features own their components and project data in
+`src/features`. Small cross-cutting integrations live in `src/lib`.
 
-`packages/ui` contient les primitives inspirées de shadcn/ui : Button avec
-Radix Slot/CVA, notifications Sonner, utilitaire cn et tokens CSS.
-Les composants métier restent dans leurs fonctionnalités.
+`packages/ui` contains shared primitives: Button with Radix Slot and CVA,
+Sonner notifications, the `cn` helper, theme styles and local fonts.
+Feature-specific components stay with their features.
 
-`packages/i18n` possède les catalogues FR/EN et la génération Paraglide.
-`packages/config` partage uniquement l’identité publique et TypeScript.
-Les projets sont validés par Zod dans leur fonctionnalité ; il n’y a pas de
-package contracts vide ni de couche de données distante fictive.
+`packages/i18n` owns the French and English catalogues and Paraglide generation.
+`packages/config` shares the public profile and TypeScript configuration.
+Project data is validated with Zod where it is consumed. There is no remote
+data layer or empty contracts package.
 
-TanStack Query et Form seront ajoutés lorsqu’une vraie requête distante ou un
-formulaire en aura besoin. Les filtres utilisent un état React local.
+TanStack Query and Form can be added when a feature actually needs a remote
+request or a form. Project filters currently use local React state.
 
-## Rendu et langues
+## Rendering and languages
 
-TanStack Start génère 14 pages HTML au build. Seul `dist/client` est publié.
-Son rendu serveur sert à la génération et au développement, sans serveur
-applicatif à déployer ni fonction distante.
+TanStack Start generates 14 HTML pages at build time. Only `dist/client` is
+published. Server rendering is used for development and static generation;
+no application server or remote function is deployed.
 
-Paraglide utilise les stratégies URL et langue de base. Son middleware isole
-la langue pendant le prérendu concurrent. Le français occupe la racine, l’anglais
-le préfixe `/en/`. Le changement de langue recharge la page traduite statique.
+Paraglide uses URL and base-locale strategies. Its middleware isolates locale
+state during concurrent prerendering. French uses the root, and English uses
+`/en/`. The language control reloads the equivalent translated static page.
 
-TanStack retire son basepath avant les réécritures personnalisées.
-`src/lib/i18n/url-rewrite.ts` restitue ce préfixe temporairement pour Paraglide,
-puis laisse le routeur le remettre dans les liens publics. Les tests couvrent
-la racine et `/Home-Page/`.
+TanStack removes its base path before custom URL rewriting.
+`src/lib/i18n/url-rewrite.ts` temporarily restores that prefix for Paraglide,
+then lets the router add it back to public links. Tests cover both `/` and
+`/Home-Page/`.
 
-## Publication et compatibilité
+## Static assets and publishing
 
-`SITE_BASE_PATH` configure le build et le serveur de prévisualisation.
-Le workflow Pages récupère cette valeur depuis configure-pages.
-Le domaine futur n’est pas inventé ; les métadonnées actuelles ont des titres
-et descriptions localisés, sans canonical ni sitemap fondé sur une fausse URL.
+All maintained images are in `apps/web/public/assets`. Components use
+`src/lib/assets.ts` to respect the deployment base path. They do not depend
+on the removed root asset directories or comparison prototype.
 
-`scripts/prepare-pages.mjs` conserve les assets historiques et ajoute
-les redirections des anciennes pages ainsi qu’une vraie page 404.
-Le serveur d’aperçu sert uniquement les fichiers générés : aucun fallback
-SPA ne masque une page statique manquante.
+`SITE_BASE_PATH` configures the build and preview server. The manual Pages
+workflow reads this path from `actions/configure-pages` and uploads only
+`apps/web/dist/client`.
 
-## Référence de travail
+`scripts/prepare-pages.mjs` adds `.nojekyll`, a static 404 page and redirects
+from `About.html`, `Project.html` and `Prototype.html`. It does not copy the
+old implementation. The preview server serves generated files directly;
+there is no SPA fallback masking a missing static page.
 
-Technologies, frontières frontend et conventions inspirées de
-[WebApp-Skull](https://github.com/mathis-gala/WebApp-Skull), consulté au commit
-`561d00ad11e1c18be1c82227663d3d3d8b884132`.
-Les fonctionnalités d’API, d’authentification et de base de données n’appartiennent
-pas à cette première version du portfolio.
+The public project URL is `https://westerbay.github.io/Home-Page/`. A custom
+domain can be configured later. Keep metadata consistent with the actual
+published domain rather than inventing a future one.
+
+## Technical reference
+
+The frontend conventions and boundaries were informed by
+[WebApp-Skull](https://github.com/mathis-gala/WebApp-Skull), inspected at commit
+`561d00ad11e1c18be1c82227663d3d3d8b884132`. This is an internal engineering
+reference, not a public portfolio link.
+API, authentication and database features are outside V1.

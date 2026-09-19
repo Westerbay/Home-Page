@@ -1,52 +1,74 @@
 # Mathis Dubuisson · portfolio
 
-Portfolio personnel statique : jeux, IA, rendu 3D et explorations génératives.
-La direction Atlas × Signal et sa palette orange doux / blanc chaud sont validées.
-Les textes restent provisoires avant le questionnaire éditorial final.
+Games, 3D rendering and other projects, with a few words about me.
 
-## Développer
+Public URL: [westerbay.github.io/Home-Page](https://westerbay.github.io/Home-Page/)
 
-Node.js 24.15 et pnpm 12.4.1.
+The site is available in French and English. It includes a project gallery,
+individual project pages, an about page and links to GitHub and LinkedIn.
+The theme follows the browser preference until you choose light or dark mode.
+
+## Stack
+
+TypeScript, React, TanStack Start and Router, Tailwind CSS, Paraglide,
+Zod and Sonner. Pages are generated as static HTML for GitHub Pages.
+There is no application server to deploy.
+
+## Development
+
+Use Node.js 24.15 and pnpm 12.4.1.
 
 ```sh
 pnpm install --frozen-lockfile
 pnpm dev
 ```
 
-Le site est accessible sur http://127.0.0.1:4174.
-La maquette comparative reste indépendante dans `design/prototype`.
+Open [localhost:4174](http://127.0.0.1:4174/).
 
 ```sh
 pnpm format
 pnpm check
 pnpm exec playwright install chromium
 pnpm test:e2e
-pnpm preview
 ```
 
-La sortie à publier est `apps/web/dist/client`. Aucun serveur applicatif
-n’est nécessaire après la génération.
+`pnpm check` runs formatting checks, the production build, linting, type
+checking and unit tests. Browser tests run against the generated static site.
 
-## Structure
+To build and preview the GitHub Pages path:
 
-- `apps/web/src/routes` : URLs, chargement et métadonnées.
-- `apps/web/src/features` : accueil, projets, présentation et contact.
-- `packages/ui` : tokens, polices et primitives communes.
-- `packages/i18n` : catalogues et runtime Paraglide FR/EN.
-- `packages/config` : identité publique et configuration TypeScript.
+```sh
+SITE_BASE_PATH=/Home-Page/ pnpm build
+SITE_BASE_PATH=/Home-Page/ pnpm preview
+```
 
-Voir [le contexte](docs/CONTEXT.md), [l’architecture](docs/ARCHITECTURE.md)
-et [le guide de développement](docs/DEVELOPMENT.md).
+Open [localhost:4174/Home-Page](http://127.0.0.1:4174/Home-Page/).
+These environment variable examples use a POSIX shell; see the
+[development guide](docs/DEVELOPMENT.md) for PowerShell.
 
-## Publication
+## Project structure
 
-Le workflow CI vérifie le site à la racine et sous `/Home-Page/`.
-Le workflow Pages se lance manuellement et utilise le chemin déclaré par
-GitHub Pages, y compris pour un futur domaine personnalisé.
-Aucune publication n’a été effectuée pendant la refonte.
+- `apps/web`: routes, page features, project data and public assets.
+- `packages/ui`: shared components, fonts and theme styles.
+- `packages/i18n`: French and English messages and Paraglide configuration.
+- `packages/config`: public profile and shared TypeScript configuration.
+- `scripts`: static output preparation and the local preview server.
 
-Les anciens fichiers HTML à la racine sont conservés comme source historique.
-Le nouveau site est construit depuis `apps/web`. Les dossiers `img`, `logo`,
-`dev`, `style` et `script` restent copiés dans la sortie pour préserver
-les consommateurs existants. Les anciennes pages principales redirigent
-vers les nouvelles routes.
+Text lives in `packages/i18n/messages`. The project catalogue is in
+`apps/web/src/features/projects/data/projects.ts`.
+
+## Publishing
+
+GitHub Pages must use **GitHub Actions** as its source. Run the
+**Publish portfolio** workflow manually from the Actions tab to publish V1
+or a later update. It builds and checks the site, runs browser tests, then
+publishes only `apps/web/dist/client`.
+
+CI covers both `/` and `/Home-Page/`. The publishing workflow reads the path
+from GitHub Pages, so a future custom domain can use the same build pipeline.
+Compatibility redirects preserve the old `About.html`, `Project.html` and
+`Prototype.html` URLs. The old implementation and comparison prototype are
+not part of the maintained site.
+
+See the [architecture](docs/ARCHITECTURE.md), [design decisions](docs/DESIGN.md),
+[content rules](docs/PRODUCT.md) and [development guide](docs/DEVELOPMENT.md).

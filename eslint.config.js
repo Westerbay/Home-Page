@@ -6,7 +6,6 @@ export default [
       "**/routeTree.gen.ts",
       "**/dist/**",
       "**/node_modules/**",
-      "design/**",
     ],
   },
   ...tanstackConfig,

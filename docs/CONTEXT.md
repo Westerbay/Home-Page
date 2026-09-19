@@ -1,113 +1,109 @@
-# Contexte
+# Project context
 
-## État actuel
+## V1 scope
 
-Le portfolio frontend reprend la direction **Atlas × Signal**, validée le
-19 septembre 2026 : orange doux `#e99245`, blanc légèrement chaud `#fffefc`,
-gris anthracite en thème sombre. Les micro-détails graphiques sont reportés.
+The maintained portfolio uses React, TypeScript and TanStack Start/Router in
+`apps/web`, with shared packages for UI, translations and configuration.
+Home, the filterable project list, three project pages, About and Contact
+are implemented. French and English pages are generated as static HTML.
 
-L’accueil, la liste filtrable des projets, trois fiches, À propos et Contact
-sont implémentés. Les versions française et anglaise sont générées en HTML
-statique. Les routes se chargent directement sur GitHub Pages.
+Mathis has authorized V1 publication and removal of the old implementation.
+The release excludes the comparison prototype and legacy root HTML, CSS,
+JavaScript and shared asset directories. Keep the generated compatibility
+redirects for `About.html`, `Project.html` and `Prototype.html`.
+Current frontend assets live independently in `apps/web/public/assets`.
+The external asset migration covers five consumers: the `web` branches of
+Eyefox-Puzzle, SpellWar, OSProject and Bachelor-Side-Projects, plus the
+`main/index.html` page of The Algorithmic Beauty of Plants. Each page gets
+its own `shared/` assets; the Plants WebGL implementation is outside this
+migration.
 
-L’itération sur les grands écrans conserve la direction et la palette.
-La largeur utile occupe 90 % de la fenêtre sur ordinateur, jusqu’à
-2600 px, sans padding en pourcentage sur une boîte plafonnée. Typographie
-et visuels s’adaptent aux fenêtres jusqu’à 3840 px. La plante SVG devient
-interactive : « Une autre plante » produit une variante déterministe,
-entièrement dans le navigateur et sans backend.
+The public URL is `https://westerbay.github.io/Home-Page/`. Publishing uses
+the manual **Publish portfolio** workflow, with GitHub Pages configured to
+use GitHub Actions. Check the workflow result and public site when releasing;
+these notes do not stand in for release verification.
 
-Le thème suit le navigateur tant qu’aucun choix manuel n’est enregistré.
-Le bouton affiche une lune ou un soleil pour basculer vers l’autre thème ;
-il alterne uniquement entre clair et sombre et mémorise le choix.
-Le bouton de langue conserve les libellés FR / EN dans cet ordre, sans
-drapeaux, avec la langue active mise en évidence.
+## Approved design
 
-## Réponses éditoriales confirmées
+Mathis approved **Atlas × Signal** on 19 September 2026: soft orange
+`#e99245`, warm white `#fffefc`, and charcoal in dark mode. Small visual
+refinements can follow V1.
 
-Le questionnaire est en cours. Le ton reste personnel et discret, sans
-argumentaire commercial ni CV. Les textes et titres ne doivent pas contenir
-de tirets cadratins.
+Desktop content uses 90% of the viewport, capped at 2600 px. Typography and
+visuals adapt up to 3840 px. The container has no percentage padding that
+shrinks its usable width after the cap. The botanical SVG is interactive:
+its button generates another deterministic variation locally.
 
-Mathis est ingénieur diplômé de l’ENSICAEN et **Product & Software Engineer**.
-Aucun nom d’entreprise n’est affiché pour le moment. Son métier couvre déjà
-la relation client, le produit, le logiciel, l’infrastructure, les pipelines
-et le déploiement. Ces informations sont acquises, sans nouvelle question
-sur son emploi.
+The theme follows the browser until a manual preference is saved. The
+sun/moon button switches between light and dark. Language labels stay in
+FR / EN order, with the active locale distinguished and no flags.
 
-Il développe pour le plaisir. Les maths, la physique et les résultats
-visuels le motivent ; il aime apprendre différentes méthodes et construire
-une architecture propre. Son intérêt pour l’IA porte à la fois sur les
-modèles et leur architecture, et sur les logiciels qui utilisent ces modèles.
-Un jeu et son histoire pourraient lui donner envie de créer plus tard :
-c’est une possibilité, pas un projet lancé.
+## Confirmed identity and tone
 
-Les trois projets affichés, SpellWar, The Algorithmic Beauty of Plants et
-Eyefox Puzzle, sont **académiques**. Mathis souhaite les conserver. Des
-projets personnels seront ajoutés ensuite ; la sélection actuelle n’est
-plus à redemander.
+Mathis Dubuisson is an ENSICAEN engineering graduate and a
+**Product & Software Engineer**. No employer name is displayed. His work
+covers client conversations, product design, software, infrastructure,
+pipelines and deployment. These facts do not need to be asked again.
 
-Les textes publics doivent rester sobres et centrés sur les projets. Le
-travail en solo est un fait acquis, sans insister sur « tout seul » dans
-les descriptions. Ne pas afficher la mention « sans IA » pour SpellWar ni
-l’indisponibilité d’Eyefox dans les stores sur le portfolio. Ces faits
-restent conservés ci-dessous comme contexte.
+He codes for fun. Maths, physics and striking visual results motivate him;
+he enjoys learning different ways to solve problems and keeping software
+architecture clean. His interest in AI includes both model architecture
+and software that uses models. Making a game or telling a story could be
+a future interest, not a project already started.
 
-SpellWar a été réalisé seul. Mathis a écrit le code de zéro, à la main,
-sans assistance IA. Les éléments qu’il souhaite présenter sont le moteur
-physique, le rendu PBR et les collisions développés maison, ainsi que la
-génération de terrain. Ne pas inventer de méthode de génération précise.
+Keep the voice personal, direct and understated. Avoid sales language,
+invented achievements and CV-style positioning. Do not use em dashes in
+site copy or terminal full stops in headings and short title-like text.
+The About lead is simply “Product & Software Engineer”.
 
-The Algorithmic Beauty of Plants a été réalisé entièrement seul : Mathis
-a tout fait. Il le présente comme un travail de recherche et de lecture
-d’ABOP, mis en pratique avec des L-systems et un rendu 3D en WebGL. Les
-maths et la physique sont évoquées, sans précision permettant d’affirmer
-une simulation ou une technique particulière. Les mentions « mat » et
-« base 64 » restent ambiguës : ne pas les interpréter ni les ajouter aux
-textes publics. La contribution et cet angle de présentation sont confirmés.
-Ne pas redemander un défi ou une réalisation phare : Mathis souhaite
-présenter ce travail simplement, sans le survaloriser.
+## Confirmed projects
 
-Eyefox Puzzle est un jeu mobile Android académique entièrement réalisé
-seul. Mathis confirme qu’il n’est plus disponible dans les stores. Sa
-contribution et cette indisponibilité sont acquises, sans nouvelle question
-à ce sujet. Ne pas en déduire une fin de développement, une date, une raison
-de retrait ou l’existence d’un APK disponible. La nouvelle fiche renvoie
-vers le dépôt de code, sans lien ni badge de téléchargement dans un store.
+SpellWar, The Algorithmic Beauty of Plants and Eyefox Puzzle are academic
+projects. Mathis wants to keep all three; personal projects can be added
+later. He made each of them himself. Do not repeatedly emphasize that fact
+in public descriptions: focus on what the projects do and how they work.
 
-Le dépôt Eyefox-Puzzle a été mis à jour et poussé : commit `6a49278` sur
-`main` pour le README (projet académique, solo, retrait des stores), et
-`76622fd` sur `web` pour remplacer le bouton du store par un lien vers le
-code source. Cette publication concerne Eyefox-Puzzle uniquement. Ces
-corrections publiées restent en place : les retouches éditoriales demandées
-ensuite concernent le portfolio, pas le README ni l’ancienne page d’Eyefox.
+SpellWar uses a custom physics model, PBR rendering, collisions and terrain
+generation. Do not invent a terrain-generation algorithm. Mathis confirmed
+that he wrote its code from scratch without AI assistance; retain this as
+background, not a statement in the portfolio.
 
-Seul le compte GitHub Westerbay est affiché. Skull est conservé dans
-`features/projects/data/drafts.ts`, hors du site public et sans URL vers
-le second compte.
+The Algorithmic Beauty of Plants came from reading ABOP and putting its
+ideas into practice with L-systems and 3D rendering in WebGL. Mathis wants
+a simple account of that research and implementation, not an inflated
+achievement or a new question about its biggest challenge. Maths and physics
+were mentioned without details that justify claiming a particular simulation.
+The terms “mat” and “base 64” were ambiguous; do not interpret them or add
+them to public copy.
 
-Le contact sur le portfolio se limite à GitHub et LinkedIn, comme confirmé
-par Mathis. Ne pas afficher d’adresse e-mail et ne pas redemander ce choix.
-Cette règle ne modifie pas le contact historique dans la politique de
-confidentialité d’Eyefox, qui reste conservé.
+Eyefox Puzzle is an Android mobile game. It is no longer available in app
+stores, but the portfolio does not need to display that status. Keep the
+source repository link and do not add store buttons. Do not infer a reason
+or date of removal, an end to development, or an available APK.
 
-## À préciser dans la suite du questionnaire
+Earlier Eyefox-Puzzle repository updates were published as `6a49278` on
+`main` (README context and store availability) and `76622fd` on `web`
+(replacing the store button with a source-code link). Those corrections
+remain; later requests to simplify the portfolio copy do not undo them.
 
-- Les faits encore utiles pour les autres fiches : fonctionnement, choix
-  techniques et anecdotes, sans inventer de réalisations.
-- Les captures, vidéos et démos disponibles pour ces projets.
-- La formulation anglaise des textes.
-- Le domaine définitif, puis les URL canoniques et le sitemap.
+Only the Westerbay GitHub account is public on the portfolio. Skull stays
+in `features/projects/data/drafts.ts`, outside the public catalogue, without
+a secondary-account URL.
+
+## Contact and follow-up work
+
+Contact is **GitHub and LinkedIn only**. Do not display an email address on
+the portfolio or ask this question again. Eyefox's historical privacy-policy
+contact is a separate record and remains unchanged.
+
+Additional screenshots, videos, project notes, personal projects, English
+wording refinements and a future custom domain can be handled later. They
+do not block the authorized V1 release.
 
 ## Documentation
 
-- [PRODUCT.md](PRODUCT.md) : portée et règles de contenu.
-- [ARCHITECTURE.md](ARCHITECTURE.md) : structure et flux.
-- [DESIGN.md](DESIGN.md) : direction validée.
-- [REUSE.md](REUSE.md) : éléments communs.
-- [DEVELOPMENT.md](DEVELOPMENT.md) : commandes et publication.
-
-Les assets historiques restent utilisés par des branches `web` d’autres
-projets. Leur retrait attend la confirmation de Mathis.
-La première version est enregistrée dans le commit `d09967f`.
-Aucun push ni déploiement de Home-Page n’a été effectué.
+- [PRODUCT.md](PRODUCT.md): scope and content rules.
+- [ARCHITECTURE.md](ARCHITECTURE.md): structure and rendering.
+- [DESIGN.md](DESIGN.md): approved visual direction.
+- [REUSE.md](REUSE.md): shared components and helpers.
+- [DEVELOPMENT.md](DEVELOPMENT.md): commands and publishing.

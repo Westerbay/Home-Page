@@ -258,3 +258,19 @@ test("the plant changes with keyboard input without hydration errors", async ({
   await expect(page.getByRole("button", { name: en.plant_play })).toBeVisible()
   expect(errors).toEqual([])
 })
+
+test("legacy page URLs redirect to the current portfolio", async ({
+  page,
+  baseURL,
+}) => {
+  for (const [oldPath, currentPath] of [
+    ["About.html", "about/"],
+    ["Project.html", "projects/"],
+    ["Prototype.html", "projects/"],
+  ]) {
+    await page.goto(oldPath)
+    await expect(page).toHaveURL(new URL(currentPath, baseURL!).href)
+    await expect(page.locator("main h1")).toBeVisible()
+    await expect(page.locator("html")).toHaveAttribute("lang", "fr")
+  }
+})

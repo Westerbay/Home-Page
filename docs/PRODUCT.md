@@ -1,87 +1,77 @@
-# Produit
+# Product and content
 
-Le site rassemble les projets de Mathis et quelques informations sur lui.
-Les trois projets actuels sont académiques ; des projets personnels seront
-ajoutés ensuite. Le site exprime le plaisir de développer et ses intérêts
-techniques, sans promesses de prestation, métriques inventées, vocabulaire
-de vente ni ton de candidature.
+The portfolio presents Mathis's projects and a little about him. The three
+current projects are academic; personal projects may be added later.
+The tone is about enjoying development and showing the work, without sales
+promises, invented metrics or a job-application pitch.
 
-## Navigation
+## Pages and controls
 
-Accueil, Projets, À propos, Contact. Trois fiches publiques : SpellWar,
-The Algorithmic Beauty of Plants, Eyefox Puzzle. Mathis confirme cette
-sélection. Le filtre sépare jeux et génératif. Skull reste un brouillon
-non affiché.
+The site includes Home, Projects, About and Contact. Public project pages
+cover SpellWar, The Algorithmic Beauty of Plants and Eyefox Puzzle. This
+selection is confirmed. Filters separate games and generative projects.
+Skull remains an unpublished draft.
 
-Le français est la langue de base ; l’anglais est disponible sous `/en/`.
-Le changement de langue conserve la page visitée. Pas de détection serveur
-de langue nécessaire sur l’hébergement statique.
+French is the base language and English is available under `/en/`. Switching
+language preserves the current page. No server-side language detection is
+required for the static hosting.
 
-Le thème suit le navigateur par défaut. Le bouton alterne uniquement entre
-clair et sombre et mémorise le choix manuel.
-Les liens externes et la copie du profil GitHub fonctionnent sans compte.
-Sonner confirme la copie et indique son éventuel échec.
+The theme follows the browser by default. The theme control switches between
+light and dark and saves a manual choice. External links and the GitHub
+profile-copy action work without an account. Sonner reports copy success
+or failure.
 
-## Contenu confirmé
+## Identity and voice
 
-Mathis est ingénieur diplômé de l’ENSICAEN et **Product & Software Engineer**.
-Aucun nom d’entreprise n’est affiché pour le moment. Son métier couvre la
-relation client, le produit, le développement logiciel, l’infrastructure,
-les pipelines et le déploiement. Le rôle reste un élément de contexte,
-sans transformer le portfolio en CV.
+Mathis is an ENSICAEN engineering graduate and a
+**Product & Software Engineer**. Do not name an employer. His work includes
+client conversations, product design, software development, infrastructure,
+pipelines and deployment. This is context, not a CV or a service offer.
 
-Les maths, la physique et les résultats visuels nourrissent son plaisir
-de développer. Il aime découvrir différentes méthodes et soigner
-l’architecture. L’IA l’intéresse pour les modèles et leur architecture,
-mais aussi pour les logiciels qui utilisent ces modèles.
+He likes coding for fun, visual results, maths and physics, trying different
+ways to solve problems, and clean software architecture. AI interests him
+both for model architecture and for software that uses those models.
+A future game or story may be mentioned as an interest, never as work that
+is already in progress.
 
-Une envie future de créer un jeu et son histoire peut être évoquée comme
-une possibilité. Ne pas la présenter comme un projet lancé ou en cours.
+Use ordinary, direct language in French and English. Avoid em dashes.
+Headings and short title-like text do not end with a full stop. The About
+lead stays short: “Product & Software Engineer”.
 
-Les trois fiches actuelles doivent être présentées comme des projets
-académiques. Les descriptions s’appuient sur leurs README publics et les
-réponses de Mathis. Ne pas lui attribuer toutes les contributions d’un
-projet sans avoir précisé son travail individuel. Mathis confirme avoir
-réalisé entièrement seul SpellWar, The Algorithmic Beauty of Plants et
-Eyefox Puzzle. Ce fait reste acquis, mais les textes publics ne doivent
-pas insister sur « tout seul » : ils présentent les projets et leurs
-techniques. Ne pas mentionner « sans IA » dans la fiche publique de SpellWar.
+## Project descriptions
 
-Pour The Algorithmic Beauty of Plants, conserver une présentation simple :
-travail de recherche et de lecture d’ABOP, puis mise en pratique avec des
-L-systems et un rendu 3D en WebGL. Ne pas chercher à en faire une réalisation
-phare ni redemander un défi marquant. Les maths et la physique sont évoquées,
-sans affirmer de simulation ou de technique précise. Les mentions « mat »
-et « base 64 » restent ambiguës et ne doivent pas être interprétées.
+Label the current projects as academic. Base descriptions on their public
+READMEs and Mathis's confirmed answers. He made all three himself; keep that
+fact as context without repeatedly stressing “entirely on my own”. Public
+copy should describe the projects and their techniques.
 
-Eyefox Puzzle est un jeu mobile Android réalisé pendant les études de
-Mathis. Sa réalisation en solo et son indisponibilité dans les stores sont
-des faits acquis. Le portfolio présente le jeu sans afficher son retrait
-des stores et sans lien ni badge de téléchargement dans un store. Ne pas
-affirmer une fin de développement, une date ou une raison de retrait, ni
-proposer un APK sans confirmation. Le dépôt de code reste le lien de la fiche.
-Les corrections déjà publiées dans le README et l’ancienne page du dépôt
-Eyefox-Puzzle restent en place ; ces consignes éditoriales visent le portfolio.
+For SpellWar, cover the custom physics model, PBR renderer, collisions and
+terrain generation. Do not guess the terrain algorithm. Omit the “without
+AI” statement from the portfolio.
 
-Le contact du portfolio est limité à GitHub et LinkedIn. Ce choix est
-confirmé ; aucune adresse e-mail ne doit être affichée sur le portfolio.
-Le contact historique de la politique de confidentialité d’Eyefox reste
-conservé dans ce document distinct.
+For The Algorithmic Beauty of Plants, describe reading and researching ABOP,
+then implementing L-systems and 3D rendering with WebGL. Keep this account
+simple. Do not invent a major challenge or overstate the result. Maths and
+physics were mentioned, but no particular simulation or method was confirmed.
+The terms “mat” and “base 64” remain ambiguous and are not public claims.
 
-## Questionnaire en cours
+For Eyefox Puzzle, describe the Android game and its puzzle mechanic.
+Its removal from app stores is known but does not need to be shown on the
+portfolio. Keep the repository link, without store links or download badges.
+Do not claim a removal date, reason, end to development or downloadable APK.
+The updates already published in Eyefox-Puzzle's README and old project page
+remain separate from these portfolio wording choices.
 
-L’emploi actuel, la sélection des trois projets et leur réalisation en
-solo sont confirmés. La présentation souhaitée de The Algorithmic Beauty
-of Plants et l’indisponibilité d’Eyefox Puzzle dans les stores sont également
-confirmées. Le contact via GitHub et LinkedIn uniquement est confirmé.
-La suite porte sur les faits encore utiles pour les autres fiches, ainsi
-que les captures, vidéos et démos disponibles. Les textes français et anglais
-restent à affiner avec ces réponses.
-Ils conservent un ton personnel et direct, sans tirets cadratins.
+## Contact and release scope
 
-Le second compte GitHub n’est ni affiché ni lié sur le nouveau site.
-Aucun formulaire de contact, service d’authentification, tracking ou backend
-n’est ajouté. Le CV est transmis séparément par Mathis.
+Only the Westerbay GitHub profile and LinkedIn are shown for contact. Do not
+show the secondary GitHub account or an email address. The historical contact
+in Eyefox's separate privacy policy remains unchanged.
 
-La première version est enregistrée dans le commit `d09967f` ; le
-questionnaire éditorial se poursuit après ce commit.
+There is no contact form, authentication, tracking or backend. Mathis provides
+his CV separately. Do not add a CV download.
+
+The identity, project selection and contact decisions are confirmed for V1.
+More media, personal projects and wording refinements can follow later;
+there is no remaining content questionnaire blocking publication.
+The legacy implementation and comparison prototype are outside the release.

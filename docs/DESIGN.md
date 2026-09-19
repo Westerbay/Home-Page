@@ -1,64 +1,53 @@
-# Direction graphique
+# Visual design
 
-Atlas × Signal a été validé par Mathis. Le nom utilise une composition
-éditoriale avec Georgia et le nom de famille en italique.
-Les projets utilisent la grille et les lignes fines de Signal.
+Mathis approved the **Atlas × Signal** direction. The name uses an editorial
+composition with Georgia and an italic surname. Project cards use Signal's
+aligned grid, fine rules and sans-serif text.
 
-La palette est centralisée dans `packages/ui/src/styles/globals.css` :
+## Colour and type
 
-- Clair : fond `#fffefc`, surface `#f8f7f4`, orange `#e99245`.
-- Sombre : fond `#1b1b1b`, surface `#252525`, orange `#eaa566`.
-- Boutons orange avec texte anthracite pour conserver un contraste lisible.
-- Geist et Space Grotesk sont servis localement.
+The palette is centralized in `packages/ui/src/styles/globals.css`:
 
-## Composition et grands écrans
+- Light: background `#fffefc`, surface `#f8f7f4`, orange `#e99245`.
+- Dark: background `#1b1b1b`, surface `#252525`, orange `#eaa566`.
+- Orange buttons use dark text for readable contrast.
+- Geist and Space Grotesk are served locally.
 
-La largeur utile est fluide : 90 % de la fenêtre sur ordinateur, avec un
-plafond de 2600 px. Le conteneur plafonné ne reçoit plus de padding en
-pourcentage du parent, qui réduisait sa zone de contenu à mesure que la
-fenêtre s’élargissait. Les espacements mobiles restent adaptés aux petits
-écrans.
+The public site uses this one direction. The comparison prototype is not
+part of the maintained implementation.
 
-La typographie et les visuels accompagnent cette largeur jusqu’à 3840 px.
-Les paragraphes gardent une largeur de lecture limitée et le visuel du
-hero reste proportionné à la composition. Cette itération conserve la
-direction Atlas × Signal et la palette validées.
+## Layout
 
-## Grille de la page Projets
+Desktop content occupies 90% of the viewport, capped at 2600 px. Do not put
+percentage padding on the capped container: it reduces usable width as the
+viewport grows. Mobile spacing remains separate.
 
-La page Projets utilise une grille compacte de trois colonnes au-dessus de
-1100 px, deux colonnes sur tablette et une seule sur mobile. Les images
-adoptent un ratio de 2:1 et leur hauteur est plafonnée à 360 px, pour
-laisser davantage de place aux titres et descriptions.
+Type and visuals scale up to 3840 px. Paragraphs keep a limited reading width
+and the hero illustration remains proportionate to the text. The project
+listing uses three columns above 1100 px, two on tablets and one on mobile.
+Images use a 2:1 ratio with a maximum height of 360 px.
 
-## Plante et textes
+## Illustration and images
 
-La plante en SVG est générée localement, sans image distante ni backend.
-Le bouton « Une autre plante » affiche une nouvelle variante issue d’une
-génération déterministe.
+The plant is a local SVG drawing with deterministic generation. Its button
+shows a new variation without a backend or remote image service.
 
-Les textes français et anglais emploient un ton personnel et direct :
-coder pour le plaisir, concevoir des jeux, s’intéresser à l’IA et au rendu
-3D. Ils évitent l’argumentaire commercial. Le questionnaire éditorial
-reste prévu en fin de travail ; ces formulations restent provisoires.
+The GitHub profile picture keeps its original colours, without a filter or
+desaturation. The ENSICAEN logo has its own copy in the frontend assets;
+it keeps its colours and a white backing for dark-mode readability.
 
-Les compositions alternatives et les outils de comparaison sont réservés
-à `design/prototype`. Le site public utilise une direction unique.
+## Interaction and copy
 
-Navigation clavier, lien d’évitement, focus visible, textes alternatifs,
-thème système et réduction des animations sont conservés.
-Les micro-détails graphiques attendent la revue finale demandée par Mathis.
+The theme follows the browser until a manual choice is saved. The sun/moon
+button switches between light and dark. Language labels remain in FR / EN
+order, with the current language distinguished and no flags.
 
-La photo de profil conserve ses couleurs originales, sans filtre ni désaturation.
+Keep keyboard navigation, the skip link, visible focus, text alternatives
+and reduced-motion support. The plant can be changed with the keyboard.
 
-Le thème suit le navigateur tant qu’aucun choix manuel n’est enregistré.
-Le bouton affiche une lune ou un soleil pour basculer vers l’autre thème ;
-il alterne uniquement entre clair et sombre et mémorise le choix.
-Le bouton de langue conserve les libellés FR / EN dans cet ordre, sans
-drapeaux, avec la langue active mise en évidence.
+Copy is personal and direct, about coding for fun, games, AI and 3D rendering.
+It should not read like a sales pitch. Headings and short leads have no
+terminal full stop. The About lead is “Product & Software Engineer”.
 
-Les titres et accroches courtes n’ont pas de point final. L’accroche de
-la page À propos est limitée à « Product & Software Engineer ».
-Les mentions secondaires du diplôme utilisent le logo ENSICAEN historique,
-copié dans les assets du frontend. Il garde ses couleurs originales et un
-fond blanc pour rester lisible en thème sombre.
+The approved palette and direction are the V1 baseline. Further small
+visual refinements can follow the release.

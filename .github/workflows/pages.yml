@@ -8,6 +8,9 @@ concurrency:
   cancel-in-progress: false
 jobs:
   build:
+    permissions:
+      contents: read
+      pages: read
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     steps:
