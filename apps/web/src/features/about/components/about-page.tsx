@@ -1,6 +1,7 @@
 import * as m from "@workspace/i18n/messages"
 import profile from "@workspace/config/profile" with { type: "json" }
 import { assetUrl } from "../../../lib/assets"
+import { SchoolMention } from "../../../components/school-mention"
 
 export function AboutPage() {
   const steps = [
@@ -15,11 +16,11 @@ export function AboutPage() {
         <h1>{m.about_title()}</h1>
       </div>
       <div className="about-content">
-        <div className="profile-portrait">
+        <aside className="profile-portrait">
           <img src={assetUrl(profile.avatar)} alt={m.profile_alt()} />
           <span>Mathis Dubuisson</span>
-          <p>{m.degree()}</p>
-        </div>
+          <SchoolMention />
+        </aside>
         <div className="about-prose">
           <p className="lead">{m.about_intro()}</p>
           <p>{m.about_body()}</p>

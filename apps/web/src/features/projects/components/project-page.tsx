@@ -1,6 +1,6 @@
 import * as m from "@workspace/i18n/messages"
 import { Link } from "@tanstack/react-router"
-import { getProjects, categoryName } from "../data/projects"
+import { getProjects, categoryName, projectOriginName } from "../data/projects"
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react"
 import { ProjectVisual } from "./project-visual"
 
@@ -16,7 +16,11 @@ export function ProjectPage({ slug }: { slug: string }) {
         {m.back_projects()}
       </Link>
       <div className="page-heading">
-        <p className="eyebrow">{categoryName(project.category)}</p>
+        <p className="eyebrow">
+          {projectOriginName(project.origin)}
+          <span aria-hidden="true">·</span>
+          {categoryName(project.category)}
+        </p>
         <h1>{project.title}</h1>
         <p>{project.summary}</p>
       </div>

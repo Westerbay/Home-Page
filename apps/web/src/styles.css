@@ -201,9 +201,6 @@ svg {
   letter-spacing: -6px;
   margin: 26px 0;
 }
-.name-period {
-  color: var(--accent);
-}
 .hero-intro {
   font-size: 18px;
   line-height: 1.6;
@@ -644,11 +641,8 @@ svg {
   font-size: 13px;
   margin-top: 17px;
 }
-.profile-portrait > p {
-  font-size: 11px;
-  line-height: 1.6;
-  color: var(--secondary);
-  margin-top: 7px;
+.profile-portrait > .school-mention {
+  margin-top: 14px;
 }
 .about-prose p {
   font-size: 16px;
@@ -1194,9 +1188,14 @@ svg {
   .profile-portrait > span {
     margin: 8px 0 0;
   }
-  .profile-portrait > p {
+  .profile-portrait > .school-mention {
     margin: 0;
     font-size: 10px;
+    gap: 9px;
+  }
+  .profile-portrait .school-logo {
+    width: 42px;
+    height: 42px;
   }
   .about-prose .lead {
     font-size: 20px;
@@ -1742,7 +1741,6 @@ main {
     max-width: clamp(260px, 22cqi, 500px);
   }
   .profile-portrait > span,
-  .profile-portrait > p,
   .contact-links > a > span > span,
   .next-project > span {
     font-size: clamp(13px, 0.8cqi, 20px);
@@ -1754,6 +1752,41 @@ main {
     max-width: 100%;
   }
 }
+
+.school-mention {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  font-size: clamp(11px, 0.72cqi, 18px);
+  line-height: 1.45;
+  color: var(--secondary);
+}
+.school-logo {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: clamp(48px, 3cqi, 72px);
+  height: clamp(48px, 3cqi, 72px);
+  padding: 5px;
+  background: #fff;
+  border: 1px solid var(--line);
+}
+.school-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.school-degree,
+.school-name {
+  display: block;
+}
+.school-name {
+  color: var(--ink);
+  font-weight: 500;
+  margin-top: 2px;
+}
+
 @container screen (max-width: 1100px) {
   .atlas-art {
     height: 480px;

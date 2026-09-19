@@ -13,10 +13,7 @@ export function ProjectsPage() {
     <section className="inner-page projects-page">
       <div className="page-heading">
         <p className="eyebrow">01 / {m.project_directory()}</p>
-        <h1>
-          {m.projects()}
-          <span className="name-period">.</span>
-        </h1>
+        <h1>{m.projects()}</h1>
         <p>{m.projects_intro()}</p>
       </div>
       <div className="project-filters" aria-label={m.projects()}>

@@ -17,23 +17,51 @@ et visuels s’adaptent aux fenêtres jusqu’à 3840 px. La plante SVG devient
 interactive : « Une autre plante » produit une variante déterministe,
 entièrement dans le navigateur et sans backend.
 
-Le ton demandé est personnel : développer pour le fun, concevoir des jeux,
-s’intéresser à l’IA et à la 3D. Les textes français et anglais ont été
-simplifiés dans ce sens. Le diplôme ENSICAEN et le poste Product & Software
-Engineering sont du contexte, sans argumentaire commercial ni CV.
-Le questionnaire éditorial commence par l’accueil et la page À propos. Les textes et titres ne doivent pas contenir de tirets cadratins.
+Le thème suit le navigateur tant qu’aucun choix manuel n’est enregistré.
+Le bouton affiche une lune ou un soleil pour basculer vers l’autre thème ;
+il alterne uniquement entre clair et sombre et mémorise le choix.
+Le bouton de langue conserve les libellés FR / EN dans cet ordre, sans
+drapeaux, avec la langue active mise en évidence.
 
+## Réponses éditoriales confirmées
+
+Le questionnaire est en cours. Le ton reste personnel et discret, sans
+argumentaire commercial ni CV. Les textes et titres ne doivent pas contenir
+de tirets cadratins.
+
+Mathis est ingénieur diplômé de l’ENSICAEN et **Product & Software Engineer**.
+Aucun nom d’entreprise n’est affiché pour le moment. Son métier couvre déjà
+la relation client, le produit, le logiciel, l’infrastructure, les pipelines
+et le déploiement. Ces informations sont acquises, sans nouvelle question
+sur son emploi.
+
+Il développe pour le plaisir. Les maths, la physique et les résultats
+visuels le motivent ; il aime apprendre différentes méthodes et construire
+une architecture propre. Son intérêt pour l’IA porte à la fois sur les
+modèles et leur architecture, et sur les logiciels qui utilisent ces modèles.
+Un jeu et son histoire pourraient lui donner envie de créer plus tard :
+c’est une possibilité, pas un projet lancé.
+
+Les trois projets affichés, SpellWar, The Algorithmic Beauty of Plants et
+Eyefox Puzzle, sont **académiques**. Mathis souhaite les conserver. Des
+projets personnels seront ajoutés ensuite ; la sélection actuelle n’est
+plus à redemander.
+
+SpellWar a été réalisé seul. Mathis a écrit le code de zéro, à la main,
+sans assistance IA. Les éléments qu’il souhaite présenter sont le moteur
+physique, le rendu PBR et les collisions développés maison, ainsi que la
+génération de terrain. Ne pas inventer de méthode de génération précise.
 Seul le compte GitHub Westerbay est affiché. Skull est conservé dans
 `features/projects/data/drafts.ts`, hors du site public et sans URL vers
-le second compte. Les autres projets sont encore une sélection provisoire.
+le second compte.
 
-## À préciser lors du questionnaire final
+## À préciser dans la suite du questionnaire
 
-- Les expériences et intérêts à raconter, avec les mots de Mathis.
-- Les projets à afficher, leur ordre et leur état réel.
-- Les captures, vidéos, démos et anecdotes de chaque fiche.
-- La place du parcours professionnel sur À propos.
-- Le contact souhaité et la formulation anglaise.
+- Les contributions individuelles de Mathis pour les plantes et Eyefox Puzzle.
+- Les faits à raconter pour chaque fiche : fonctionnement, difficultés,
+  choix techniques et anecdotes, sans inventer de réalisations.
+- Les captures, vidéos et démos disponibles pour ces projets.
+- Le contact souhaité et la formulation anglaise des textes.
 - Le domaine définitif, puis les URL canoniques et le sitemap.
 
 ## Documentation
@@ -46,10 +74,5 @@ le second compte. Les autres projets sont encore une sélection provisoire.
 
 Les assets historiques restent utilisés par des branches `web` d’autres
 projets. Leur retrait attend la confirmation de Mathis.
-La première version est prête à être versionnée. Aucun push ni déploiement n’a été effectué.
-
-Le thème suit le navigateur tant qu’aucun choix manuel n’est enregistré.
-Le bouton affiche une lune ou un soleil pour basculer vers l’autre thème ;
-il alterne uniquement entre clair et sombre et mémorise le choix.
-Le bouton de langue conserve les libellés FR / EN dans cet ordre, sans
-drapeaux, avec la langue active mise en évidence.
+La première version est enregistrée dans le commit `d09967f`.
+Aucun push ni déploiement n’a été effectué.

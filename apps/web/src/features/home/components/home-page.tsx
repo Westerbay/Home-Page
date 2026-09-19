@@ -3,6 +3,7 @@ import { Link } from "@tanstack/react-router"
 import { ArrowUpRight, ArrowRight } from "lucide-react"
 import { Button } from "@workspace/ui/components/button"
 import { BotanicalFigure } from "./botanical-figure"
+import { SchoolMention } from "../../../components/school-mention"
 import { getProjects } from "../../projects/data/projects"
 import { ProjectCard } from "../../projects/components/project-card"
 
@@ -17,9 +18,7 @@ function AtlasHero() {
         <h1>
           Mathis
           <br />
-          <span>
-            Dubuisson<span className="name-period">.</span>
-          </span>
+          <span>Dubuisson</span>
         </h1>
         <p className="hero-intro">{m.intro()}</p>
         <p className="hero-description">{m.intro_detail()}</p>
@@ -38,7 +37,7 @@ function AtlasHero() {
       </div>
       <BotanicalFigure />
       <div className="hero-foot">
-        <span>{m.degree()}</span>
+        <SchoolMention />
         <p className="hero-topics">
           <span>{m.games()}</span>
           <span>{m.ai()}</span>

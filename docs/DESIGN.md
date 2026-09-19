@@ -56,3 +56,9 @@ Le bouton affiche une lune ou un soleil pour basculer vers l’autre thème ;
 il alterne uniquement entre clair et sombre et mémorise le choix.
 Le bouton de langue conserve les libellés FR / EN dans cet ordre, sans
 drapeaux, avec la langue active mise en évidence.
+
+Les titres et accroches courtes n’ont pas de point final. L’accroche de
+la page À propos est limitée à « Product & Software Engineer ».
+Les mentions secondaires du diplôme utilisent le logo ENSICAEN historique,
+copié dans les assets du frontend. Il garde ses couleurs originales et un
+fond blanc pour rester lisible en thème sombre.
