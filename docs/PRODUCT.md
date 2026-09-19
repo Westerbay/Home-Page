@@ -41,14 +41,42 @@ une possibilité. Ne pas la présenter comme un projet lancé ou en cours.
 Les trois fiches actuelles doivent être présentées comme des projets
 académiques. Les descriptions s’appuient sur leurs README publics et les
 réponses de Mathis. Ne pas lui attribuer toutes les contributions d’un
-projet sans avoir précisé son travail individuel.
+projet sans avoir précisé son travail individuel. Mathis confirme avoir
+réalisé entièrement seul SpellWar, The Algorithmic Beauty of Plants et
+Eyefox Puzzle. Ce fait reste acquis, mais les textes publics ne doivent
+pas insister sur « tout seul » : ils présentent les projets et leurs
+techniques. Ne pas mentionner « sans IA » dans la fiche publique de SpellWar.
+
+Pour The Algorithmic Beauty of Plants, conserver une présentation simple :
+travail de recherche et de lecture d’ABOP, puis mise en pratique avec des
+L-systems et un rendu 3D en WebGL. Ne pas chercher à en faire une réalisation
+phare ni redemander un défi marquant. Les maths et la physique sont évoquées,
+sans affirmer de simulation ou de technique précise. Les mentions « mat »
+et « base 64 » restent ambiguës et ne doivent pas être interprétées.
+
+Eyefox Puzzle est un jeu mobile Android réalisé pendant les études de
+Mathis. Sa réalisation en solo et son indisponibilité dans les stores sont
+des faits acquis. Le portfolio présente le jeu sans afficher son retrait
+des stores et sans lien ni badge de téléchargement dans un store. Ne pas
+affirmer une fin de développement, une date ou une raison de retrait, ni
+proposer un APK sans confirmation. Le dépôt de code reste le lien de la fiche.
+Les corrections déjà publiées dans le README et l’ancienne page du dépôt
+Eyefox-Puzzle restent en place ; ces consignes éditoriales visent le portfolio.
+
+Le contact du portfolio est limité à GitHub et LinkedIn. Ce choix est
+confirmé ; aucune adresse e-mail ne doit être affichée sur le portfolio.
+Le contact historique de la politique de confidentialité d’Eyefox reste
+conservé dans ce document distinct.
 
 ## Questionnaire en cours
 
-L’emploi actuel et la sélection des trois projets sont confirmés.
-La suite porte sur les contributions individuelles, les faits et anecdotes
-des projets, les captures, vidéos et démos disponibles, ainsi que le contact
-souhaité. Les textes français et anglais restent à affiner avec ces réponses.
+L’emploi actuel, la sélection des trois projets et leur réalisation en
+solo sont confirmés. La présentation souhaitée de The Algorithmic Beauty
+of Plants et l’indisponibilité d’Eyefox Puzzle dans les stores sont également
+confirmées. Le contact via GitHub et LinkedIn uniquement est confirmé.
+La suite porte sur les faits encore utiles pour les autres fiches, ainsi
+que les captures, vidéos et démos disponibles. Les textes français et anglais
+restent à affiner avec ces réponses.
 Ils conservent un ton personnel et direct, sans tirets cadratins.
 
 Le second compte GitHub n’est ni affiché ni lié sur le nouveau site.

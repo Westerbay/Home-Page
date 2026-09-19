@@ -37,7 +37,7 @@ export function getProjects(): Project[] {
       image: "assets/plants.png",
       repository:
         "https://github.com/Westerbay/The-Algorithmic-Beauty-of-Plants",
-      tags: ["L-systems", "Generative"],
+      tags: ["WebGL", "L-systems"],
       summary: m.plants_summary(),
       detail: m.plants_detail(),
       focus: m.plants_focus(),
