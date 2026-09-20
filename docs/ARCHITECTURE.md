@@ -63,3 +63,17 @@ API, authentication and database features are outside V1.
 ## Embedded L-system
 
 The `features/lsystem` wrapper imports the shared `@westerbay/lsystem-react` library and stylesheet after mounting and visibility detection. This keeps WebGL out of prerendering and unrelated pages. The homepage uses compact controls; the Plants detail page uses the editor with symbol help. The component owns canvas events, GPU resources and rendering; unmounting a route disposes its scene. The wrapper supplies the current locale and resolved theme, and retains a static image if JavaScript or the library download is unavailable.
+
+## Embedded Eyefox puzzle
+
+The `features/eyefox` wrapper loads `@westerbay/eyefox-react` and its
+stylesheet only after mounting, when the Eyefox detail approaches the viewport.
+Browsers without IntersectionObserver load it on mount. The generated HTML
+contains the existing project image; that preview also remains available if the
+library cannot be downloaded, alongside a localized error message. Loading text
+appears only once the browser has started the import.
+
+The package owns the puzzle state and interaction. The portfolio passes its
+current locale and resolved light/dark theme, without copying the game logic.
+Only the Eyefox detail page mounts the game; Home and Projects cards keep their
+static thumbnails. The wrapper adds no backend, store links or downloads.

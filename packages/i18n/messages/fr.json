@@ -85,5 +85,7 @@
   "personal_project": "Projet personnel",
   "degree_label": "Ingénieur diplômé",
   "scene_loading": "Vue 3D interactive",
-  "scene_unavailable": "La vue 3D n’a pas pu être chargée."
+  "scene_unavailable": "La vue 3D n’a pas pu être chargée.",
+  "eyefox_loading": "Chargement du jeu…",
+  "eyefox_unavailable": "Le jeu n’a pas pu être chargé."
 }

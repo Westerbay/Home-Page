@@ -1,0 +1,25 @@
+.portfolio-eyefox {
+  min-width: 0;
+}
+
+.eyefox-placeholder {
+  display: grid;
+  place-items: center;
+  gap: 16px;
+  min-height: clamp(320px, 45vw, 560px);
+  padding: 24px;
+  border: 1px solid var(--line);
+  background: var(--raised);
+  color: var(--secondary);
+  font-size: 13px;
+}
+
+.eyefox-placeholder img {
+  width: min(100%, 640px);
+  max-height: 430px;
+  object-fit: contain;
+}
+
+.eyefox-placeholder p {
+  text-align: center;
+}

@@ -12,6 +12,7 @@
 - `apps/web/src/components/school-mention.tsx`: degree and ENSICAEN logo.
 - `apps/web/src/features/projects/data/projects.ts`: validated, localized catalogue.
 - `apps/web/src/features/projects/components/project-card.tsx`: cards for Home and Projects.
+- `apps/web/src/features/eyefox/components/eyefox-scene.tsx`: client-only Eyefox package integration and static preview.
 
 Keep maintained image files in `apps/web/public/assets`. Reuse current helpers
 and components rather than restoring code from the former site or prototype.

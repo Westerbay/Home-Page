@@ -110,3 +110,11 @@ do not block the authorized V1 release.
 ## Interactive L-system component
 
 The versioned @westerbay/lsystem-react package comes from a GitHub release asset, with its integrity pinned in the lockfile. Upgrade the dependency when releasing component changes; do not copy engine code into this repository. The scene follows the portfolio locale and resolved theme. Gallery cards retain static thumbnails.
+
+## Interactive Eyefox puzzle
+
+The Eyefox project detail uses the shared `@westerbay/eyefox-react` component
+from the Eyefox-Puzzle repository. It loads on the client near the viewport and
+follows the portfolio language and theme. Prerendered HTML retains the existing
+Eyefox image. Home and Projects cards remain static. Keep the package as the
+source of game logic and upgrade its dependency when releasing changes.

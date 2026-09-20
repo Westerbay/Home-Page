@@ -56,6 +56,8 @@ physics were mentioned, but no particular simulation or method was confirmed.
 The terms “mat” and “base 64” remain ambiguous and are not public claims.
 
 For Eyefox Puzzle, describe the Android game and its puzzle mechanic.
+Its detail page includes a small playable browser version; project cards keep
+their static images.
 Its removal from app stores is known but does not need to be shown on the
 portfolio. Keep the repository link, without store links or download badges.
 Do not claim a removal date, reason, end to development or downloadable APK.

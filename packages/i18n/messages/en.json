@@ -85,5 +85,7 @@
   "personal_project": "Personal project",
   "degree_label": "Engineering graduate",
   "scene_loading": "Interactive 3D view",
-  "scene_unavailable": "The 3D view could not be loaded."
+  "scene_unavailable": "The 3D view could not be loaded.",
+  "eyefox_loading": "Loading the game…",
+  "eyefox_unavailable": "The game could not be loaded."
 }

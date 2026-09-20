@@ -4,6 +4,7 @@ import { getProjects, categoryName, projectOriginName } from "../data/projects"
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react"
 import { ProjectVisual } from "./project-visual"
 import { LSystemScene } from "../../lsystem/components/lsystem-scene"
+import { EyefoxScene } from "../../eyefox/components/eyefox-scene"
 
 export function ProjectPage({ slug }: { slug: string }) {
   const projects = getProjects()
@@ -27,6 +28,8 @@ export function ProjectPage({ slug }: { slug: string }) {
       </div>
       {project.slug === "plants" ? (
         <LSystemScene controls="full" />
+      ) : project.slug === "eyefox" ? (
+        <EyefoxScene />
       ) : (
         <div className={`detail-cover project-${project.slug}`}>
           <ProjectVisual project={project} />
