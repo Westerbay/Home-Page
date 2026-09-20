@@ -3,6 +3,7 @@ import { Link } from "@tanstack/react-router"
 import { getProjects, categoryName, projectOriginName } from "../data/projects"
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react"
 import { ProjectVisual } from "./project-visual"
+import { LSystemScene } from "../../lsystem/components/lsystem-scene"
 
 export function ProjectPage({ slug }: { slug: string }) {
   const projects = getProjects()
@@ -24,9 +25,13 @@ export function ProjectPage({ slug }: { slug: string }) {
         <h1>{project.title}</h1>
         <p>{project.summary}</p>
       </div>
-      <div className={`detail-cover project-${project.slug}`}>
-        <ProjectVisual project={project} />
-      </div>
+      {project.slug === "plants" ? (
+        <LSystemScene controls="full" />
+      ) : (
+        <div className={`detail-cover project-${project.slug}`}>
+          <ProjectVisual project={project} />
+        </div>
+      )}
       <div className="detail-body">
         <aside>
           <span className="eyebrow">{m.technologies()}</span>

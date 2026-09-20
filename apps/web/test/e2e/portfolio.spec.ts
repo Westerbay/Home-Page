@@ -234,7 +234,7 @@ test("large screens keep generous content width and readable type", async ({
   }
 })
 
-test("the plant changes with keyboard input without hydration errors", async ({
+test("the shared WebGL scene works on home and project pages in both languages", async ({
   page,
 }) => {
   const errors: string[] = []
@@ -243,19 +243,34 @@ test("the plant changes with keyboard input without hydration errors", async ({
     if (message.type() === "error") errors.push(message.text())
   })
   await page.goto("./")
-  const initialShape = await page.locator(".botanical").innerHTML()
-  const button = page.getByRole("button", { name: fr.plant_play })
-  await button.focus()
-  await page.keyboard.press("Enter")
-  await expect(page.locator(".atlas-art [role=status]")).toContainText(
-    fr.plant_changed
+  const scene = page.locator(".lsystem")
+  await expect(scene.locator("[role=status]")).toHaveText("Dessin mis à jour")
+  await expect(scene).toHaveAttribute("data-controls", "compact")
+  await page.getByRole("button", { name: "Essayer un autre modèle" }).click()
+  await expect(scene.locator("[role=status]")).toHaveText("Dessin mis à jour")
+  await expect(scene.locator(".lsystem-scene-label")).toContainText(
+    "Générations 4"
   )
-  expect(await page.locator(".botanical").innerHTML()).not.toBe(initialShape)
-  await expect(button).toBeFocused()
-  await page.reload()
-  expect(await page.locator(".botanical").innerHTML()).toBe(initialShape)
+  await page.locator(".botanical-caption a").click()
+  await expect(page).toHaveURL(/projects\/plants\/?$/)
+  await expect(scene).toHaveAttribute("data-controls", "full")
+  await expect(scene.locator("[role=status]")).toHaveText("Dessin mis à jour")
+  await page
+    .getByRole("button", { name: "Guide des symboles", exact: true })
+    .click()
+  await expect(page.getByRole("dialog")).toBeVisible()
+  await page.keyboard.press("Escape")
+  await expect(page.getByRole("dialog")).not.toBeVisible()
   await page.getByRole("button", { name: "Switch to English" }).click()
-  await expect(page.getByRole("button", { name: en.plant_play })).toBeVisible()
+  await expect(scene.locator("[role=status]")).toHaveText("Drawing updated")
+  await expect(
+    page.getByRole("button", { name: "Symbol guide", exact: true })
+  ).toBeVisible()
+  await page.emulateMedia({ colorScheme: "dark" })
+  await expect(scene).toHaveAttribute("data-theme", "dark")
+  await page.getByRole("link", { name: "Home", exact: true }).first().click()
+  await expect(scene).toHaveAttribute("data-controls", "compact")
+  await expect(scene.locator("[role=status]")).toHaveText("Drawing updated")
   expect(errors).toEqual([])
 })
 

@@ -7,6 +7,8 @@ Public URL: [westerbay.github.io/Home-Page](https://westerbay.github.io/Home-Pag
 The site is available in French and English. It includes a project gallery,
 individual project pages, an about page and links to GitHub and LinkedIn.
 The theme follows the browser preference until you choose light or dark mode.
+The homepage and Plants project page embed the original interactive WebGL
+scene through the reusable [L-system component](https://github.com/Westerbay/The-Algorithmic-Beauty-of-Plants).
 
 ## Stack
 

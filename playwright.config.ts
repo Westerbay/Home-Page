@@ -2,12 +2,15 @@ import { defineConfig } from "@playwright/test"
 const base = process.env.SITE_BASE_PATH || "/"
 export default defineConfig({
   testDir: "./apps/web/test/e2e",
-  timeout: 20000,
+  timeout: 30000,
   fullyParallel: true,
   workers: 3,
   use: {
     baseURL: "http://127.0.0.1:4175" + base,
     browserName: "chromium",
+    launchOptions: {
+      args: ["--use-angle=swiftshader", "--enable-unsafe-swiftshader"],
+    },
     locale: "fr-FR",
     colorScheme: "light",
     trace: "retain-on-failure",

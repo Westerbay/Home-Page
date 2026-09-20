@@ -59,3 +59,7 @@ The frontend conventions and boundaries were informed by
 `561d00ad11e1c18be1c82227663d3d3d8b884132`. This is an internal engineering
 reference, not a public portfolio link.
 API, authentication and database features are outside V1.
+
+## Embedded L-system
+
+The `features/lsystem` wrapper imports the shared `@westerbay/lsystem-react` library and stylesheet after mounting and visibility detection. This keeps WebGL out of prerendering and unrelated pages. The homepage uses compact controls; the Plants detail page uses the editor with symbol help. The component owns canvas events, GPU resources and rendering; unmounting a route disposes its scene. The wrapper supplies the current locale and resolved theme, and retains a static image if JavaScript or the library download is unavailable.

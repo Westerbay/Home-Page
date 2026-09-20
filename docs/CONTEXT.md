@@ -15,8 +15,8 @@ Current frontend assets live independently in `apps/web/public/assets`.
 The external asset migration covers five consumers: the `web` branches of
 Eyefox-Puzzle, SpellWar, OSProject and Bachelor-Side-Projects, plus the
 `main/index.html` page of The Algorithmic Beauty of Plants. Each page gets
-its own `shared/` assets; the Plants WebGL implementation is outside this
-migration.
+its own `shared/` assets. The subsequent ABOP component refactor removes
+that project's old page shell and shared assets entirely.
 
 The public URL is `https://westerbay.github.io/Home-Page/`. Publishing uses
 the manual **Publish portfolio** workflow, with GitHub Pages configured to
@@ -31,8 +31,7 @@ refinements can follow V1.
 
 Desktop content uses 90% of the viewport, capped at 2600 px. Typography and
 visuals adapt up to 3840 px. The container has no percentage padding that
-shrinks its usable width after the cap. The botanical SVG is interactive:
-its button generates another deterministic variation locally.
+shrinks its usable width after the cap. The home illustration and Plants project page use the shared React/WebGL L-system component from the ABOP repository. Home shows compact controls; the project page includes the full editor and symbol-help modal. It is loaded only on the client when the scene approaches the viewport, with a static image in generated HTML.
 
 The theme follows the browser until a manual preference is saved. The
 sun/moon button switches between light and dark. Language labels stay in
@@ -107,3 +106,7 @@ do not block the authorized V1 release.
 - [DESIGN.md](DESIGN.md): approved visual direction.
 - [REUSE.md](REUSE.md): shared components and helpers.
 - [DEVELOPMENT.md](DEVELOPMENT.md): commands and publishing.
+
+## Interactive L-system component
+
+The versioned @westerbay/lsystem-react package comes from a GitHub release asset, with its integrity pinned in the lockfile. Upgrade the dependency when releasing component changes; do not copy engine code into this repository. The scene follows the portfolio locale and resolved theme. Gallery cards retain static thumbnails.

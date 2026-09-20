@@ -79,12 +79,11 @@
   "ai": "AI",
   "rendering": "3D rendering",
   "page_error": "This page could not be displayed",
-  "plant_play": "Another plant",
-  "plant_hint": "Click to try a different shape.",
-  "plant_changed": "New plant displayed.",
   "theme_to_light": "Switch to light theme",
   "theme_to_dark": "Switch to dark theme",
   "academic_project": "Academic project",
   "personal_project": "Personal project",
-  "degree_label": "Engineering graduate"
+  "degree_label": "Engineering graduate",
+  "scene_loading": "Interactive 3D view",
+  "scene_unavailable": "The 3D view could not be loaded."
 }

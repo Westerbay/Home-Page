@@ -1379,7 +1379,7 @@ main {
 .atlas-art {
   position: relative;
   display: grid;
-  grid-template-rows: auto minmax(0, 1fr) auto auto;
+  grid-template-rows: minmax(0, 1fr) auto;
   align-self: center;
   height: 520px;
   min-width: 0;
@@ -1389,83 +1389,10 @@ main {
   background: var(--raised);
   border: 1px solid var(--line);
 }
-.botanical-header {
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  color: var(--secondary);
-  font-size: 10px;
-  letter-spacing: 1.5px;
-}
 .botanical-stage {
   position: relative;
   min-height: 0;
   margin: 10px 0;
-}
-.botanical-stage::before,
-.botanical-stage::after {
-  content: "+";
-  position: absolute;
-  top: 48%;
-  color: var(--line);
-  font-size: 20px;
-  font-weight: 300;
-}
-.botanical-stage::before {
-  left: 4%;
-}
-.botanical-stage::after {
-  right: 4%;
-}
-.botanical {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  inset: 0;
-}
-.botanical.is-regenerated {
-  animation: plant-appear 280ms ease-out both;
-}
-@keyframes plant-appear {
-  from {
-    opacity: 0;
-    transform: translateY(4px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-.botanical-controls {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 8px 0 18px;
-  font-size: 10px;
-  color: var(--secondary);
-}
-.plant-button {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  gap: 9px;
-  min-height: 40px;
-  padding: 8px 12px;
-  border: 1px solid var(--line);
-  background: var(--surface);
-  color: var(--ink);
-  white-space: nowrap;
-  font-size: 11px;
-}
-.plant-button:hover {
-  border-color: var(--accent);
-}
-.plant-button svg {
-  transition: transform 200ms ease;
-}
-.plant-button:hover svg {
-  transform: rotate(45deg);
 }
 .botanical-caption {
   border-top: 1px solid var(--line);
@@ -1617,25 +1544,11 @@ main {
     height: clamp(520px, 33cqi, 820px);
     padding: clamp(22px, 1.5cqi, 38px);
   }
-  .botanical-header,
-  .botanical-caption,
-  .botanical-controls {
+  .botanical-caption {
     font-size: clamp(10px, 0.64cqi, 16px);
   }
   .botanical-caption a {
     font-size: clamp(18px, 1.1cqi, 28px);
-  }
-  .botanical-controls {
-    padding-bottom: clamp(18px, 1.1cqi, 28px);
-  }
-  .plant-button {
-    font-size: clamp(12px, 0.73cqi, 18px);
-    min-height: clamp(40px, 2.3cqi, 58px);
-    padding-inline: clamp(12px, 0.9cqi, 23px);
-  }
-  .plant-button svg {
-    width: 1.15em;
-    height: 1.15em;
   }
   .hero-foot {
     padding: clamp(20px, 1.4cqi, 36px) 0;
@@ -1792,13 +1705,6 @@ main {
     height: 480px;
     padding: 18px;
   }
-  .botanical-controls {
-    justify-content: end;
-    padding-bottom: 14px;
-  }
-  .botanical-controls > span {
-    display: none;
-  }
   .botanical-caption a {
     font-size: 16px;
   }
@@ -1835,9 +1741,6 @@ main {
     margin: 0;
     padding: 18px;
   }
-  .botanical-controls {
-    padding-top: 0;
-  }
   .botanical-caption a {
     font-size: 17px;
   }
@@ -1866,4 +1769,35 @@ main {
     flex-wrap: wrap;
     gap: 12px 20px;
   }
+}
+
+/* The editor owns its internal layout; the portfolio only sizes its frame. */
+.portfolio-lsystem {
+  min-width: 0;
+}
+.portfolio-lsystem[data-variant="compact"] {
+  height: 100%;
+}
+.portfolio-lsystem[data-variant="full"] {
+  --lsystem-height: clamp(420px, 34vw, 640px);
+}
+.lsystem-placeholder {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  min-height: 300px;
+  background: var(--raised);
+  color: var(--secondary);
+  font-size: 13px;
+}
+.lsystem-placeholder img {
+  max-height: 350px;
+  width: 100%;
+  object-fit: contain;
+}
+.lsystem-placeholder p {
+  padding: 16px;
+}
+.portfolio-lsystem[data-variant="full"] .lsystem-placeholder {
+  min-height: 560px;
 }

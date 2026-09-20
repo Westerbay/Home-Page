@@ -79,12 +79,11 @@
   "ai": "IA",
   "rendering": "Rendu 3D",
   "page_error": "La page n’a pas pu s’afficher",
-  "plant_play": "Une autre plante",
-  "plant_hint": "Clique pour essayer une autre forme.",
-  "plant_changed": "Nouvelle plante affichée.",
   "theme_to_light": "Passer au thème clair",
   "theme_to_dark": "Passer au thème sombre",
   "academic_project": "Projet académique",
   "personal_project": "Projet personnel",
-  "degree_label": "Ingénieur diplômé"
+  "degree_label": "Ingénieur diplômé",
+  "scene_loading": "Vue 3D interactive",
+  "scene_unavailable": "La vue 3D n’a pas pu être chargée."
 }

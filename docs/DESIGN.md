@@ -29,8 +29,7 @@ Images use a 2:1 ratio with a maximum height of 360 px.
 
 ## Illustration and images
 
-The plant is a local SVG drawing with deterministic generation. Its button
-shows a new variation without a backend or remote image service.
+The home scene uses the original ABOP WebGL renderer through the shared L-system React package. Its compact controls switch presets and adjust the camera. The Plants detail page includes the full editor, with the symbol reference in a modal beside the parameter heading. Gallery cards retain static images. Scenes use neutral backgrounds by default; textured sky and ground are optional.
 
 The GitHub profile picture keeps its original colours, without a filter or
 desaturation. The ENSICAEN logo has its own copy in the frontend assets;
