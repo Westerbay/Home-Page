@@ -11,7 +11,7 @@
   "dependencies": {
     "@tanstack/react-router": "1.170.35",
     "@tanstack/react-start": "1.168.52",
-    "@westerbay/eyefox-react": "https://github.com/Westerbay/Eyefox-Puzzle/releases/download/web-v0.1.1/westerbay-eyefox-react-0.1.1.tgz",
+    "@westerbay/eyefox-react": "https://github.com/Westerbay/Eyefox-Puzzle/releases/download/web-v0.1.2/westerbay-eyefox-react-0.1.2.tgz",
     "@westerbay/lsystem-react": "https://github.com/Westerbay/The-Algorithmic-Beauty-of-Plants/releases/download/v0.1.1/westerbay-lsystem-react-0.1.1.tgz",
     "@workspace/config": "workspace:*",
     "@workspace/i18n": "workspace:*",
