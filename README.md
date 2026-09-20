@@ -9,6 +9,9 @@ individual project pages, an about page and links to GitHub and LinkedIn.
 The theme follows the browser preference until you choose light or dark mode.
 The homepage and Plants project page embed the original interactive WebGL
 scene through the reusable [L-system component](https://github.com/Westerbay/The-Algorithmic-Beauty-of-Plants).
+The Eyefox project page includes a playable puzzle using the reusable
+[Eyefox component](https://github.com/Westerbay/Eyefox-Puzzle/tree/web).
+Both integrations follow the site language and theme.
 
 ## Stack
 
