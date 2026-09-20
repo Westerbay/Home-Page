@@ -54,7 +54,10 @@ export function LSystemScene({ controls }: { controls: "compact" | "full" }) {
         />
       ) : (
         <div className="lsystem-placeholder">
-          <img src={assetUrl("assets/plants.png")} alt={m.plants_summary()} />
+          <img
+            src={assetUrl("assets/plants-render.png")}
+            alt={m.plants_summary()}
+          />
           <p>{failed ? m.scene_unavailable() : m.scene_loading()}</p>
         </div>
       )}

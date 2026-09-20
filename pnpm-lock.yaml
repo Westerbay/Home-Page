@@ -191,8 +191,8 @@ importers:
         specifier: 1.168.52
         version: 1.168.52(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(rolldown@1.2.9)(supports-color@7.2.0)(vite@8.3.0(@types/node@24.5.2)(jiti@2.7.0))
       '@westerbay/lsystem-react':
-        specifier: https://github.com/Westerbay/The-Algorithmic-Beauty-of-Plants/releases/download/v0.1.0/westerbay-lsystem-react-0.1.0.tgz
-        version: https://github.com/Westerbay/The-Algorithmic-Beauty-of-Plants/releases/download/v0.1.0/westerbay-lsystem-react-0.1.0.tgz(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+        specifier: https://github.com/Westerbay/The-Algorithmic-Beauty-of-Plants/releases/download/v0.1.1/westerbay-lsystem-react-0.1.1.tgz
+        version: https://github.com/Westerbay/The-Algorithmic-Beauty-of-Plants/releases/download/v0.1.1/westerbay-lsystem-react-0.1.1.tgz(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       '@workspace/config':
         specifier: workspace:*
         version: link:../../packages/config
@@ -1788,9 +1788,9 @@ packages:
       oxc-transform-react:
         optional: true
 
-  '@westerbay/lsystem-react@https://github.com/Westerbay/The-Algorithmic-Beauty-of-Plants/releases/download/v0.1.0/westerbay-lsystem-react-0.1.0.tgz':
-    resolution: {integrity: sha512-ctMAtz3q+KLjfwm7Sf1GT4QoxwsfSQ6wWfeX4fsds0LE+kZ57DfrA8sJS8iV1Vmznce0+6jhxyDrhJjfGHliYw==, tarball: https://github.com/Westerbay/The-Algorithmic-Beauty-of-Plants/releases/download/v0.1.0/westerbay-lsystem-react-0.1.0.tgz}
-    version: 0.1.0
+  '@westerbay/lsystem-react@https://github.com/Westerbay/The-Algorithmic-Beauty-of-Plants/releases/download/v0.1.1/westerbay-lsystem-react-0.1.1.tgz':
+    resolution: {integrity: sha512-9MB0+1K8XjjJfm4loKrDGGi0XHfyyGUfnAGQCLexpdCSBsAEqNe6+Mauzb7kl7zA4nJl+/OY3L5lRp/zLCYynA==, tarball: https://github.com/Westerbay/The-Algorithmic-Beauty-of-Plants/releases/download/v0.1.1/westerbay-lsystem-react-0.1.1.tgz}
+    version: 0.1.1
     engines: {node: '>=24 <25'}
     peerDependencies:
       react: ^18.3.0 || ^19.0.0
@@ -4482,7 +4482,7 @@ snapshots:
       '@rolldown/pluginutils': 1.0.1
       vite: 8.3.0(@types/node@24.5.2)(jiti@2.7.0)
 
-  '@westerbay/lsystem-react@https://github.com/Westerbay/The-Algorithmic-Beauty-of-Plants/releases/download/v0.1.0/westerbay-lsystem-react-0.1.0.tgz(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
+  '@westerbay/lsystem-react@https://github.com/Westerbay/The-Algorithmic-Beauty-of-Plants/releases/download/v0.1.1/westerbay-lsystem-react-0.1.1.tgz(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
     dependencies:
       gl-matrix: 3.4.4
       jszip: 3.10.1

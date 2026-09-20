@@ -50,3 +50,10 @@ terminal full stop. The About lead is “Product & Software Engineer”.
 
 The approved palette and direction are the V1 baseline. Further small
 visual refinements can follow the release.
+
+Project thumbnails must work against light and dark surfaces without global
+filters or blend modes. SpellWar uses the original game1.png gameplay capture
+from its web branch. The Plants thumbnail is rendered directly by the shared
+WebGL engine onto a transparent canvas, without a white matte. Preserve this
+transparency when replacing it; the sprite's white pixels remain part of the
+Eyefox artwork.

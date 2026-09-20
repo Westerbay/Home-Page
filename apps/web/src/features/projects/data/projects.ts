@@ -22,7 +22,7 @@ export function getProjects(): Project[] {
       origin: "academic",
       title: "SpellWar",
       category: "games",
-      image: "assets/spellwar.png",
+      image: "assets/spellwar-gameplay.png",
       repository: "https://github.com/Westerbay/SpellWar",
       tags: ["C++", "OpenGL", "GLSL", "PBR"],
       summary: m.spellwar_summary(),
@@ -34,7 +34,7 @@ export function getProjects(): Project[] {
       origin: "academic",
       title: "The Algorithmic Beauty of Plants",
       category: "generative",
-      image: "assets/plants.png",
+      image: "assets/plants-render.png",
       repository:
         "https://github.com/Westerbay/The-Algorithmic-Beauty-of-Plants",
       tags: ["WebGL", "L-systems"],

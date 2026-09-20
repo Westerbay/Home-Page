@@ -11,7 +11,7 @@
   "dependencies": {
     "@tanstack/react-router": "1.170.35",
     "@tanstack/react-start": "1.168.52",
-    "@westerbay/lsystem-react": "https://github.com/Westerbay/The-Algorithmic-Beauty-of-Plants/releases/download/v0.1.0/westerbay-lsystem-react-0.1.0.tgz",
+    "@westerbay/lsystem-react": "https://github.com/Westerbay/The-Algorithmic-Beauty-of-Plants/releases/download/v0.1.1/westerbay-lsystem-react-0.1.1.tgz",
     "@workspace/config": "workspace:*",
     "@workspace/i18n": "workspace:*",
     "@workspace/ui": "workspace:*",
