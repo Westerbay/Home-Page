@@ -9,7 +9,6 @@ export function Footer() {
     <footer className="site-footer">
       <div>
         <span>{profile.name}</span>
-        <span>{m.footer()}</span>
       </div>
       <div>
         <a href={profile.github} target="_blank" rel="noreferrer">

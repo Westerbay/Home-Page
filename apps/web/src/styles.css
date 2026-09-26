@@ -1075,10 +1075,6 @@ svg {
     font-size: 10px;
     gap: 23px;
   }
-  .site-footer > div:first-child > span:last-child {
-    max-width: 110px;
-    text-align: right;
-  }
   .atlas-hero {
     grid-template-columns: 1fr;
     padding-top: 19px;

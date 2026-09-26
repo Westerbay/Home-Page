@@ -37,6 +37,7 @@ is already in progress.
 Use ordinary, direct language in French and English. Avoid em dashes.
 Headings and short title-like text do not end with a full stop. The About
 lead stays short: “Product & Software Engineer”.
+The footer contains the name and social/contact links, without a “Made by” line.
 
 ## Project descriptions
 
