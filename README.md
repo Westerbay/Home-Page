@@ -12,6 +12,9 @@ scene through the reusable [L-system component](https://github.com/Westerbay/The
 The Eyefox project page includes a playable puzzle using the reusable
 [Eyefox component](https://github.com/Westerbay/Eyefox-Puzzle/tree/web).
 Both integrations follow the site language and theme.
+[Booster Break](https://booster.mathis-db.com/) leads the project selection,
+with a screenshot, a project page and links to the live game and source.
+The catalogue includes personal and academic projects.
 
 ## Stack
 

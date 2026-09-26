@@ -29,18 +29,31 @@ test("navigation, language switch and direct reload preserve the project", async
   await page.goto("./")
   await expect(page.locator(".language-current")).toHaveText("FR")
   await page.locator(".project-card").first().click()
-  await expect(page.getByRole("heading", { level: 1 })).toHaveText("SpellWar")
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText(
+    "Booster Break"
+  )
+  await expect(
+    page.getByRole("link", { name: "Jouer", exact: true })
+  ).toHaveAttribute("href", "https://booster.mathis-db.com/")
+  await expect(
+    page.getByRole("link", { name: "Voir le code", exact: true })
+  ).toHaveAttribute("href", "https://github.com/Westerbay/Booster-Break")
   await page.getByRole("button", { name: "Switch to English" }).click()
+  await expect(
+    page.getByRole("link", { name: "Play", exact: true })
+  ).toHaveAttribute("href", "https://booster.mathis-db.com/")
   await expect(page.locator(".language-current")).toHaveText("EN")
-  await expect(page).toHaveURL(/\/en\/projects\/spellwar\/?$/)
+  await expect(page).toHaveURL(/\/en\/projects\/booster-break\/?$/)
   await expect(page.locator("html")).toHaveAttribute("lang", "en")
   await expect(
     page.getByRole("link", { name: "Back to projects" })
   ).toBeVisible()
   await page.reload()
-  await expect(page.getByRole("heading", { level: 1 })).toHaveText("SpellWar")
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText(
+    "Booster Break"
+  )
   await page.getByRole("link", { name: "Back to projects" }).click()
-  await expect(page.locator(".project-card")).toHaveCount(3)
+  await expect(page.locator(".project-card")).toHaveCount(4)
   expect(errors).toEqual([])
 })
 
@@ -51,7 +64,7 @@ test("filters, clipboard feedback and primary GitHub", async ({
   await context.grantPermissions(["clipboard-read", "clipboard-write"])
   await page.goto("projects")
   await page.getByRole("button", { name: "Jeux", exact: true }).click()
-  await expect(page.locator(".project-card")).toHaveCount(2)
+  await expect(page.locator(".project-card")).toHaveCount(3)
   await page.getByRole("button", { name: "Génératif", exact: true }).click()
   await expect(page.locator(".project-card")).toHaveCount(1)
   await page.getByRole("link", { name: "Contact", exact: true }).first().click()
@@ -162,6 +175,7 @@ for (const width of [320, 390, 768, 1440, 1920, 3840]) {
       "./",
       "projects",
       "projects/plants",
+      "projects/booster-break",
       "about",
       "contact",
       "en/",

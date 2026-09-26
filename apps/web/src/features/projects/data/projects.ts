@@ -8,15 +8,31 @@ const projectSchema = z.object({
   category: z.enum(["games", "generative", "engineering"]),
   image: z.string().nullable(),
   repository: z.url(),
+  demo: z.url().optional(),
   tags: z.array(z.string()),
   summary: z.string(),
   detail: z.string(),
   focus: z.string(),
+  focusTitle: z.string().optional(),
 })
 export type Project = z.infer<typeof projectSchema>
 
 export function getProjects(): Project[] {
   return z.array(projectSchema).parse([
+    {
+      slug: "booster-break",
+      origin: "personal",
+      title: "Booster Break",
+      category: "games",
+      image: "assets/booster-break.jpg",
+      repository: "https://github.com/Westerbay/Booster-Break",
+      demo: "https://booster.mathis-db.com/",
+      tags: ["TypeScript", "React", "WebGL", "Bun", "Elysia", "PostgreSQL"],
+      summary: m.booster_summary(),
+      detail: m.booster_detail(),
+      focus: m.booster_focus(),
+      focusTitle: m.booster_focus_title(),
+    },
     {
       slug: "spellwar",
       origin: "academic",

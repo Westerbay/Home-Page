@@ -20,7 +20,7 @@ request or a form. Project filters currently use local React state.
 
 ## Rendering and languages
 
-TanStack Start generates 14 HTML pages at build time. Only `dist/client` is
+TanStack Start generates 16 HTML pages at build time. Only `dist/client` is
 published. Server rendering is used for development and static generation;
 no application server or remote function is deployed.
 

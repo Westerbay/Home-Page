@@ -8,6 +8,7 @@ const base = process.env.SITE_BASE_PATH || "/"
 const paths = [
   "/",
   "/projects",
+  "/projects/booster-break",
   "/projects/spellwar",
   "/projects/plants",
   "/projects/eyefox",

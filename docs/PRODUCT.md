@@ -1,14 +1,14 @@
 # Product and content
 
-The portfolio presents Mathis's projects and a little about him. The three
-current projects are academic; personal projects may be added later.
+The portfolio presents Mathis's projects and a little about him. Booster Break is a personal project with contributions from colleagues;
+SpellWar, Plants and Eyefox are academic projects.
 The tone is about enjoying development and showing the work, without sales
 promises, invented metrics or a job-application pitch.
 
 ## Pages and controls
 
 The site includes Home, Projects, About and Contact. Public project pages
-cover SpellWar, The Algorithmic Beauty of Plants and Eyefox Puzzle. This
+cover Booster Break, SpellWar, The Algorithmic Beauty of Plants and Eyefox Puzzle. This
 selection is confirmed. Filters separate games and generative projects.
 Skull remains an unpublished draft.
 
@@ -40,10 +40,16 @@ lead stays short: “Product & Software Engineer”.
 
 ## Project descriptions
 
-Label the current projects as academic. Base descriptions on their public
-READMEs and Mathis's confirmed answers. He made all three himself; keep that
+Label SpellWar, Plants and Eyefox as academic; Booster Break as personal. Base descriptions on their public
+READMEs and Mathis's confirmed answers. He made the three academic projects himself; keep that
 fact as context without repeatedly stressing “entirely on my own”. Public
 copy should describe the projects and their techniques.
+
+Feature Booster Break first on Home and Projects. Its page includes a real
+screenshot, links to the live game and source, and acknowledges colleagues'
+contributions without inventing an individual division of work. The homepage
+keeps three cards (Booster Break, SpellWar, Plants); Eyefox stays in Projects.
+Describe the app's features and WebGL effects in plain language.
 
 For SpellWar, cover the custom physics model, PBR renderer, collisions and
 terrain generation. Do not guess the terrain algorithm. Omit the “without

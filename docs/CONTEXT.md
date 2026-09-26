@@ -4,7 +4,7 @@
 
 The maintained portfolio uses React, TypeScript and TanStack Start/Router in
 `apps/web`, with shared packages for UI, translations and configuration.
-Home, the filterable project list, three project pages, About and Contact
+Home, the filterable project list, four project pages, About and Contact
 are implemented. French and English pages are generated as static HTML.
 
 Mathis has authorized V1 publication and removal of the old implementation.
@@ -58,8 +58,7 @@ The About lead is simply “Product & Software Engineer”.
 ## Confirmed projects
 
 SpellWar, The Algorithmic Beauty of Plants and Eyefox Puzzle are academic
-projects. Mathis wants to keep all three; personal projects can be added
-later. He made each of them himself. Do not repeatedly emphasize that fact
+projects. Mathis wants to keep all three. He made each of them himself. Do not repeatedly emphasize that fact
 in public descriptions: focus on what the projects do and how they work.
 
 SpellWar uses a custom physics model, PBR rendering, collisions and terrain
@@ -88,6 +87,14 @@ remain; later requests to simplify the portfolio copy do not undo them.
 Only the Westerbay GitHub account is public on the portfolio. Skull stays
 in `features/projects/data/drafts.ts`, outside the public catalogue, without
 a secondary-account URL.
+
+Booster Break is a personal, collaborative project with contributions from
+Mathis's colleagues. It appears first in the catalogue and in the three-project
+homepage selection, followed by SpellWar and Plants. Eyefox remains in the full
+catalogue. The detail page links to the live app at `https://booster.mathis-db.com/`
+and the Westerbay repository. Describe the pack opening, collection, trading,
+three-card duels and WebGL effects without assigning colleagues' work to Mathis.
+Use a real public screenshot, not an embedded authenticated application.
 
 ## Contact and follow-up work
 

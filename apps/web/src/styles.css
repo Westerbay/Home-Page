@@ -574,6 +574,19 @@ svg {
 .detail-body aside > .eyebrow {
   margin-bottom: 17px;
 }
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+.project-booster-break .project-cover,
+.detail-cover.project-booster-break {
+  background: #101619;
+}
+.project-booster-break .project-cover > img {
+  object-fit: contain;
+}
 .tag-list {
   list-style: none;
   display: flex;

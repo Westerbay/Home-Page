@@ -43,15 +43,30 @@ export function ProjectPage({ slug }: { slug: string }) {
               <li key={tag}>{tag}</li>
             ))}
           </ul>
-          <a
-            href={project.repository}
-            target="_blank"
-            rel="noreferrer"
-            className="action primary-action"
-          >
-            {m.source()}
-            <ArrowUpRight size={17} />
-          </a>
+          <div className="project-links">
+            {project.demo && (
+              <a
+                href={project.demo}
+                target="_blank"
+                rel="noreferrer"
+                className="action primary-action"
+              >
+                {m.play_project()}
+                <ArrowUpRight size={17} />
+              </a>
+            )}
+            <a
+              href={project.repository}
+              target="_blank"
+              rel="noreferrer"
+              className={
+                project.demo ? "action text-action" : "action primary-action"
+              }
+            >
+              {m.source()}
+              <ArrowUpRight size={17} />
+            </a>
+          </div>
         </aside>
         <div>
           <section>
@@ -59,7 +74,7 @@ export function ProjectPage({ slug }: { slug: string }) {
             <p>{project.detail}</p>
           </section>
           <section>
-            <h2>{m.focus()}</h2>
+            <h2>{project.focusTitle ?? m.focus()}</h2>
             <p>{project.focus}</p>
           </section>
         </div>
