@@ -1,7 +1,7 @@
 import { createServer } from "node:http"
 import { readFile, stat } from "node:fs/promises"
 import { resolve, extname, sep } from "node:path"
-const root = resolve("apps/web/dist/client")
+const root = resolve("web/dist/client")
 const base = (process.env.SITE_BASE_PATH || "/").replace(/\/$/, "")
 const types = {
   ".html": "text/html; charset=utf-8",

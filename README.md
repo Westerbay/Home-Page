@@ -18,8 +18,9 @@ The catalogue includes personal and academic projects.
 
 ## Stack
 
-TypeScript, React, TanStack Start and Router, Tailwind CSS, Paraglide,
-Zod and Sonner. Pages are generated as static HTML for GitHub Pages.
+Node.js 24, pnpm 12, Turborepo, TypeScript, React, TanStack Start and Router,
+Tailwind CSS, Paraglide, Zod and Sonner. Pages are generated as static HTML
+for GitHub Pages.
 There is no application server to deploy.
 
 ## Development
@@ -56,21 +57,25 @@ These environment variable examples use a POSIX shell; see the
 
 ## Project structure
 
-- `apps/web`: routes, page features, project data and public assets.
+- `web`: routes, page features, project data and public assets.
 - `packages/ui`: shared components, fonts and theme styles.
 - `packages/i18n`: French and English messages and Paraglide configuration.
 - `packages/config`: public profile and shared TypeScript configuration.
 - `scripts`: static output preparation and the local preview server.
 
+The frontend structure and tooling are adapted from
+[WebApp-Skull](https://github.com/Westerbay/WebApp-Skull). This portfolio
+keeps only the packages needed for a static site.
+
 Text lives in `packages/i18n/messages`. The project catalogue is in
-`apps/web/src/features/projects/data/projects.ts`.
+`web/src/features/projects/data/projects.ts`.
 
 ## Publishing
 
 GitHub Pages must use **GitHub Actions** as its source. Run the
 **Publish portfolio** workflow manually from the Actions tab to publish V1
 or a later update. It builds and checks the site, runs browser tests, then
-publishes only `apps/web/dist/client`.
+publishes only `web/dist/client`.
 
 CI covers both `/` and `/Home-Page/`. The publishing workflow reads the path
 from GitHub Pages, so a future custom domain can use the same build pipeline.

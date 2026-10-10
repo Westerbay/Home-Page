@@ -1,7 +1,7 @@
 import { defineConfig } from "@playwright/test"
 const base = process.env.SITE_BASE_PATH || "/"
 export default defineConfig({
-  testDir: "./apps/web/test/e2e",
+  testDir: "./web/test/e2e",
   timeout: 30000,
   fullyParallel: true,
   workers: 3,

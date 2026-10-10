@@ -7,7 +7,7 @@ dist/
 playwright-report/
 test-results/
 packages/i18n/src/generated/
-apps/web/src/routeTree.gen.ts
+web/src/routeTree.gen.ts
 *.log
 .env
 .env.*

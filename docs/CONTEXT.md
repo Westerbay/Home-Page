@@ -3,7 +3,8 @@
 ## V1 scope
 
 The maintained portfolio uses React, TypeScript and TanStack Start/Router in
-`apps/web`, with shared packages for UI, translations and configuration.
+the root `web` workspace, with shared packages for UI, translations and
+configuration. Turborepo orders workspace builds and checks.
 Home, the filterable project list, four project pages, About and Contact
 are implemented. French and English pages are generated as static HTML.
 
@@ -11,7 +12,7 @@ Mathis has authorized V1 publication and removal of the old implementation.
 The release excludes the comparison prototype and legacy root HTML, CSS,
 JavaScript and shared asset directories. Keep the generated compatibility
 redirects for `About.html`, `Project.html` and `Prototype.html`.
-Current frontend assets live independently in `apps/web/public/assets`.
+Current frontend assets live independently in `web/public/assets`.
 The external asset migration covers five consumers: the `web` branches of
 Eyefox-Puzzle, SpellWar, OSProject and Bachelor-Side-Projects, plus the
 `main/index.html` page of The Algorithmic Beauty of Plants. Each page gets

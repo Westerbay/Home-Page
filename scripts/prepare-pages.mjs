@@ -1,6 +1,6 @@
 import { mkdir, writeFile } from "node:fs/promises"
 import { resolve } from "node:path"
-const output = resolve("apps/web/dist/client")
+const output = resolve("web/dist/client")
 const base = process.env.SITE_BASE_PATH || "/"
 await mkdir(output, { recursive: true })
 for (const [from, to] of [

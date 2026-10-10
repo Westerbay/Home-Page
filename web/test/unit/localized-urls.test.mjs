@@ -4,7 +4,7 @@ import {
   deLocalizeUrl,
   localizeUrl,
   extractLocaleFromUrl,
-} from "../../../../packages/i18n/src/generated/runtime.js"
+} from "../../../packages/i18n/src/generated/runtime.js"
 const base = (process.env.SITE_BASE_PATH || "/").replace(/\/$/, "")
 for (const path of [
   "/",
