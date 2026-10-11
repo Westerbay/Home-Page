@@ -1,11 +1,13 @@
 {
-  "name": "@portfolio/web",
+  "name": "web",
   "version": "0.1.0",
   "type": "module",
   "private": true,
   "scripts": {
     "dev": "vite --host 127.0.0.1 --port 4174 --strictPort",
     "build": "vite build",
+    "lint": "eslint src",
+    "test": "node --test test/unit/*.test.mjs",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

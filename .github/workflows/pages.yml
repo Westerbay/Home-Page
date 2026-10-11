@@ -35,7 +35,7 @@ jobs:
           SITE_BASE_PATH: ${{ steps.pages.outputs.base_path }}/
       - uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b # v4
         with:
-          path: apps/web/dist/client
+          path: web/dist/client
   deploy:
     needs: build
     runs-on: ubuntu-24.04

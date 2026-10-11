@@ -2,7 +2,7 @@
 
 ## Boundaries
 
-`apps/web` combines React with TanStack Start and Router. Routes declare
+`web` is the sole application and combines React with TanStack Start and Router. Routes declare
 navigation and metadata; features own their components and project data in
 `src/features`. Small cross-cutting integrations live in `src/lib`.
 
@@ -12,6 +12,8 @@ Feature-specific components stay with their features.
 
 `packages/i18n` owns the French and English catalogues and Paraglide generation.
 `packages/config` shares the public profile and TypeScript configuration.
+pnpm workspaces link the packages and Turborepo orders builds and checks;
+the `web` build depends on generated translations.
 Project data is validated with Zod where it is consumed. There is no remote
 data layer or empty contracts package.
 
@@ -35,13 +37,13 @@ then lets the router add it back to public links. Tests cover both `/` and
 
 ## Static assets and publishing
 
-All maintained images are in `apps/web/public/assets`. Components use
+All maintained images are in `web/public/assets`. Components use
 `src/lib/assets.ts` to respect the deployment base path. They do not depend
 on the removed root asset directories or comparison prototype.
 
 `SITE_BASE_PATH` configures the build and preview server. The manual Pages
 workflow reads this path from `actions/configure-pages` and uploads only
-`apps/web/dist/client`.
+`web/dist/client`.
 
 `scripts/prepare-pages.mjs` adds `.nojekyll`, a static 404 page and redirects
 from `About.html`, `Project.html` and `Prototype.html`. It does not copy the
@@ -55,8 +57,7 @@ published domain rather than inventing a future one.
 ## Technical reference
 
 The frontend conventions and boundaries were informed by
-[WebApp-Skull](https://github.com/mathis-gala/WebApp-Skull), inspected at commit
-`561d00ad11e1c18be1c82227663d3d3d8b884132`. This is an internal engineering
+[WebApp-Skull](https://github.com/Westerbay/WebApp-Skull). This is an internal engineering
 reference, not a public portfolio link.
 API, authentication and database features are outside V1.
 

@@ -3,7 +3,7 @@ import react from "@vitejs/plugin-react"
 import { tanstackStart } from "@tanstack/react-start/plugin/vite"
 import tailwindcss from "@tailwindcss/vite"
 import { paraglideVitePlugin } from "@inlang/paraglide-js"
-import { paraglideConfig } from "../../packages/i18n/paraglide.config.mjs"
+import { paraglideConfig } from "../packages/i18n/paraglide.config.mjs"
 const base = process.env.SITE_BASE_PATH || "/"
 const paths = [
   "/",

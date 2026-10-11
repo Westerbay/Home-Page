@@ -9,14 +9,14 @@
     "pnpm": ">=12"
   },
   "scripts": {
-    "dev": "pnpm i18n:build && pnpm --filter @portfolio/web dev",
-    "build": "pnpm i18n:build && pnpm --filter @portfolio/web build && node scripts/prepare-pages.mjs",
+    "dev": "pnpm i18n:build && pnpm --filter web dev",
+    "build": "turbo build && node scripts/prepare-pages.mjs",
     "i18n:build": "pnpm --filter @workspace/i18n build",
-    "typecheck": "pnpm -r --if-present typecheck",
-    "lint": "eslint apps/web/src packages/ui/src",
-    "format": "prettier --write apps packages scripts docs .github *.json *.yaml *.md *.ts *.js",
-    "format:check": "prettier --check apps packages scripts docs .github *.json *.yaml *.md *.ts *.js",
-    "test": "node --test apps/web/test/unit/*.test.mjs",
+    "typecheck": "turbo typecheck",
+    "lint": "turbo lint",
+    "format": "prettier --write web packages scripts docs .github *.json *.yaml *.md *.ts *.js",
+    "format:check": "prettier --check web packages scripts docs .github *.json *.yaml *.md *.ts *.js",
+    "test": "turbo test",
     "test:e2e": "playwright test",
     "check": "pnpm format:check && pnpm build && pnpm lint && pnpm typecheck && pnpm test",
     "preview": "node scripts/serve.mjs"
@@ -26,6 +26,7 @@
     "@tanstack/eslint-config": "0.3.2",
     "eslint": "9.36.0",
     "prettier": "3.8.3",
+    "turbo": "2.9.18",
     "typescript": "5.9.3"
   }
 }

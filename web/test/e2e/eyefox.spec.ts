@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test"
-import fr from "../../../../packages/i18n/messages/fr.json" with { type: "json" }
-import en from "../../../../packages/i18n/messages/en.json" with { type: "json" }
+import fr from "../../../packages/i18n/messages/fr.json" with { type: "json" }
+import en from "../../../packages/i18n/messages/en.json" with { type: "json" }
 
 test("Eyefox keeps its localized preview without JavaScript", async ({
   browser,

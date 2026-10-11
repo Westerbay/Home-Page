@@ -22,9 +22,10 @@ pnpm exec playwright install chromium
 pnpm test:e2e
 ```
 
-`check` verifies formatting, builds the site, then runs ESLint, TypeScript
-and URL unit tests. Building first generates Paraglide and the route tree
-on a fresh checkout. Browser tests serve the static output on port 4175.
+`check` verifies formatting, builds the site through Turborepo, then runs
+ESLint, TypeScript and URL unit tests. Turbo builds Paraglide before the web
+application; building also generates the route tree on a fresh checkout.
+Browser tests serve the static output on port 4175.
 
 Test the GitHub Pages base path as well as the root:
 
@@ -55,11 +56,11 @@ Generated translations and the route tree are not versioned.
 
 Edit text in `packages/i18n/messages/{fr,en}.json`, public identity in
 `packages/config/src/profile.json`, and projects in
-`apps/web/src/features/projects/data/projects.ts`.
+`web/src/features/projects/data/projects.ts`.
 
-Add each new project route to the prerender list in `apps/web/vite.config.ts`
+Add each new project route to the prerender list in `web/vite.config.ts`
 and check direct access in both languages. Store images in
-`apps/web/public/assets` and resolve their paths with the asset helper.
+`web/public/assets` and resolve their paths with the asset helper.
 
 Confirmed content rules are in `PRODUCT.md`. Additional projects, media and
 wording refinements can be added after V1.
@@ -71,7 +72,7 @@ Configure **Settings → Pages → Source** as **GitHub Actions**. Run the
 **Publish portfolio** workflow manually from the Actions tab. Publishing
 remains a `workflow_dispatch` action rather than happening on every push.
 
-The workflow runs checks and browser tests, uploads `apps/web/dist/client`,
+The workflow runs checks and browser tests, uploads `web/dist/client`,
 then deploys that artifact. CI separately checks `/` and `/Home-Page/`.
 The build path comes from `configure-pages`, including when a custom domain
 is configured later.

@@ -3,7 +3,7 @@
 Read `docs/CONTEXT.md`, then the documents relevant to the change.
 Inspect `git status --short` and preserve existing work.
 
-Routes compose features; feature components belong in `apps/web/src/features`.
+Routes compose features; feature components belong in `web/src/features`.
 Shared UI primitives belong in `packages/ui`. Maintain both French and English
 messages in `packages/i18n`. Do not add services, forms, remote requests or
 abstractions without an actual need.
@@ -15,7 +15,7 @@ or link the secondary GitHub account. Follow the confirmed content rules in
 
 Removal of the old implementation and comparison prototype is authorized.
 Do not reintroduce legacy root HTML, shared asset folders or prototype code.
-Keep current assets in `apps/web/public/assets` and preserve the generated
+Keep current assets in `web/public/assets` and preserve the generated
 redirects for `About.html`, `Project.html` and `Prototype.html`.
 
 Run checks proportional to the change and update the relevant documentation.
