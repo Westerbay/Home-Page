@@ -1810,3 +1810,17 @@ main {
 .portfolio-lsystem[data-variant="full"] .lsystem-placeholder {
   min-height: 560px;
 }
+
+.project-pinnacle .project-cover,
+.detail-cover.project-pinnacle {
+  background: #172329;
+}
+.project-pinnacle .project-cover > img {
+  object-fit: contain;
+}
+.project-visual-caption {
+  color: var(--secondary);
+  font-size: 13px;
+  line-height: 1.6;
+  margin-top: 12px;
+}

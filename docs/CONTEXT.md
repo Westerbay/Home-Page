@@ -5,7 +5,7 @@
 The maintained portfolio uses React, TypeScript and TanStack Start/Router in
 the root `web` workspace, with shared packages for UI, translations and
 configuration. Turborepo orders workspace builds and checks.
-Home, the filterable project list, four project pages, About and Contact
+Home, the filterable project list, five project pages, About and Contact
 are implemented. French and English pages are generated as static HTML.
 
 Mathis has authorized V1 publication and removal of the old implementation.
@@ -96,6 +96,16 @@ catalogue. The detail page links to the live app at `https://booster.mathis-db.c
 and the Westerbay repository. Describe the pack opening, collection, trading,
 three-card duels and WebGL effects without assigning colleagues' work to Mathis.
 Use a real public screenshot, not an embedded authenticated application.
+
+PINNacle is an academic group contribution focused on explaining physics-informed
+neural networks through activation regions and their spatial density. The relevant
+code and Mathis's commits are on the upstream `setup` branch, not `main`.
+His contributions include activation extraction (ReLU, tanh, SiLU), quantile
+sampling, binary export, and parts of the C++/OpenGL viewer, camera and video
+frame export. Density statistics and heatmaps belong to the group work.
+The catalogue includes it under AI & science; the homepage keeps its three cards.
+The current cover is a labelled explanatory ReLU partition illustration, not a
+training result or viewer screenshot. Replace it with a real capture when available.
 
 ## Contact and follow-up work
 

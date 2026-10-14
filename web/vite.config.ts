@@ -12,6 +12,7 @@ const paths = [
   "/projects/spellwar",
   "/projects/plants",
   "/projects/eyefox",
+  "/projects/pinnacle",
   "/about",
   "/contact",
 ]

@@ -35,6 +35,9 @@ export function ProjectPage({ slug }: { slug: string }) {
           <ProjectVisual project={project} />
         </div>
       )}
+      {project.imageCaption && (
+        <p className="project-visual-caption">{project.imageCaption}</p>
+      )}
       <div className="detail-body">
         <aside>
           <span className="eyebrow">{m.technologies()}</span>

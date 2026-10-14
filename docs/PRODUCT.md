@@ -8,8 +8,8 @@ promises, invented metrics or a job-application pitch.
 ## Pages and controls
 
 The site includes Home, Projects, About and Contact. Public project pages
-cover Booster Break, SpellWar, The Algorithmic Beauty of Plants and Eyefox Puzzle. This
-selection is confirmed. Filters separate games and generative projects.
+cover Booster Break, SpellWar, The Algorithmic Beauty of Plants, PINNacle and Eyefox Puzzle. This
+selection is confirmed. Filters separate games, generative projects and AI & science.
 Skull remains an unpublished draft.
 
 French is the base language and English is available under `/en/`. Switching
@@ -70,6 +70,14 @@ portfolio. Keep the repository link, without store links or download badges.
 Do not claim a removal date, reason, end to development or downloadable APK.
 The updates already published in Eyefox-Puzzle's README and old project page
 remain separate from these portfolio wording choices.
+
+PINNacle is an academic group project extending an existing benchmark with
+activation-region visualization for PINN explainability. Link to the `setup`
+branch, which contains Mathis's work. Describe his activation extraction,
+quantile sampling, data export and C++/OpenGL viewer work separately from
+collective density statistics and heatmaps. Do not claim measured accuracy gains.
+Its current illustration shows a small ReLU network partition and must be
+identified as explanatory, not as a captured experimental result.
 
 ## Contact and release scope
 

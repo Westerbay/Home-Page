@@ -17,16 +17,18 @@ export function ProjectsPage() {
         <p>{m.projects_intro()}</p>
       </div>
       <div className="project-filters" aria-label={m.projects()}>
-        {(["all", "games", "generative"] as const).map((item) => (
-          <button
-            type="button"
-            aria-pressed={category === item}
-            onClick={() => setCategory(item)}
-            key={item}
-          >
-            {item === "all" ? m.all() : categoryName(item)}
-          </button>
-        ))}
+        {(["all", "games", "generative", "engineering"] as const).map(
+          (item) => (
+            <button
+              type="button"
+              aria-pressed={category === item}
+              onClick={() => setCategory(item)}
+              key={item}
+            >
+              {item === "all" ? m.all() : categoryName(item)}
+            </button>
+          )
+        )}
       </div>
       <div className="project-directory" aria-live="polite">
         {projects.map((project, index) => (
