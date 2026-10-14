@@ -1,16 +1,16 @@
 {
   "checkpoint_sha256": "30eb54b9aafc97e0147c8d4d8b1403282365d7ffebdfd7cde499d1b83bdcfaec",
   "torch_version": "2.14.1+cu130",
-  "device": "cpu",
+  "device": "cuda",
   "samples": [
     {
-      "file": "dit-seed-20261014.png",
-      "seed": 20261014,
+      "file": "dit-seed-20261020.png",
+      "seed": 20261020,
       "steps": 1000,
-      "seconds": 1347.91
+      "seconds": 8.25
     }
   ],
-  "sequence_seed": 20261014,
+  "sequence_seed": 20261020,
   "sequence_steps": [1, 200, 400, 600, 800, 1000],
   "container_image": "ghcr.io/westerbay/stylegan-and-cheap-dit@sha256:a57fe3924e46c7d24f145f1dfd7bae93e723d27d5c4eeb2a7a2bbd3631c7e87a",
   "source_revision": "855cd736024bb065349f4da637240986cd0e7ed2",
@@ -33,5 +33,12 @@
       "file": "dit-epoch-200.png",
       "sha256": "13b28e6a278e2afa042443a9b87f325812bf9062e289e901fbff57ed46d8c3a4"
     }
+  ],
+  "gpu": "NVIDIA GeForce RTX 5070 Ti",
+  "batch_size": 1,
+  "candidate_seeds": [
+    20261015, 20261016, 20261017, 20261018, 20261019, 20261020, 20261021,
+    20261022, 20261023, 20261024, 20261025, 20261026, 20261027, 20261028,
+    20261029, 20261030
   ]
 }

@@ -5,7 +5,7 @@ export const diffusionSamples = [
       image: `assets/stylegan-cheap-dit/dit-epoch-${epoch}-${String(index + 1).padStart(2, "0")}.webp`,
     }))
   ),
-  { id: "16", image: "assets/stylegan-cheap-dit/dit-seed-20261014.webp" },
+  { id: "16", image: "assets/stylegan-cheap-dit/dit-seed-20261020.webp" },
 ]
 
 export const denoisingSteps = [1, 200, 400, 600, 800, 1000].map((step) => ({
