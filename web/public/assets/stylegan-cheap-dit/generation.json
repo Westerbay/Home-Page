@@ -1,0 +1,37 @@
+{
+  "checkpoint_sha256": "30eb54b9aafc97e0147c8d4d8b1403282365d7ffebdfd7cde499d1b83bdcfaec",
+  "torch_version": "2.14.1+cu130",
+  "device": "cpu",
+  "samples": [
+    {
+      "file": "dit-seed-20261014.png",
+      "seed": 20261014,
+      "steps": 1000,
+      "seconds": 1347.91
+    }
+  ],
+  "sequence_seed": 20261014,
+  "sequence_steps": [1, 200, 400, 600, 800, 1000],
+  "container_image": "ghcr.io/westerbay/stylegan-and-cheap-dit@sha256:a57fe3924e46c7d24f145f1dfd7bae93e723d27d5c4eeb2a7a2bbd3631c7e87a",
+  "source_revision": "855cd736024bb065349f4da637240986cd0e7ed2",
+  "cpu_threads": 4,
+  "native_mha_fastpath": false,
+  "saved_training_grids": [
+    {
+      "file": "dit-epoch-230.png",
+      "sha256": "256af0ca3527cc8985db0e73e2ac3f33cab2f800717a72f363ee379fe1937947"
+    },
+    {
+      "file": "vae-epoch-20.png",
+      "sha256": "57ed75df677e4efd797dd04693c6eba85acb14b12ec9c68015600b26e83ff7d0"
+    },
+    {
+      "file": "gan-epoch-400.png",
+      "sha256": "a90bfe61737215aa51713299cb34f941b09646ef7c44cada5e5452e35fc1eae1"
+    },
+    {
+      "file": "dit-epoch-200.png",
+      "sha256": "13b28e6a278e2afa042443a9b87f325812bf9062e289e901fbff57ed46d8c3a4"
+    }
+  ]
+}

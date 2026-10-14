@@ -53,7 +53,7 @@ test("navigation, language switch and direct reload preserve the project", async
     "Booster Break"
   )
   await page.getByRole("link", { name: "Back to projects" }).click()
-  await expect(page.locator(".project-card")).toHaveCount(5)
+  await expect(page.locator(".project-card")).toHaveCount(6)
   expect(errors).toEqual([])
 })
 
@@ -349,8 +349,8 @@ for (const [locale, messages] of [
     await page
       .getByRole("button", { name: messages.engineering, exact: true })
       .click()
-    await expect(page.locator(".project-card")).toHaveCount(1)
-    await page.locator(".project-card").click()
+    await expect(page.locator(".project-card")).toHaveCount(2)
+    await page.locator(".project-card").filter({ hasText: "PINNacle" }).click()
     await expect(page).toHaveURL(/projects\/pinnacle\/?$/)
     await page.getByRole("button", { name: messages.language }).click()
     await expect(page.locator("html")).toHaveAttribute(

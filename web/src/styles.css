@@ -1824,3 +1824,83 @@ main {
   line-height: 1.6;
   margin-top: 12px;
 }
+
+.project-stylegan-cheap-dit .project-cover,
+.detail-cover.project-stylegan-cheap-dit {
+  background: #172329;
+}
+.generative-gallery {
+  display: grid;
+  gap: clamp(40px, 4cqi, 80px);
+  padding-block: 20px 65px;
+}
+.gallery-heading {
+  max-width: 65ch;
+  margin-bottom: 24px;
+}
+.gallery-heading h2 {
+  font-family: var(--heading);
+  font-size: clamp(26px, 2cqi, 40px);
+  margin: 10px 0 14px;
+}
+.gallery-heading p:not(.eyebrow) {
+  color: var(--secondary);
+  line-height: 1.8;
+}
+.diffusion-grid,
+.denoising-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(12px, 1.5cqi, 28px);
+}
+.denoising-grid {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+.generative-gallery figure {
+  margin: 0;
+  min-width: 0;
+}
+.generative-gallery img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.diffusion-grid img,
+.denoising-grid img {
+  aspect-ratio: 1;
+}
+.generative-gallery figcaption {
+  color: var(--secondary);
+  font-size: 12px;
+  line-height: 1.6;
+  margin-top: 10px;
+}
+.diffusion-grid a {
+  display: block;
+}
+.model-comparisons {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 40px;
+}
+@media (max-width: 800px) {
+  .diffusion-grid,
+  .denoising-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .model-comparisons {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 480px) {
+  .diffusion-grid,
+  .denoising-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+.gallery-provenance {
+  color: var(--secondary);
+  font-size: 13px;
+  line-height: 1.6;
+  margin: 0 0 20px;
+}
