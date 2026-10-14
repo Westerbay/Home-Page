@@ -26,7 +26,7 @@ on both rows. The cover uses diffusion samples `200/01`, `200/02`, `200/03`,
 
 The public gallery selects all eight epoch-200 samples and the first seven
 epoch-230 samples, followed by the fresh Docker-generated sample with seed
-`20261014`.
+`20261020`, selected from 16 consecutive seeds (`20261015` through `20261030`).
 
 The gallery is a curated illustration of the experiments, not a quantitative
 quality benchmark. Do not describe saved training outputs as a newly generated
@@ -44,8 +44,8 @@ Its OCI revision matches the source revision above. The helper loads the
 included checkpoint, runs the original 1,000-step sampler and captures VAE
 decodes after steps 1, 200, 400, 600, 800 and 1,000. It records the seed,
 checkpoint hash, PyTorch version, device and timings in `generation.json`.
-PyTorch's native MHA fast path is disabled to use its alternative execution
-path on this CPU; model architecture, weights and sampling equations are unchanged.
+PyTorch's native MHA fast path is disabled in the helper on both CPU and GPU.
+Model architecture, weights and sampling equations are unchanged.
 Exact pixels can vary across PyTorch versions, hardware and execution paths.
 
 Run from the portfolio root. Outputs stay outside the checkout until reviewed:
@@ -53,21 +53,27 @@ Run from the portfolio root. Outputs stay outside the checkout until reviewed:
 ```sh
 mkdir -p /tmp/dit-gallery/generated
 docker run --rm --name portfolio-dit-gallery \
-  --network none --cpus 4 --memory 2g \
+  --network none --gpus all --cpus 6 --memory 6g \
   -e PYTHONPATH=/app/stylegan-and-cheap-dit \
   -v "$(pwd):/portfolio:ro" \
   -v /tmp/dit-gallery/generated:/output \
   --entrypoint python \
   ghcr.io/westerbay/stylegan-and-cheap-dit@sha256:a57fe3924e46c7d24f145f1dfd7bae93e723d27d5c4eeb2a7a2bbd3631c7e87a \
-  /portfolio/scripts/generate-dit-gallery.py --seed 20261014 --count 1
+  /portfolio/scripts/generate-dit-gallery.py --seed 20261020 --count 1
 ```
 
 Add `--benchmark-steps 5` to measure inference without generating a full image.
-On the current CPU, the initial benchmark measured about 1.2 seconds per step.
-The completed fresh generation took 1,347.91 seconds (about 22 minutes) on CPU.
-This justified reusing genuine training outputs for the gallery while capturing
-one fresh generation for the denoising sequence. No training or checkpoint
-modification is performed, and no port is exposed.
+The reviewed batch ran on an NVIDIA GeForce RTX 5070 Ti with PyTorch
+`2.14.1+cu130`, in FP32 with batch size 1. The 16 candidates took 115.46 seconds
+of sampling in total. The selected seed was then regenerated in 8.25 seconds
+to capture its denoising sequence; its final PNG matched the reviewed candidate
+exactly. These timings exclude Docker startup and checkpoint loading.
+
+The selected output has a more readable composition than the previous CPU
+sample, but still shows the model's blurry and merged forms. Selection does not
+imply improved model quality. No training or checkpoint modification is
+performed, and no port is exposed. Remove `--gpus all` to use CPU inference,
+which is substantially slower.
 
 Convert reviewed PNGs to lossless WebP in
 `web/public/assets/stylegan-cheap-dit/`. Keep the generation metadata alongside
