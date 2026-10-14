@@ -8,7 +8,7 @@ promises, invented metrics or a job-application pitch.
 ## Pages and controls
 
 The site includes Home, Projects, About and Contact. Public project pages
-cover Booster Break, SpellWar, The Algorithmic Beauty of Plants, PINNacle and Eyefox Puzzle. This
+cover Booster Break, SpellWar, The Algorithmic Beauty of Plants, StyleGAN & Cheap DiT, PINNacle and Eyefox Puzzle. This
 selection is confirmed. Filters separate games, generative projects and AI & science.
 Skull remains an unpublished draft.
 
@@ -78,6 +78,13 @@ quantile sampling, data export and C++/OpenGL viewer work separately from
 collective density statistics and heatmaps. Do not claim measured accuracy gains.
 Its current illustration shows a small ReLU network partition and must be
 identified as explanatory, not as a captured experimental result.
+
+StyleGAN & Cheap DiT presents two compact, experimental models for image
+generation. Describe the architectures and visible limitations without claiming
+state-of-the-art quality or quantitative benchmark results. Label generated
+outputs, reference images and VAE reconstructions distinctly. Its static gallery
+is a selected set, not a quality benchmark. Preserve the models' native 256 × 256
+outputs without AI enhancement. Public on-demand generation is deferred to V2.
 
 ## Contact and release scope
 

@@ -14,6 +14,8 @@
 - `web/src/features/projects/components/project-card.tsx`: cards for Home and Projects.
 - `web/src/features/eyefox/components/eyefox-scene.tsx`: client-only Eyefox package integration and static preview.
 
+- `web/src/features/projects/components/generative-gallery.tsx`: static Cheap DiT gallery and model comparisons, scoped to its detail page.
+
 Keep maintained image files in `web/public/assets`. Reuse current helpers
 and components rather than restoring code from the former site or prototype.
 Create a new shared abstraction only for an actual repeated need.

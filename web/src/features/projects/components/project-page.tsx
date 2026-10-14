@@ -4,6 +4,7 @@ import { getProjects, categoryName, projectOriginName } from "../data/projects"
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react"
 import { ProjectVisual } from "./project-visual"
 import { LSystemScene } from "../../lsystem/components/lsystem-scene"
+import { GenerativeGallery } from "./generative-gallery"
 import { EyefoxScene } from "../../eyefox/components/eyefox-scene"
 
 export function ProjectPage({ slug }: { slug: string }) {
@@ -82,6 +83,7 @@ export function ProjectPage({ slug }: { slug: string }) {
           </section>
         </div>
       </div>
+      {project.slug === "stylegan-cheap-dit" && <GenerativeGallery />}
       <Link
         className="next-project"
         to="/projects/$slug/"

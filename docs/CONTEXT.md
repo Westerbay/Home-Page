@@ -5,7 +5,7 @@
 The maintained portfolio uses React, TypeScript and TanStack Start/Router in
 the root `web` workspace, with shared packages for UI, translations and
 configuration. Turborepo orders workspace builds and checks.
-Home, the filterable project list, five project pages, About and Contact
+Home, the filterable project list, six project pages, About and Contact
 are implemented. French and English pages are generated as static HTML.
 
 Mathis has authorized V1 publication and removal of the old implementation.
@@ -106,6 +106,15 @@ frame export. Density statistics and heatmaps belong to the group work.
 The catalogue includes it under AI & science; the homepage keeps its three cards.
 The current cover is a labelled explanatory ReLU partition illustration, not a
 training result or viewer screenshot. Replace it with a real capture when available.
+
+StyleGAN & Cheap DiT is an academic project implementing compact PyTorch
+models for 256 × 256 image generation: a StyleGAN-inspired GAN and a latent
+diffusion transformer using a convolutional VAE. It appears under AI & science.
+The page includes genuine saved training outputs, GAN examples and VAE
+reference/reconstruction comparisons. Media provenance and local generation
+commands are in GENERATIVE-MEDIA.md. The homepage keeps its three cards.
+A public generation service is a V2 idea, deferred by Mathis. Do not add a
+Worker, API integration, hosting or runtime generation to the portfolio now.
 
 ## Contact and follow-up work
 

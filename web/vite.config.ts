@@ -13,6 +13,7 @@ const paths = [
   "/projects/plants",
   "/projects/eyefox",
   "/projects/pinnacle",
+  "/projects/stylegan-cheap-dit",
   "/about",
   "/contact",
 ]
