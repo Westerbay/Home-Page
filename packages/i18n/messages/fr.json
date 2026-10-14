@@ -30,9 +30,9 @@
   "open_selection": "Voir les projets",
   "games": "Jeux",
   "generative": "Génératif",
-  "engineering": "Engineering",
+  "engineering": "IA & sciences",
   "all": "Tout",
-  "projects_intro": "Des projets perso et d’autres réalisés pendant mes études. Des jeux, du web et du rendu 3D.",
+  "projects_intro": "Des projets perso et d’autres réalisés pendant mes études. Des jeux, du web, du rendu 3D et de l’IA appliquée à la physique.",
   "spellwar_summary": "Un jeu 3D avec un moteur maison en C++ et OpenGL.",
   "spellwar_detail": "SpellWar se joue à la troisième personne, sur des plateformes flottantes. J’ai développé le moteur à partir de zéro.",
   "spellwar_focus": "Le modèle physique, les collisions, le rendu PBR et la génération de terrain sont faits maison.",
@@ -68,7 +68,7 @@
   "not_found": "Cette page n’existe pas",
   "return_home": "Retour à l’accueil",
   "profile_alt": "Photo de profil GitHub de Mathis Dubuisson",
-  "project_count": "4 projets",
+  "project_count": "5 projets",
   "project_directory": "Mes projets",
   "visual_exploration": "Plantes générées par code",
   "game_and_engine": "Jeu & moteur 3D",
@@ -91,5 +91,10 @@
   "booster_summary": "Des boosters Pokémon à ouvrir, des cartes à collectionner et à échanger.",
   "booster_detail": "Booster Break est un projet perso auquel contribuent aussi des collègues. On y retrouve sa collection, on échange des cartes et on prépare des duels à trois Pokémon. Un bac à sable permet aussi d’ouvrir des boosters sans compte, juste pour le fun.",
   "booster_focus_title": "Comment ça tourne",
-  "booster_focus": "Les cartes et l’ouverture des boosters utilisent WebGL. Derrière, une application TypeScript avec React, une API Elysia et une base PostgreSQL gère les collections, les échanges et les duels. Le projet continue d’évoluer au fil des idées et des contributions."
+  "booster_focus": "Les cartes et l’ouverture des boosters utilisent WebGL. Derrière, une application TypeScript avec React, une API Elysia et une base PostgreSQL gère les collections, les échanges et les duels. Le projet continue d’évoluer au fil des idées et des contributions.",
+  "pinnacle_summary": "Explorer les régions d’activation des réseaux de neurones informés par la physique.",
+  "pinnacle_detail": "PINNacle sert de base à ce travail de groupe sur l’explicabilité des PINNs, des réseaux de neurones entraînés à résoudre des équations physiques. Le projet visualise leurs régions d’activation et leur densité dans le domaine étudié, pour explorer la façon dont le réseau représente le problème.",
+  "pinnacle_focus_title": "Ma contribution",
+  "pinnacle_focus": "J’ai travaillé sur l’extraction des régions à partir des activations du réseau, avec ReLU, tanh et SiLU, ainsi que sur l’échantillonnage par quantiles et l’export des données. J’ai aussi développé des éléments du viewer C++ et OpenGL pour explorer les régions en 2D et en 3D, naviguer avec la caméra et exporter des séquences d’images pour la vidéo. Les statistiques de densité et les heatmaps font partie du travail collectif.",
+  "pinnacle_visual_caption": "Illustration du principe des régions d’activation sur un petit réseau ReLU. Ce visuel ne provient pas d’un entraînement PINNacle."
 }

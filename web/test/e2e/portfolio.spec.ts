@@ -53,7 +53,7 @@ test("navigation, language switch and direct reload preserve the project", async
     "Booster Break"
   )
   await page.getByRole("link", { name: "Back to projects" }).click()
-  await expect(page.locator(".project-card")).toHaveCount(4)
+  await expect(page.locator(".project-card")).toHaveCount(5)
   expect(errors).toEqual([])
 })
 
@@ -303,3 +303,61 @@ test("legacy page URLs redirect to the current portfolio", async ({
     await expect(page.locator("html")).toHaveAttribute("lang", "fr")
   }
 })
+
+for (const [locale, messages] of [
+  ["", fr],
+  ["en/", en],
+] as const) {
+  test(`PINNacle direct static page and science filter in ${locale || "fr"}`, async ({
+    browser,
+    page,
+    baseURL,
+  }) => {
+    const context = await browser.newContext({ javaScriptEnabled: false })
+    const staticPage = await context.newPage()
+    await staticPage.goto(baseURL + locale + "projects/pinnacle/")
+    await expect(staticPage.getByRole("heading", { level: 1 })).toHaveText(
+      "PINNacle"
+    )
+    await expect(staticPage.locator(".project-visual-caption")).toHaveText(
+      messages.pinnacle_visual_caption
+    )
+    await expect(
+      staticPage.getByRole("link", { name: messages.source, exact: true })
+    ).toHaveAttribute(
+      "href",
+      "https://github.com/HadrienNU/PINNacle/tree/setup"
+    )
+    expect(
+      await staticPage
+        .locator(".detail-cover img")
+        .evaluate(
+          (image: HTMLImageElement) => image.complete && image.naturalWidth > 0
+        )
+    ).toBe(true)
+    for (const width of [390, 1440]) {
+      await staticPage.setViewportSize({ width, height: 900 })
+      expect(
+        await staticPage.evaluate(
+          () => document.documentElement.scrollWidth <= innerWidth
+        )
+      ).toBe(true)
+    }
+    await context.close()
+
+    await page.goto(baseURL + locale + "projects/")
+    await page
+      .getByRole("button", { name: messages.engineering, exact: true })
+      .click()
+    await expect(page.locator(".project-card")).toHaveCount(1)
+    await page.locator(".project-card").click()
+    await expect(page).toHaveURL(/projects\/pinnacle\/?$/)
+    await page.getByRole("button", { name: messages.language }).click()
+    await expect(page.locator("html")).toHaveAttribute(
+      "lang",
+      locale ? "fr" : "en"
+    )
+    await page.reload()
+    await expect(page.getByRole("heading", { level: 1 })).toHaveText("PINNacle")
+  })
+}
