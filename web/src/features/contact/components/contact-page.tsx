@@ -4,6 +4,7 @@ import {
   ArrowUpRight,
   Check,
   Copy,
+  Mail,
   CodeXml as Github,
   BriefcaseBusiness as Linkedin,
 } from "lucide-react"
@@ -29,6 +30,14 @@ export function ContactPage() {
         <p>{m.contact_body()}</p>
       </div>
       <div className="contact-links">
+        <a href={`mailto:${profile.email}`}>
+          <Mail size={25} />
+          <span>
+            <strong>{m.email_label()}</strong>
+            <span>{profile.email}</span>
+          </span>
+          <ArrowUpRight size={24} />
+        </a>
         <a href={profile.linkedin} target="_blank" rel="noreferrer">
           <Linkedin size={25} />
           <span>

@@ -700,6 +700,197 @@ svg {
   line-height: 1.8;
   color: var(--secondary);
 }
+
+.journey-section {
+  margin-top: clamp(60px, 6vw, 100px);
+  padding-top: 38px;
+  border-top: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  gap: clamp(35px, 5vw, 100px);
+  align-items: start;
+}
+.journey-heading {
+  position: sticky;
+  top: 48px;
+}
+.journey-heading h2 {
+  font-family: var(--heading);
+  font-size: clamp(30px, 2.5vw, 48px);
+  font-weight: 450;
+  letter-spacing: -1px;
+  margin: 14px 0 20px;
+}
+.journey-heading > p:last-child {
+  max-width: 30ch;
+  color: var(--secondary);
+  line-height: 1.8;
+}
+.journey-tree,
+.journey-branches {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.journey-milestone {
+  position: relative;
+  margin-left: 9px;
+  padding: 0 0 56px 32px;
+}
+.journey-milestone:last-child {
+  padding-bottom: 0;
+}
+.journey-milestone::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  left: -7px;
+  top: 3px;
+  width: 17px;
+  height: 17px;
+  border: 2px solid var(--line);
+  border-radius: 50%;
+  background: var(--surface);
+}
+.journey-milestone:first-child::before {
+  border-color: var(--accent);
+  background: var(--accent);
+}
+.journey-milestone::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 11.5px;
+  bottom: -11.5px;
+  width: 3px;
+  background: var(--line);
+}
+.journey-milestone:last-child::after {
+  display: none;
+}
+.journey-date {
+  color: var(--secondary);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  margin-bottom: 12px;
+}
+.journey-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+.journey-title-row h3 {
+  min-width: 0;
+  margin-bottom: 0;
+}
+.journey-logo {
+  display: flex;
+  flex: 0 0 80px;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 56px;
+  padding: 6px;
+  border-radius: 6px;
+  background: #fff;
+}
+.journey-logo-professional {
+  flex-basis: 116px;
+  width: 116px;
+  padding: 10px;
+}
+.journey-logo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.journey-copy h3 {
+  font-family: var(--heading);
+  font-size: clamp(22px, 1.5vw, 30px);
+  font-weight: 450;
+  margin-bottom: 0;
+}
+.journey-copy > p {
+  color: var(--secondary);
+  font-size: 14px;
+  line-height: 1.8;
+  max-width: 60ch;
+}
+.journey-copy > .journey-context {
+  color: var(--ink);
+  font-size: 12px;
+  margin-bottom: 16px;
+}
+.journey-branches {
+  margin-top: 20px;
+}
+.journey-branches li {
+  position: relative;
+  margin-left: 3px;
+  border-left: 1px solid var(--line);
+  padding: 0 0 16px 24px;
+  font-size: 13px;
+  line-height: 1.7;
+  max-width: 60ch;
+}
+.journey-branches li:last-child {
+  padding-bottom: 0;
+  border-left-color: transparent;
+}
+.journey-branches li::before {
+  content: "";
+  position: absolute;
+  left: -1px;
+  top: 0;
+  width: 14px;
+  height: 12px;
+  border-left: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  border-bottom-left-radius: 8px;
+}
+.journey-projects li {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+.journey-projects a:not(.journey-source) {
+  text-decoration: underline;
+  text-decoration-color: var(--line);
+  text-underline-offset: 4px;
+}
+.journey-projects a:hover,
+.journey-projects a:focus-visible {
+  color: var(--ink);
+  text-decoration-color: var(--accent);
+}
+.journey-source {
+  display: inline-flex;
+  gap: 3px;
+  font-size: 11px;
+  white-space: nowrap;
+  padding: 5px;
+  align-self: center;
+  color: var(--secondary);
+}
+@media (max-width: 800px), (max-height: 600px) {
+  .journey-heading {
+    position: static;
+  }
+}
+@media (max-width: 800px) {
+  .journey-section {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .journey-heading > p:last-child {
+    max-width: 50ch;
+  }
+  .journey-milestone {
+    padding-left: 25px;
+  }
+}
 .contact-page {
   max-width: 900px;
   padding-bottom: 100px;

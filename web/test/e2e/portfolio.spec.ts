@@ -68,7 +68,7 @@ test("filters, clipboard feedback and primary GitHub", async ({
   await page.getByRole("button", { name: "Génératif", exact: true }).click()
   await expect(page.locator(".project-card")).toHaveCount(1)
   await page.getByRole("link", { name: "Contact", exact: true }).first().click()
-  await expect(page.locator(".contact-links a")).toHaveCount(2)
+  await expect(page.locator(".contact-links a")).toHaveCount(3)
   await expect(page.locator("a[href*='mathis-gala']")).toHaveCount(0)
   await page.getByRole("button", { name: "Copier le lien du profil" }).click()
   await expect(
