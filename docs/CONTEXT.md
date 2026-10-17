@@ -41,7 +41,8 @@ FR / EN order, with the active locale distinguished and no flags.
 ## Confirmed identity and tone
 
 Mathis Dubuisson is an ENSICAEN engineering graduate and a
-**Product & Software Engineer**. No employer name is displayed. His work
+**Product & Software Engineer**. Galadrim may be named in the About journey,
+as explicitly approved on 17 October 2026. Client identities remain private. His work
 covers client conversations, product design, software, infrastructure,
 pipelines and deployment. These facts do not need to be asked again.
 
@@ -118,9 +119,10 @@ Worker, API integration, hosting or runtime generation to the portfolio now.
 
 ## Contact and follow-up work
 
-Contact is **GitHub and LinkedIn only**. Do not display an email address on
-the portfolio or ask this question again. Eyefox's historical privacy-policy
-contact is a separate record and remains unchanged.
+Contact includes **contact@mathis-db.com**, GitHub and LinkedIn. The email
+address is explicitly approved for public display and opens the visitor’s mail
+client through a mailto link. Eyefox’s historical privacy-policy contact is a
+separate record and remains unchanged.
 
 Additional screenshots, videos, project notes, personal projects, English
 wording refinements and a future custom domain can be handled later. They

@@ -24,7 +24,8 @@ or failure.
 ## Identity and voice
 
 Mathis is an ENSICAEN engineering graduate and a
-**Product & Software Engineer**. Do not name an employer. His work includes
+**Product & Software Engineer**. Galadrim may be named in the About journey,
+as explicitly approved on 17 October 2026; keep client identities private. His work includes
 client conversations, product design, software development, infrastructure,
 pipelines and deployment. This is context, not a CV or a service offer.
 
@@ -38,6 +39,35 @@ Use ordinary, direct language in French and English. Avoid em dashes.
 Headings and short title-like text do not end with a full stop. The About
 lead stays short: “Product & Software Engineer”.
 The footer contains the name and social/contact links, without a “Made by” line.
+
+## About journey
+
+The About page ends with a reverse-chronological tree in French and English:
+Product & Software Engineer at Galadrim (2026, internship followed by a permanent
+role in August), the ENSICAEN engineering degree (2023–2026), L2 computer science
+(2022–2023), and L1 mathematics (2021–2022).
+Titles name the qualification or role; school, employer and contract details sit
+below. Official Galadrim, ENSICAEN and UNICAEN logos sit to the right of
+the titles in non-distorted containers with contrasting backgrounds. Galadrim
+uses the official header wordmark on white for legibility at small sizes.
+Logo sources: [Galadrim](https://galadrim.fr/) and
+[UNICAEN identity assets](https://www.unicaen.fr/universite/decouvrir/logo-unicaen-usages/);
+ENSICAEN reuses the existing local asset. Spell out the engineering specialisation as Image, sound and artificial
+intelligence, rather than leaving ISIA unexplained. Describe the software,
+algorithmic and mathematical foundations and the specialisation's learning,
+image/audio analysis and rendering topics. These descriptions were checked
+against the [official programme](https://www.ensicaen.fr/formation/diplomes-dingenieurs/formation-statut-etudiant/informatique/)
+and [Image, Son & Intelligence Artificielle brochure](https://foad.ensicaen.fr/pluginfile.php/3034/course/section/1103/plaquette_majeure_image_19_20.pdf)
+on 17 October 2026; do not imply an additional master's degree. The professional
+entry covers confirmed client collaboration, agentic workflows, technical
+mentoring, cloud delivery and production reliability, with anonymized examples. Both university years were at UNICAEN (Université de Caen Normandie), as confirmed
+by Mathis. Add brief descriptions without inferring a completed bachelor's degree.
+Academic project links and public GitHub sources come from the existing project
+catalogue. Client projects remain anonymized. The desktop introduction is sticky.
+The tree has no scroll animations: only the latest milestone has a filled orange
+node; older nodes are neutral outlines. The static line connects node centres
+without extending above the first node or below the last. No graph or animation
+dependency is required.
 
 ## Project descriptions
 
@@ -88,9 +118,9 @@ outputs without AI enhancement. Public on-demand generation is deferred to V2.
 
 ## Contact and release scope
 
-Only the Westerbay GitHub profile and LinkedIn are shown for contact. Do not
-show the secondary GitHub account or an email address. The historical contact
-in Eyefox's separate privacy policy remains unchanged.
+Contact shows contact@mathis-db.com through a mailto link, the Westerbay GitHub
+profile and LinkedIn. Do not show the secondary GitHub account. The historical
+contact in Eyefox’s separate privacy policy remains unchanged.
 
 There is no contact form, authentication, tracking or backend. Mathis provides
 his CV separately. Do not add a CV download.

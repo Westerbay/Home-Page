@@ -1,6 +1,7 @@
 import * as m from "@workspace/i18n/messages"
 import profile from "@workspace/config/profile" with { type: "json" }
 import { assetUrl } from "../../../lib/assets"
+import { JourneyTree } from "./journey-tree"
 import { SchoolMention } from "../../../components/school-mention"
 
 export function AboutPage() {
@@ -39,6 +40,7 @@ export function AboutPage() {
           ))}
         </div>
       </section>
+      <JourneyTree />
     </section>
   )
 }
