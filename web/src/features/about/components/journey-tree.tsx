@@ -57,12 +57,12 @@ export function JourneyTree() {
   ]
   return (
     <section className="journey-section" aria-labelledby="journey-title">
-      <div className="journey-heading">
+      <header className="journey-heading">
         <p className="eyebrow">{m.journey_label()}</p>
         <h2 id="journey-title">{m.journey_title()}</h2>
         <p>{m.journey_intro()}</p>
-      </div>
-      <ol className="journey-tree">
+      </header>
+      <ol className="journey-tree" role="list">
         {milestones.map((milestone) => (
           <li className="journey-milestone" key={milestone.id}>
             <p className="journey-date">{milestone.date}</p>
@@ -83,7 +83,7 @@ export function JourneyTree() {
               )}
               {milestone.body && <p>{milestone.body}</p>}
               {milestone.branches.length > 0 && (
-                <ul className="journey-branches">
+                <ul className="journey-branches" role="list">
                   {milestone.branches.map((branch) => (
                     <li key={branch}>{branch}</li>
                   ))}
@@ -92,6 +92,7 @@ export function JourneyTree() {
               {milestone.projects.length > 0 && (
                 <ul
                   className="journey-branches journey-projects"
+                  role="list"
                   aria-label={m.journey_projects_label()}
                 >
                   {milestone.projects.map((project) => (

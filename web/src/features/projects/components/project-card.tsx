@@ -7,28 +7,34 @@ import { ProjectVisual } from "./project-visual"
 export function ProjectCard({
   project,
   index,
+  headingLevel = 3,
 }: {
   project: Project
   index: number
+  headingLevel?: 2 | 3
 }) {
+  const Heading = headingLevel === 2 ? "h2" : "h3"
+
   return (
     <Link
       to="/projects/$slug/"
       params={{ slug: project.slug }}
       className={`project-card project-${project.slug}`}
     >
-      <div className="project-cover">
+      <figure className="project-cover">
         <ProjectVisual project={project} />
-        <span className="cover-number">0{index + 1}</span>
-        <span className="cover-arrow">
+        <span className="cover-number" aria-hidden="true">
+          0{index + 1}
+        </span>
+        <span className="cover-arrow" aria-hidden="true">
           <ArrowUpRight size={20} />
         </span>
-      </div>
+      </figure>
       <div className="project-meta">
         <span>{categoryName(project.category)}</span>
         <span>{project.tags.slice(0, 2).join(" / ")}</span>
       </div>
-      <h3>{project.title}</h3>
+      <Heading>{project.title}</Heading>
       <p>{project.summary}</p>
     </Link>
   )

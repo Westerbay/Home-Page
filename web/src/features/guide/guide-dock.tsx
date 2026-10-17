@@ -92,34 +92,33 @@ function ActiveDock() {
         </DialogTrigger>
         <DialogPortal>
           {mobile && <DialogOverlay className="guide-overlay" />}
-          <DialogContent
-            className="guide-panel"
-            onCloseAutoFocus={closeAutoFocus}
-          >
-            <header className="guide-panel-header">
-              <div>
-                <DialogTitle>{m.guide_title()}</DialogTitle>
-                <DialogDescription>{m.guide_description()}</DialogDescription>
-              </div>
-              <button
-                type="button"
-                onClick={enlarge}
-                className="guide-icon-button"
-                aria-label={m.guide_expand()}
-              >
-                <Maximize2 size={17} aria-hidden="true" />
-              </button>
-              <DialogClose asChild>
+          <DialogContent asChild onCloseAutoFocus={closeAutoFocus}>
+            <section className="guide-panel">
+              <header className="guide-panel-header" role="group">
+                <div>
+                  <DialogTitle>{m.guide_title()}</DialogTitle>
+                  <DialogDescription>{m.guide_description()}</DialogDescription>
+                </div>
                 <button
                   type="button"
+                  onClick={enlarge}
                   className="guide-icon-button"
-                  aria-label={m.guide_close()}
+                  aria-label={m.guide_expand()}
                 >
-                  <X size={19} aria-hidden="true" />
+                  <Maximize2 size={17} aria-hidden="true" />
                 </button>
-              </DialogClose>
-            </header>
-            <GuideChat />
+                <DialogClose asChild>
+                  <button
+                    type="button"
+                    className="guide-icon-button"
+                    aria-label={m.guide_close()}
+                  >
+                    <X size={19} aria-hidden="true" />
+                  </button>
+                </DialogClose>
+              </header>
+              <GuideChat />
+            </section>
           </DialogContent>
         </DialogPortal>
       </DialogRoot>

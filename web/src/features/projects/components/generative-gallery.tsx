@@ -6,59 +6,63 @@ export function GenerativeGallery() {
   return (
     <div className="generative-gallery">
       <section aria-labelledby="diffusion-gallery-title">
-        <div className="gallery-heading">
+        <header className="gallery-heading">
           <p className="eyebrow">Cheap DiT · 256 × 256</p>
           <h2 id="diffusion-gallery-title">{m.dit_gallery_title()}</h2>
           <p>{m.dit_gallery_intro()}</p>
-        </div>
+        </header>
         <p className="gallery-provenance">{m.dit_gallery_provenance()}</p>
-        <div className="diffusion-grid">
+        <ul className="diffusion-grid" role="list">
           {diffusionSamples.map((sample) => (
-            <figure key={sample.id}>
-              <a href={assetUrl(sample.image)}>
+            <li key={sample.id}>
+              <figure>
+                <a href={assetUrl(sample.image)}>
+                  <img
+                    src={assetUrl(sample.image)}
+                    alt={m.dit_sample_alt({ index: sample.id })}
+                    width={256}
+                    height={256}
+                    loading="lazy"
+                  />
+                </a>
+                <figcaption>
+                  {m.dit_sample_caption({ index: sample.id })}
+                </figcaption>
+              </figure>
+            </li>
+          ))}
+        </ul>
+      </section>
+      <section aria-labelledby="denoising-title">
+        <header className="gallery-heading">
+          <h2 id="denoising-title">{m.dit_process_title()}</h2>
+          <p>{m.dit_process_intro()}</p>
+        </header>
+        <ol className="denoising-grid" role="list">
+          {denoisingSteps.map((frame) => (
+            <li key={frame.step}>
+              <figure>
                 <img
-                  src={assetUrl(sample.image)}
-                  alt={m.dit_sample_alt({ index: sample.id })}
+                  src={assetUrl(frame.image)}
+                  alt={m.dit_step_alt({ step: frame.step })}
                   width={256}
                   height={256}
                   loading="lazy"
                 />
-              </a>
-              <figcaption>
-                {m.dit_sample_caption({ index: sample.id })}
-              </figcaption>
-            </figure>
+                <figcaption>
+                  {m.dit_step_caption({ step: frame.step })}
+                </figcaption>
+              </figure>
+            </li>
           ))}
-        </div>
-      </section>
-      <section aria-labelledby="denoising-title">
-        <div className="gallery-heading">
-          <h2 id="denoising-title">{m.dit_process_title()}</h2>
-          <p>{m.dit_process_intro()}</p>
-        </div>
-        <div className="denoising-grid">
-          {denoisingSteps.map((frame) => (
-            <figure key={frame.step}>
-              <img
-                src={assetUrl(frame.image)}
-                alt={m.dit_step_alt({ step: frame.step })}
-                width={256}
-                height={256}
-                loading="lazy"
-              />
-              <figcaption>
-                {m.dit_step_caption({ step: frame.step })}
-              </figcaption>
-            </figure>
-          ))}
-        </div>
+        </ol>
       </section>
       <div className="model-comparisons">
         <section aria-labelledby="gan-gallery-title">
-          <div className="gallery-heading">
+          <header className="gallery-heading">
             <h2 id="gan-gallery-title">{m.dit_gan_title()}</h2>
             <p>{m.dit_gan_intro()}</p>
-          </div>
+          </header>
           <figure>
             <img
               src={assetUrl("assets/stylegan-cheap-dit/gan-epoch-400.webp")}
@@ -71,10 +75,10 @@ export function GenerativeGallery() {
           </figure>
         </section>
         <section aria-labelledby="vae-gallery-title">
-          <div className="gallery-heading">
+          <header className="gallery-heading">
             <h2 id="vae-gallery-title">{m.dit_vae_title()}</h2>
             <p>{m.dit_vae_intro()}</p>
-          </div>
+          </header>
           <figure>
             <img
               src={assetUrl("assets/stylegan-cheap-dit/vae-epoch-20.webp")}

@@ -13,36 +13,45 @@ export function ProjectPage({ slug }: { slug: string }) {
   if (!project) return null
   const next = projects[(projects.indexOf(project) + 1) % projects.length]
   return (
-    <article className="inner-page project-detail">
+    <article
+      className="inner-page project-detail"
+      aria-labelledby="project-title"
+    >
       <Link to="/projects/" className="text-action back-link">
         <ArrowLeft size={16} />
         {m.back_projects()}
       </Link>
-      <div className="page-heading">
+      <header className="page-heading">
         <p className="eyebrow">
           {projectOriginName(project.origin)}
           <span aria-hidden="true">·</span>
           {categoryName(project.category)}
         </p>
-        <h1>{project.title}</h1>
+        <h1 id="project-title">{project.title}</h1>
         <p>{project.summary}</p>
-      </div>
+      </header>
       {project.slug === "plants" ? (
         <LSystemScene controls="full" />
       ) : project.slug === "eyefox" ? (
         <EyefoxScene />
       ) : (
-        <div className={`detail-cover project-${project.slug}`}>
-          <ProjectVisual project={project} />
-        </div>
-      )}
-      {project.imageCaption && (
-        <p className="project-visual-caption">{project.imageCaption}</p>
+        <figure className="project-visual">
+          <div className={`detail-cover project-${project.slug}`}>
+            <ProjectVisual project={project} />
+          </div>
+          {project.imageCaption && (
+            <figcaption className="project-visual-caption">
+              {project.imageCaption}
+            </figcaption>
+          )}
+        </figure>
       )}
       <div className="detail-body">
-        <aside>
-          <span className="eyebrow">{m.technologies()}</span>
-          <ul className="tag-list">
+        <aside aria-labelledby="project-technologies">
+          <h2 id="project-technologies" className="eyebrow">
+            {m.technologies()}
+          </h2>
+          <ul className="tag-list" role="list">
             {project.tags.map((tag) => (
               <li key={tag}>{tag}</li>
             ))}
@@ -73,12 +82,12 @@ export function ProjectPage({ slug }: { slug: string }) {
           </div>
         </aside>
         <div>
-          <section>
-            <h2>{m.overview()}</h2>
+          <section aria-labelledby="project-overview">
+            <h2 id="project-overview">{m.overview()}</h2>
             <p>{project.detail}</p>
           </section>
-          <section>
-            <h2>{project.focusTitle ?? m.focus()}</h2>
+          <section aria-labelledby="project-focus">
+            <h2 id="project-focus">{project.focusTitle ?? m.focus()}</h2>
             <p>{project.focus}</p>
           </section>
         </div>

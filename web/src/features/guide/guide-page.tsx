@@ -8,12 +8,15 @@ import { GUIDE_VIEW_TRANSITION } from "./motion"
 
 export function GuidePage() {
   return (
-    <section className="inner-page guide-page">
+    <section
+      className="inner-page guide-page"
+      aria-labelledby="guide-page-title"
+    >
       <div className="guide-page-surface">
         <header className="guide-page-heading">
           <div>
             <p className="eyebrow">{m.guide_eyebrow()}</p>
-            <h1>{m.guide_title()}</h1>
+            <h1 id="guide-page-title">{m.guide_title()}</h1>
             <p>{m.guide_description()}</p>
           </div>
           {GUIDE_ENABLED && <MinimizeGuide />}

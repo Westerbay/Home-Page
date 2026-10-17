@@ -276,7 +276,8 @@
   scrollbar-color: color-mix(in srgb, var(--secondary) 45%, transparent)
     transparent;
 }
-.guide-welcome > p {
+.guide-welcome-text {
+  display: block;
   margin-top: 12px;
   font-size: 14px;
   line-height: 1.7;
@@ -286,7 +287,9 @@
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-top: 22px;
+  margin: 22px 0 0;
+  padding: 0;
+  list-style: none;
 }
 .guide-suggestions button {
   background: transparent;
@@ -303,9 +306,16 @@
   opacity: 0.5;
   cursor: not-allowed;
 }
-.guide-messages {
+.guide-message-list {
   display: grid;
   gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.guide-message-list > li {
+  display: grid;
+  min-width: 0;
 }
 .guide-messages:not(:empty) {
   margin-top: 32px;
@@ -357,10 +367,11 @@
 .guide-markdown > * + * {
   margin-top: 12px;
 }
-.guide-markdown h1,
-.guide-markdown h2,
-.guide-markdown h3 {
+.guide-message-heading {
   font: 500 17px var(--heading);
+}
+.guide-message-heading strong {
+  font-weight: inherit;
 }
 .guide-markdown a {
   text-decoration: underline;
@@ -566,6 +577,8 @@
 }
 .guide-page .guide-messages {
   flex-shrink: 0;
+}
+.guide-page .guide-message-list {
   gap: 28px;
 }
 .guide-page .guide-message-assistant,
@@ -595,7 +608,7 @@
   margin-left: 0;
   padding: 16px 22px;
 }
-.guide-page .guide-welcome > p {
+.guide-page .guide-welcome-text {
   font-size: clamp(16px, 0.85vw, 24px);
 }
 .guide-page .guide-suggestions {
@@ -682,6 +695,9 @@
   .guide-suggestions {
     flex-direction: column;
   }
+  .guide-suggestions button {
+    width: 100%;
+  }
 }
 @media (max-width: 600px) {
   :root {
@@ -761,7 +777,7 @@
     transform: rotate(135deg);
   }
   .guide-page .guide-markdown,
-  .guide-page .guide-welcome > p {
+  .guide-page .guide-welcome-text {
     font-size: 14px;
   }
   .guide-page .guide-compose-area {

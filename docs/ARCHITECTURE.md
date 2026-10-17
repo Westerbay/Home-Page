@@ -42,6 +42,14 @@ fade where supported. Reduced motion disables the animations, and unsupported
 browsers navigate normally. The assistant retains its separate dialogue and
 character transitions without remounting the shared session.
 
+Page introductions and content groups use native headings, headers, lists and
+figures. Project cards adapt their heading level to the page hierarchy. Layout
+containers remain neutral. The assistant scopes its header and composer footer
+inside its section, keeping the site banner and content information unique.
+Its live log contains an ordered list of messages; short Markdown response
+headings render as emphasized paragraphs without changing the page outline.
+Styled lists retain an explicit list role for Safari accessibility.
+
 ## Static assets and publishing
 
 All maintained images are in `web/public/assets`. Components use

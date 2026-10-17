@@ -99,14 +99,11 @@ export function GuideChat() {
       document.getElementById("guide-question")?.focus({ preventScroll: true })
     }
     return (
-      <button
-        key={suggestion}
-        type="button"
-        onClick={choose}
-        disabled={!canStart}
-      >
-        {suggestion}
-      </button>
+      <li key={suggestion}>
+        <button type="button" onClick={choose} disabled={!canStart}>
+          {suggestion}
+        </button>
+      </li>
     )
   })
   const error = state.error ? errorText(state.error) : null
@@ -150,12 +147,14 @@ export function GuideChat() {
         ref={bindTranscript}
         onScroll={trackScroll}
       >
-        <div className="guide-welcome">
+        <p className="guide-welcome">
           <span className="eyebrow">{m.guide_welcome_label()}</span>
-          <p>{m.guide_welcome()}</p>
-        </div>
+          <span className="guide-welcome-text">{m.guide_welcome()}</span>
+        </p>
         {messages.length === 0 && (
-          <div className="guide-suggestions">{suggestionButtons}</div>
+          <ul className="guide-suggestions" role="list">
+            {suggestionButtons}
+          </ul>
         )}
         <GuideMessages />
         {state.pending && (
@@ -163,9 +162,9 @@ export function GuideChat() {
             {m.guide_pending()}
           </p>
         )}
-        <div ref={scrollToLatest} key={transcriptVersion} />
+        <div ref={scrollToLatest} key={transcriptVersion} aria-hidden="true" />
       </div>
-      <div className="guide-compose-area">
+      <footer className="guide-compose-area" role="group">
         {state.memoryOnly && (
           <p className="guide-notice">{m.guide_memory_only()}</p>
         )}
@@ -177,11 +176,19 @@ export function GuideChat() {
           </p>
         )}
         {error && (
-          <p className="guide-notice guide-error" role="alert">
+          <p
+            id="guide-input-error"
+            className="guide-notice guide-error"
+            role="alert"
+          >
             {error}
           </p>
         )}
-        <form onSubmit={submit} className="guide-composer">
+        <form
+          onSubmit={submit}
+          className="guide-composer"
+          aria-label={m.guide_question()}
+        >
           <label htmlFor="guide-question" className="guide-sr-only">
             {m.guide_question()}
           </label>
@@ -195,7 +202,10 @@ export function GuideChat() {
             rows={2}
             placeholder={m.guide_placeholder()}
             disabled={!ready}
-            aria-describedby="guide-input-hint"
+            aria-describedby={
+              error ? "guide-input-hint guide-input-error" : "guide-input-hint"
+            }
+            aria-invalid={state.error === "question" || undefined}
           />
           <div className="guide-composer-controls">
             <span id="guide-input-hint">
@@ -237,7 +247,7 @@ export function GuideChat() {
             {m.guide_clear()}
           </button>
         </div>
-      </div>
+      </footer>
     </div>
   )
 }

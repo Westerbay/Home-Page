@@ -133,7 +133,7 @@ for (const scenario of [
     })
     if (scenario.surface === "compact-fr") await openGuide(page)
     else await page.goto("en/guide/")
-    visibleWelcome = await page.locator(".guide-welcome > p").innerText()
+    visibleWelcome = await page.locator(".guide-welcome-text").innerText()
     const composer = page.getByRole("textbox")
     await composer.fill(scenario.draft)
     await page.getByRole("button", { name: suggestion, exact: true }).click()
@@ -168,7 +168,7 @@ test("follow-up questions retain the visible welcome and recent questions withou
     await route.fulfill({ json: answer })
   })
   await openGuide(page)
-  const visibleWelcome = await page.locator(".guide-welcome > p").innerText()
+  const visibleWelcome = await page.locator(".guide-welcome-text").innerText()
   const questions = [
     "Quels jeux a-t-il créés ?",
     "Comment on gagne ?",
@@ -444,6 +444,77 @@ async function openGuide(page: Page) {
   ).toBeEnabled()
 }
 
+test("assistant landmarks and conversation order survive compact and full-page navigation", async ({
+  page,
+}) => {
+  const question = "Présente SpellWar"
+  const draft = "Et les collisions ?"
+  const response =
+    "# Résumé\n\nUn moteur maison.\n\n## Détails\n\nC++ et OpenGL."
+  let calls = 0
+  await page.setViewportSize({ width: 1280, height: 900 })
+  await page.route(endpoint, (route) => {
+    calls++
+    return route.fulfill({ json: { ...answer, answer: response } })
+  })
+  await openGuide(page)
+  const originalTitle = await page
+    .getByRole("heading", { level: 1 })
+    .innerText()
+  const composer = page
+    .getByRole("form", { name: "Votre question", exact: true })
+    .getByRole("textbox", { name: "Votre question", exact: true })
+  await expect(composer).toBeFocused()
+  await composer.fill(question)
+  await page.getByRole("button", { name: "Envoyer", exact: true }).click()
+  await expect(page.getByText("C++ et OpenGL.", { exact: true })).toBeVisible()
+  await composer.fill(draft)
+
+  async function expectConversation(title: string) {
+    // Generated Markdown must stay inside the conversation, without becoming
+    // document headings or introducing extra site-level landmarks.
+    await expect(page.getByRole("heading", { level: 1 })).toHaveText(title)
+    await expect(page.getByRole("heading", { name: "Détails" })).toHaveCount(0)
+    await expect(page.getByRole("banner")).toHaveCount(1)
+    await expect(page.getByRole("contentinfo")).toHaveCount(1)
+    const conversation = page.getByRole("log", {
+      name: "Conversation avec l’assistant",
+      exact: true,
+    })
+    const turns = conversation.getByRole("list")
+    await expect(turns).toHaveJSProperty("tagName", "OL")
+    await expect(turns.getByRole("listitem")).toContainText([
+      question,
+      /Résumé\s*Un moteur maison\.\s*Détails\s*C\+\+ et OpenGL\./,
+    ])
+    await expect(
+      conversation.getByRole("article", { name: "Vous", exact: true })
+    ).toContainText(question)
+    await expect(
+      conversation.getByRole("article", { name: "Assistant", exact: true })
+    ).toContainText("C++ et OpenGL.")
+    await expect(page.getByRole("textbox")).toHaveCount(1)
+    await expect(composer).toHaveValue(draft)
+    await expect(composer).toBeFocused()
+  }
+
+  await expect(
+    page.getByRole("dialog", { name: "Assistant", exact: true })
+  ).toBeVisible()
+  await expectConversation(originalTitle)
+  await page.getByRole("button", { name: "Agrandir", exact: true }).click()
+  await expect(page).toHaveURL(/\/guide\/$/)
+  await expect(page.getByRole("dialog")).toHaveCount(0)
+  await expectConversation("Assistant")
+  await page.getByRole("button", { name: "Réduire", exact: true }).click()
+  await expect(page).toHaveURL(/\/about\/$/)
+  await expect(
+    page.getByRole("dialog", { name: "Assistant", exact: true })
+  ).toBeVisible()
+  await expectConversation(originalTitle)
+  expect(calls).toBe(1)
+})
+
 test("opening is local; one request survives panel, page and route navigation", async ({
   page,
 }) => {
@@ -465,7 +536,7 @@ test("opening is local; one request survives panel, page and route navigation", 
     await route.fulfill({ json: answer })
   })
   await openGuide(page)
-  visibleWelcome = await page.locator(".guide-welcome > p").innerText()
+  visibleWelcome = await page.locator(".guide-welcome-text").innerText()
   expect(calls).toBe(0)
   await page.getByRole("textbox").fill("Parle-moi de SpellWar")
   await page.getByRole("button", { name: "Envoyer", exact: true }).click()
