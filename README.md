@@ -22,6 +22,9 @@ Node.js 24, pnpm 12, Turborepo, TypeScript, React, TanStack Start and Router,
 Tailwind CSS, Paraglide, Zod and Sonner. Pages are generated as static HTML
 for GitHub Pages.
 There is no application server to deploy.
+An optional TanStack AI guide connects directly to the existing public RAG Worker.
+It shares one conversation between a compact dialog and a full page, and is
+disabled by default. See [guide setup and local tests](docs/DEVELOPMENT.md#optional-ai-guide).
 
 ## Development
 

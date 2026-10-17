@@ -11,6 +11,8 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@tanstack/ai": "0.69.0",
+    "@tanstack/ai-react": "0.30.4",
     "@tanstack/react-router": "1.170.35",
     "@tanstack/react-start": "1.168.52",
     "@westerbay/eyefox-react": "https://github.com/Westerbay/Eyefox-Puzzle/releases/download/web-v0.1.2/westerbay-eyefox-react-0.1.2.tgz",
@@ -22,6 +24,7 @@
     "next-themes": "^0.4.6",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
+    "react-markdown": "10.1.0",
     "sonner": "2.0.7",
     "zod": "4.6.2"
   },

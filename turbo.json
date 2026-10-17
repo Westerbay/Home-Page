@@ -1,6 +1,6 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "globalEnv": ["SITE_BASE_PATH"],
+  "globalEnv": ["SITE_BASE_PATH", "VITE_GUIDE_ENABLED", "VITE_GUIDE_URL"],
   "tasks": {
     "build": {
       "dependsOn": ["^build"],

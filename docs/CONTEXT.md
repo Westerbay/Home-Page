@@ -7,6 +7,9 @@ the root `web` workspace, with shared packages for UI, translations and
 configuration. Turborepo orders workspace builds and checks.
 Home, the filterable project list, six project pages, About and Contact
 are implemented. French and English pages are generated as static HTML.
+An optional AI guide adds a compact chat and a full Guide page in both languages.
+It calls the existing public RAG Worker when explicitly enabled; it has no
+frontend password or additional backend. See DEVELOPMENT.md for local testing.
 
 Mathis has authorized V1 publication and removal of the old implementation.
 The release excludes the comparison prototype and legacy root HTML, CSS,

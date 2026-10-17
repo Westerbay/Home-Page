@@ -9,13 +9,13 @@ import { ProjectCard } from "../../projects/components/project-card"
 
 function AtlasHero() {
   return (
-    <section className="hero atlas-hero">
+    <section className="hero atlas-hero" aria-labelledby="home-title">
       <div className="hero-copy">
         <p className="eyebrow role-label">
           <span className="status-square" />
           {m.personal_site()}
         </p>
-        <h1>
+        <h1 id="home-title">
           Mathis
           <br />
           <span>Dubuisson</span>
@@ -36,14 +36,14 @@ function AtlasHero() {
         </div>
       </div>
       <BotanicalFigure />
-      <div className="hero-foot">
+      <footer className="hero-foot">
         <SchoolMention />
-        <p className="hero-topics">
-          <span>{m.games()}</span>
-          <span>{m.ai()}</span>
-          <span>{m.rendering()}</span>
-        </p>
-      </div>
+        <ul className="hero-topics" role="list">
+          <li>{m.games()}</li>
+          <li>{m.ai()}</li>
+          <li>{m.rendering()}</li>
+        </ul>
+      </footer>
     </section>
   )
 }
@@ -54,27 +54,33 @@ export function HomePage() {
   return (
     <>
       <AtlasHero />
-      <section className="selected-section" id="selected">
-        <div className="section-heading">
-          <div>
+      <section
+        className="selected-section"
+        id="selected"
+        aria-labelledby="selected-title"
+      >
+        <header className="section-heading">
+          <hgroup>
             <p className="eyebrow">{m.selected_work()}</p>
-            <h2>
+            <h2 id="selected-title">
               {m.selection()}
               <span className="project-total">
                 {String(projects.length).padStart(2, "0")}
               </span>
             </h2>
-          </div>
+          </hgroup>
           <Link to="/projects/" className="text-action">
             {m.all_projects()}
             <ArrowRight size={17} />
           </Link>
-        </div>
-        <div className="home-projects">
+        </header>
+        <ul className="home-projects" role="list">
           {projects.map((project, index) => (
-            <ProjectCard project={project} index={index} key={project.slug} />
+            <li key={project.slug}>
+              <ProjectCard project={project} index={index} />
+            </li>
           ))}
-        </div>
+        </ul>
       </section>
     </>
   )

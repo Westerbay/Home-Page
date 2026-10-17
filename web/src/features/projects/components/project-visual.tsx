@@ -12,13 +12,13 @@ export function ProjectVisual({ project }: { project: Project }) {
       />
     )
   return (
-    <div className="skull-visual" aria-label="WebApp Skull">
+    <div className="skull-visual" role="img" aria-label="WebApp Skull">
       <span>WEBAPP</span>
       <strong>
         Skull<span>_</span>
       </strong>
       <span className="skull-code">React / TanStack / TypeScript</span>
-      <div className="skull-lines">
+      <div className="skull-lines" aria-hidden="true">
         <span />
         <span />
         <span />

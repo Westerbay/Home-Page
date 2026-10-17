@@ -11,36 +11,38 @@ export function AboutPage() {
     { title: m.approach_3_title(), body: m.approach_3_body() },
   ]
   return (
-    <section className="inner-page about-page">
-      <div className="page-heading">
+    <article className="inner-page about-page">
+      <header className="page-heading">
         <p className="eyebrow">02 / {m.about()}</p>
         <h1>{m.about_title()}</h1>
-      </div>
+      </header>
       <div className="about-content">
-        <aside className="profile-portrait">
+        <figure className="profile-portrait">
           <img src={assetUrl(profile.avatar)} alt={m.profile_alt()} />
-          <span>Mathis Dubuisson</span>
-          <SchoolMention />
-        </aside>
+          <figcaption>
+            <span>Mathis Dubuisson</span>
+            <SchoolMention />
+          </figcaption>
+        </figure>
         <div className="about-prose">
           <p className="lead">{m.about_intro()}</p>
           <p>{m.about_body()}</p>
           <p>{m.about_outro()}</p>
         </div>
       </div>
-      <section className="approach-section">
-        <h2>{m.approach()}</h2>
-        <div className="approach-steps">
+      <section className="approach-section" aria-labelledby="approach-title">
+        <h2 id="approach-title">{m.approach()}</h2>
+        <ul className="approach-steps" role="list">
           {steps.map((step, index) => (
-            <div key={index}>
-              <span>0{index + 1}</span>
+            <li key={step.title}>
+              <span aria-hidden="true">0{index + 1}</span>
               <h3>{step.title}</h3>
               <p>{step.body}</p>
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
       </section>
       <JourneyTree />
-    </section>
+    </article>
   )
 }

@@ -6,6 +6,8 @@ import { useTheme } from "next-themes"
 import { Moon, Sun } from "lucide-react"
 import profile from "@workspace/config/profile" with { type: "json" }
 import { assetUrl } from "../lib/assets"
+import { GUIDE_ENABLED } from "../features/guide/config"
+import { GuideLink } from "../features/guide/guide-link"
 
 function ThemeControl() {
   const { resolvedTheme, setTheme } = useTheme()
@@ -74,6 +76,7 @@ export function Header() {
         >
           {m.contact()}
         </Link>
+        {GUIDE_ENABLED && <GuideLink />}
       </nav>
       <div className="header-tools">
         <button

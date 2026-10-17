@@ -10,13 +10,17 @@ export function ProjectsPage() {
     (project) => category === "all" || project.category === category
   )
   return (
-    <section className="inner-page projects-page">
-      <div className="page-heading">
+    <section
+      className="inner-page projects-page"
+      aria-labelledby="projects-title"
+    >
+      <header className="page-heading">
         <p className="eyebrow">01 / {m.project_directory()}</p>
-        <h1>{m.projects()}</h1>
+        <h1 id="projects-title">{m.projects()}</h1>
         <p>{m.projects_intro()}</p>
-      </div>
-      <div className="project-filters" aria-label={m.projects()}>
+      </header>
+      <fieldset className="project-filters">
+        <legend className="sr-only">{m.projects()}</legend>
         {(["all", "games", "generative", "engineering"] as const).map(
           (item) => (
             <button
@@ -29,12 +33,14 @@ export function ProjectsPage() {
             </button>
           )
         )}
-      </div>
-      <div className="project-directory" aria-live="polite">
+      </fieldset>
+      <ul className="project-directory" role="list" aria-live="polite">
         {projects.map((project, index) => (
-          <ProjectCard project={project} index={index} key={project.slug} />
+          <li key={project.slug}>
+            <ProjectCard project={project} index={index} headingLevel={2} />
+          </li>
         ))}
-      </div>
+      </ul>
     </section>
   )
 }

@@ -11,6 +11,7 @@ export function getRouter() {
     trailingSlash: "always",
     scrollRestoration: true,
     defaultPreload: "intent",
+    defaultViewTransition: true,
     rewrite: {
       input: ({ url }) => rewriteWithBase(url, base, deLocalizeUrl),
       output: ({ url }) => rewriteWithBase(url, base, localizeUrl),
