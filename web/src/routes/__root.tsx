@@ -16,6 +16,10 @@ import { NotFound } from "../components/not-found"
 import { assetUrl } from "../lib/assets"
 import uiCss from "@workspace/ui/globals.css?url"
 import siteCss from "../styles.css?url"
+import guideCss from "../features/guide/guide.css?url"
+import { GuideProvider } from "../features/guide/guide-provider"
+import { GuideDock } from "../features/guide/guide-dock"
+import { GUIDE_ENABLED } from "../features/guide/config"
 
 export const Route = createRootRoute({
   head: () => ({
@@ -27,6 +31,7 @@ export const Route = createRootRoute({
     links: [
       { rel: "stylesheet", href: uiCss },
       { rel: "stylesheet", href: siteCss },
+      { rel: "stylesheet", href: guideCss },
       { rel: "icon", type: "image/png", href: assetUrl("assets/avatar.png") },
     ],
   }),
@@ -42,25 +47,28 @@ export const Route = createRootRoute({
 })
 function Layout() {
   return (
-    <div className="site-frame">
-      <a
-        className="skip-link"
-        href="#main-content"
-        onClick={(event) => {
-          event.preventDefault()
-          document.getElementById("main-content")?.focus()
-        }}
-      >
-        {m.skip()}
-      </a>
-      <div className="site-container">
-        <Header />
-        <main id="main-content" tabIndex={-1}>
-          <Outlet />
-        </main>
-        <Footer />
+    <GuideProvider>
+      <div className="site-frame">
+        <a
+          className="skip-link"
+          href="#main-content"
+          onClick={(event) => {
+            event.preventDefault()
+            document.getElementById("main-content")?.focus()
+          }}
+        >
+          {m.skip()}
+        </a>
+        <div className="site-container">
+          <Header />
+          <main id="main-content" tabIndex={-1}>
+            <Outlet />
+            <GuideDock />
+          </main>
+          <Footer />
+        </div>
       </div>
-    </div>
+    </GuideProvider>
   )
 }
 function Document({ children }: { children: ReactNode }) {
@@ -77,7 +85,7 @@ function Document({ children }: { children: ReactNode }) {
           storageKey="portfolio-theme"
         >
           {children}
-          <Toaster />
+          <Toaster position={GUIDE_ENABLED ? "top-center" : "bottom-right"} />
         </ThemeProvider>
         <Scripts />
       </body>

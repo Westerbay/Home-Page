@@ -8,6 +8,9 @@ concurrency:
   cancel-in-progress: false
 jobs:
   build:
+    env:
+      VITE_GUIDE_ENABLED: "true"
+      VITE_GUIDE_URL: https://small-rag.westerbay.workers.dev
     permissions:
       contents: read
       pages: read
