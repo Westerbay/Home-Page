@@ -12,9 +12,6 @@
 body {
   margin: 0;
 }
-@view-transition {
-  navigation: auto;
-}
 ::view-transition-old(root) {
   animation: none;
 }
@@ -30,9 +27,6 @@ body {
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  @view-transition {
-    navigation: none;
-  }
   ::view-transition-group(root),
   ::view-transition-old(root),
   ::view-transition-new(root) {

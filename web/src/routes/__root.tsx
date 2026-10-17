@@ -75,6 +75,13 @@ function Document({ children }: { children: ReactNode }) {
   return (
     <html lang={getLocale()} suppressHydrationWarning>
       <head>
+        {/* Keep cross-document opt-in stable while routed styles hydrate. */}
+        <style>{`
+          @view-transition { navigation: auto; }
+          @media (prefers-reduced-motion: reduce) {
+            @view-transition { navigation: none; }
+          }
+        `}</style>
         <HeadContent />
       </head>
       <body>
