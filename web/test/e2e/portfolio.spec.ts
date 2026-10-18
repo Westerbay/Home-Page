@@ -172,11 +172,12 @@ test("skip link moves keyboard focus to the main content", async ({ page }) => {
 })
 
 for (const width of [320, 390, 768, 1440, 1920, 3840]) {
-  test("responsive pages at " + width, async ({ page }, info) => {
-    await page.setViewportSize({
-      width,
-      height: Math.max(950, Math.round(width * 0.56)),
-    })
+  const viewport = {
+    width,
+    height: Math.max(950, Math.round(width * 0.56)),
+  }
+  test("responsive pages at " + width, async ({ page }) => {
+    await page.setViewportSize(viewport)
     for (const route of [
       "./",
       "projects",
@@ -215,7 +216,15 @@ for (const width of [320, 390, 768, 1440, 1920, 3840]) {
           )
       ).toBe(true)
     }
+  })
+
+  // Keep full-page WebGL captures separate from the route checks' time budget.
+  test("homepage screenshots at " + width, async ({ page }, info) => {
+    await page.setViewportSize(viewport)
     await page.goto("./")
+    await expect(page.locator(".lsystem [role=status]")).toHaveText(
+      "Dessin mis à jour"
+    )
     await page.screenshot({
       path: info.outputPath("home-" + width + ".png"),
       fullPage: true,
