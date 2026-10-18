@@ -48,6 +48,7 @@ export function GuideMessages() {
       const text = textOf(message)
       const reveal =
         state.reveal?.messageId === message.id ? state.reveal : null
+      const streaming = state.streamingMessageId === message.id
       const displayedText = reveal
         ? text.slice(0, reveal.visibleCharacters)
         : text
@@ -57,6 +58,7 @@ export function GuideMessages() {
           <article
             className={`guide-message guide-message-${message.role}`}
             aria-labelledby={authorId}
+            aria-busy={streaming || undefined}
           >
             <header>
               <p className="guide-message-author" id={authorId}>
@@ -99,6 +101,7 @@ export function GuideMessages() {
       aria-label={m.guide_conversation()}
       aria-live="polite"
       aria-relevant="additions"
+      aria-busy={Boolean(state.streamingMessageId) || undefined}
     >
       {items.length > 0 && (
         <ol className="guide-message-list" role="list">

@@ -3,6 +3,8 @@ import { z } from "zod"
 export const QUESTION_LIMIT = 1500
 export const REQUEST_BYTES = 16_384
 export const RESPONSE_BYTES = 65_536
+// SSE includes event framing and repeats the answer in its final receipt.
+export const STREAM_RESPONSE_BYTES = 262_144
 export const REQUEST_TIMEOUT_MS = 30_000
 export const SNAPSHOT_BYTES = 262_144
 const HISTORY_CHARACTER_LIMIT = 2000
@@ -47,6 +49,10 @@ export const sleepingSchema = z.object({
   reset_at: z.iso.datetime().optional(),
 })
 export type Sleeping = z.infer<typeof sleepingSchema>
+export const streamDeltaSchema = z.object({ delta: z.string().min(1) })
+export const streamErrorSchema = z.object({
+  code: z.enum(["response", "unavailable"]),
+})
 export type GuideErrorCode =
   | "question"
   | "payload"

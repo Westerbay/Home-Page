@@ -13,10 +13,8 @@ import {
   createGuideSession,
   readSnapshot,
 } from "../../src/features/guide/session.ts"
-import {
-  createGuideTransport,
-  readResponse,
-} from "../../src/features/guide/transport.ts"
+import { createGuideTransport } from "../../src/features/guide/transport.ts"
+import { readResponse } from "../../src/features/guide/response.ts"
 import { safeMarkdownUrl } from "../../src/features/guide/sources.ts"
 
 const message = (id, role, text) => ({
@@ -260,7 +258,10 @@ test("transport makes one credential-free JSON request and emits the full answer
       assert.equal(url, "https://guide.example/v1/chat")
       assert.equal(options.credentials, "omit")
       assert.equal(options.redirect, "error")
-      assert.deepEqual(options.headers, { "Content-Type": "application/json" })
+      assert.deepEqual(options.headers, {
+        "Content-Type": "application/json",
+        Accept: "text/event-stream",
+      })
       assert.deepEqual(JSON.parse(options.body), {
         message: "Question",
         history: [{ role: "assistant", content: welcome }],

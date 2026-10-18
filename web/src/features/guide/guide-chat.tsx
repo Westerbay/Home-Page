@@ -157,7 +157,7 @@ export function GuideChat() {
           </ul>
         )}
         <GuideMessages />
-        {state.pending && (
+        {state.pending && !state.streamingMessageId && (
           <p className="guide-notice" role="status">
             {m.guide_pending()}
           </p>

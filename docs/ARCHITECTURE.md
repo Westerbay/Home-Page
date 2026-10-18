@@ -80,14 +80,26 @@ Authentication and database features remain outside the portfolio.
 
 `features/guide` owns one TanStack AI `useChat` instance above the route outlet.
 The compact dialog and `/guide/` page share that instance and a draft. The
-connection adapter sends the existing RAG JSON protocol directly to the public
+connection adapter posts the existing RAG JSON request directly to the public
 chat route of the existing Cloudflare Worker, without credentials or a portfolio
-backend. It emits the complete validated answer once, not simulated streaming.
+backend. It requests `text/event-stream` and maps `delta` events into TanStack AI
+text chunks as they arrive. `eventsource-parser` handles SSE framing and split
+UTF-8 is decoded incrementally. A legacy JSON response remains supported.
+
+The streamed text is provisional until the final `result` passes the existing
+answer/citation validation, matches the accumulated text after trimming, and the
+stream ends cleanly. Only then does it receive a receipt and enter persisted
+history. A validated `sleeping` event uses the same sleep state as HTTP 503 JSON;
+errors, cancellation, malformed events and truncated streams remove the preview.
+The UI and persistence both filter unacknowledged assistant messages, so late
+SDK notifications cannot reinsert a discarded answer. Requests are bounded to
+30 seconds, 256 KiB of SSE and a 64 KiB event buffer; JSON remains limited to
+64 KiB. There is no automatic retry or reconnect.
 
 The versioned, size-limited snapshot uses `sessionStorage`, scoped by the deployment
 base. It is restored after hydration. Interrupted requests are never replayed;
 stopping or clearing invalidates late results. The Worker owns availability:
-only a validated HTTP 503 `sleeping` response blocks sending until `retry_at`.
+only a validated HTTP 503 JSON response or SSE `sleeping` event blocks sending until `retry_at`.
 The local timer enables manual retry and never makes a request.
 
 The companion uses two transparent 4-column, 2-row atlases with native image
@@ -104,13 +116,15 @@ character inside the article: beside the conversation on desktop, and beside the
 heading on mobile. It stays within the main content and above the footer.
 Both sprite sheets are preloaded for the current character.
 The bubble remains focusable after the
-character disappears. Separate two-frame strips animate speech while a new
-answer is revealed locally. TanStack still receives and saves the complete
-response once; the reveal never changes the network protocol or saved messages.
-The shared session owns its transient cursor, so expanding or minimizing does
-not replay it. It completes automatically; there is no skip-animation control.
-Reload and reduced motion show the complete saved text without replay; assistive technology receives
-the complete answer, not character-by-character announcements.
+character disappears. Separate two-frame strips animate speech from the first
+text chunk until validated completion; the character thinks while waiting for
+that first chunk. Expanding and minimizing preserve the same stream and speaking
+state. Completion shows the accumulated answer immediately, without replaying it
+through a second typing animation. Legacy JSON responses retain the bounded local
+reveal. Reduced motion disables character animation, while network text still
+arrives progressively. Reload restores only complete answers, without replay.
+The live conversation is busy while text is provisional, delaying announcements
+until completion.
 The compact and expanded conversation surfaces share a native view-transition
 name, and the persistent character has its own transition name. Navigation captures
 the open panel and character before switching routes, then animates both into the

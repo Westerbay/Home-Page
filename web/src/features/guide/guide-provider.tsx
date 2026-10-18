@@ -10,7 +10,7 @@ import type { UIMessage } from "@tanstack/ai-react"
 import { useRouter } from "@tanstack/react-router"
 import * as m from "@workspace/i18n/messages"
 import { GUIDE_ENDPOINT } from "./config"
-import { createGuideSession } from "./session"
+import { createGuideSession, retainedMessages } from "./session"
 import type { GuideSession, GuideState } from "./session"
 import { createGuideTransport } from "./transport"
 import { QUESTION_LIMIT } from "./protocol"
@@ -103,7 +103,11 @@ function ActiveGuide({
   const value: GuideContextValue = {
     session,
     state,
-    messages: chat.messages,
+    messages: retainedMessages(
+      chat.messages,
+      state.receipts,
+      state.streamingMessageId
+    ),
     ready,
     send,
     stop,
