@@ -28,7 +28,15 @@ no application server or remote function is deployed.
 
 Paraglide uses URL and base-locale strategies. Its middleware isolates locale
 state during concurrent prerendering. French uses the root, and English uses
-`/en/`. The language control reloads the equivalent translated static page.
+`/en/`. The language control is a real link to the equivalent translated static
+page, including without JavaScript. After hydration it retains the current
+query and fragment. Locale comes from the URL, not the visitor's browser language.
+
+`src/lib/seo.ts` supplies localized titles, descriptions, absolute canonical
+URLs, reciprocal French/English and x-default links, and Open Graph/Twitter
+metadata. Social images are dedicated 1200 × 630 JPEG files; project pages use
+their own image and other pages use the portfolio preview. Home and About
+have descriptive metadata separate from their short visible introductions.
 
 TanStack removes its base path before custom URL rewriting.
 `src/lib/i18n/url-rewrite.ts` temporarily restores that prefix for Paraglide,
@@ -42,6 +50,11 @@ fade where supported. Reduced motion disables the animations, and unsupported
 browsers navigate normally. The assistant retains its separate dialogue and
 character transitions without remounting the shared session.
 
+`src/root.css` bundles the UI, page and guide styles in their existing cascade
+order as one cached stylesheet. The document preloads only the two Latin font
+files used above the fold; `packages/ui/src/lib/fonts.ts` exports their bundled
+URLs from the same font packages as the stylesheet.
+
 Page introductions and content groups use native headings, headers, lists and
 figures. Project cards adapt their heading level to the page hierarchy. Layout
 containers remain neutral. The assistant scopes its header and composer footer
@@ -49,25 +62,36 @@ inside its section, keeping the site banner and content information unique.
 Its live log contains an ordered list of messages; short Markdown response
 headings render as emphasized paragraphs without changing the page outline.
 Styled lists retain an explicit list role for Safari accessibility.
+The message-list renderer and Markdown parser are a lazy chunk requested when
+the chat opens, including for an empty history. The live-log wrapper, composer,
+focus handling and guide session remain mounted synchronously.
 
 ## Static assets and publishing
 
 All maintained images are in `web/public/assets`. Components use
 `src/lib/assets.ts` to respect the deployment base path. They do not depend
 on the removed root asset directories or comparison prototype.
+Responsive project imagery and density-specific companion sheets reduce mobile
+transfers while keeping native sources available. See RESPONSIVE-MEDIA.md and
+SOCIAL-MEDIA.md for reproduction and fidelity limits. SpellWar's silent looping
+video starts loading within 160 px of the viewport; its native controls and source
+link remain available without JavaScript.
 
 `SITE_BASE_PATH` configures the build and preview server. The manual Pages
 workflow reads this path from `actions/configure-pages` and uploads only
 `web/dist/client`.
 
-`scripts/prepare-pages.mjs` adds `.nojekyll`, a static 404 page and redirects
+`src/lib/site.ts` owns the public origin and route list shared by Vite's
+prerendering and sitemap generation. Absolute URLs include `SITE_BASE_PATH`
+so both root and prefixed builds remain internally consistent.
+`scripts/prepare-pages.mjs` adds `.nojekyll`, a sitemap with reciprocal locale
+alternates, a robots.txt pointing to that sitemap, a static 404 page and redirects
 from `About.html`, `Project.html` and `Prototype.html`. It does not copy the
 old implementation. The preview server serves generated files directly;
 there is no SPA fallback masking a missing static page.
 
-The public project URL is `https://westerbay.github.io/Home-Page/`. A custom
-domain can be configured later. Keep metadata consistent with the actual
-published domain rather than inventing a future one.
+The public project URL is `https://portfolio.mathis-db.com/`. The origin in
+`src/lib/site.ts` must stay consistent with the published domain.
 
 ## Technical reference
 

@@ -2,6 +2,7 @@
   "name": "Mathis Dubuisson",
   "github": "https://github.com/Westerbay",
   "linkedin": "https://www.linkedin.com/in/mathis-dubuisson",
-  "avatar": "assets/avatar.png",
+  "avatar": "assets/avatar.webp",
+  "avatarThumbnail": "assets/avatar-128.webp",
   "email": "contact@mathis-db.com"
 }

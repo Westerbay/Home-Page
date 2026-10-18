@@ -5,25 +5,17 @@ import tailwindcss from "@tailwindcss/vite"
 import { paraglideVitePlugin } from "@inlang/paraglide-js"
 import { paraglideConfig } from "../packages/i18n/paraglide.config.mjs"
 import { guideEndpoint } from "./src/features/guide/protocol.ts"
+import {
+  localizedPagePath,
+  publicPagePaths,
+  siteLocales,
+} from "./src/lib/site.ts"
 const base = process.env.SITE_BASE_PATH || "/"
 const endpoint = guideEndpoint(
   process.env.VITE_GUIDE_ENABLED,
   process.env.VITE_GUIDE_URL
 )
 const guideOrigin = endpoint ? new URL(endpoint).origin : ""
-const paths = [
-  "/",
-  "/projects",
-  "/projects/booster-break",
-  "/projects/spellwar",
-  "/projects/plants",
-  "/projects/eyefox",
-  "/projects/pinnacle",
-  "/projects/stylegan-cheap-dit",
-  "/about",
-  "/contact",
-  "/guide",
-]
 export default defineConfig(({ command }) => ({
   base,
   envDir: false,
@@ -46,8 +38,10 @@ export default defineConfig(({ command }) => ({
         crawlLinks: false,
         failOnError: true,
       },
-      pages: paths
-        .flatMap((path) => [path, path === "/" ? "/en" : "/en" + path])
+      pages: publicPagePaths
+        .flatMap((path) =>
+          siteLocales.map((locale) => localizedPagePath(path, locale))
+        )
         .map((path) => ({ path, prerender: { enabled: true } })),
     }),
     react(),

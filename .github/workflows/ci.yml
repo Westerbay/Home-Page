@@ -28,7 +28,20 @@ jobs:
         with:
           node-version-file: .node-version
           cache: pnpm
+      - uses: actions/setup-java@cf277c60eb25467037889841efdb72551f06f6c3 # v4.7.1
+        with:
+          distribution: temurin
+          java-version: "21"
       - run: pnpm install --frozen-lockfile
       - run: pnpm check
+      - run: pnpm test:html
       - run: pnpm exec playwright install --with-deps chromium
       - run: pnpm test:e2e
+      - run: pnpm audit:lighthouse /
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        if: always()
+        with:
+          name: quality-audits-${{ strategy.job-index }}
+          path: .cache/audits/
+          include-hidden-files: true
+          retention-days: 14

@@ -48,5 +48,60 @@
       }
     ],
     "notes": "Separate transparent RGBA talk strips preserve the approved companion identities. Generated with the built-in image_gen tool and copied without pixel edits. Existing idle, thinking and sleeping atlases remain unchanged."
+  },
+  "deliveryEncoding": {
+    "date": "2026-10-18",
+    "tool": "Pillow WebP encoder",
+    "script": "scripts/optimize-portfolio-media.py --companion-only",
+    "sourceCommit": "724ba2d4ca52337cb6afc5b1125e9b9af54efc73",
+    "settings": {
+      "lossless": true,
+      "exact": true,
+      "quality": 100,
+      "method": 6
+    },
+    "verification": "All four decoded RGBA byte arrays and 1774 x 887 dimensions are identical to their source PNGs, including RGB values under fully transparent pixels. Original PNGs are retained. Only delivery format and preload priority changed; CSS, frame layout, timing and animation logic are unchanged.",
+    "assets": [
+      {
+        "source": "adventurer-atlas.png",
+        "file": "adventurer-atlas.webp",
+        "sourceBytes": 991343,
+        "deliveryBytes": 747218,
+        "decodedRgbaSha256": "5840f0ad8e869e4a3b503cfa61388f09a0d9dbd14144e00328d3290a48fa9af2"
+      },
+      {
+        "source": "adventurer-talk.png",
+        "file": "adventurer-talk.webp",
+        "sourceBytes": 723005,
+        "deliveryBytes": 523930,
+        "decodedRgbaSha256": "8ccb3e090e02a9802117e9c79fd4839380d6feb4ba8dda7e39570a3fe9f31160"
+      },
+      {
+        "source": "fox-atlas.png",
+        "file": "fox-atlas.webp",
+        "sourceBytes": 517315,
+        "deliveryBytes": 375536,
+        "decodedRgbaSha256": "07acce2b5265adcd857961e160573ef06b9d4375e99587cc2dbcd568b31b0751"
+      },
+      {
+        "source": "fox-talk.png",
+        "file": "fox-talk.webp",
+        "sourceBytes": 347156,
+        "deliveryBytes": 204414,
+        "decodedRgbaSha256": "ea206160ac1b5e2c232f2368e5dd144c67119b79fe5087e8eca9edec9202d35a"
+      }
+    ]
+  },
+  "compactDeliveryEncoding": {
+    "date": "2026-10-18",
+    "script": "scripts/optimize-portfolio-media.py --compact-companion-only",
+    "sources": "The four original PNGs in this directory; native WebP versions remain in use on the expanded Assistant page.",
+    "framePixels": [96, 192, 288],
+    "renderedFramePixels": 88,
+    "resampling": "Lanczos, full canvas with the original frame grid and transparent padding",
+    "encoding": "WebP lossless=True, exact=True, method=6 after resizing",
+    "verification": "Decoded RGBA and dimensions equal each resized intermediate. These are resolution variants, not pixel-identical copies of the native PNGs. CSS sizes, frame coordinates, timing, speaking alignment and state logic are unchanged.",
+    "filenames": "{character}-{atlas|talk}-{1|2|3}x.webp",
+    "documentation": "docs/SOCIAL-MEDIA.md"
   }
 }

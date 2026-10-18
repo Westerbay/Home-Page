@@ -1,0 +1,304 @@
+{
+  "assets/booster-break/packs.webp": {
+    "width": 1280,
+    "height": 720,
+    "sources": [
+      {
+        "src": "assets/booster-break/packs-480.webp",
+        "width": 480
+      },
+      {
+        "src": "assets/booster-break/packs-800.webp",
+        "width": 800
+      },
+      {
+        "src": "assets/booster-break/packs.webp",
+        "width": 1280
+      }
+    ]
+  },
+  "assets/spellwar/gameplay.webp": {
+    "width": 1920,
+    "height": 1080,
+    "sources": [
+      {
+        "src": "assets/spellwar/gameplay-480.webp",
+        "width": 480
+      },
+      {
+        "src": "assets/spellwar/gameplay-800.webp",
+        "width": 800
+      },
+      {
+        "src": "assets/spellwar/gameplay-1280.webp",
+        "width": 1280
+      },
+      {
+        "src": "assets/spellwar/gameplay.webp",
+        "width": 1920
+      }
+    ]
+  },
+  "assets/spellwar/gravity-transition-poster.webp": {
+    "width": 1280,
+    "height": 720,
+    "sources": [
+      {
+        "src": "assets/spellwar/gravity-transition-poster-480.webp",
+        "width": 480
+      },
+      {
+        "src": "assets/spellwar/gravity-transition-poster-800.webp",
+        "width": 800
+      },
+      {
+        "src": "assets/spellwar/gravity-transition-poster.webp",
+        "width": 1280
+      }
+    ]
+  },
+  "assets/pinnacle/cover.webp": {
+    "width": 1920,
+    "height": 1080,
+    "sources": [
+      {
+        "src": "assets/pinnacle/cover-480.webp",
+        "width": 480
+      },
+      {
+        "src": "assets/pinnacle/cover-800.webp",
+        "width": 800
+      },
+      {
+        "src": "assets/pinnacle/cover-1280.webp",
+        "width": 1280
+      },
+      {
+        "src": "assets/pinnacle/cover.webp",
+        "width": 1920
+      }
+    ]
+  },
+  "assets/stylegan-cheap-dit/cover.webp": {
+    "width": 1034,
+    "height": 518,
+    "sources": [
+      {
+        "src": "assets/stylegan-cheap-dit/cover-480.webp",
+        "width": 480
+      },
+      {
+        "src": "assets/stylegan-cheap-dit/cover-800.webp",
+        "width": 800
+      },
+      {
+        "src": "assets/stylegan-cheap-dit/cover.webp",
+        "width": 1034
+      }
+    ]
+  },
+  "assets/plants-render.webp": {
+    "width": 1200,
+    "height": 900,
+    "sources": [
+      {
+        "src": "assets/plants-render-480.webp",
+        "width": 480
+      },
+      {
+        "src": "assets/plants-render-800.webp",
+        "width": 800
+      },
+      {
+        "src": "assets/plants-render.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "assets/eyefox.png": {
+    "width": 910,
+    "height": 484,
+    "sources": [
+      {
+        "src": "assets/eyefox-480.webp",
+        "width": 480
+      },
+      {
+        "src": "assets/eyefox-800.webp",
+        "width": 800
+      },
+      {
+        "src": "assets/eyefox.png",
+        "width": 910
+      }
+    ]
+  },
+  "assets/spellwar/engine-world.webp": {
+    "width": 1600,
+    "height": 900,
+    "sources": [
+      {
+        "src": "assets/spellwar/engine-world-480.webp",
+        "width": 480
+      },
+      {
+        "src": "assets/spellwar/engine-world-800.webp",
+        "width": 800
+      },
+      {
+        "src": "assets/spellwar/engine-world-1280.webp",
+        "width": 1280
+      },
+      {
+        "src": "assets/spellwar/engine-world.webp",
+        "width": 1600
+      }
+    ]
+  },
+  "assets/spellwar/platform-orientations.webp": {
+    "width": 1600,
+    "height": 900,
+    "sources": [
+      {
+        "src": "assets/spellwar/platform-orientations-480.webp",
+        "width": 480
+      },
+      {
+        "src": "assets/spellwar/platform-orientations-800.webp",
+        "width": 800
+      },
+      {
+        "src": "assets/spellwar/platform-orientations-1280.webp",
+        "width": 1280
+      },
+      {
+        "src": "assets/spellwar/platform-orientations.webp",
+        "width": 1600
+      }
+    ]
+  },
+  "assets/spellwar/generated-world.webp": {
+    "width": 1600,
+    "height": 900,
+    "sources": [
+      {
+        "src": "assets/spellwar/generated-world-480.webp",
+        "width": 480
+      },
+      {
+        "src": "assets/spellwar/generated-world-800.webp",
+        "width": 800
+      },
+      {
+        "src": "assets/spellwar/generated-world-1280.webp",
+        "width": 1280
+      },
+      {
+        "src": "assets/spellwar/generated-world.webp",
+        "width": 1600
+      }
+    ]
+  },
+  "assets/pinnacle/activation-extraction.webp": {
+    "width": 1840,
+    "height": 910,
+    "sources": [
+      {
+        "src": "assets/pinnacle/activation-extraction-480.webp",
+        "width": 480
+      },
+      {
+        "src": "assets/pinnacle/activation-extraction-800.webp",
+        "width": 800
+      },
+      {
+        "src": "assets/pinnacle/activation-extraction-1280.webp",
+        "width": 1280
+      },
+      {
+        "src": "assets/pinnacle/activation-extraction.webp",
+        "width": 1840
+      }
+    ]
+  },
+  "assets/pinnacle/regions-relu.webp": {
+    "width": 832,
+    "height": 816,
+    "sources": [
+      {
+        "src": "assets/pinnacle/regions-relu-480.webp",
+        "width": 480
+      },
+      {
+        "src": "assets/pinnacle/regions-relu-800.webp",
+        "width": 800
+      },
+      {
+        "src": "assets/pinnacle/regions-relu.webp",
+        "width": 832
+      }
+    ]
+  },
+  "assets/pinnacle/regions-tanh.webp": {
+    "width": 1400,
+    "height": 1400,
+    "sources": [
+      {
+        "src": "assets/pinnacle/regions-tanh-480.webp",
+        "width": 480
+      },
+      {
+        "src": "assets/pinnacle/regions-tanh-800.webp",
+        "width": 800
+      },
+      {
+        "src": "assets/pinnacle/regions-tanh-1280.webp",
+        "width": 1280
+      },
+      {
+        "src": "assets/pinnacle/regions-tanh.webp",
+        "width": 1400
+      }
+    ]
+  },
+  "assets/pinnacle/regions-silu.webp": {
+    "width": 919,
+    "height": 862,
+    "sources": [
+      {
+        "src": "assets/pinnacle/regions-silu-480.webp",
+        "width": 480
+      },
+      {
+        "src": "assets/pinnacle/regions-silu-800.webp",
+        "width": 800
+      },
+      {
+        "src": "assets/pinnacle/regions-silu.webp",
+        "width": 919
+      }
+    ]
+  },
+  "assets/pinnacle/density-tanh.webp": {
+    "width": 2048,
+    "height": 1014,
+    "sources": [
+      {
+        "src": "assets/pinnacle/density-tanh-480.webp",
+        "width": 480
+      },
+      {
+        "src": "assets/pinnacle/density-tanh-800.webp",
+        "width": 800
+      },
+      {
+        "src": "assets/pinnacle/density-tanh-1280.webp",
+        "width": 1280
+      },
+      {
+        "src": "assets/pinnacle/density-tanh.webp",
+        "width": 2048
+      }
+    ]
+  }
+}

@@ -17,9 +17,9 @@ Source SHA-256:
 | `assets/pinnacle/cover.webp`                 | Slide 30, `Image66.jpg`               | 1920 × 1080 | Original embedded frame, WebP quality 95                                     |
 | `assets/pinnacle/activation-extraction.webp` | Slide 11, complete explanatory figure | 1840 × 910  | Poppler render at 200 dpi, cropped to `(60, 180, 1900, 1090)`, lossless WebP |
 | `assets/pinnacle/regions-relu.webp`          | Slide 32, `Image68.jp2`               | 832 × 816   | Original embedded figure with alpha, WebP quality 95                         |
-| `assets/pinnacle/regions-tanh.webp`          | Slide 33, `Image70.jp2`               | 1400 × 1400 | Original embedded figure with alpha, WebP quality 95                         |
+| `assets/pinnacle/regions-tanh.webp`          | Slide 33, `Image70.jp2`               | 1400 × 1400 | Original embedded figure with alpha, delivery WebP quality 92                |
 | `assets/pinnacle/regions-silu.webp`          | Slide 34, `Image71.jp2`               | 919 × 862   | Original embedded figure with alpha, WebP quality 95                         |
-| `assets/pinnacle/density-tanh.webp`          | Slide 24, `Image56.jp2`               | 2048 × 1014 | Original embedded pair of plots with alpha, lossless WebP                    |
+| `assets/pinnacle/density-tanh.webp`          | Slide 24, `Image56.jp2`               | 2048 × 1014 | Original embedded pair of plots with alpha, delivery WebP quality 98         |
 
 All embedded images retain their native dimensions. No AI generation,
 enhancement, recoloring or reconstructed scientific results are used. The
@@ -27,7 +27,7 @@ ReLU extraction diagram is explicitly explanatory; the three circular
 activation figures and density plots are results presented by the group.
 The circular masks are preserved; decorative slide shadows and surrounding
 slide text are not copied into the extracted images. Titles and color scales
-in the density figure remain intact. The assets total approximately 4 MB.
+in the density figure remain intact. The six assets total approximately 2.8 MB.
 
 The source slides and final extracted images were visually inspected. The
 cover comes from the slide titled “Animation sur 20 000 époques”; the PDF
@@ -49,8 +49,31 @@ Using Python with `pypdf` and Pillow, extract the named page images through
 property and save it with the filename and encoding in the table. For the
 diagram use `Image.open("detail-11.png").crop((60, 180, 1900, 1090))`.
 Save all WebP assets with `method=6`, preserving source alpha. WebP quality
-95 is used for the large colored region captures; the explanatory diagram
-and quantitative plots use `lossless=True` to preserve their text and scales.
+95 was used for the large colored region captures; the explanatory diagram
+and quantitative plots were initially encoded with `lossless=True`.
+
+### Delivery encoding
+
+On 18 October 2026, the tanh region figure and density plots were re-encoded
+from the original portfolio assets at commit
+`724ba2d4ca52337cb6afc5b1125e9b9af54efc73`. Dimensions and every alpha value
+are unchanged. RGB encoding is lossy; the native-size visual review checked
+the region boundaries, plot titles, axes, ticks and colour scales.
+
+| Asset               |          Before |         After | Delivery encoding         |
+| ------------------- | --------------: | ------------: | ------------------------- |
+| `density-tanh.webp` | 1,628,008 bytes | 540,790 bytes | WebP quality 98, method 6 |
+| `regions-tanh.webp` |   868,810 bytes | 748,660 bytes | WebP quality 92, method 6 |
+
+Reproduce with Python and Pillow from the repository root:
+
+```sh
+python scripts/optimize-portfolio-media.py --source-ref 724ba2d4ca52337cb6afc5b1125e9b9af54efc73
+```
+
+The script also optimizes the SpellWar cover. It checks dimensions and alpha
+after encoding. The explanatory diagram remains lossless, and the source
+PDF remains the scientific reference.
 
 ## Content and interpretation
 

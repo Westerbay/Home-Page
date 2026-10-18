@@ -33,6 +33,44 @@ const answer = {
   citations: [citation],
 }
 
+test.describe("responsive companion delivery", () => {
+  test.use({ deviceScaleFactor: 2 })
+
+  test("compact animation loads density-sized atlases, expanding loads native artwork", async ({
+    page,
+  }) => {
+    const images = new Set<string>()
+    page.on("request", (request) => {
+      const path = new URL(request.url()).pathname
+      if (path.includes("/assets/companion/"))
+        images.add(path.split("/").pop() ?? "")
+    })
+    await page.goto("about/")
+    await expect
+      .poll(() => [...images].sort())
+      .toEqual(["adventurer-atlas-2x.webp", "adventurer-talk-2x.webp"])
+    await expect(page.locator(".guide-companion-sprite")).toHaveCSS(
+      "animation-name",
+      "guide-idle"
+    )
+    await page.getByRole("button", { name: "Ouvrir l’assistant" }).click()
+    await page.getByRole("button", { name: "Agrandir", exact: true }).click()
+    await expect
+      .poll(() => [...images].sort())
+      .toEqual([
+        "adventurer-atlas-2x.webp",
+        "adventurer-atlas.webp",
+        "adventurer-talk-2x.webp",
+        "adventurer-talk.webp",
+      ])
+    await page.getByRole("button", { name: "Réduire", exact: true }).click()
+    await expect(page.locator(".guide-companion")).toHaveAttribute(
+      "data-state",
+      "idle"
+    )
+  })
+})
+
 for (const locale of ["fr", "en"]) {
   const prefix = locale === "en" ? "en/" : ""
   const open = locale === "en" ? "Open the assistant" : "Ouvrir l’assistant"

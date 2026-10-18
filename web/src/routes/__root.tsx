@@ -10,13 +10,12 @@ import {
 import { ThemeProvider } from "next-themes"
 import { getLocale } from "@workspace/i18n/runtime"
 import { Toaster } from "@workspace/ui/components/sonner"
+import { geistFont, spaceGroteskFont } from "@workspace/ui/lib/fonts"
 import { Header } from "../components/header"
 import { Footer } from "../components/footer"
 import { NotFound } from "../components/not-found"
 import { assetUrl } from "../lib/assets"
-import uiCss from "@workspace/ui/globals.css?url"
-import siteCss from "../styles.css?url"
-import guideCss from "../features/guide/guide.css?url"
+import rootCss from "../root.css?url"
 import { GuideProvider } from "../features/guide/guide-provider"
 import { GuideDock } from "../features/guide/guide-dock"
 import { GUIDE_ENABLED } from "../features/guide/config"
@@ -29,10 +28,26 @@ export const Route = createRootRoute({
       { name: "theme-color", content: "#fffefc" },
     ],
     links: [
-      { rel: "stylesheet", href: uiCss },
-      { rel: "stylesheet", href: siteCss },
-      { rel: "stylesheet", href: guideCss },
-      { rel: "icon", type: "image/png", href: assetUrl("assets/avatar.png") },
+      { rel: "stylesheet", href: rootCss },
+      {
+        rel: "preload",
+        as: "font",
+        type: "font/woff2",
+        href: geistFont,
+        crossOrigin: "anonymous",
+      },
+      {
+        rel: "preload",
+        as: "font",
+        type: "font/woff2",
+        href: spaceGroteskFont,
+        crossOrigin: "anonymous",
+      },
+      {
+        rel: "icon",
+        type: "image/webp",
+        href: assetUrl("assets/avatar-128.webp"),
+      },
     ],
   }),
   component: Layout,

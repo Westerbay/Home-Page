@@ -6,10 +6,10 @@ export function SchoolMention() {
     <div className="school-mention">
       <span className="school-logo">
         <img
-          src={assetUrl("assets/ensicaen.png")}
+          src={assetUrl("assets/ensicaen.webp")}
           alt=""
-          width="1200"
-          height="1161"
+          width="128"
+          height="124"
         />
       </span>
       <span>

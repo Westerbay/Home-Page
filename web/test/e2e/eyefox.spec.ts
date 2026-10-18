@@ -61,7 +61,7 @@ test("Eyefox is playable only on its detail page and follows locale and theme", 
     .click()
   await expect(game).toHaveAttribute("data-theme", "dark")
   await page
-    .getByRole("button", { name: "Switch to English", exact: true })
+    .getByRole("link", { name: "FR / EN · Switch to English", exact: true })
     .click()
   await expect(page).toHaveURL(/\/en\/projects\/eyefox\/?$/)
   await expect(game).toHaveAttribute("data-locale", "en")

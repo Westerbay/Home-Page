@@ -27,6 +27,49 @@ ESLint, TypeScript and URL unit tests. Turbo builds Paraglide before the web
 application; building also generates the route tree on a fresh checkout.
 Browser tests serve the static output on port 4175.
 
+### HTML, SEO and Lighthouse audits
+
+The SEO browser tests inspect all 22 prerendered French and English pages before
+JavaScript runs. They check canonical URLs, reciprocal language alternatives,
+Open Graph/Twitter metadata, social image availability and sitemap consistency,
+then exercise language navigation with and without JavaScript. These tests run
+in both base-path CI jobs.
+
+```sh
+pnpm test:e2e web/test/e2e/seo.spec.ts
+pnpm test:html
+pnpm audit:lighthouse
+pnpm audit:lighthouse --desktop /
+```
+
+`test:html` requires Java 17 or later (CI supplies Temurin 21) and uses the pinned
+official Nu HTML checker to inspect all generated HTML, including the legacy
+redirects and 404 page. Set `JAVA` to an executable path if Java is not on PATH.
+The validator package's automatic Java downloader is disabled; installing npm
+dependencies does not install a Java runtime. A standalone runtime is also
+available from the [official Nu distribution](https://github.com/validator/validator/releases).
+
+HTML errors fail the check. Nu currently rejects the standardized CSS
+`@view-transition` rule; only that exact diagnostic is excluded from the failure
+count. The raw diagnostics, including that known parser limitation and non-blocking
+warnings, remain in `.cache/audits/{root,subpath}/w3c.json`. Do not broaden this
+exception to hide unrelated CSS or HTML failures.
+
+Lighthouse uses the installed Playwright Chromium and starts a temporary static
+preview on port 4176 (`AUDIT_PORT` can override it). Its default mobile run covers
+Home, Projects, SpellWar, PINNacle, About and the English homepage. Pass page paths
+to select other routes; `--desktop` selects desktop emulation. JSON and HTML reports
+are stored in `.cache/audits/{root,subpath}/lighthouse/`. Run audits sequentially,
+after builds and browser tests, to avoid CPU contention or files changing mid-run.
+
+The audit preview negotiates gzip for text resources, as production hosting does,
+while keeping preview cache disabled. These are local lab measurements, not real
+visitor Core Web Vitals or a verification of the CDN cache policy. Keep performance
+scores diagnostic because machine load and WebGL emulation affect them. CI runs
+the mobile homepage audit for each base path and retains its reports along with Nu
+results as artifacts. Search Console ownership and actual Google indexing are
+separate production checks; the repository cannot assert them.
+
 Test the GitHub Pages base path as well as the root:
 
 ```sh
@@ -158,7 +201,7 @@ Edit text in `packages/i18n/messages/{fr,en}.json`, public identity in
 `packages/config/src/profile.json`, and projects in
 `web/src/features/projects/data/projects.ts`.
 
-Add each new project route to the prerender list in `web/vite.config.ts`
+Add each new project route to `publicPagePaths` in `web/src/lib/site.ts`
 and check direct access in both languages. Store images in
 `web/public/assets` and resolve their paths with the asset helper.
 
@@ -167,7 +210,8 @@ wording refinements can be added after V1.
 
 ## GitHub Pages
 
-The public URL is `https://westerbay.github.io/Home-Page/`.
+The public URL is `https://portfolio.mathis-db.com/`. The former
+`https://westerbay.github.io/Home-Page/` address redirects to the custom domain.
 Configure **Settings → Pages → Source** as **GitHub Actions**. Run the
 **Publish portfolio** workflow manually from the Actions tab. Publishing
 remains a `workflow_dispatch` action rather than happening on every push.

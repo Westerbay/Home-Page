@@ -44,7 +44,7 @@ test("navigation, language switch and direct reload preserve the project", async
   await expect(
     page.getByRole("link", { name: "Voir le code", exact: true })
   ).toHaveAttribute("href", "https://github.com/Westerbay/Booster-Break")
-  await page.getByRole("button", { name: "Switch to English" }).click()
+  await page.getByRole("link", { name: "Switch to English" }).click()
   await expect(
     page.getByRole("link", { name: "Play", exact: true })
   ).toHaveAttribute("href", "https://booster.mathis-db.com/")
@@ -304,7 +304,7 @@ test("the shared WebGL scene works on home and project pages in both languages",
   await expect(page.getByRole("dialog")).toBeVisible()
   await page.keyboard.press("Escape")
   await expect(page.getByRole("dialog")).not.toBeVisible()
-  await page.getByRole("button", { name: "Switch to English" }).click()
+  await page.getByRole("link", { name: "Switch to English" }).click()
   await expect(scene.locator("[role=status]")).toHaveText("Drawing updated")
   await expect(
     page.getByRole("button", { name: "Symbol guide", exact: true })
@@ -381,7 +381,7 @@ for (const [locale, messages] of [
     await expect(page.locator(".project-card")).toHaveCount(2)
     await page.locator(".project-card").filter({ hasText: "PINNacle" }).click()
     await expect(page).toHaveURL(/projects\/pinnacle\/?$/)
-    await page.getByRole("button", { name: messages.language }).click()
+    await page.getByRole("link", { name: messages.language }).click()
     await expect(page.locator("html")).toHaveAttribute(
       "lang",
       locale ? "fr" : "en"

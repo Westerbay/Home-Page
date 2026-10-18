@@ -16,6 +16,30 @@ function serverMotionSnapshot() {
   return true
 }
 
+function companionImage(
+  character: string,
+  animation: string,
+  expanded: boolean
+) {
+  const base = `assets/companion/${character}-${animation}`
+  const normal = assetUrl(`${base}${expanded ? "" : "-1x"}.webp`)
+  const retina = expanded ? normal : assetUrl(`${base}-2x.webp`)
+  const dense = expanded ? normal : assetUrl(`${base}-3x.webp`)
+  const imageSrcSet = expanded
+    ? undefined
+    : `${normal} 1x, ${retina} 2x, ${dense} 3x`
+  preload(normal, {
+    as: "image",
+    imageSrcSet,
+    fetchPriority: "low",
+  })
+  return {
+    normal: `url("${normal}")`,
+    retina: `url("${retina}")`,
+    dense: `url("${dense}")`,
+  }
+}
+
 export function GuideCompanion() {
   const { state } = useGuide()
   const { onEyefox, onGuide } = useRouterState({
@@ -34,16 +58,16 @@ export function GuideCompanion() {
   )
   const fromEyefox = /\/projects\/eyefox\/?$/.test(state.returnTo.pathname)
   const character = onEyefox || (onGuide && fromEyefox) ? "fox" : "adventurer"
-  const atlasUrl = assetUrl(`assets/companion/${character}-atlas.png`)
-  const talkUrl = assetUrl(`assets/companion/${character}-talk.png`)
-  preload(atlasUrl, { as: "image" })
-  preload(talkUrl, { as: "image" })
+  const atlas = companionImage(character, "atlas", onGuide)
+  const talk = companionImage(character, "talk", onGuide)
   let pose = state.companion
   if (reducedMotion && state.sleeping && pose !== "thinking") pose = "hidden"
   if (reducedMotion && pose === "speaking") pose = "idle"
-  const imageUrl = pose === "speaking" ? talkUrl : atlasUrl
+  const image = pose === "speaking" ? talk : atlas
   const style = {
-    backgroundImage: `url("${imageUrl}")`,
+    "--companion-normal": image.normal,
+    "--companion-retina": image.retina,
+    "--companion-dense": image.dense,
     aspectRatio: "1 / 1",
   }
   return (

@@ -18,6 +18,8 @@
     "format:check": "prettier --check web packages scripts docs .github *.json *.yaml *.md *.ts *.js",
     "test": "turbo test",
     "test:e2e": "playwright test",
+    "test:html": "node scripts/check-html.mjs",
+    "audit:lighthouse": "node scripts/audit-lighthouse.mjs",
     "check": "pnpm format:check && pnpm build && pnpm lint && pnpm typecheck && pnpm test",
     "preview": "node scripts/serve.mjs"
   },
@@ -25,8 +27,10 @@
     "@playwright/test": "^1.58.2",
     "@tanstack/eslint-config": "0.3.2",
     "eslint": "9.36.0",
+    "lighthouse": "13.5.0",
     "prettier": "3.8.3",
     "turbo": "2.9.18",
-    "typescript": "5.9.3"
+    "typescript": "5.9.3",
+    "vnu-jar": "26.10.12"
   }
 }

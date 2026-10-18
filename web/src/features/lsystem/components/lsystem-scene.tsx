@@ -55,8 +55,12 @@ export function LSystemScene({ controls }: { controls: "compact" | "full" }) {
       ) : (
         <div className="lsystem-placeholder">
           <img
-            src={assetUrl("assets/plants-render.png")}
+            src={assetUrl("assets/plants-render.webp")}
             alt={m.plants_summary()}
+            fetchPriority={controls === "compact" ? "high" : "auto"}
+            loading={controls === "compact" ? "eager" : "lazy"}
+            width={1200}
+            height={900}
           />
           <p>{failed ? m.scene_unavailable() : m.scene_loading()}</p>
         </div>

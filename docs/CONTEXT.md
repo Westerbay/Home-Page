@@ -22,7 +22,7 @@ Eyefox-Puzzle, SpellWar, OSProject and Bachelor-Side-Projects, plus the
 its own `shared/` assets. The subsequent ABOP component refactor removes
 that project's old page shell and shared assets entirely.
 
-The public URL is `https://westerbay.github.io/Home-Page/`. Publishing uses
+The public URL is `https://portfolio.mathis-db.com/`. Publishing uses
 the manual **Publish portfolio** workflow, with GitHub Pages configured to
 use GitHub Actions. Check the workflow result and public site when releasing;
 these notes do not stand in for release verification.
@@ -135,8 +135,8 @@ address is explicitly approved for public display and opens the visitor’s mail
 client through a mailto link. Eyefox’s historical privacy-policy contact is a
 separate record and remains unchanged.
 
-Additional screenshots, videos, project notes, personal projects, English
-wording refinements and a future custom domain can be handled later. They
+Additional screenshots, videos, project notes, personal projects and English
+wording refinements can be handled later. They
 do not block the authorized V1 release.
 
 ## Documentation

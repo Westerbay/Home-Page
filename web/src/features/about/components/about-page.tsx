@@ -18,7 +18,12 @@ export function AboutPage() {
       </header>
       <div className="about-content">
         <figure className="profile-portrait">
-          <img src={assetUrl(profile.avatar)} alt={m.profile_alt()} />
+          <img
+            src={assetUrl(profile.avatar)}
+            alt={m.profile_alt()}
+            width="450"
+            height="450"
+          />
           <figcaption>
             <span>Mathis Dubuisson</span>
             <SchoolMention />

@@ -26,7 +26,7 @@ export function JourneyTree() {
     },
     {
       id: "engineering",
-      logo: "assets/ensicaen.png",
+      logo: "assets/ensicaen.webp",
       date: m.journey_engineering_date(),
       title: m.journey_engineering_title(),
       context: m.journey_engineering_school(),
