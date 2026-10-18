@@ -6,45 +6,10 @@ import {
   createPayload,
   GuideError,
   REQUEST_TIMEOUT_MS,
-  RESPONSE_BYTES,
   sleepingSchema,
 } from "./protocol.ts"
 import type { GuideSession } from "./session.ts"
-
-export async function readResponse(response: Response) {
-  const length = Number(response.headers.get("content-length"))
-  if (length > RESPONSE_BYTES || !response.body) {
-    await response.body?.cancel()
-    throw new GuideError("response")
-  }
-  const reader = response.body.getReader()
-  const chunks: Uint8Array[] = []
-  let bytes = 0
-  try {
-    for (;;) {
-      const { done, value } = await reader.read()
-      if (done) break
-      bytes += value.byteLength
-      if (bytes > RESPONSE_BYTES) throw new GuideError("response")
-      chunks.push(value)
-    }
-    const buffer = new Uint8Array(bytes)
-    let offset = 0
-    for (const chunk of chunks) {
-      buffer.set(chunk, offset)
-      offset += chunk.byteLength
-    }
-    return JSON.parse(
-      new TextDecoder("utf-8", { fatal: true }).decode(buffer)
-    ) as unknown
-  } catch (error) {
-    await reader.cancel()
-    if (error instanceof GuideError) throw error
-    throw new GuideError("response")
-  } finally {
-    reader.releaseLock()
-  }
-}
+import { readResponse, readStream } from "./response.ts"
 
 export function createGuideTransport(
   endpoint: string,
@@ -78,39 +43,90 @@ export function createGuideTransport(
         )
         const response = await fetcher(endpoint, {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "text/event-stream",
+          },
           body: JSON.stringify(payload),
           credentials: "omit",
           redirect: "error",
           signal: controller.signal,
         })
-        const body: unknown = await readResponse(response)
-        if (controller.signal.aborted || !session.isCurrent(operation)) return
-        if (response.status === 503) {
-          const sleeping = sleepingSchema.safeParse(body)
-          if (sleeping.success) {
-            session.sleep(operation, sleeping.data)
-            return
-          }
-          throw new GuideError("unavailable")
-        }
-        if (!response.ok) throw new GuideError("unavailable")
-        const answer = answerSchema.safeParse(body)
-        if (!answer.success) throw new GuideError("response")
         const messageId = crypto.randomUUID()
         const threadId = context?.threadId ?? "portfolio-guide"
         const runId = context?.runId ?? crypto.randomUUID()
-        session.receive(operation, messageId, answer.data)
-        yield { type: EventType.RUN_STARTED, threadId, runId }
-        yield {
-          type: EventType.TEXT_MESSAGE_START,
-          messageId,
-          role: "assistant",
-        }
-        yield {
-          type: EventType.TEXT_MESSAGE_CONTENT,
-          messageId,
-          delta: answer.data.answer,
+        const streamed =
+          response.ok &&
+          response.headers.get("content-type")?.split(";", 1)[0].trim() ===
+            "text/event-stream"
+        if (streamed) {
+          let raw = ""
+          let displayed = ""
+          let started = false
+          for await (const event of readStream(response, controller.signal)) {
+            if (controller.signal.aborted || !session.isCurrent(operation))
+              return
+            if (event.type === "sleeping") {
+              session.sleep(operation, event.sleeping)
+              return
+            }
+            if (event.type === "delta") raw += event.delta
+            else {
+              if (raw && raw.trim() !== event.answer.answer)
+                throw new GuideError("response")
+              raw = event.answer.answer
+            }
+            // Match the validated answer's trim without losing whitespace
+            // between tokens, or publishing a final replacement/flicker.
+            const text = raw.trim()
+            const delta = text.slice(displayed.length)
+            if (delta) {
+              if (!started) {
+                session.stream(operation, messageId)
+                started = true
+                yield { type: EventType.RUN_STARTED, threadId, runId }
+                yield {
+                  type: EventType.TEXT_MESSAGE_START,
+                  messageId,
+                  role: "assistant",
+                }
+              }
+              yield {
+                type: EventType.TEXT_MESSAGE_CONTENT,
+                messageId,
+                delta,
+              }
+              displayed = text
+            }
+            if (event.type === "result")
+              session.receive(operation, messageId, event.answer, true)
+          }
+        } else {
+          const body: unknown = await readResponse(response, controller.signal)
+          if (controller.signal.aborted || !session.isCurrent(operation)) return
+          if (response.status === 503) {
+            const sleeping = sleepingSchema.safeParse(body)
+            if (sleeping.success) {
+              session.sleep(operation, sleeping.data)
+              return
+            }
+            throw new GuideError("unavailable")
+          }
+          if (!response.ok) throw new GuideError("unavailable")
+          const answer = answerSchema.safeParse(body)
+          if (!answer.success) throw new GuideError("response")
+          session.receive(operation, messageId, answer.data)
+          yield { type: EventType.RUN_STARTED, threadId, runId }
+          yield {
+            type: EventType.TEXT_MESSAGE_START,
+            messageId,
+            role: "assistant",
+          }
+          yield {
+            type: EventType.TEXT_MESSAGE_CONTENT,
+            messageId,
+            delta: answer.data.answer,
+          }
         }
         yield { type: EventType.TEXT_MESSAGE_END, messageId }
         yield {

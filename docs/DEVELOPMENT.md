@@ -66,12 +66,16 @@ server is needed, and no request is sent to Cloudflare:
 
 ```sh
 VITE_GUIDE_ENABLED=true VITE_GUIDE_URL=http://127.0.0.1:8788 SITE_BASE_PATH=/ pnpm check
-SITE_BASE_PATH=/ CI=true pnpm test:e2e web/test/e2e/guide.spec.ts
+SITE_BASE_PATH=/ CI=true pnpm test:e2e web/test/e2e/guide.spec.ts web/test/e2e/guide-stream.spec.ts
 ```
 
 Repeat sequentially with `SITE_BASE_PATH=/Home-Page/`. Guide browser tests skip
 when the built feature is disabled; ordinary page tests still run. Node tests
-cover the protocol, bounded history, response limits and session recovery.
+cover the protocol, bounded history, response limits and session recovery. Streaming
+tests also exercise the real TanStack chat client with controlled `ReadableStream`
+responses: partial text before completion, rejected final answers, interrupted
+streams, Unicode boundaries, timeouts and persistence. Browser streaming fixtures
+replace only the chat fetch locally and never contact the real service.
 
 Never put the Worker's private password in a frontend variable or repository.
 The public chat route must be enabled separately on the existing Worker before
@@ -109,10 +113,14 @@ The speech-bubble button remains usable. Reloading during sleep or enabling redu
 skips that sequence. Only a successful manual request wakes the character; generic
 errors never start a new sleep sequence.
 
-Click the bubble above the character to open its dialogue. Successful replies
-appear progressively while the sprite speaks and finish without an extra control.
-Expanding and minimizing preserve this local presentation's progress. Reloading restores
-the complete answer without replay, and reduced motion disables the reveal.
+Click the bubble above the character to open its dialogue. Replies arrive from
+the Worker progressively while the sprite speaks. The first text ends its thinking
+pose; validated completion ends speech without an additional typing delay.
+Expanding and minimizing preserve the stream. Reloading restores completed answers
+only. Reduced motion keeps progressive text but disables the character animation.
+Check that stopping, clearing or failing midway removes the provisional answer and
+restores an untouched submitted draft. Legacy JSON responses still use the local
+reveal for compatibility with older Worker deployments and existing test fixtures.
 The Assistant displays the answer without a separate sources section and links to
 the Cloudflare-RAG repository as the source project. Its single
 sprite keeps the same size and position when opening or closing the compact dialog.

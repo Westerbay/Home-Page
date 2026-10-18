@@ -9,6 +9,7 @@ import {
 import type {
   GuideAnswer,
   GuideErrorCode,
+  GuideMessage,
   Receipt,
   Sleeping,
 } from "./protocol.ts"
@@ -56,6 +57,20 @@ export interface GuideState extends Snapshot {
   returnTo: GuideReturnLocation
   companion: CompanionState
   reveal: GuideReveal | null
+  streamingMessageId: string | null
+}
+
+export function retainedMessages<T extends { id: string; role: string }>(
+  messages: T[],
+  receipts: Record<string, Receipt | undefined>,
+  streamingMessageId: string | null = null
+) {
+  return messages.filter(
+    (message) =>
+      message.role === "user" ||
+      message.id === streamingMessageId ||
+      (Object.hasOwn(receipts, message.id) && Boolean(receipts[message.id]))
+  )
 }
 
 export function readSnapshot(raw: string) {
@@ -72,7 +87,10 @@ export function readSnapshot(raw: string) {
     )
       throw new Error("snapshot-receipt")
   }
-  return parsed
+  return {
+    ...parsed,
+    messages: retainedMessages(parsed.messages, parsed.receipts),
+  }
 }
 
 export function createGuideSession(
@@ -98,6 +116,7 @@ export function createGuideSession(
     returnTo: { pathname: "/", search: {}, hash: "" },
     companion: "idle",
     reveal: null,
+    streamingMessageId: null,
   }
   let state = initial
   let storage: Storage | null = null
@@ -237,7 +256,8 @@ export function createGuideSession(
       return { messages: state.messages }
     },
     setItem(_id, value) {
-      const messages = z.array(messageSchema).parse(value.messages)
+      const parsed = z.array(messageSchema).parse(value.messages)
+      const messages = retainedMessages(parsed, state.receipts)
       update({ messages })
     },
     removeItem() {
@@ -281,31 +301,54 @@ export function createGuideSession(
         interrupted: false,
         error: null,
         companion: "thinking",
+        streamingMessageId: null,
       })
       return generation
     },
     current: () => generation,
     isCurrent: (id: number) => id === generation,
-    receive(id: number, messageId: string, answer: GuideAnswer) {
+    stream(id: number, messageId: string) {
+      if (id !== generation || !state.pending) return
+      cancelReveal()
+      state = { ...state, streamingMessageId: messageId, companion: "speaking" }
+      publish()
+    },
+    receive(
+      id: number,
+      messageId: string,
+      answer: GuideAnswer,
+      streamed = false
+    ) {
       if (id !== generation) return
       const receipt = { status: answer.status, citations: answer.citations }
       cancelAnimation()
-      revealAnswer(messageId, answer.answer)
+      if (!streamed) revealAnswer(messageId, answer.answer)
+      const message: GuideMessage = {
+        id: messageId,
+        role: "assistant",
+        parts: [{ type: "text", content: answer.answer }],
+      }
       update({
+        messages: [
+          ...state.messages.filter((item) => item.id !== messageId),
+          message,
+        ],
         receipts: { ...state.receipts, [messageId]: receipt },
         submittedDraft: null,
         sleeping: null,
         companion: state.reveal ? "speaking" : "idle",
+        streamingMessageId: null,
       })
     },
     sleep(id: number, sleeping: Sleeping) {
       if (id !== generation) return
       cancelReveal()
-      update({ sleeping })
+      update({ sleeping, streamingMessageId: null })
       animateSleep()
     },
     fail(id: number, error: GuideErrorCode) {
-      if (id === generation) update({ error })
+      if (id === generation)
+        update({ error, streamingMessageId: null, companion: "idle" })
     },
     finish(id: number, succeeded: boolean) {
       if (id !== generation) return
@@ -317,7 +360,10 @@ export function createGuideSession(
           ? "interrupted"
           : state.error
       let companion = state.companion
-      if (companion === "thinking")
+      if (
+        companion === "thinking" ||
+        (companion === "speaking" && !state.reveal)
+      )
         companion = state.sleeping ? "hidden" : "idle"
       update({
         pending: false,
@@ -326,6 +372,7 @@ export function createGuideSession(
         error,
         interrupted: !succeeded && !state.sleeping,
         companion,
+        streamingMessageId: null,
       })
     },
     stop() {
@@ -339,6 +386,7 @@ export function createGuideSession(
         interrupted: true,
         error: "interrupted",
         companion: state.sleeping ? "hidden" : "idle",
+        streamingMessageId: null,
       })
     },
     clear() {
@@ -356,6 +404,7 @@ export function createGuideSession(
         interrupted: false,
         error: null,
         companion,
+        streamingMessageId: null,
       })
     },
     finishReveal,
