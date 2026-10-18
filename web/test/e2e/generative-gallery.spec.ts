@@ -57,7 +57,7 @@ for (const [locale, messages] of [
       .filter({ hasText: "StyleGAN & Cheap DiT" })
       .click()
     await expect(page).toHaveURL(/projects\/stylegan-cheap-dit\/?$/)
-    await page.getByRole("button", { name: messages.language }).click()
+    await page.getByRole("link", { name: messages.language }).click()
     await expect(page.locator("html")).toHaveAttribute(
       "lang",
       locale ? "fr" : "en"

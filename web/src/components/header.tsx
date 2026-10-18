@@ -1,13 +1,26 @@
 import * as m from "@workspace/i18n/messages"
-import { Link } from "@tanstack/react-router"
-import { useEffect, useState } from "react"
-import { getLocale, setLocale } from "@workspace/i18n/runtime"
+import { Link, useLocation } from "@tanstack/react-router"
+import { useEffect, useState, useSyncExternalStore } from "react"
+import { getLocale, localizeHref } from "@workspace/i18n/runtime"
 import { useTheme } from "next-themes"
 import { Moon, Sun } from "lucide-react"
 import profile from "@workspace/config/profile" with { type: "json" }
 import { assetUrl } from "../lib/assets"
 import { GUIDE_ENABLED } from "../features/guide/config"
 import { GuideLink } from "../features/guide/guide-link"
+
+function subscribeToUrl(onChange: () => void) {
+  window.addEventListener("popstate", onChange)
+  window.addEventListener("hashchange", onChange)
+  return () => {
+    window.removeEventListener("popstate", onChange)
+    window.removeEventListener("hashchange", onChange)
+  }
+}
+
+function currentUrl() {
+  return window.location.href
+}
 
 function ThemeControl() {
   const { resolvedTheme, setTheme } = useTheme()
@@ -37,15 +50,29 @@ function ThemeControl() {
 }
 export function Header() {
   const locale = getLocale()
-  const changeLocale = () => setLocale(locale === "fr" ? "en" : "fr")
+  const routeHref = useLocation({ select: (location) => location.href })
+  // Static HTML cannot include the visitor's query or fragment. Read them after
+  // hydration while keeping the prerendered link valid without JavaScript.
+  const href = useSyncExternalStore(
+    subscribeToUrl,
+    currentUrl,
+    () => import.meta.env.BASE_URL.replace(/\/$/, "") + routeHref
+  )
+  const otherLocale = locale === "fr" ? "en" : "fr"
+  const languageHref = localizeHref(href, { locale: otherLocale })
   return (
     <header className="site-header">
       <Link
         className="identity"
         to="/"
-        aria-label={`${profile.name} · ${m.home()}`}
+        aria-label={`${profile.name} · ${m.role()} · ${m.home()}`}
       >
-        <img src={assetUrl(profile.avatar)} alt="" width="38" height="38" />
+        <img
+          src={assetUrl(profile.avatarThumbnail)}
+          alt=""
+          width="38"
+          height="38"
+        />
         <span>
           Mathis Dubuisson<span className="identity-sub">{m.role()}</span>
         </span>
@@ -79,13 +106,13 @@ export function Header() {
         {GUIDE_ENABLED && <GuideLink />}
       </nav>
       <div className="header-tools">
-        <button
+        <a
           className="utility-button language-button"
-          type="button"
-          lang={locale === "fr" ? "en" : "fr"}
-          aria-label={m.language()}
+          href={languageHref}
+          hrefLang={otherLocale}
+          lang={otherLocale}
+          aria-label={`FR / EN · ${m.language()}`}
           title={m.language()}
-          onClick={changeLocale}
         >
           <span
             className={locale === "fr" ? "language-current" : "language-other"}
@@ -102,7 +129,7 @@ export function Header() {
           >
             EN
           </span>
-        </button>
+        </a>
         <ThemeControl />
       </div>
     </header>

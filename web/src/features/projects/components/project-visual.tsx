@@ -2,13 +2,22 @@ import * as m from "@workspace/i18n/messages"
 import { assetUrl } from "../../../lib/assets"
 import type { Project } from "../data/projects"
 
-export function ProjectVisual({ project }: { project: Project }) {
+export function ProjectVisual({
+  project,
+  loading = "lazy",
+  fetchPriority,
+}: {
+  project: Project
+  loading?: "eager" | "lazy"
+  fetchPriority?: "high" | "low" | "auto"
+}) {
   if (project.image)
     return (
       <img
         src={assetUrl(project.image)}
         alt={`${m.project_visual()} · ${project.title}`}
-        loading="lazy"
+        loading={loading}
+        fetchPriority={fetchPriority}
       />
     )
   return (

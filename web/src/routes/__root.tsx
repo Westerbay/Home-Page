@@ -32,7 +32,11 @@ export const Route = createRootRoute({
       { rel: "stylesheet", href: uiCss },
       { rel: "stylesheet", href: siteCss },
       { rel: "stylesheet", href: guideCss },
-      { rel: "icon", type: "image/png", href: assetUrl("assets/avatar.png") },
+      {
+        rel: "icon",
+        type: "image/webp",
+        href: assetUrl("assets/avatar-128.webp"),
+      },
     ],
   }),
   component: Layout,

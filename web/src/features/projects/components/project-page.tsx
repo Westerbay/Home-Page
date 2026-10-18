@@ -40,7 +40,11 @@ export function ProjectPage({ slug }: { slug: string }) {
       ) : (
         <figure className="project-visual">
           <div className={`detail-cover project-${project.slug}`}>
-            <ProjectVisual project={project} />
+            <ProjectVisual
+              project={project}
+              loading="eager"
+              fetchPriority="high"
+            />
           </div>
           {project.imageCaption && (
             <figcaption className="project-visual-caption">

@@ -1,7 +1,8 @@
 import { createFileRoute, notFound } from "@tanstack/react-router"
 import { getProjects } from "../features/projects/data/projects"
 import { ProjectPage } from "../features/projects/components/project-page"
-import { pageMeta } from "../lib/seo"
+import * as m from "@workspace/i18n/messages"
+import { pageHead } from "../lib/seo"
 
 export const Route = createFileRoute("/projects/$slug")({
   loader: ({ params }) => {
@@ -9,9 +10,16 @@ export const Route = createFileRoute("/projects/$slug")({
     if (!project) throw notFound()
     return project
   },
-  head: ({ loaderData }) => ({
-    meta: loaderData ? pageMeta(loaderData.title, loaderData.summary) : [],
-  }),
+  head: ({ loaderData }) => {
+    if (!loaderData) return {}
+    return pageHead({
+      title: loaderData.title,
+      description: loaderData.summary,
+      path: `/projects/${loaderData.slug}/`,
+      imageName: loaderData.slug,
+      imageAlt: m.social_project_alt({ project: loaderData.title }),
+    })
+  },
   component: ProjectRoute,
 })
 function ProjectRoute() {

@@ -17,6 +17,25 @@ All originals are 1920 × 1080. Pillow resized them to 1600 × 900 with Lanczos
 and exported RGB WebP at quality 85, method 6. No crop, colour adjustment,
 retouching or AI enhancement was applied.
 
+## Project cover
+
+`web/public/assets/spellwar/gameplay.webp` uses the existing project cover,
+originally published as `images/game1.png` in the same SpellWar web branch.
+The complete 1920 × 1080 frame is retained. On 18 October 2026, Pillow
+re-encoded the portfolio PNG as WebP quality 90, method 6: 2,345,757 bytes
+became 311,444 bytes. Dimensions and alpha are unchanged; the RGB encoding
+is lossy and was visually checked at native resolution.
+
+The original portfolio PNG is available at commit
+`724ba2d4ca52337cb6afc5b1125e9b9af54efc73`. Reproduce with Python and Pillow:
+
+```sh
+python scripts/optimize-portfolio-media.py --source-ref 724ba2d4ca52337cb6afc5b1125e9b9af54efc73
+```
+
+This script also optimizes two PINNacle figures. The cover reference now
+uses the WebP, and the unused PNG has been removed from public assets.
+
 ## Gameplay video
 
 Mathis recorded and supplied the gameplay on 18 October 2026, and authorized

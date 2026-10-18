@@ -34,10 +34,10 @@ export function GuideCompanion() {
   )
   const fromEyefox = /\/projects\/eyefox\/?$/.test(state.returnTo.pathname)
   const character = onEyefox || (onGuide && fromEyefox) ? "fox" : "adventurer"
-  const atlasUrl = assetUrl(`assets/companion/${character}-atlas.png`)
-  const talkUrl = assetUrl(`assets/companion/${character}-talk.png`)
-  preload(atlasUrl, { as: "image" })
-  preload(talkUrl, { as: "image" })
+  const atlasUrl = assetUrl(`assets/companion/${character}-atlas.webp`)
+  const talkUrl = assetUrl(`assets/companion/${character}-talk.webp`)
+  preload(atlasUrl, { as: "image", fetchPriority: "low" })
+  preload(talkUrl, { as: "image", fetchPriority: "low" })
   let pose = state.companion
   if (reducedMotion && state.sleeping && pose !== "thinking") pose = "hidden"
   if (reducedMotion && pose === "speaking") pose = "idle"
