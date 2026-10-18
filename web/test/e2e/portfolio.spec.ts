@@ -11,9 +11,15 @@ test("static HTML contains localized content without JavaScript", async ({
   await page.goto(baseURL!)
   await expect(page.getByRole("heading", { level: 1 })).toContainText("Mathis")
   await expect(page.locator(".hero-intro")).toHaveText(fr.intro)
+  await page.locator('.hero-actions a[href="#selected"]').click()
+  await expect(page).toHaveURL(new URL("#selected", baseURL).href)
+  await expect(page.locator("#selected")).toBeInViewport()
   await page.goto(baseURL + "en/")
   await expect(page.locator("html")).toHaveAttribute("lang", "en")
   await expect(page.locator(".hero-intro")).toHaveText(en.intro)
+  await page.locator('.hero-actions a[href="#selected"]').click()
+  await expect(page).toHaveURL(new URL("en/#selected", baseURL).href)
+  await expect(page.locator("#selected")).toBeInViewport()
   await expect(page.locator("a[href*='mathis-gala']")).toHaveCount(0)
   await context.close()
 })
@@ -187,6 +193,20 @@ for (const width of [320, 390, 768, 1440, 1920, 3840]) {
           () => document.documentElement.scrollWidth <= innerWidth
         )
       ).toBe(true)
+      // Home previews and project galleries load as they enter the viewport.
+      for (const image of await page
+        .locator(".project-story img, .home-projects img, .home-research img")
+        .all()) {
+        await image.scrollIntoViewIfNeeded()
+        await expect
+          .poll(() =>
+            image.evaluate(
+              (element: HTMLImageElement) =>
+                element.complete && element.naturalWidth > 0
+            )
+          )
+          .toBe(true)
+      }
       expect(
         await page
           .locator("img")

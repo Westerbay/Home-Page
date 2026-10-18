@@ -17,7 +17,7 @@ Source grids:
 
 The torchvision grids have 2-pixel padding. Extract each sample at
 `x = 2 + column * 258`, `y = 2 + row * 258`, with a 256 × 256 crop.
-All display assets are lossless WebP, with no AI enhancement or retouching.
+The project gallery assets are lossless WebP, with no AI enhancement or retouching.
 
 The GAN comparison selects zero-based grid positions `0, 1, 2, 8, 14, 11`,
 including visible repetitions. The VAE comparison selects columns `0` and `6`
@@ -81,3 +81,12 @@ those assets. The metadata records original PNG filenames; the public images
 use the same stems with a `.webp` extension. Increasing `--count` creates consecutive seeds; only the first
 sample gets intermediate frames. Review new outputs before adding them to the
 public selection.
+
+## Homepage thumbnail
+
+`web/public/assets/home/stylegan-cheap-dit.webp` is a 600 × 301 thumbnail of
+`stylegan-cheap-dit/cover.webp`, derived on 18 October 2026 for the homepage.
+Pillow downsampled the complete cover with Lanczos and encoded WebP at quality
+88, method 6. The selected training outputs and their arrangement are unchanged;
+there is no crop, retouching, enhancement or new generation. The gallery retains
+its original full-size lossless assets.

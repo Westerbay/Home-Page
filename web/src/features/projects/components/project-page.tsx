@@ -6,12 +6,15 @@ import { ProjectVisual } from "./project-visual"
 import { LSystemScene } from "../../lsystem/components/lsystem-scene"
 import { GenerativeGallery } from "./generative-gallery"
 import { EyefoxScene } from "../../eyefox/components/eyefox-scene"
+import { ProjectStory } from "./project-story"
+import { getProjectStory } from "../data/project-stories"
 
 export function ProjectPage({ slug }: { slug: string }) {
   const projects = getProjects()
   const project = projects.find((item) => item.slug === slug)
   if (!project) return null
   const next = projects[(projects.indexOf(project) + 1) % projects.length]
+  const story = getProjectStory(project.slug)
   return (
     <article
       className="inner-page project-detail"
@@ -93,6 +96,7 @@ export function ProjectPage({ slug }: { slug: string }) {
         </div>
       </div>
       {project.slug === "stylegan-cheap-dit" && <GenerativeGallery />}
+      <ProjectStory sections={story} />
       <Link
         className="next-project"
         to="/projects/$slug/"
