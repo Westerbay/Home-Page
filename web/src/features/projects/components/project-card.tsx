@@ -9,13 +9,22 @@ export function ProjectCard({
   index,
   headingLevel = 3,
   actionLabel,
+  layout,
+  priority = false,
 }: {
   project: Project
   index: number
   headingLevel?: 2 | 3
   actionLabel?: string
+  layout: "home" | "directory"
+  priority?: boolean
 }) {
   const Heading = headingLevel === 2 ? "h2" : "h3"
+  // Match the existing grids, mobile gutters and capped desktop container.
+  const imageSizes =
+    layout === "home"
+      ? "(max-width: 600px) calc(100vw - 44px), (max-width: 1100px) calc((90vw - 36px) / 3), calc((min(90vw, 2600px) - 2 * clamp(24px, 1.62vw, 47px)) / 3)"
+      : "(max-width: 600px) calc(100vw - 44px), (max-width: 1100px) calc((90vw - 32px) / 2), calc((min(90vw, 2600px) - 2 * clamp(32px, 2.25vw, 65px)) / 3)"
 
   return (
     <Link
@@ -24,7 +33,12 @@ export function ProjectCard({
       className={`project-card project-${project.slug}`}
     >
       <figure className="project-cover">
-        <ProjectVisual project={project} />
+        <ProjectVisual
+          project={project}
+          sizes={imageSizes}
+          loading={priority ? "eager" : "lazy"}
+          fetchPriority={priority ? "high" : "auto"}
+        />
         <span className="cover-number" aria-hidden="true">
           0{index + 1}
         </span>

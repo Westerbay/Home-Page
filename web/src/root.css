@@ -1,0 +1,4 @@
+/* Keep the existing cascade in one cached, render-blocking stylesheet. */
+@import "@workspace/ui/globals.css";
+@import "./styles.css";
+@import "./features/guide/guide.css";

@@ -37,7 +37,13 @@ export function ProjectsPage() {
       <ul className="project-directory" role="list" aria-live="polite">
         {projects.map((project, index) => (
           <li key={project.slug}>
-            <ProjectCard project={project} index={index} headingLevel={2} />
+            <ProjectCard
+              project={project}
+              index={index}
+              headingLevel={2}
+              layout="directory"
+              priority={index === 0}
+            />
           </li>
         ))}
       </ul>

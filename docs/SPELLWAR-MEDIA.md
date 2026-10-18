@@ -69,6 +69,14 @@ All audio tracks were removed.
 The poster shows the character standing on a platform, with nearby surfaces,
 plants and trees visible. It is a frame from the selected clip.
 
+The page initially uses `preload="none"` so the 2.8 MB clip does not compete
+with the project cover on mobile. A viewport observer enables muted autoplay
+and buffering when the video comes within 160 px of the viewport. Once started,
+playback continues with the same native controls and loop; the observer does
+not pause or restart it when scrolling. Browsers without viewport observation
+enable autoplay immediately. Without JavaScript, the source and native controls
+remain available for manual playback.
+
 Reproduction commands (PowerShell, from the portfolio root; `$source` is the
 source file above):
 

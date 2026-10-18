@@ -42,6 +42,7 @@ export function ProjectPage({ slug }: { slug: string }) {
           <div className={`detail-cover project-${project.slug}`}>
             <ProjectVisual
               project={project}
+              sizes="(max-width: 600px) calc(100vw - 44px), min(90vw, 2600px)"
               loading="eager"
               fetchPriority="high"
             />

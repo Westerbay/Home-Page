@@ -50,6 +50,11 @@ fade where supported. Reduced motion disables the animations, and unsupported
 browsers navigate normally. The assistant retains its separate dialogue and
 character transitions without remounting the shared session.
 
+`src/root.css` bundles the UI, page and guide styles in their existing cascade
+order as one cached stylesheet. The document preloads only the two Latin font
+files used above the fold; `packages/ui/src/lib/fonts.ts` exports their bundled
+URLs from the same font packages as the stylesheet.
+
 Page introductions and content groups use native headings, headers, lists and
 figures. Project cards adapt their heading level to the page hierarchy. Layout
 containers remain neutral. The assistant scopes its header and composer footer
@@ -57,12 +62,20 @@ inside its section, keeping the site banner and content information unique.
 Its live log contains an ordered list of messages; short Markdown response
 headings render as emphasized paragraphs without changing the page outline.
 Styled lists retain an explicit list role for Safari accessibility.
+The message-list renderer and Markdown parser are a lazy chunk requested when
+the chat opens, including for an empty history. The live-log wrapper, composer,
+focus handling and guide session remain mounted synchronously.
 
 ## Static assets and publishing
 
 All maintained images are in `web/public/assets`. Components use
 `src/lib/assets.ts` to respect the deployment base path. They do not depend
 on the removed root asset directories or comparison prototype.
+Responsive project imagery and density-specific companion sheets reduce mobile
+transfers while keeping native sources available. See RESPONSIVE-MEDIA.md and
+SOCIAL-MEDIA.md for reproduction and fidelity limits. SpellWar's silent looping
+video starts loading within 160 px of the viewport; its native controls and source
+link remain available without JavaScript.
 
 `SITE_BASE_PATH` configures the build and preview server. The manual Pages
 workflow reads this path from `actions/configure-pages` and uploads only

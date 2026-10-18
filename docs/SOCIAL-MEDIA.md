@@ -60,7 +60,8 @@ and, for Plants, the social preview generator.
 
 The header and favicon use the small avatar; About uses the full-size WebP.
 The school mention and journey use the small ENSICAEN logo. Plants cards
-and the scene placeholder use the full-size Plants WebP. Visual checks cover
+use the responsive variants described in RESPONSIVE-MEDIA.md; the scene
+placeholder uses the full-size Plants WebP. Visual checks cover
 the small portrait, logo and fine branches against their original PNGs.
 
 Reproduction (Python with Pillow, from the repository root):
@@ -97,6 +98,25 @@ The script rejects any decoded RGBA or dimension difference:
 python scripts/optimize-portfolio-media.py --source-ref 724ba2d4ca52337cb6afc5b1125e9b9af54efc73 --companion-only
 ```
 
-`GuideCompanion` selects the corresponding WebP URLs. Both sheets retain their
-existing preload behavior with low fetch priority so content images take
-precedence. Sprite dimensions, CSS frame steps, timing and state logic are unchanged.
+The expanded Assistant page uses these native sheets. The compact 88 px dock
+uses density-specific copies with 96, 192 or 288 px per frame (1×, 2×, 3×).
+These copies are Lanczos downscales of the original PNGs, encoded losslessly
+after resampling. They preserve the complete canvas, frame layout and alpha;
+they are not pixel-identical to the full-resolution sources. The encoder verifies
+that decoded RGBA bytes match the resized intermediate exactly.
+
+| Compact character | 1×, atlas + talk | 2×, atlas + talk | 3×, atlas + talk |
+| ----------------- | ---------------: | ---------------: | ---------------: |
+| Adventurer        |     68,746 bytes |    218,652 bytes |    432,250 bytes |
+| Fox               |     42,118 bytes |    121,942 bytes |    231,004 bytes |
+
+```sh
+python scripts/optimize-portfolio-media.py --source-ref 724ba2d4ca52337cb6afc5b1125e9b9af54efc73 --compact-companion-only
+```
+
+`GuideCompanion` gives the browser CSS resolution variants and preload
+`imagesrcset` candidates, so it downloads the appropriate density instead of
+the native sheets on every page. Both animation sheets still preload at low
+priority, including speech before the first answer. Expanding switches to native
+artwork; minimizing reuses the compact variants. CSS sizes, frame steps, timing
+and state logic remain unchanged.

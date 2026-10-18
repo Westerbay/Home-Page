@@ -91,5 +91,17 @@
         "decodedRgbaSha256": "ea206160ac1b5e2c232f2368e5dd144c67119b79fe5087e8eca9edec9202d35a"
       }
     ]
+  },
+  "compactDeliveryEncoding": {
+    "date": "2026-10-18",
+    "script": "scripts/optimize-portfolio-media.py --compact-companion-only",
+    "sources": "The four original PNGs in this directory; native WebP versions remain in use on the expanded Assistant page.",
+    "framePixels": [96, 192, 288],
+    "renderedFramePixels": 88,
+    "resampling": "Lanczos, full canvas with the original frame grid and transparent padding",
+    "encoding": "WebP lossless=True, exact=True, method=6 after resizing",
+    "verification": "Decoded RGBA and dimensions equal each resized intermediate. These are resolution variants, not pixel-identical copies of the native PNGs. CSS sizes, frame coordinates, timing, speaking alignment and state logic are unchanged.",
+    "filenames": "{character}-{atlas|talk}-{1|2|3}x.webp",
+    "documentation": "docs/SOCIAL-MEDIA.md"
   }
 }

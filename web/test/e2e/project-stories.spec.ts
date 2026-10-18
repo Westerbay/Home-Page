@@ -46,13 +46,23 @@ for (const locale of ["", "en/"]) {
     }
   })
 
-  test(`SpellWar video autoplays silently and loops: ${locale || "fr"}`, async ({
+  test(`SpellWar video waits for the viewport, then autoplays silently and loops: ${locale || "fr"}`, async ({
     page,
     request,
     baseURL,
   }) => {
+    const videoRequests: string[] = []
+    page.on("request", (request) => {
+      if (request.url().endsWith("/spellwar/gravity-transition.mp4")) {
+        videoRequests.push(request.url())
+      }
+    })
     await page.goto(`${locale}projects/spellwar/`)
     const video = page.locator(".project-story video")
+    await page.waitForLoadState("networkidle")
+    await expect(video).toHaveAttribute("preload", "none")
+    await expect(video).not.toHaveAttribute("autoplay")
+    expect(videoRequests).toHaveLength(0)
     await video.scrollIntoViewIfNeeded()
     await expect(video).toBeVisible()
     await expect(video).toHaveAccessibleName(/\S/)
@@ -60,6 +70,7 @@ for (const locale of ["", "en/"]) {
     await expect(video).toHaveAttribute("autoplay", "")
     await expect(video).toHaveAttribute("loop", "")
     await expect(video).toHaveJSProperty("muted", true)
+    await expect.poll(() => videoRequests.length).toBeGreaterThan(0)
 
     const source = await video.getAttribute("src")
     const poster = await video.getAttribute("poster")
@@ -91,3 +102,44 @@ for (const locale of ["", "en/"]) {
     await video.evaluate((element: HTMLVideoElement) => element.pause())
   })
 }
+
+test("SpellWar video remains playable without JavaScript", async ({
+  browser,
+  baseURL,
+}) => {
+  const context = await browser.newContext({ javaScriptEnabled: false })
+  const page = await context.newPage()
+  try {
+    await page.goto(`${baseURL}projects/spellwar/`)
+    const video = page.locator(".project-story video")
+    await video.scrollIntoViewIfNeeded()
+    await expect(video).toHaveAttribute("controls", "")
+    await expect(video).toHaveAttribute("src", /gravity-transition\.mp4$/)
+    await video.evaluate((element: HTMLVideoElement) => element.play())
+    await expect
+      .poll(() =>
+        video.evaluate((element: HTMLVideoElement) => element.currentTime)
+      )
+      .toBeGreaterThan(0.25)
+  } finally {
+    await context.close()
+  }
+})
+
+test("SpellWar video autoplays when viewport observation is unavailable", async ({
+  page,
+}) => {
+  await page.addInitScript(() => {
+    Object.defineProperty(window, "IntersectionObserver", { value: undefined })
+  })
+  await page.goto("projects/spellwar/")
+  const video = page.locator(".project-story video")
+  await video.scrollIntoViewIfNeeded()
+  await expect(video).toHaveAttribute("autoplay", "")
+  await expect
+    .poll(() =>
+      video.evaluate((element: HTMLVideoElement) => element.currentTime)
+    )
+    .toBeGreaterThan(0.25)
+  await expect(video).toHaveJSProperty("muted", true)
+})

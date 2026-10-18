@@ -14,6 +14,7 @@ def main():
     source_group.add_argument("--source-ref")
     source_group.add_argument("--source-directory", type=Path)
     parser.add_argument("--companion-only", action="store_true")
+    parser.add_argument("--compact-companion-only", action="store_true")
     args = parser.parse_args()
     root = Path(__file__).resolve().parents[1]
     assets = "web/public/assets/"
@@ -30,7 +31,7 @@ def main():
         ("companion/fox-atlas.png", "companion/fox-atlas.webp", None, None),
         ("companion/fox-talk.png", "companion/fox-talk.webp", None, None),
     ]
-    if args.companion_only:
+    if args.companion_only or args.compact_companion_only:
         selections = [item for item in selections if item[0].startswith("companion/")]
     for source, destination, quality, max_size in selections:
         if args.source_directory:
@@ -43,6 +44,24 @@ def main():
                 capture_output=True,
             ).stdout
         image = Image.open(BytesIO(original)).convert("RGBA")
+        if args.compact_companion_only:
+            # The dock displays 88px frames. Supply a little extra resolution at
+            # each pixel density and retain the original atlas on the full page.
+            columns = 2 if "-talk" in source else 4
+            rows = 1 if "-talk" in source else 2
+            for density in (1, 2, 3):
+                frame = 96 * density
+                resized = image.resize(
+                    (frame * columns, frame * rows), Image.Resampling.LANCZOS
+                )
+                target = destination.replace(".webp", f"-{density}x.webp")
+                path = root / assets / target
+                resized.save(path, format="WEBP", lossless=True, exact=True, method=6)
+                decoded = Image.open(path).convert("RGBA")
+                if decoded.size != resized.size or decoded.tobytes() != resized.tobytes():
+                    raise RuntimeError(f"Lossless compact encoding failed for {target}")
+                print(f"{target}: {path.stat().st_size} bytes, {decoded.size}")
+            continue
         if max_size:
             image.thumbnail((max_size, max_size), Image.Resampling.LANCZOS)
         path = root / assets / destination

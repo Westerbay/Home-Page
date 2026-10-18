@@ -89,9 +89,20 @@
   display: block;
   width: 100%;
   background-size: 400% 200%;
+  background-image: var(--companion-normal);
   background-repeat: no-repeat;
   image-rendering: pixelated;
   animation: guide-idle 3.8s steps(1, end) infinite;
+}
+@media (resolution > 1dppx) {
+  .guide-companion-sprite {
+    background-image: var(--companion-retina);
+  }
+}
+@media (resolution > 2dppx) {
+  .guide-companion-sprite {
+    background-image: var(--companion-dense);
+  }
 }
 .guide-companion[data-state="thinking"] .guide-companion-sprite {
   animation: guide-thinking 700ms steps(1, end) infinite alternate;

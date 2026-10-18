@@ -92,6 +92,7 @@ export function HomePage() {
               <ProjectCard
                 project={project}
                 index={index}
+                layout="home"
                 actionLabel={m.explore_project()}
               />
             </li>
