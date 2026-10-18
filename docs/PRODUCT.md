@@ -106,8 +106,24 @@ activation-region visualization for PINN explainability. Link to the `setup`
 branch, which contains Mathis's work. Describe his activation extraction,
 quantile sampling, data export and C++/OpenGL viewer work separately from
 collective density statistics and heatmaps. Do not claim measured accuracy gains.
-Its current illustration shows a small ReLU network partition and must be
-identified as explanatory, not as a captured experimental result.
+Its cover and gallery use genuine figures from the supplied group defense.
+Distinguish the explanatory ReLU diagram from the experimental region figures,
+and the empirical tanh/SiLU partitions from exact ReLU activation regions.
+The density plots use different color scales and do not establish accuracy gains.
+The cover is a still frame, not a playable animation. Heatmap integration into
+the viewer was a future-work item at the end of the project.
+
+Booster Break, SpellWar, Plants, PINNacle and Eyefox include illustrated project
+notes with technical explanations and genuine screenshots or renders. Keep
+French and English copy aligned. Source details and capture methods are recorded
+in the corresponding `*-MEDIA.md` documents. Images open directly at their full
+resolution and remain available in generated static HTML.
+
+Home keeps its three selected project cards in the confirmed order. Its main
+button scrolls to that selection. Each card has a concise description of the
+project's distinctive work and an explicit link label. SpellWar uses the poster
+from the supplied gameplay clip. The research section links to StyleGAN & Cheap
+DiT and PINNacle with small, authentic image previews.
 
 StyleGAN & Cheap DiT presents two compact, experimental models for image
 generation. Describe the architectures and visible limitations without claiming

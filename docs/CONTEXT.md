@@ -71,6 +71,12 @@ generation. Do not invent a terrain-generation algorithm. Mathis confirmed
 that he wrote its code from scratch without AI assistance; retain this as
 background, not a statement in the portfolio.
 
+The SpellWar page ends with a short, silent gameplay clip supplied by Mathis,
+showing movement between differently oriented platforms. It replaces the last
+still image and autoplays muted in a loop, as requested by Mathis. Native
+controls remain available to pause or resume playback. The clip has no audio
+track. Source selection and encoding details are recorded in SPELLWAR-MEDIA.md.
+
 The Algorithmic Beauty of Plants came from reading ABOP and putting its
 ideas into practice with L-systems and 3D rendering in WebGL. Mathis wants
 a simple account of that research and implementation, not an inflated
@@ -108,8 +114,10 @@ His contributions include activation extraction (ReLU, tanh, SiLU), quantile
 sampling, binary export, and parts of the C++/OpenGL viewer, camera and video
 frame export. Density statistics and heatmaps belong to the group work.
 The catalogue includes it under AI & science; the homepage keeps its three cards.
-The current cover is a labelled explanatory ReLU partition illustration, not a
-training result or viewer screenshot. Replace it with a real capture when available.
+The cover is a genuine frame extracted from the supplied group defense. The page
+also includes its ReLU extraction diagram, ReLU/tanh/SiLU region figures and
+collective density plots, with their interpretation limits and source captions.
+See PINNACLE-MEDIA.md for the source slides and extraction details.
 
 StyleGAN & Cheap DiT is an academic project implementing compact PyTorch
 models for 256 × 256 image generation: a StyleGAN-inspired GAN and a latent

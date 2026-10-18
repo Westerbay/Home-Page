@@ -27,6 +27,12 @@ and the hero illustration remains proportionate to the text. The project
 listing uses three columns above 1100 px, two on tablets and one on mobile.
 Images use a 2:1 ratio with a maximum height of 360 px.
 
+Home retains the three selected projects in equal-width columns. Their media
+frames share a 1.6 ratio and contain the full images. Link labels and bottom
+rules align across the row. Home-specific descriptions highlight each project's
+techniques without changing the catalogue copy. The research links keep their
+editorial rows, with small lazy-loaded thumbnails and one link per project.
+
 ## Illustration and images
 
 The home scene uses the original ABOP WebGL renderer through the shared L-system React package. Its compact controls switch presets and adjust the camera. The Plants detail page includes the full editor, with the symbol reference in a modal beside the parameter heading. Gallery cards retain static images. Scenes use neutral backgrounds by default; textured sky and ground are optional.
@@ -50,6 +56,22 @@ terminal full stop. The About lead is “Product & Software Engineer”.
 
 The approved palette and direction are the V1 baseline. Further small
 visual refinements can follow the release.
+
+Project notes use numbered sections, a heading beside a readable prose column,
+and full-width rows of real media underneath. Image proportions are preserved;
+three related scientific figures use equal square frames, preserving the complete
+images and aligning the caption baselines. On narrow screens,
+text and media use a single column. Figures have descriptive alternatives and
+captions, and can be opened at their original resolution.
+
+The SpellWar gameplay clip autoplays inline, muted and in a loop, with
+`preload="auto"`, as requested by Mathis. It contains no audio track. Native
+controls remain available to pause or resume playback, and an extracted poster
+frame is displayed before playback starts.
+
+The About journey shares its section-title and body-text scale with the adjacent
+interest section. Both use Space Grotesk for headings and Geist for paragraphs;
+the journey's school/employer context remains a smaller secondary label.
 
 Project thumbnails must work against light and dark surfaces without global
 filters or blend modes. SpellWar uses the original game1.png gameplay capture

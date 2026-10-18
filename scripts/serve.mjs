@@ -13,6 +13,7 @@ const types = {
   ".svg": "image/svg+xml",
   ".woff2": "font/woff2",
   ".jpg": "image/jpeg",
+  ".mp4": "video/mp4",
 }
 const server = createServer(async (req, res) => {
   try {

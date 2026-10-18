@@ -8,10 +8,12 @@ export function ProjectCard({
   project,
   index,
   headingLevel = 3,
+  actionLabel,
 }: {
   project: Project
   index: number
   headingLevel?: 2 | 3
+  actionLabel?: string
 }) {
   const Heading = headingLevel === 2 ? "h2" : "h3"
 
@@ -36,6 +38,12 @@ export function ProjectCard({
       </div>
       <Heading>{project.title}</Heading>
       <p>{project.summary}</p>
+      {actionLabel && (
+        <span className="project-card-action">
+          {actionLabel}
+          <ArrowUpRight size={17} aria-hidden="true" />
+        </span>
+      )}
     </Link>
   )
 }
