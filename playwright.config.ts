@@ -4,7 +4,8 @@ export default defineConfig({
   testDir: "./web/test/e2e",
   timeout: 30000,
   fullyParallel: true,
-  workers: 3,
+  // Keep software-rendered scenes and 4K captures from competing on CI runners.
+  workers: process.env.CI ? 1 : 3,
   use: {
     baseURL: "http://127.0.0.1:4175" + base,
     browserName: "chromium",

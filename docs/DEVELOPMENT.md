@@ -26,6 +26,11 @@ pnpm test:e2e
 ESLint, TypeScript and URL unit tests. Turbo builds Paraglide before the web
 application; building also generates the route tree on a fresh checkout.
 Browser tests serve the static output on port 4175.
+They use one worker when `CI` is set and three locally. Software-rendered WebGL
+scenes and 4K captures should not compete for the limited CI runner resources;
+this follows [Playwright's CI guidance](https://playwright.dev/docs/ci#workers).
+Both base-path jobs finish independently. Failed runs retain Playwright traces,
+screenshots and error context in `playwright-failures-*` artifacts for 14 days.
 
 ### HTML, SEO and Lighthouse audits
 
