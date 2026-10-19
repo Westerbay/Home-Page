@@ -1,6 +1,8 @@
 import { expect, test } from "@playwright/test"
 import type { Page } from "@playwright/test"
 import { readFileSync } from "node:fs"
+import fr from "../../../packages/i18n/messages/fr.json" with { type: "json" }
+import en from "../../../packages/i18n/messages/en.json" with { type: "json" }
 
 const builtHome = readFileSync(
   new URL("../../dist/client/index.html", import.meta.url),
@@ -34,7 +36,7 @@ const answer = {
 }
 
 test.describe("responsive companion delivery", () => {
-  test.use({ deviceScaleFactor: 2 })
+  test.use({ deviceScaleFactor: 2, viewport: { width: 390, height: 900 } })
 
   test("compact animation loads density-sized atlases, expanding loads native artwork", async ({
     page,
@@ -53,7 +55,7 @@ test.describe("responsive companion delivery", () => {
       "animation-name",
       "guide-idle"
     )
-    await page.getByRole("button", { name: "Ouvrir l’assistant" }).click()
+    await page.getByRole("button", { name: fr.guide_open }).click()
     await page.getByRole("button", { name: "Agrandir", exact: true }).click()
     await expect
       .poll(() => [...images].sort())
@@ -69,14 +71,54 @@ test.describe("responsive companion delivery", () => {
       "idle"
     )
   })
+
+  test("large floating companions use native artwork while mobile keeps density-sized delivery", async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 1440, height: 900 })
+    await page.goto("about/")
+    const companion = page.locator(".guide-companion")
+    const original = await companion.elementHandle()
+    if (!original) throw new Error("The companion is missing")
+    const sprite = page.locator(".guide-companion-sprite")
+    for (const width of [1440, 3840]) {
+      await page.setViewportSize({ width, height: 900 })
+      await expect(sprite).toHaveCSS(
+        "background-image",
+        /\/adventurer-atlas\.webp"?\)/
+      )
+    }
+    await page.setViewportSize({ width: 390, height: 900 })
+    await expect(sprite).toHaveCSS(
+      "background-image",
+      /\/adventurer-atlas-2x\.webp"?\)/
+    )
+    expect(await original.evaluate((node) => node.isConnected)).toBe(true)
+    await expect(companion).toHaveCount(1)
+  })
 })
 
+async function expectNoScenery(page: Page) {
+  await expect
+    .poll(() =>
+      page
+        .locator(".site-frame")
+        .evaluate((element) =>
+          ["::before", "::after"].some((layer) =>
+            getComputedStyle(element, layer).backgroundImage.includes("url(")
+          )
+        )
+    )
+    .toBe(false)
+}
+
 for (const locale of ["fr", "en"]) {
+  const messages = locale === "en" ? en : fr
   const prefix = locale === "en" ? "en/" : ""
-  const open = locale === "en" ? "Open the assistant" : "Ouvrir l’assistant"
+  const open = messages.guide_open
   const expand = locale === "en" ? "Expand" : "Agrandir"
   const minimize = locale === "en" ? "Minimize" : "Réduire"
-  const title = "Assistant"
+  const title = messages.guide_title
 
   test(`guide round trip preserves an article query and anchor (${locale})`, async ({
     page,
@@ -94,7 +136,7 @@ for (const locale of ["fr", "en"]) {
     await expect(page.getByRole("textbox")).toHaveValue("Brouillon conservé")
   })
 
-  test(`header guide entry remembers Eyefox; direct entry falls back home (${locale})`, async ({
+  test(`guide navigation and sprite entries remember Eyefox; direct entry falls back home (${locale})`, async ({
     page,
   }) => {
     await page.goto(`${prefix}projects/eyefox/`)
@@ -107,8 +149,14 @@ for (const locale of ["fr", "en"]) {
       name: title,
       exact: true,
     })
+    const launcher = page.getByRole("button", { name: open, exact: true })
+    await expect(guideLink).toHaveCount(1)
+    await expect(guideLink).toBeVisible()
+    await expect(launcher).toBeVisible()
     await guideLink.click()
     await expect(page).toHaveURL(new RegExp(`/${prefix}guide/$`))
+    await expectNoScenery(page)
+    await expect(guideLink).toHaveAttribute("aria-current", "page")
     await expect(page.locator(".guide-companion")).toHaveAttribute(
       "data-character",
       "fox"
@@ -122,7 +170,25 @@ for (const locale of ["fr", "en"]) {
     )
     await expect(page.getByRole("dialog")).toBeVisible()
 
+    await page
+      .getByRole("button", { name: messages.guide_close, exact: true })
+      .click()
+    await expect(guideLink).toBeVisible()
+    await expect(launcher).toBeFocused()
+    await launcher.click()
+    await page.getByRole("button", { name: expand, exact: true }).click()
+    await expect(page).toHaveURL(new RegExp(`/${prefix}guide/$`))
+    await expectNoScenery(page)
+    await expect(guideLink).toHaveAttribute("aria-current", "page")
+    await expect(page.locator(".guide-companion")).toHaveAttribute(
+      "data-character",
+      "fox"
+    )
+    await page.getByRole("button", { name: minimize, exact: true }).click()
+    await expect(page).toHaveURL(eyefoxUrl)
+
     await page.goto(`${prefix}guide/`)
+    await expectNoScenery(page)
     await expect(page.locator(".guide-companion")).toHaveAttribute(
       "data-character",
       "adventurer"
@@ -130,6 +196,82 @@ for (const locale of ["fr", "en"]) {
     const homeUrl = page.url().replace(/guide\/$/, "")
     await page.getByRole("button", { name: minimize, exact: true }).click()
     await expect(page).toHaveURL(homeUrl)
+  })
+
+  test(`guide uses the portfolio background while theme changes preserve its conversation and draft (${locale})`, async ({
+    page,
+  }) => {
+    let calls = 0
+    await page.route(endpoint, (route) => {
+      calls++
+      return route.fulfill({ json: answer })
+    })
+    await page.goto(`${prefix}guide/`)
+    const composer = page.getByRole("textbox")
+    const response = page.locator(".guide-message-assistant .guide-markdown")
+    await composer.fill("Présente SpellWar")
+    await page
+      .getByRole("button", { name: messages.guide_send, exact: true })
+      .click()
+    await expect(response).toHaveText(answer.answer)
+    await composer.fill("Et les collisions ?")
+    const surfaces = page.locator(".site-header, .site-frame")
+    function readPalette() {
+      return surfaces.evaluateAll((elements) =>
+        elements.map((element) => {
+          const style = getComputedStyle(element)
+          return { background: style.backgroundColor, text: style.color }
+        })
+      )
+    }
+    const dayPalette = await readPalette()
+    await expectNoScenery(page)
+
+    await page
+      .getByRole("button", { name: messages.theme_to_dark, exact: true })
+      .click()
+    await expect(page.locator("html")).toHaveClass(/dark/)
+    await expectNoScenery(page)
+    await expect
+      .poll(async () => {
+        const palette = await readPalette()
+        return palette.every(
+          (surface, index) =>
+            surface.background !== dayPalette[index]?.background
+        )
+      })
+      .toBe(true)
+    await expect
+      .poll(() =>
+        page
+          .locator("html")
+          .evaluate((element) =>
+            element
+              .getAnimations()
+              .every((animation) => animation.playState !== "running")
+          )
+      )
+      .toBe(true)
+    const nightPalette = await readPalette()
+    await expect(composer).toHaveValue("Et les collisions ?")
+    await expect(response).toHaveText(answer.answer)
+    await expect(page.locator(".guide-companion")).toHaveAttribute(
+      "data-character",
+      "adventurer"
+    )
+
+    await page.reload()
+    await expect(page.locator("html")).toHaveClass(/dark/)
+    await expectNoScenery(page)
+    await expect.poll(readPalette).toEqual(nightPalette)
+    await expect(composer).toHaveValue("Et les collisions ?")
+    await expect(response).toHaveText(answer.answer)
+    await page.getByRole("button", { name: minimize, exact: true }).click()
+    await expect(page.getByRole("dialog", { name: title })).toBeVisible()
+    await expect(composer).toHaveValue("Et les collisions ?")
+    await expect(response).toHaveText(answer.answer)
+    await expect(page.locator("html")).toHaveClass(/dark/)
+    expect(calls).toBe(1)
   })
 }
 
@@ -473,9 +615,7 @@ test("reload during speech restores the complete reply; reduced motion skips dia
 
 async function openGuide(page: Page) {
   await page.goto("about/")
-  await expect(
-    page.getByRole("button", { name: "Ouvrir l’assistant" })
-  ).toBeEnabled()
+  await expect(page.getByRole("button", { name: fr.guide_open })).toBeEnabled()
   await page.locator(".guide-launcher-bubble").click()
   await expect(
     page.getByRole("textbox", { name: "Votre question" })
@@ -529,7 +669,7 @@ test("assistant landmarks and conversation order survive compact and full-page n
       conversation.getByRole("article", { name: "Vous", exact: true })
     ).toContainText(question)
     await expect(
-      conversation.getByRole("article", { name: "Assistant", exact: true })
+      conversation.getByRole("article", { name: fr.guide_title, exact: true })
     ).toContainText("C++ et OpenGL.")
     await expect(page.getByRole("textbox")).toHaveCount(1)
     await expect(composer).toHaveValue(draft)
@@ -537,17 +677,17 @@ test("assistant landmarks and conversation order survive compact and full-page n
   }
 
   await expect(
-    page.getByRole("dialog", { name: "Assistant", exact: true })
+    page.getByRole("dialog", { name: fr.guide_title, exact: true })
   ).toBeVisible()
   await expectConversation(originalTitle)
   await page.getByRole("button", { name: "Agrandir", exact: true }).click()
   await expect(page).toHaveURL(/\/guide\/$/)
   await expect(page.getByRole("dialog")).toHaveCount(0)
-  await expectConversation("Assistant")
+  await expectConversation(fr.guide_title)
   await page.getByRole("button", { name: "Réduire", exact: true }).click()
   await expect(page).toHaveURL(/\/about\/$/)
   await expect(
-    page.getByRole("dialog", { name: "Assistant", exact: true })
+    page.getByRole("dialog", { name: fr.guide_title, exact: true })
   ).toBeVisible()
   await expectConversation(originalTitle)
   expect(calls).toBe(1)
@@ -598,7 +738,7 @@ test("opening is local; one request survives panel, page and route navigation", 
   await page.getByRole("button", { name: "Fermer l’assistant" }).click()
   await page.getByRole("link", { name: "Contact", exact: true }).first().click()
   complete?.()
-  await page.getByRole("button", { name: "Ouvrir l’assistant" }).click()
+  await page.getByRole("button", { name: fr.guide_open }).click()
   await expect(
     page
       .locator(".guide-message-assistant .guide-markdown")
@@ -798,9 +938,7 @@ test("mobile modal traps focus and Escape restores the launcher", async ({
   ).toBeFocused()
   await page.keyboard.press("Escape")
   await expect(page.getByRole("dialog")).toHaveCount(0)
-  await expect(
-    page.getByRole("button", { name: "Ouvrir l’assistant" })
-  ).toBeFocused()
+  await expect(page.getByRole("button", { name: fr.guide_open })).toBeFocused()
 })
 
 test("corrupt and denied storage still allow a session without resuming or making requests", async ({
@@ -859,7 +997,7 @@ test("sleep keeps launcher focus, follows the same sequence across views, and ne
     "thinking"
   )
   await page.getByRole("button", { name: "Fermer l’assistant" }).click()
-  const launcher = page.getByRole("button", { name: "Ouvrir l’assistant" })
+  const launcher = page.getByRole("button", { name: fr.guide_open })
   await expect(launcher).toBeFocused()
   release?.()
   await expect(page.locator(".guide-companion")).toHaveAttribute(
@@ -873,10 +1011,8 @@ test("sleep keeps launcher focus, follows the same sequence across views, and ne
     "asleep"
   )
   await expect(launcher).toBeFocused()
-  await page
-    .getByRole("navigation")
-    .getByRole("link", { name: "Assistant" })
-    .click()
+  await launcher.click()
+  await page.getByRole("button", { name: "Agrandir", exact: true }).click()
   await expect(page.locator(".guide-companion")).toHaveAttribute(
     "data-state",
     "asleep"
@@ -963,7 +1099,7 @@ test("notifications and the mobile assistant remain reachable together", async (
   await page.getByRole("button", { name: "Copier le lien du profil" }).click()
   const toast = page.getByText("Lien du profil copié.", { exact: true })
   await expect(toast).toBeVisible()
-  const launcher = page.getByRole("button", { name: "Ouvrir l’assistant" })
+  const launcher = page.getByRole("button", { name: fr.guide_open })
   const toastBox = await toast.boundingBox()
   const launcherBox = await launcher.boundingBox()
   expect(
@@ -994,12 +1130,21 @@ test("the assistant is explanatory and makes no API request without JavaScript",
   for (const [route, title, explanation] of [
     [
       "guide/",
-      "Assistant",
+      fr.guide_title,
       "Activez JavaScript pour discuter avec l’assistant.",
     ],
-    ["en/guide/", "Assistant", "Enable JavaScript to chat with the assistant."],
+    [
+      "en/guide/",
+      en.guide_title,
+      "Enable JavaScript to chat with the assistant.",
+    ],
   ]) {
-    await page.goto(new URL(route, baseURL).href)
+    await page.goto(new URL(route.replace("guide/", "about/"), baseURL).href)
+    await page
+      .getByRole("navigation")
+      .getByRole("link", { name: title, exact: true })
+      .click()
+    await expect(page).toHaveURL(new URL(route, baseURL).href)
     await expect(page.getByRole("heading", { level: 1 })).toHaveText(title)
     await expect(page.getByText(explanation, { exact: true })).toBeVisible()
     await expect(page.getByRole("textbox")).toBeDisabled()

@@ -8,6 +8,7 @@ import { GenerativeGallery } from "./generative-gallery"
 import { EyefoxScene } from "../../eyefox/components/eyefox-scene"
 import { ProjectStory } from "./project-story"
 import { getProjectStory } from "../data/project-stories"
+import "../../eyefox/components/eyefox-world.css"
 
 export function ProjectPage({ slug }: { slug: string }) {
   const projects = getProjects()
@@ -18,6 +19,7 @@ export function ProjectPage({ slug }: { slug: string }) {
   return (
     <article
       className="inner-page project-detail"
+      data-project={project.slug}
       aria-labelledby="project-title"
     >
       <Link to="/projects/" className="text-action back-link">
@@ -54,63 +56,65 @@ export function ProjectPage({ slug }: { slug: string }) {
           )}
         </figure>
       )}
-      <div className="detail-body">
-        <aside aria-labelledby="project-technologies">
-          <h2 id="project-technologies" className="eyebrow">
-            {m.technologies()}
-          </h2>
-          <ul className="tag-list" role="list">
-            {project.tags.map((tag) => (
-              <li key={tag}>{tag}</li>
-            ))}
-          </ul>
-          <div className="project-links">
-            {project.demo && (
+      <div className="project-reading">
+        <div className="detail-body">
+          <aside aria-labelledby="project-technologies">
+            <h2 id="project-technologies" className="eyebrow">
+              {m.technologies()}
+            </h2>
+            <ul className="tag-list" role="list">
+              {project.tags.map((tag) => (
+                <li key={tag}>{tag}</li>
+              ))}
+            </ul>
+            <div className="project-links">
+              {project.demo && (
+                <a
+                  href={project.demo}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="action primary-action"
+                >
+                  {m.play_project()}
+                  <ArrowUpRight size={17} />
+                </a>
+              )}
               <a
-                href={project.demo}
+                href={project.repository}
                 target="_blank"
                 rel="noreferrer"
-                className="action primary-action"
+                className={
+                  project.demo ? "action text-action" : "action primary-action"
+                }
               >
-                {m.play_project()}
+                {m.source()}
                 <ArrowUpRight size={17} />
               </a>
-            )}
-            <a
-              href={project.repository}
-              target="_blank"
-              rel="noreferrer"
-              className={
-                project.demo ? "action text-action" : "action primary-action"
-              }
-            >
-              {m.source()}
-              <ArrowUpRight size={17} />
-            </a>
+            </div>
+          </aside>
+          <div>
+            <section aria-labelledby="project-overview">
+              <h2 id="project-overview">{m.overview()}</h2>
+              <p>{project.detail}</p>
+            </section>
+            <section aria-labelledby="project-focus">
+              <h2 id="project-focus">{project.focusTitle ?? m.focus()}</h2>
+              <p>{project.focus}</p>
+            </section>
           </div>
-        </aside>
-        <div>
-          <section aria-labelledby="project-overview">
-            <h2 id="project-overview">{m.overview()}</h2>
-            <p>{project.detail}</p>
-          </section>
-          <section aria-labelledby="project-focus">
-            <h2 id="project-focus">{project.focusTitle ?? m.focus()}</h2>
-            <p>{project.focus}</p>
-          </section>
         </div>
+        {project.slug === "stylegan-cheap-dit" && <GenerativeGallery />}
+        <ProjectStory sections={story} />
+        <Link
+          className="next-project"
+          to="/projects/$slug/"
+          params={{ slug: next.slug }}
+        >
+          <span>{m.next_project()}</span>
+          <strong>{next.title}</strong>
+          <ArrowRight size={26} />
+        </Link>
       </div>
-      {project.slug === "stylegan-cheap-dit" && <GenerativeGallery />}
-      <ProjectStory sections={story} />
-      <Link
-        className="next-project"
-        to="/projects/$slug/"
-        params={{ slug: next.slug }}
-      >
-        <span>{m.next_project()}</span>
-        <strong>{next.title}</strong>
-        <ArrowRight size={26} />
-      </Link>
     </article>
   )
 }

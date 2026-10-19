@@ -46,10 +46,20 @@ for (const width of [390, 1440]) {
     })
     await page.goto("about/")
     const launcher = page.getByRole("button", {
-      name: "Ouvrir l’assistant",
+      name: "Ouvrir le guide IA",
       exact: true,
     })
     await expect(launcher).toBeEnabled()
+    const navigation = page.getByRole("navigation")
+    await expect(
+      navigation.getByRole("link", { name: "Guide IA", exact: true })
+    ).toBeVisible()
+    await expect(
+      navigation.getByRole("button", {
+        name: "Ouvrir le guide IA",
+        exact: true,
+      })
+    ).toHaveCount(0)
     const sprite = await page.locator(".guide-companion").elementHandle()
     if (!sprite) throw new Error("The assistant sprite is missing")
     const before = await sprite.boundingBox()

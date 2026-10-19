@@ -1,0 +1,144 @@
+/* Interpolate inherited theme colors at their source. Component hover, focus,
+   transform and opacity transitions retain their own timing. */
+@property --surface {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --ink {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --accent-fill {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --on-accent {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --line {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --raised {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --secondary {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --accent {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --image {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --world-surface {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --world-panel {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --world-ink {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --world-secondary {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --world-raised {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --world-line {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --world-control {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --world-accent {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --world-accent-fill {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --world-on-accent {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --world-matte {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+@property --world-shadow {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+:root {
+  transition-property:
+    --surface, --ink, --accent-fill, --on-accent, --line, --raised, --secondary,
+    --accent, --image, --world-surface, --world-panel, --world-ink,
+    --world-secondary, --world-raised, --world-line, --world-control,
+    --world-accent, --world-accent-fill, --world-on-accent, --world-matte,
+    --world-shadow;
+  transition-duration: 500ms;
+  transition-timing-function: ease-in-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    transition: none;
+  }
+}

@@ -1,5 +1,5 @@
 :root {
-  font-family: "Geist Variable", Arial, sans-serif;
+  font-family: var(--body);
   color: var(--ink);
   background: var(--surface);
   font-synthesis: none;
@@ -38,7 +38,7 @@ a {
   -webkit-tap-highlight-color: transparent;
 }
 button {
-  font: inherit;
+  font: 400 20px / 1.2 var(--heading);
   cursor: pointer;
 }
 a {
@@ -59,6 +59,13 @@ h2,
 h3,
 p {
   margin: 0;
+}
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--heading);
+  font-weight: 400;
 }
 .sr-only {
   position: absolute;
@@ -116,7 +123,11 @@ svg {
 .site-container {
   width: min(90%, 2600px);
   margin: 0 auto;
-  container: content / inline-size;
+}
+.site-content {
+  min-width: 0;
+  container-name: content screen;
+  container-type: inline-size;
 }
 .site-header {
   display: flex;
@@ -129,8 +140,8 @@ svg {
   display: flex;
   align-items: center;
   gap: 12px;
-  font-size: 13px;
-  font-weight: 550;
+  font-size: 19.5px;
+  font-weight: 400;
   line-height: 1.4;
   flex: 1;
 }
@@ -148,10 +159,12 @@ svg {
   margin-top: 2px;
 }
 .main-nav {
+  font-family: var(--heading);
+  line-height: 1.2;
   display: flex;
   align-items: center;
   gap: 29px;
-  font-size: 12px;
+  font-size: 18px;
 }
 .main-nav a {
   padding: 15px 0;
@@ -168,7 +181,7 @@ svg {
   bottom: 6px;
   left: 0;
   right: 0;
-  height: 2px;
+  height: 1px;
   background: var(--accent);
 }
 .main-nav a:hover {
@@ -178,7 +191,6 @@ svg {
   display: flex;
   gap: 15px;
   align-items: center;
-  border-left: 1px solid var(--line);
   padding-left: 25px;
 }
 .utility-button {
@@ -189,24 +201,20 @@ svg {
   border: 0;
   background: transparent;
   padding: 8px 0;
-  font-size: 11px;
+  font-size: 18px;
   min-height: 38px;
 }
 .language-button {
-  border: 1px solid var(--line);
   padding-inline: 10px;
   gap: 7px;
 }
 .language-current {
   color: var(--ink);
-  font-weight: 650;
+  font-weight: 400;
 }
 .language-other,
 .language-divider {
   color: var(--secondary);
-}
-.language-button:hover {
-  border-color: var(--secondary);
 }
 .theme-button {
   width: 30px;
@@ -225,12 +233,12 @@ svg {
   transform: translateY(115px);
 }
 .eyebrow {
-  font-family: "Geist Variable", sans-serif;
+  font-family: var(--body);
   display: flex;
   align-items: center;
   gap: 10px;
   font-size: 10px;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.5;
   letter-spacing: 1.7px;
   text-transform: uppercase;
@@ -248,17 +256,17 @@ svg {
 }
 .hero-copy h1 {
   font-family: var(--heading);
-  font-weight: 450;
-  font-size: clamp(58px, 6.9vw, 104px);
+  font-weight: 400;
+  font-size: clamp(72.5px, 8.62vw, 130px);
   line-height: 0.98;
-  letter-spacing: -6px;
+  letter-spacing: 0;
   margin: 26px 0;
 }
 .hero-intro {
   font-size: 18px;
   line-height: 1.6;
   max-width: 460px;
-  letter-spacing: -0.2px;
+  letter-spacing: 0;
 }
 .hero-description {
   font-size: 13px;
@@ -275,14 +283,15 @@ svg {
   flex-wrap: wrap;
 }
 .action {
+  font-family: var(--heading);
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
   gap: 23px;
   min-height: 46px;
   padding: 12px 19px;
-  font-size: 12px;
-  font-weight: 500;
+  font-size: 18px;
+  font-weight: 400;
 }
 .primary-action {
   background: var(--accent-fill);
@@ -294,10 +303,11 @@ svg {
   transform: translateY(-2px);
 }
 .text-action {
+  font-family: var(--heading);
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  font-size: 12px;
+  font-size: 18px;
   line-height: 1.5;
 }
 .text-action:hover {
@@ -335,9 +345,9 @@ svg {
 }
 .section-heading h2 {
   font-family: var(--heading);
-  font-size: 32px;
-  font-weight: 450;
-  letter-spacing: -1.1px;
+  font-size: 40px;
+  font-weight: 400;
+  letter-spacing: 0;
   margin-top: 10px;
   line-height: 1.2;
 }
@@ -411,9 +421,9 @@ svg {
 }
 .project-card :is(h2, h3) {
   font-family: var(--heading);
-  font-size: 20px;
-  font-weight: 500;
-  letter-spacing: -0.6px;
+  font-size: 25px;
+  font-weight: 400;
+  letter-spacing: 0;
   line-height: 1.3;
 }
 .project-card p {
@@ -432,9 +442,9 @@ svg {
   padding: 32px 0 43px;
 }
 .approach-strip p {
-  font-size: 18px;
+  font-size: 22.5px;
   font-family: var(--heading);
-  letter-spacing: -0.3px;
+  letter-spacing: 0;
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
@@ -479,14 +489,14 @@ svg {
   padding: 2px 0 20px;
 }
 .atlas-hero .hero-copy h1 {
-  font-size: clamp(60px, 6.6vw, 102px);
+  font-size: clamp(75px, 8.25vw, 127.5px);
   font-weight: 400;
-  letter-spacing: -5px;
+  letter-spacing: 0;
   line-height: 1.05;
   margin: 24px 0;
 }
 .atlas-hero .hero-copy h1 > span {
-  font-style: italic;
+  font-style: normal;
 }
 .atlas-hero .role-label {
   font-size: 9px;
@@ -501,7 +511,7 @@ svg {
   margin-top: 29px;
 }
 .atlas-hero .primary-action {
-  font-size: 11px;
+  font-size: 18px;
 }
 .inner-page {
   padding: 65px 0 75px;
@@ -513,10 +523,10 @@ svg {
 }
 .page-heading h1 {
   font-family: var(--heading);
-  font-size: clamp(43px, 5.3vw, 76px);
+  font-size: clamp(53.75px, 6.62vw, 95px);
   line-height: 1.08;
-  letter-spacing: -3px;
-  font-weight: 450;
+  letter-spacing: 0;
+  font-weight: 400;
   white-space: pre-line;
   margin: 22px 0;
 }
@@ -540,7 +550,7 @@ svg {
   border: 1px solid var(--line);
   padding: 10px 18px;
   min-height: 40px;
-  font-size: 11px;
+  font-size: 18px;
 }
 .project-filters button[aria-pressed="true"] {
   background: var(--ink);
@@ -556,7 +566,7 @@ svg {
   aspect-ratio: 1.72;
 }
 .project-directory .project-card :is(h2, h3) {
-  font-size: 24px;
+  font-size: 30px;
 }
 .skull-visual {
   height: 100%;
@@ -576,11 +586,11 @@ svg {
   z-index: 1;
 }
 .skull-visual > strong {
-  font-family: "Space Grotesk Variable", sans-serif;
-  font-weight: 500;
-  font-size: 70px;
+  font-family: var(--heading);
+  font-weight: 400;
+  font-size: 87.5px;
   line-height: 1.2;
-  letter-spacing: -5px;
+  letter-spacing: 0;
   z-index: 1;
 }
 .skull-visual > strong > span {
@@ -625,6 +635,9 @@ svg {
 .detail-cover > .skull-visual {
   padding-left: 60px;
 }
+.project-reading {
+  display: contents;
+}
 .detail-body {
   display: grid;
   grid-template-columns: 1fr 2fr;
@@ -662,9 +675,9 @@ svg {
 }
 .detail-body h2:not(.eyebrow) {
   font-family: var(--heading);
-  font-size: 27px;
-  font-weight: 450;
-  letter-spacing: -0.8px;
+  font-size: 33.75px;
+  font-weight: 400;
+  letter-spacing: 0;
   margin-bottom: 15px;
 }
 .detail-body p {
@@ -690,9 +703,9 @@ svg {
 }
 .next-project > strong {
   font-family: var(--heading);
-  font-size: 29px;
-  font-weight: 450;
-  letter-spacing: -0.8px;
+  font-size: 36.25px;
+  font-weight: 400;
+  letter-spacing: 0;
 }
 .about-content {
   display: grid;
@@ -727,7 +740,7 @@ svg {
   font-size: 24px;
   line-height: 1.6;
   color: var(--ink);
-  letter-spacing: -0.6px;
+  letter-spacing: 0;
 }
 .approach-section {
   border-top: 1px solid var(--line);
@@ -736,9 +749,9 @@ svg {
 .approach-section > h2,
 .journey-heading h2 {
   font-family: var(--heading);
-  font-size: 32px;
-  letter-spacing: -1px;
-  font-weight: 450;
+  font-size: 40px;
+  letter-spacing: 0;
+  font-weight: 400;
   margin-bottom: 32px;
 }
 .approach-steps {
@@ -752,8 +765,8 @@ svg {
 }
 .approach-steps h3 {
   font-family: var(--heading);
-  font-size: 24px;
-  font-weight: 450;
+  font-size: 30px;
+  font-weight: 400;
   margin: 12px 0;
 }
 .approach-steps p {
@@ -866,8 +879,8 @@ svg {
 }
 .journey-copy h3 {
   font-family: var(--heading);
-  font-size: 24px;
-  font-weight: 450;
+  font-size: 30px;
+  font-weight: 400;
   margin-bottom: 0;
 }
 .journey-copy > p {
@@ -978,9 +991,9 @@ svg {
 }
 .contact-links strong {
   font-family: var(--heading);
-  font-size: 24px;
-  font-weight: 450;
-  letter-spacing: -0.6px;
+  font-size: 30px;
+  font-weight: 400;
+  letter-spacing: 0;
 }
 .contact-links > li > a > span > span {
   font-size: 12px;
@@ -1018,8 +1031,8 @@ svg {
     font-size: 8px;
   }
   .hero-copy h1 {
-    font-size: 76px;
-    letter-spacing: -4px;
+    font-size: 95px;
+    letter-spacing: 0;
   }
   .hero-intro {
     font-size: 16px;
@@ -1034,7 +1047,7 @@ svg {
     gap: 30px;
   }
   .atlas-hero .hero-copy h1 {
-    font-size: 74px;
+    font-size: 92.5px;
   }
   .atlas-hero .hero-intro {
     font-size: 15px;
@@ -1043,7 +1056,7 @@ svg {
     gap: 18px;
   }
   .project-card :is(h2, h3) {
-    font-size: 18px;
+    font-size: 22.5px;
   }
   .project-meta {
     font-size: 8px;
@@ -1055,7 +1068,7 @@ svg {
     width: 100%;
   }
   .page-heading h1 {
-    font-size: 62px;
+    font-size: 77.5px;
   }
 }
 @container screen (max-width:820px) {
@@ -1089,8 +1102,8 @@ svg {
     font-size: 9px;
   }
   .hero-copy h1 {
-    font-size: 61px;
-    letter-spacing: -3px;
+    font-size: 76.25px;
+    letter-spacing: 0;
   }
   .hero-intro {
     font-size: 15px;
@@ -1106,14 +1119,14 @@ svg {
   .action {
     min-height: 44px;
     padding: 12px 15px;
-    font-size: 11px;
+    font-size: 18px;
   }
   .text-action {
-    font-size: 11px;
+    font-size: 18px;
   }
   .atlas-hero .hero-copy h1 {
-    font-size: 60px;
-    letter-spacing: -3px;
+    font-size: 75px;
+    letter-spacing: 0;
   }
   .atlas-hero .role-label {
     font-size: 8px;
@@ -1132,7 +1145,7 @@ svg {
     margin-top: 4px;
   }
   .project-card :is(h2, h3) {
-    font-size: 17px;
+    font-size: 21.25px;
   }
   .project-card p {
     font-size: 11px;
@@ -1147,7 +1160,7 @@ svg {
     line-height: 2;
   }
   .page-heading h1 {
-    font-size: 52px;
+    font-size: 65px;
   }
   .detail-body {
     gap: 35px;
@@ -1168,7 +1181,7 @@ svg {
     min-height: 117px;
   }
   .identity {
-    font-size: 12px;
+    font-size: 18px;
     gap: 9px;
   }
   .identity img {
@@ -1183,7 +1196,7 @@ svg {
     gap: 9px;
   }
   .language-button {
-    font-size: 10px;
+    font-size: 18px;
     padding-inline: 7px;
     gap: 5px;
   }
@@ -1192,17 +1205,18 @@ svg {
   }
   .main-nav {
     justify-content: space-between;
-    gap: 12px;
+    flex-wrap: wrap;
+    gap: 10px;
     margin-top: 12px;
-    font-size: 11px;
+    font-size: 18px;
   }
   .main-nav a {
     min-height: 37px;
   }
   .hero-copy h1 {
-    font-size: 66px;
+    font-size: 82.5px;
     line-height: 1.01;
-    letter-spacing: -3.8px;
+    letter-spacing: 0;
     margin: 23px 0;
   }
   .hero-intro {
@@ -1224,12 +1238,12 @@ svg {
     gap: 22px;
   }
   .action {
-    font-size: 11px;
+    font-size: 18px;
     min-height: 45px;
     padding: 12px 16px;
   }
   .text-action {
-    font-size: 11px;
+    font-size: 18px;
   }
   .hero-foot {
     padding: 17px 0;
@@ -1255,8 +1269,8 @@ svg {
     margin-bottom: 25px;
   }
   .section-heading h2 {
-    font-size: 27px;
-    letter-spacing: -0.9px;
+    font-size: 33.75px;
+    letter-spacing: 0;
     margin-top: 8px;
   }
   .section-heading .eyebrow {
@@ -1264,7 +1278,7 @@ svg {
     letter-spacing: 1.2px;
   }
   .section-heading > .text-action {
-    font-size: 10px;
+    font-size: 18px;
     gap: 5px;
     white-space: nowrap;
   }
@@ -1287,8 +1301,8 @@ svg {
     margin-top: 0;
   }
   .project-card :is(h2, h3) {
-    font-size: 23px;
-    letter-spacing: -0.6px;
+    font-size: 28.75px;
+    letter-spacing: 0;
   }
   .project-card p {
     font-size: 12px;
@@ -1302,7 +1316,7 @@ svg {
     font-size: 8px;
   }
   .approach-strip p {
-    font-size: 15px;
+    font-size: 18.75px;
     gap: 10px;
   }
   .approach-strip > .text-action {
@@ -1330,9 +1344,9 @@ svg {
     padding: 10px 0 0;
   }
   .atlas-hero .hero-copy h1 {
-    font-size: 68px;
+    font-size: 85px;
     margin: 21px 0;
-    letter-spacing: -3px;
+    letter-spacing: 0;
   }
   .atlas-hero .role-label {
     font-size: 8px;
@@ -1359,8 +1373,8 @@ svg {
     margin-bottom: 28px;
   }
   .page-heading h1 {
-    font-size: 44px;
-    letter-spacing: -2px;
+    font-size: 55px;
+    letter-spacing: 0;
     margin: 17px 0;
     overflow-wrap: break-word;
   }
@@ -1377,7 +1391,7 @@ svg {
   }
   .project-filters button {
     padding: 10px 13px;
-    font-size: 10px;
+    font-size: 18px;
     min-height: 42px;
   }
   .project-directory {
@@ -1385,10 +1399,10 @@ svg {
     gap: 35px;
   }
   .project-directory .project-card :is(h2, h3) {
-    font-size: 23px;
+    font-size: 28.75px;
   }
   .project-detail .page-heading h1 {
-    font-size: 40px;
+    font-size: 50px;
   }
   .detail-cover {
     aspect-ratio: 1.4;
@@ -1409,7 +1423,7 @@ svg {
     margin-bottom: 18px;
   }
   .detail-body h2:not(.eyebrow) {
-    font-size: 26px;
+    font-size: 32.5px;
   }
   .detail-body p {
     font-size: 14px;
@@ -1418,10 +1432,10 @@ svg {
     padding-top: 25px;
   }
   .next-project > strong {
-    font-size: 24px;
+    font-size: 30px;
   }
   .about-page .page-heading h1 {
-    font-size: 40px;
+    font-size: 50px;
     line-height: 1.16;
   }
   .about-content {
@@ -1466,7 +1480,7 @@ svg {
     padding-top: 28px;
   }
   .approach-section > h2 {
-    font-size: 27px;
+    font-size: 33.75px;
     margin-bottom: 25px;
   }
   .approach-steps {
@@ -1483,7 +1497,7 @@ svg {
   }
   .approach-steps h3 {
     margin: 0;
-    font-size: 23px;
+    font-size: 28.75px;
   }
   .approach-steps p {
     grid-column: 2;
@@ -1503,14 +1517,14 @@ svg {
     width: 21px;
   }
   .contact-links strong {
-    font-size: 19px;
-    letter-spacing: -0.4px;
+    font-size: 23.75px;
+    letter-spacing: 0;
   }
   .contact-links > li > a > span > span {
     font-size: 10px;
   }
   .skull-visual > strong {
-    font-size: 63px;
+    font-size: 78.75px;
   }
 }
 @container screen (max-width:350px) {
@@ -1519,20 +1533,20 @@ svg {
   }
   .hero-copy h1,
   .atlas-hero .hero-copy h1 {
-    font-size: 58px;
-    letter-spacing: -3px;
+    font-size: 72.5px;
+    letter-spacing: 0;
   }
   .identity {
-    font-size: 11px;
+    font-size: 16.5px;
   }
   .identity-sub {
     font-size: 7px;
   }
   .section-heading h2 {
-    font-size: 24px;
+    font-size: 30px;
   }
   .section-heading > .text-action {
-    font-size: 9px;
+    font-size: 18px;
   }
   .hero-foot a {
     font-size: 8px;
@@ -1541,16 +1555,16 @@ svg {
     max-width: 157px;
   }
   .approach-strip p {
-    font-size: 13px;
+    font-size: 16.25px;
   }
   .contact-links strong {
-    font-size: 17px;
+    font-size: 21.25px;
   }
   .page-heading h1 {
-    font-size: 39px;
+    font-size: 48.75px;
   }
   .project-detail .page-heading h1 {
-    font-size: 35px;
+    font-size: 43.75px;
   }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -1568,17 +1582,17 @@ svg {
   background: #ffe0bd;
 }
 .site-frame .identity {
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 18px;
+  font-family: var(--heading);
+  font-size: 24px;
   font-weight: 400;
 }
 .site-frame .identity-sub {
-  font-family: "Geist Variable", sans-serif;
+  font-family: var(--body);
   font-size: 9px;
 }
 .site-frame .hero-copy h1,
 .site-frame .page-heading h1 {
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: var(--heading);
   font-weight: 400;
 }
 .site-frame .hero-foot {
@@ -1588,13 +1602,13 @@ svg {
   padding-top: 40px;
 }
 .site-frame .section-heading h2 {
-  font-family: "Space Grotesk Variable", sans-serif;
+  font-family: var(--heading);
   font-style: normal;
 }
 
 @container screen (max-width: 600px) {
   .site-frame .identity {
-    font-size: 16px;
+    font-size: 24px;
   }
   .site-frame .identity-sub {
     font-size: 8px;
@@ -1605,7 +1619,7 @@ svg {
 }
 @container screen (max-width: 350px) {
   .site-frame .identity {
-    font-size: 14px;
+    font-size: 21px;
   }
   .site-frame .identity-sub {
     font-size: 7px;
@@ -1645,7 +1659,6 @@ main {
   padding: 22px;
   color: var(--accent);
   background: var(--raised);
-  border: 1px solid var(--line);
 }
 .botanical-stage {
   position: relative;
@@ -1666,10 +1679,9 @@ main {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  font-family: Georgia, serif;
-  font-style: italic;
+  font-family: var(--heading);
   color: var(--ink);
-  font-size: 18px;
+  font-size: 22.5px;
 }
 .botanical-caption a:hover {
   text-decoration: underline;
@@ -1695,7 +1707,7 @@ main {
 .project-total {
   display: inline-block;
   margin-left: 16px;
-  font-family: "Geist Variable", sans-serif;
+  font-family: var(--heading);
   font-size: 0.35em;
   font-weight: 400;
   letter-spacing: 0;
@@ -1725,13 +1737,14 @@ main {
   display: none;
 }
 .project-card-action {
+  font-family: var(--heading);
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
   margin-top: auto;
   padding-top: 24px;
-  font-size: clamp(13px, 0.8cqi, 20px);
+  font-size: clamp(19.5px, 1.2cqi, 30px);
   line-height: 1.5;
 }
 .project-card-action svg {
@@ -1752,7 +1765,7 @@ main {
     gap: clamp(30px, 2.2cqi, 56px);
   }
   .site-frame .identity {
-    font-size: clamp(20px, 1.15cqi, 30px);
+    font-size: clamp(30px, 1.72cqi, 45px);
     gap: clamp(12px, 0.9cqi, 23px);
   }
   .identity img {
@@ -1763,11 +1776,11 @@ main {
     font-size: clamp(10px, 0.58cqi, 15px);
   }
   .main-nav {
-    font-size: clamp(14px, 0.78cqi, 20px);
+    font-size: clamp(21px, 1.17cqi, 30px);
     gap: clamp(26px, 1.8cqi, 46px);
   }
   .utility-button {
-    font-size: clamp(12px, 0.7cqi, 18px);
+    font-size: clamp(18px, 1.05cqi, 27px);
   }
   .header-tools {
     gap: clamp(15px, 1.1cqi, 28px);
@@ -1785,9 +1798,9 @@ main {
     padding: 0;
   }
   .atlas-hero .hero-copy h1 {
-    font-size: clamp(94px, 7.7cqi, 200px);
-    line-height: 0.97;
-    letter-spacing: -0.055em;
+    font-size: clamp(90px, 8.12cqi, 212.5px);
+    line-height: 1.08;
+    letter-spacing: 0;
     margin: clamp(25px, 2.2cqi, 56px) 0 clamp(26px, 2.4cqi, 62px);
   }
   .eyebrow,
@@ -1815,7 +1828,7 @@ main {
   }
   .text-action,
   .hero-actions .button {
-    font-size: clamp(13px, 0.8cqi, 20px);
+    font-size: clamp(19.5px, 1.2cqi, 30px);
   }
   .hero-actions .button {
     min-height: clamp(48px, 3cqi, 76px);
@@ -1834,7 +1847,7 @@ main {
     font-size: clamp(10px, 0.64cqi, 16px);
   }
   .botanical-caption a {
-    font-size: clamp(18px, 1.1cqi, 28px);
+    font-size: clamp(22.5px, 1.38cqi, 35px);
   }
   .hero-foot {
     padding: clamp(20px, 1.4cqi, 36px) 0;
@@ -1847,8 +1860,8 @@ main {
     margin-bottom: clamp(28px, 2cqi, 52px);
   }
   .section-heading h2 {
-    font-size: clamp(34px, 2.5cqi, 65px);
-    letter-spacing: -0.04em;
+    font-size: clamp(42.5px, 3.12cqi, 81.25px);
+    letter-spacing: 0;
   }
   .home-projects {
     gap: clamp(24px, 1.8cqi, 47px);
@@ -1876,7 +1889,7 @@ main {
   }
   .project-card :is(h2, h3),
   .project-directory .project-card :is(h2, h3) {
-    font-size: clamp(23px, 1.35cqi, 35px);
+    font-size: clamp(28.75px, 1.69cqi, 43.75px);
   }
   .project-card p {
     font-size: clamp(14px, 0.82cqi, 21px);
@@ -1895,14 +1908,16 @@ main {
     margin-bottom: clamp(42px, 3cqi, 78px);
   }
   .page-heading h1 {
-    font-size: clamp(76px, 5.3cqi, 138px);
-    letter-spacing: -0.045em;
+    font-size: clamp(95px, 6.62cqi, 172.5px);
+    letter-spacing: 0;
   }
   .page-heading > p:last-child:not(.eyebrow) {
     max-width: 60ch;
     font-size: clamp(17px, 1cqi, 26px);
   }
-  .project-filters button,
+  .project-filters button {
+    font-size: clamp(18px, 1.1cqi, 28px);
+  }
   .tag-list li {
     font-size: clamp(12px, 0.75cqi, 19px);
   }
@@ -1930,7 +1945,7 @@ main {
   .approach-steps h3,
   .journey-copy h3,
   .contact-links strong {
-    font-size: clamp(27px, 1.7cqi, 44px);
+    font-size: clamp(33.75px, 2.12cqi, 55px);
   }
   .detail-body {
     padding-block: clamp(45px, 3cqi, 78px);
@@ -1986,7 +2001,7 @@ main {
 }
 .school-name {
   color: var(--ink);
-  font-weight: 500;
+  font-weight: 400;
   margin-top: 2px;
 }
 
@@ -1996,7 +2011,7 @@ main {
     padding: 18px;
   }
   .botanical-caption a {
-    font-size: 16px;
+    font-size: 20px;
   }
 }
 @container screen (max-width: 820px) {
@@ -2009,7 +2024,7 @@ main {
     font-size: 9px;
   }
   .botanical-caption a {
-    font-size: 15px;
+    font-size: 18.75px;
   }
   .home-projects {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -2026,7 +2041,7 @@ main {
     padding: 18px;
   }
   .botanical-caption a {
-    font-size: 17px;
+    font-size: 21.25px;
   }
   .hero-foot {
     flex-wrap: wrap;
@@ -2051,9 +2066,25 @@ main {
   }
 }
 
-/* The editor owns its internal layout; the portfolio only sizes its frame. */
+/* The editor owns its layout; the portfolio sets its frame and typography. */
 .portfolio-lsystem {
   min-width: 0;
+}
+.site-frame .portfolio-lsystem .lsystem-panel-heading h2,
+.site-frame .portfolio-lsystem .lsystem-dialog-heading h2 {
+  font: 400 24px / 1.2 var(--heading);
+}
+.site-frame .portfolio-lsystem .lsystem-button,
+.site-frame .portfolio-lsystem .lsystem-text-button,
+.site-frame .portfolio-lsystem .lsystem-icon-button,
+.site-frame .portfolio-lsystem .lsystem-colour-remove {
+  font: 400 20px / 1.2 var(--heading);
+}
+.site-frame .portfolio-lsystem .lsystem-rule input,
+.site-frame .portfolio-lsystem .lsystem-rule textarea,
+.site-frame .portfolio-lsystem .lsystem-command-table code,
+.site-frame .portfolio-lsystem .lsystem-error-details p {
+  font-family: var(--body);
 }
 .portfolio-lsystem[data-variant="compact"] {
   height: 100%;
@@ -2111,7 +2142,7 @@ main {
 }
 .gallery-heading h2 {
   font-family: var(--heading);
-  font-size: clamp(26px, 2cqi, 40px);
+  font-size: clamp(32.5px, 2.5cqi, 50px);
   margin: 10px 0 14px;
 }
 .gallery-heading p:not(.eyebrow) {
@@ -2204,10 +2235,10 @@ main {
 .story-heading h2,
 .home-research h2 {
   font-family: var(--heading);
-  font-size: clamp(26px, 2cqi, 42px);
+  font-size: clamp(32.5px, 2.5cqi, 52.5px);
   line-height: 1.2;
-  font-weight: 450;
-  letter-spacing: -0.035em;
+  font-weight: 400;
+  letter-spacing: 0;
   text-wrap: balance;
 }
 .story-prose,
@@ -2270,6 +2301,13 @@ main {
   font-size: clamp(13px, 0.75cqi, 18px);
   line-height: 1.65;
 }
+@container content (min-width: 1200px) {
+  .story-images,
+  .story-video {
+    width: 88%;
+    margin-inline: auto;
+  }
+}
 .selection-intro {
   color: var(--secondary);
   font-size: clamp(14px, 0.85cqi, 21px);
@@ -2311,8 +2349,8 @@ main {
 .home-research-links strong {
   display: block;
   font-family: var(--heading);
-  font-size: clamp(20px, 1.3cqi, 32px);
-  font-weight: 450;
+  font-size: clamp(25px, 1.62cqi, 40px);
+  font-weight: 400;
 }
 .home-research-links a > span > span {
   display: block;
@@ -2343,5 +2381,230 @@ main {
   .home-research-links a {
     grid-template-columns: 88px minmax(0, 1fr) auto;
     gap: 14px;
+  }
+}
+
+/* Keep the navigation on the page surface, with content-sized breakpoints. */
+.project-nav-group {
+  display: contents;
+}
+.project-nav-branch {
+  display: none;
+}
+.atlas-hero .hero-copy h1 {
+  font-size: clamp(52.5px, 8.5cqi, 212.5px);
+  line-height: 1.08;
+  letter-spacing: 0;
+}
+@container content (max-width: 600px) {
+  .atlas-hero .hero-copy h1 {
+    font-size: clamp(52.5px, 13.75cqi, 80px);
+  }
+}
+@media (min-width: 1101px) {
+  :root {
+    --sidebar-width: clamp(256px, calc(6.666667vw + 160px), 416px);
+    --sidebar-inset: clamp(24px, 0.833333vw, 32px);
+    --sidebar-bottom: clamp(24px, calc(0.333333vw + 19.2px), 32px);
+    --sidebar-tool-size: clamp(38px, calc(0.416667vw + 32px), 48px);
+  }
+  .atlas-hero .hero-intro {
+    font-size: clamp(18px, 1.2cqi, 31px);
+  }
+  .atlas-hero .hero-description {
+    font-size: clamp(15px, 0.95cqi, 24px);
+  }
+  .site-container {
+    width: 100%;
+    margin: 0;
+    padding-right: clamp(24px, 2.5vw, 48px);
+    display: grid;
+    grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
+    column-gap: clamp(24px, 2.5vw, 48px);
+    align-items: start;
+  }
+  .site-content {
+    width: min(100%, 2600px);
+    margin-inline: auto;
+  }
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    flex-direction: column;
+    align-items: flex-start;
+    min-height: 0;
+    height: 100dvh;
+    overflow: hidden;
+    gap: 0;
+    padding-block: clamp(36px, 2.5vw, 64px) var(--sidebar-bottom);
+    padding-inline: var(--sidebar-inset) calc(var(--sidebar-inset) - 4px);
+    margin: 0;
+    border: 0;
+    border-right: 1px solid var(--line);
+    background: var(--surface);
+    background: color-mix(in srgb, var(--surface) 94%, transparent);
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+  }
+  .site-frame .identity {
+    flex: 0 0 auto;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: clamp(14px, 1vw, 24px);
+    font-size: clamp(24px, calc(0.5vw + 16.8px), 36px);
+    line-height: 1.6;
+  }
+  .identity img {
+    width: clamp(38px, calc(0.75vw + 27.2px), 56px);
+    height: clamp(38px, calc(0.75vw + 27.2px), 56px);
+  }
+  .site-frame .identity-sub {
+    font-size: clamp(12px, calc(0.166667vw + 9.6px), 16px);
+    line-height: 1.8;
+    margin-top: clamp(6px, 0.416667vw, 10px);
+  }
+  .main-nav {
+    flex: 0 1 auto;
+    min-height: 0;
+    width: 100%;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--line) transparent;
+    flex-direction: column;
+    align-items: stretch;
+    gap: clamp(6px, 0.416667vw, 12px);
+    margin-block: clamp(32px, 2.222222vw, 48px) var(--sidebar-bottom);
+    padding-inline: 2px 8px;
+    font-size: clamp(24px, calc(0.75vw + 13.2px), 42px);
+  }
+  .main-nav a {
+    padding-block: clamp(10px, 0.694444vw, 16px);
+    flex-shrink: 0;
+    width: fit-content;
+  }
+  .main-nav a.active::after {
+    bottom: 5px;
+  }
+  .main-nav a.active {
+    font-weight: 400;
+  }
+  .project-nav-group {
+    display: block;
+  }
+  .main-nav .current-branch {
+    color: var(--ink);
+  }
+  .project-nav-branch {
+    display: block;
+    list-style: none;
+    margin: clamp(8px, 0.555556vw, 12px) 0 clamp(16px, 1.111111vw, 24px) 2px;
+    padding: 0 0 0 clamp(16px, 1.111111vw, 24px);
+    border-left: 1px solid var(--line);
+  }
+  .project-nav-branch li {
+    margin: 0;
+    padding: 0;
+  }
+  .main-nav .project-nav-link {
+    display: block;
+    width: 100%;
+    padding-block: clamp(9px, 0.625vw, 13px);
+    font-size: clamp(21px, calc(0.5vw + 13.8px), 33px);
+    line-height: 1.3;
+    white-space: normal;
+  }
+  .main-nav .project-nav-link.active {
+    color: var(--ink);
+    text-decoration: underline;
+    text-underline-offset: 5px;
+  }
+  .main-nav .project-nav-link.active::after {
+    display: none;
+  }
+  .header-tools {
+    flex-shrink: 0;
+    margin-top: auto;
+    padding-left: 0;
+    gap: clamp(18px, 1.25vw, 28px);
+  }
+  .language-button {
+    padding-inline: 0;
+  }
+  .utility-button {
+    min-height: var(--sidebar-tool-size);
+    font-size: clamp(18px, calc(0.333333vw + 13.2px), 26px);
+  }
+  .theme-button {
+    width: var(--sidebar-tool-size);
+  }
+  .theme-button svg {
+    width: clamp(18px, calc(0.25vw + 14.4px), 24px);
+    height: clamp(18px, calc(0.25vw + 14.4px), 24px);
+  }
+}
+
+@media (min-width: 1101px) and (max-height: 650px) {
+  :root {
+    --sidebar-bottom: 24px;
+    --sidebar-tool-size: 38px;
+  }
+  .site-header {
+    padding-block: 24px;
+  }
+  .site-frame .identity {
+    gap: 14px;
+    font-size: 24px;
+  }
+  .identity img {
+    width: 38px;
+    height: 38px;
+  }
+  .site-frame .identity-sub {
+    font-size: 12px;
+    margin-top: 6px;
+  }
+  .main-nav {
+    gap: 0;
+    margin-block: 24px 16px;
+    font-size: 24px;
+  }
+  .main-nav a {
+    padding-block: 10px;
+  }
+  .project-nav-branch {
+    margin: 8px 0 16px 2px;
+    padding-left: 16px;
+  }
+  .main-nav .project-nav-link {
+    padding-block: 9px;
+    font-size: 21px;
+  }
+  .utility-button {
+    font-size: 18px;
+  }
+}
+@media (min-width: 1101px) and (max-height: 450px) {
+  :root {
+    --sidebar-bottom: 16px;
+  }
+  .site-header {
+    padding-block: 16px;
+  }
+  .site-frame .identity {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    line-height: 1.2;
+  }
+  .identity img {
+    width: 28px;
+    height: 28px;
+  }
+  .site-frame .identity-sub {
+    display: none;
+  }
+  .main-nav {
+    margin-block: 12px;
   }
 }

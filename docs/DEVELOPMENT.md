@@ -145,10 +145,19 @@ and abort unmatched chat requests, so publication checks do not consume live AI 
 
 ### Companion and manual review
 
-The default companion is an adventurer; Eyefox uses a fox, including when expanding
-from Eyefox into the Assistant page. Direct entry to that page uses the adventurer.
-Both are transparent
-sprite atlases in `web/public/assets/companion`, animated with CSS. The asset
+The guide uses the fox on Eyefox and retains it when expanding from Eyefox into
+the full Guide page. Other pages and direct Guide entry use the adventurer.
+The character is selected from the current route and the session's return
+location; changing its artwork does not remount the companion or reset the chat.
+Each companion's `.guide-companion-sprite` child is mirrored with `scale: -1 1`
+while the dock is expanded. Its View Transition wrapper stays intact, and
+minimizing restores its compact orientation. During an `assistant` transition, the new character
+snapshot turns from `rotateY(180deg)` to `rotateY(0)` over 420 ms. This is limited
+to assistant transitions with motion enabled; reduced motion or no View Transition API uses the
+final orientation immediately. Preserve the existing atlas, component instance
+and speech animation; no JavaScript turn state is needed.
+The transparent sprite atlases in
+`web/public/assets/companion` are animated with CSS. The asset
 provenance file records their source and frame layout. Their state follows the
 shared chat session, including while the panel is closed. A validated sleeping
 response runs a 0.9-second yawn, 1.6-second sleep and 0.3-second disappearance.
@@ -156,22 +165,40 @@ The speech-bubble button remains usable. Reloading during sleep or enabling redu
 skips that sequence. Only a successful manual request wakes the character; generic
 errors never start a new sleep sequence.
 
-Click the bubble above the character to open its dialogue. Replies arrive from
-the Worker progressively while the sprite speaks. The first text ends its thinking
+Click the bubble above the floating character at the bottom right to open its
+dialogue on desktop or mobile. The Guide navigation link remains visible whenever
+the feature is enabled, including without JavaScript and before hydration; it is
+not replaced by a sidebar launcher. On the full Guide page the compact launcher
+is hidden, the character joins the conversation scene, and the navigation link
+marks the active page. The full Guide uses the normal portfolio background and
+theme, with a transparent conversation surface and no enclosing border or shadow.
+Its composition is capped at 1480 px, with a 260–440 px character canvas anchored
+at the bottom left beside the composer on desktop and bounded by the available
+height. The conversation
+fills the available height from its empty state, with the input at the bottom
+and a separately scrolling transcript.
+At 820 px of available width or less, the character stays near the heading above
+the conversation on a 144 px canvas, reduced to 132 px at 380 px or less; the
+input keeps its full width.
+Replies arrive from the Worker progressively while the sprite speaks. The first
+text ends its thinking
 pose; validated completion ends speech without an additional typing delay.
 Expanding and minimizing preserve the stream. Reloading restores completed answers
 only. Reduced motion keeps progressive text but disables the character animation.
 Check that stopping, clearing or failing midway removes the provisional answer and
 restores an untouched submitted draft. Legacy JSON responses still use the local
 reveal for compatibility with older Worker deployments and existing test fixtures.
-The Assistant displays the answer without a separate sources section and links to
+The Guide displays the answer without a separate sources section and links to
 the Cloudflare-RAG repository as the source project. Its single
 sprite keeps the same size and position when opening or closing the compact dialog.
 Expanding moves and enlarges that same character into the article, to the left of
 the conversation on desktop and beside the heading on mobile. Minimizing restores
 its compact size and position. Check the conversation and character transitions
 with a cold cache as well as reduced motion, and verify that the enlarged sprite
-stays inside the main content above the footer.
+stays inside the main content above the footer. The floating sprite uses a 112 px
+canvas on mobile, scales from 224 px at a 1440 px viewport to 360 px at 3840 px,
+and uses 128 px on desktop when viewport height is at most 650 px. Its speech
+bubble scales with it. The compact dialog retains its opaque surface.
 The thin transcript scrollbar is visible while scrolling and hides after a short
 pause. Its reserved gutter keeps the text width stable.
 
@@ -190,10 +217,78 @@ failure. After the rest, submit again manually. These controls exist only in the
 test; they are not included in the application bundle. Close the browser or stop
 Playwright to end the review. The normal automated run skips this interactive test.
 
-Check both characters in light and dark themes, the page/panel transition, mobile
-keyboard and Escape behavior, and the sleep sequence with reduced motion on and
-off. Verify that the Eyefox game, L-system controls and Contact copy notification
-remain reachable. Automated checks do not imply human visual acceptance.
+Check both companions, the page/panel transition, mobile keyboard and Escape
+behavior, and the sleep sequence with reduced motion on and off. Verify the
+Guide navigation link and floating launcher, their keyboard operation in
+300 px-high desktop windows, the active link on the Guide page and navigation
+without JavaScript. Confirm the companion stays at the bottom right rather than
+joining the sidebar. Check the larger floating sprite and bubble at 3840 px,
+and confirm the full Guide stays on the normal background after entry from Eyefox.
+Check that Eyefox, L-system controls and Contact copy notifications remain
+reachable. Automated checks do not imply human visual acceptance.
+
+### Forest scenery and themed interface
+
+Palette colours are registered as inherited CSS colour properties with
+`@property`. Their variables transition on `:root` over 500 ms with ease-in-out
+timing, covering ordinary UI tokens and world tokens used by Eyefox and the
+compact chat. The theme class drives manual, system and synchronized preference
+changes; rapid toggles reverse the native CSS transition. This adds no View
+Transition, timer or effect and leaves local hover, focus and transform behavior
+intact. Reduced motion disables the palette transition. The next-themes script
+applies the initial preference before display; there is no JavaScript entrance
+animation. The forest's 900 ms opacity transition remains separate.
+
+`web/src/forest-world.css` defines the light and dark interface palettes for
+Eyefox and the opaque compact chat. The forest itself is exclusive to Eyefox;
+the full Guide uses ordinary portfolio tokens and no scenery. Daylight uses
+`#fffefc` surfaces, `#252525` text,
+`#625f5a` secondary text, `#f8f7f4` raised surfaces, `#8c857a` control borders
+and `#97531c` accent text. Dark mode retains the graphite palette. Primary action
+fills stay amber `#f2c66d` in both modes.
+
+Fixed `::before` and `::after` layers hold the day and dusk images. The `.dark`
+rule changes the dusk layer's opacity with a 900 ms ease-in-out transition and
+switches the interface tokens. The contrast veil stays constant. Reduced motion
+disables the scenery transition. Both layers use the same dimensions, top
+alignment and cover sizing to keep the scenery aligned. Only the Eyefox route maps
+world tokens onto the ordinary site tokens and uses the matching light or dark
+`color-scheme`. Text directly over the forest keeps white text in both modes.
+The portalled Guide panel repeats the token mapping because it lives outside
+`.site-frame`.
+
+The Eyefox scene derives its theme from `useTheme().resolvedTheme` and passes
+`light` or `dark` to the existing puzzle instance. Do not add a theme-dependent
+React key or otherwise remount the game, companion or conversation when switching
+themes: game progress, conversation and draft must persist.
+
+The game and compact chat use opaque `--world-panel` surfaces with visible
+`--world-control` borders. Child fills may be translucent over those opaque
+surfaces; the forest must not show through the main game panel. The full Guide
+conversation has no enclosing surface. Below the puzzle, `.project-reading`
+remains transparent, without a background, border, content-level shading or
+box-like padding and negative margins. Preserve the shared project layout:
+technologies on the left and introductory prose on the right, then story headings
+on the left, prose on the right and captures below. White text uses a restrained
+shadow; its main contrast comes from the fixed scenery veil, not a layer attached
+to the article. Android captures use a matte matching the current theme. Keep
+the scenery and veil fixed while the page scrolls.
+
+During manual and browser review, switch both system and saved themes. Confirm
+that UI and world colours interpolate over 500 ms, rapid toggles reverse cleanly,
+and reduced motion makes both the palette and scenery changes instant. Confirm
+that the forest image, computed text, panel, control colours and native colour
+scheme change together, while the veil, game progress, conversation and draft
+remain unchanged. Headings, links and article text directly over the forest must
+remain white on transparent backgrounds. Check their contrast throughout the
+scroll across the shared project layout, including on narrow and 3840 px-wide
+screens.
+Repeat after reload and after leaving the scene. Check the compact portal on an
+ordinary page as well as the full Guide; neither route entry nor companion
+selection should bring the forest onto the full Guide. Use the linked contrast
+and hierarchy references
+in [DESIGN.md](DESIGN.md#contrast-and-visual-hierarchy-references) to assess text,
+input borders and focus indicators against their actual backgrounds.
 
 ## Content changes
 
@@ -204,6 +299,12 @@ Edit text in `packages/i18n/messages/{fr,en}.json`, public identity in
 Add each new project route to `publicPagePaths` in `web/src/lib/site.ts`
 and check direct access in both languages. Store images in
 `web/public/assets` and resolve their paths with the asset helper.
+
+At a `content` container width of at least 1200 px, `.story-images` and
+`.story-video` use 88% width with centered margins. Preserve their existing
+columns, order and proportions. Keep smaller layouts, interactive scenes,
+hero images, thumbnails and generative galleries unchanged. Verify the rule
+against the content width after navigation, not the viewport width.
 
 Confirmed content rules are in `PRODUCT.md`. Additional projects, media and
 wording refinements can be added after V1.

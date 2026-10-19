@@ -2,6 +2,23 @@
   min-width: 0;
 }
 
+.site-frame .portfolio-eyefox .eyefox h2,
+.site-frame .portfolio-eyefox .eyefox h3 {
+  font-family: var(--heading);
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.site-frame .portfolio-eyefox .eyefox h2 {
+  font-size: 32px;
+}
+.site-frame .portfolio-eyefox .eyefox h3 {
+  font-size: 24px;
+}
+.site-frame .portfolio-eyefox .eyefox button,
+.site-frame .portfolio-eyefox .eyefox select {
+  font: 400 20px / 1.2 var(--heading);
+}
+
 .eyefox-placeholder {
   display: grid;
   place-items: center;

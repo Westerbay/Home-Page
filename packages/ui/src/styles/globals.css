@@ -1,6 +1,9 @@
 @import "tailwindcss";
-@import "@fontsource-variable/geist";
-@import "@fontsource-variable/space-grotesk";
+@import "@fontsource/jersey-10/400.css";
+@import "@fontsource/space-mono/400.css";
+@import "@fontsource/space-mono/700.css";
+@import "@fontsource/space-mono/400-italic.css";
+@import "@fontsource/space-mono/700-italic.css";
 @source "../../../../web/src";
 :root {
   --surface: #fffefc;
@@ -12,7 +15,8 @@
   --secondary: #686868;
   --accent: #e99245;
   --image: #f3f2ef;
-  --heading: "Space Grotesk Variable", sans-serif;
+  --heading: "Jersey 10", sans-serif;
+  --body: "Space Mono", monospace;
 }
 .dark {
   --surface: #1b1b1b;
@@ -30,8 +34,10 @@
   justify-content: center;
   align-items: center;
   gap: 20px;
-  font-size: 11px;
-  font-weight: 500;
+  font-family: var(--heading);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.2;
   border: 1px solid transparent;
   transition: transform 0.2s;
 }

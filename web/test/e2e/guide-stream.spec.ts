@@ -79,7 +79,7 @@ test("streaming speech survives compact/full transitions and stops with the vali
   page,
 }) => {
   await page.goto("about/")
-  await page.getByRole("button", { name: "Ouvrir l’assistant" }).click()
+  await page.getByRole("button", { name: "Ouvrir le guide IA" }).click()
   await page.getByRole("textbox").fill("Présente SpellWar")
   await page.getByRole("button", { name: "Envoyer", exact: true }).click()
   await expect(page.getByRole("textbox")).toHaveValue("")
@@ -124,7 +124,7 @@ test("streaming speech survives compact/full transitions and stops with the vali
   await expect(page.getByRole("log")).not.toHaveAttribute("aria-busy", "true")
   expect(await page.evaluate(() => window.guideStreamFixture?.calls)).toBe(1)
   await page.reload()
-  await page.getByRole("button", { name: "Ouvrir l’assistant" }).click()
+  await page.getByRole("button", { name: "Ouvrir le guide IA" }).click()
   await expect(reply).toHaveText(answer.answer)
 })
 

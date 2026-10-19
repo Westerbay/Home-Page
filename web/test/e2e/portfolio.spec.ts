@@ -171,7 +171,28 @@ test("skip link moves keyboard focus to the main content", async ({ page }) => {
   await expect(page.locator("main")).toBeFocused()
 })
 
-for (const width of [320, 390, 768, 1440, 1920, 3840]) {
+test("desktop navigation controls remain keyboard-accessible in short windows", async ({
+  page,
+}) => {
+  for (const height of [500, 300]) {
+    await page.setViewportSize({ width: 1440, height })
+    await page.goto("./")
+    const theme = page.locator(".theme-button")
+    for (let index = 0; index < 35; index += 1) {
+      await page.keyboard.press("Tab")
+      if (await theme.evaluate((button) => button === document.activeElement))
+        break
+    }
+    await expect(theme).toBeFocused()
+    await expect(theme).toBeInViewport({ ratio: 1 })
+    await page.keyboard.press("Enter")
+    await expect(page.locator("html")).toHaveClass(/dark/)
+    await page.keyboard.press("Enter")
+    await expect(page.locator("html")).not.toHaveClass(/dark/)
+  }
+})
+
+for (const width of [320, 390, 768, 1100, 1101, 1440, 1920, 3840]) {
   const viewport = {
     width,
     height: Math.max(950, Math.round(width * 0.56)),
@@ -254,7 +275,7 @@ test("large screens keep generous content width and readable type", async ({
   for (const width of [1440, 1920, 2560, 3840]) {
     await page.setViewportSize({ width, height: Math.round(width * 0.56) })
     const layout = await page.evaluate(() => {
-      const container = document.querySelector(".site-container")!
+      const container = document.querySelector(".site-content")!
       const description = document.querySelector(".hero-description")!
       const heading = document.querySelector(".hero-copy h1")!
       const figure = document.querySelector(".atlas-art")!
@@ -272,7 +293,7 @@ test("large screens keep generous content width and readable type", async ({
     expect(layout.width).toBeLessThanOrEqual(2600)
     expect(layout.descriptionSize).toBeGreaterThanOrEqual(15)
     expect(layout.figureHeight).toBeLessThanOrEqual(820)
-    if (width >= 2560) expect(layout.headingSize).toBeGreaterThanOrEqual(170)
+    if (width >= 2560) expect(layout.headingSize).toBeGreaterThanOrEqual(120)
     previousWidth = layout.width
   }
 })

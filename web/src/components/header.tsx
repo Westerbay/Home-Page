@@ -1,5 +1,5 @@
 import * as m from "@workspace/i18n/messages"
-import { Link, useLocation } from "@tanstack/react-router"
+import { Link, useLocation, useMatch } from "@tanstack/react-router"
 import { useEffect, useState, useSyncExternalStore } from "react"
 import { getLocale, localizeHref } from "@workspace/i18n/runtime"
 import { useTheme } from "next-themes"
@@ -8,6 +8,7 @@ import profile from "@workspace/config/profile" with { type: "json" }
 import { assetUrl } from "../lib/assets"
 import { GUIDE_ENABLED } from "../features/guide/config"
 import { GuideLink } from "../features/guide/guide-link"
+import { ProjectNavigation } from "../features/projects/components/project-navigation"
 
 function subscribeToUrl(onChange: () => void) {
   window.addEventListener("popstate", onChange)
@@ -60,6 +61,8 @@ export function Header() {
   )
   const otherLocale = locale === "fr" ? "en" : "fr"
   const languageHref = localizeHref(href, { locale: otherLocale })
+  const projectMatch = useMatch({ from: "/projects/$slug", shouldThrow: false })
+  const projectsMatch = useMatch({ from: "/projects/", shouldThrow: false })
   return (
     <header className="site-header">
       <Link
@@ -85,12 +88,9 @@ export function Header() {
         >
           {m.home()}
         </Link>
-        <Link
-          to="/projects/"
-          activeProps={{ className: "active", "aria-current": "page" }}
-        >
-          {m.projects()}
-        </Link>
+        <ProjectNavigation
+          inProjects={Boolean(projectMatch || projectsMatch)}
+        />
         <Link
           to="/about/"
           activeProps={{ className: "active", "aria-current": "page" }}

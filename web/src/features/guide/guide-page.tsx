@@ -12,15 +12,15 @@ export function GuidePage() {
       className="inner-page guide-page"
       aria-labelledby="guide-page-title"
     >
+      <header className="guide-page-heading">
+        <div>
+          <p className="eyebrow">{m.guide_eyebrow()}</p>
+          <h1 id="guide-page-title">{m.guide_title()}</h1>
+          <p>{m.guide_description()}</p>
+        </div>
+        {GUIDE_ENABLED && <MinimizeGuide />}
+      </header>
       <div className="guide-page-surface">
-        <header className="guide-page-heading">
-          <div>
-            <p className="eyebrow">{m.guide_eyebrow()}</p>
-            <h1 id="guide-page-title">{m.guide_title()}</h1>
-            <p>{m.guide_description()}</p>
-          </div>
-          {GUIDE_ENABLED && <MinimizeGuide />}
-        </header>
         <noscript>
           <p>{m.guide_needs_js()}</p>
         </noscript>
