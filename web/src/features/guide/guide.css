@@ -808,21 +808,55 @@
     width: 100%;
   }
 }
-@media (max-width: 600px) {
+@media (max-width: 600px), (max-width: 1100px) and (max-height: 520px) {
   :root {
-    --assistant-edge: max(18px, env(safe-area-inset-right));
+    --assistant-floating-size: 92px;
+    --assistant-edge: max(8px, env(safe-area-inset-right));
+    --assistant-bottom: max(8px, env(safe-area-inset-bottom));
+  }
+  .guide-launcher-bubble {
+    min-width: 44px;
+    min-height: 34px;
+    padding-inline: 8px;
+  }
+  .guide-launcher-dots {
+    font-size: 22px;
+    line-height: 26px;
+    letter-spacing: 2px;
+    padding-left: 2px;
   }
   .guide-panel {
-    max-height: 650px;
+    --guide-mobile-inset: max(12px, env(safe-area-inset-bottom));
+    bottom: var(--guide-mobile-inset);
+    height: min(720px, calc(100dvh - 2 * var(--guide-mobile-inset)));
+    max-height: none;
+  }
+  .guide-panel::after {
+    display: none;
+  }
+  .guide-dock[data-expanded="false"]:has(.guide-launcher[data-open="true"])
+    .guide-companion {
+    visibility: hidden;
   }
   .guide-panel-header {
-    padding: 16px;
+    padding: 12px;
+  }
+  .guide-panel-header > div {
+    min-width: 0;
+  }
+  .guide-icon-button {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
   }
   .guide-transcript {
     padding: 20px;
   }
   .guide-compose-area {
     padding: 12px 16px;
+  }
+  .guide-composer textarea {
+    font-size: 16px;
   }
 }
 @media (max-width: 1100px) {
@@ -905,6 +939,58 @@
   }
   .guide-page-heading {
     padding-left: 108px;
+  }
+}
+@media (max-width: 600px) {
+  .site-container:has(.guide-page) {
+    min-height: 0;
+  }
+  .site-content:has(.guide-page) {
+    display: grid;
+    /* The chat fills the space below the header; the footer follows it. */
+    grid-template-rows: 100% auto;
+  }
+  .site-container:has(.guide-page):has(> .site-header[data-menu-open="true"]) {
+    height: auto;
+    min-height: 100dvh;
+  }
+  .site-container:has(> .site-header[data-menu-open="true"])
+    .site-content:has(.guide-page) {
+    flex: none;
+    grid-template-rows: max(480px, 80dvh) auto;
+  }
+  #main-content:has(.guide-page) {
+    --assistant-scene-size: 112px;
+    padding-block: 12px;
+  }
+  .guide-dock[data-expanded="true"] {
+    margin-top: 0;
+  }
+  .guide-page-heading {
+    min-height: 112px;
+    padding: 0 0 12px 96px;
+  }
+  .guide-page-heading > div {
+    min-width: 0;
+  }
+  .guide-page-heading .eyebrow {
+    display: none;
+  }
+  .guide-page-heading h1 {
+    margin: 0 0 4px;
+    font-size: 32px;
+  }
+  .guide-page-heading p:not(.eyebrow) {
+    font-size: 12px;
+    line-height: 1.45;
+  }
+  .guide-page-heading > button {
+    width: 44px;
+    min-height: 44px;
+    margin-top: 0;
+  }
+  .guide-page .guide-composer textarea {
+    font-size: 16px;
   }
 }
 @media (max-height: 520px) {

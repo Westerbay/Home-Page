@@ -47,7 +47,9 @@ contrast.
 
 Android screenshots retain their original artwork and sit on a light or dark
 matte matching the current theme. The interactive tile grids keep their original
-sprites inside an opaque game panel, with themed controls and restrained shadows.
+sprites inside a translucent, backdrop-blurred game panel, with themed controls
+and restrained shadows. Grid mattes and the difficulty selector remain opaque;
+browsers without backdrop-filter support keep an opaque game panel.
 
 The game's cave background, visible in the Android screenshots, was credited
 by its README to [Pixel Fantasy Caves by Szadi art](https://szadiart.itch.io/pixel-fantasy-caves).

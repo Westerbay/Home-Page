@@ -45,7 +45,8 @@ text stays white directly over each landscape and keeps the shared project layou
 technologies on the left and introductory text on the right, then story headings
 beside their prose and captures below. It has no background, frame or content-level
 shading. Contrast comes from the fixed environment's veil and a restrained text
-shadow while content scrolls. The Eyefox game retains its opaque panel; project
+shadow while content scrolls. The Eyefox game uses a translucent, backdrop-blurred
+panel with an opaque fallback; project
 captures and SpellWar's video retain a matching light or dark matte.
 The full Guide uses the normal portfolio background, with an unframed conversation
 beside the character. Other project content and visuals remain unchanged.
@@ -63,7 +64,11 @@ dark mode, with a 500 ms filter transition that becomes
 instant with reduced motion. The desktop rail uses no backdrop blur. Project links stay expanded on every
 desktop page; the parent is emphasised only on project routes and the active
 page is identified separately. There are no internal section links. Mobile
-keeps the ordinary header without the paper texture or project branch.
+uses a compact 76 px header and a Menu disclosure without the paper texture or
+project branch. The menu contains navigation, language and theme controls, closes
+after navigation or Escape, and resets when crossing the desktop breakpoint.
+Static HTML keeps the links visible without JavaScript. The Projects parent stays
+visually active on project pages. Mobile footer links have larger touch targets.
 Navigation scrolls independently on short
 screens, with compact utility controls. The Guide remains a normal navigation
 link, while its companion floats at the bottom right outside the sidebar.
@@ -81,8 +86,9 @@ Guide follows the ordinary portfolio theme. Palette colours transition over
 Theme changes preserve game progress, conversation and draft. Language labels stay in
 FR / EN order, with the active locale distinguished and no flags.
 
-When the feature is enabled, the Guide link stays visible in the navigation on
-desktop and mobile, including before hydration and without JavaScript. The
+When the feature is enabled, the Guide link remains part of the navigation on
+desktop and mobile. It is available through Menu on hydrated mobile pages;
+static HTML shows the navigation links before hydration and without JavaScript. The
 floating companion and its speech-bubble launcher sit at the bottom right;
 there is no separate Guide call to action inside the sidebar. On the full Guide,
 the same character sits beside a conversation that fills the available height

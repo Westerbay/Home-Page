@@ -75,8 +75,15 @@ bottom right on desktop and mobile, outside the sidebar. There is no separate
 sidebar Guide call to action. On the full Guide, the navigation link marks the
 active page and the character is part of the conversation scene.
 The theme switch remains available on every page.
-At 1100 px and below, the existing top navigation adapts across rows without the
-paper texture or desktop project branch. Content
+At 1100 px and below, a 76 px header keeps the identity and a labelled Menu
+button on one row. The disclosure expands in the document flow and contains the
+main links plus language and theme controls. Links use 26 px Jersey with at least
+48 px of height; utility controls provide 44 px targets. The Projects parent is
+underlined on project pages. Navigation closes after a link, Escape or crossing
+the desktop breakpoint; Escape restores focus to Menu. Static HTML without
+JavaScript keeps the navigation visible. There is no mobile paper texture or
+desktop project branch. At 380 px and below, the secondary role line is hidden
+to keep the identity readable. Content
 container queries respond to the available column width rather than the full
 viewport, including the full Guide page.
 
@@ -87,7 +94,9 @@ scroll area. On desktop, the character is anchored at the bottom left beside the
 its canvas grows from 260 to 440 px, bounded by the available height. At 820 px
 of available width or less, the character stays near the heading with the
 conversation and full-width input below, using a 144 px
-canvas, reduced to 132 px at 380 px or less. The conversation is transparent,
+canvas. On phones up to 600 px, the portrait is 112 px, the heading is compact
+and the footer follows the chat instead of reducing its available height.
+An open navigation menu lets the page grow and scroll. The conversation is transparent,
 without an enclosing border or shadow. The character persists when expanding or
 minimizing the chat. Eyefox uses the fox, including a Guide opened from Eyefox;
 other routes and direct Guide entry use the adventurer. Both use the existing
@@ -96,15 +105,24 @@ the chat on their right; minimizing restores their compact orientation. A 420 ms
 half-turn accompanies the assistant transition, using the existing atlases. Reduced
 motion or an unavailable View Transition API applies the final direction immediately.
 Both floating companions use the same 12% size reduction. Their canvas is about
-99 px on mobile, grows from 197 px at a 1440 px viewport to 317 px at 3840 px,
+81 px on phones and short landscape screens, grows from 197 px at a 1440 px viewport to 317 px at 3840 px,
 and uses 113 px on desktop windows at most 650 px high. The speech bubble and
 compact chat stay anchored above the smaller canvas. The full Guide keeps its
-original character size. The compact chat keeps its opaque surface.
+desktop character size. The compact chat keeps its opaque surface. On phones and
+short landscape screens it sits near the safe bottom edge and uses the available
+viewport height; the persistent floating character is hidden while this panel is
+open. Input text is at least 16 px on these formats, and closing, expanding and
+theme controls retain usable touch targets.
 
 Type and visuals scale up to 3840 px. Paragraphs keep a limited reading width
 and the hero illustration remains proportionate to the text. The project
 listing uses three columns above 1100 px, two on tablets and one on mobile.
 Images use a 2:1 ratio with a maximum height of 360 px.
+
+At 820 px of available content width or less, the home hero stacks and the
+selected projects use two columns, then one at 600 px. Supporting descriptions
+remain readable instead of compressing three cards into a tablet-width row.
+Mobile footer links retain their centered arrangement with 44 px touch targets.
 
 Home retains the three selected projects in equal-width columns. Their media
 frames share a 1.6 ratio and contain the full images. Link labels and bottom
@@ -143,7 +161,9 @@ is documented in `FOREST-MEDIA.md`; SpellWar's separate floating-platform scene
 is documented in `SPELLWAR-MEDIA.md`. SpellWar's brighter daytime sky is an
 interpretation of the game's dark spatial setting, not a captured game state.
 The real screenshots and gameplay video remain unchanged. Eyefox keeps its real
-sprites, controls and readable grids in an opaque panel. The full Guide conversation
+sprites, controls and readable grids in a translucent panel that blurs the scenery
+behind it. Its tint follows the theme; grids and the difficulty selector stay opaque.
+Browsers without backdrop-filter support retain an opaque panel. The full Guide conversation
 uses the ordinary portfolio background without an enclosing panel; the compact
 chat remains opaque. Captures and grids have
 a light or dark matte matching the current theme, with a restrained shadow to

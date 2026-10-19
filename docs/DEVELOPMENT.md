@@ -171,9 +171,9 @@ skips that sequence. Only a successful manual request wakes the character; gener
 errors never start a new sleep sequence.
 
 Click the bubble above the floating character at the bottom right to open its
-dialogue on desktop or mobile. The Guide navigation link remains visible whenever
-the feature is enabled, including without JavaScript and before hydration; it is
-not replaced by a sidebar launcher. On the full Guide page the compact launcher
+dialogue on desktop or mobile. When the feature is enabled, the Guide link remains
+in the navigation, available through Menu on hydrated mobile pages and visible in
+static HTML without JavaScript. It is not replaced by a sidebar launcher. On the full Guide page the compact launcher
 is hidden, the character joins the conversation scene, and the navigation link
 marks the active page. The full Guide uses the normal portfolio background and
 theme, with a transparent conversation surface and no enclosing border or shadow.
@@ -183,8 +183,9 @@ height. The conversation
 fills the available height from its empty state, with the input at the bottom
 and a separately scrolling transcript.
 At 820 px of available width or less, the character stays near the heading above
-the conversation on a 144 px canvas, reduced to 132 px at 380 px or less; the
-input keeps its full width.
+the conversation on a 144 px canvas, reduced to 112 px on phones up to 600 px;
+the input keeps its full width. On these phones, the footer follows the chat
+instead of reducing its available height. Opening Menu lets the page grow and scroll.
 Replies arrive from the Worker progressively while the sprite speaks. The first
 text ends its thinking
 pose; validated completion ends speech without an additional typing delay.
@@ -196,14 +197,19 @@ reveal for compatibility with older Worker deployments and existing test fixture
 The Guide displays the answer without a separate sources section and links to
 the Cloudflare-RAG repository as the source project. Its single
 sprite keeps the same size and position when opening or closing the compact dialog.
+On phones and short landscape screens it stays mounted but is hidden while that
+panel is open, leaving more room for the conversation and composer.
 Expanding moves and enlarges that same character into the article, to the left of
 the conversation on desktop and beside the heading on mobile. Minimizing restores
 its compact size and position. Check the conversation and character transitions
 with a cold cache as well as reduced motion, and verify that the enlarged sprite
-stays inside the main content above the footer. The floating sprite uses a 112 px
-canvas on mobile, scales from 224 px at a 1440 px viewport to 360 px at 3840 px,
+stays inside the main content above the footer. Before the shared 12% reduction,
+the floating sprite uses a 92 px canvas on phones and short landscape screens,
+112 px on tablets, scales from 224 px at a 1440 px viewport to 360 px at 3840 px,
 and uses 128 px on desktop when viewport height is at most 650 px. Its speech
-bubble scales with it. The compact dialog retains its opaque surface.
+bubble scales with it. The compact dialog retains its opaque surface; on phones
+and short landscape screens it sits near the safe bottom edge and uses the
+available viewport height.
 The thin transcript scrollbar is visible while scrolling and hides after a short
 pause. Its reserved gutter keeps the text width stable.
 
@@ -294,9 +300,13 @@ The Eyefox scene derives its theme from `useTheme().resolvedTheme` and passes
 React key or otherwise remount the game, companion or conversation when switching
 themes: game progress, conversation and draft must persist.
 
-The game and compact chat use opaque `--world-panel` surfaces with visible
-`--world-control` borders. Child fills may be translucent over those opaque
-surfaces; the scenery must not show through the main game panel. The full Guide
+The Eyefox game uses `--world-panel` at 78% opacity with an 18 px backdrop blur
+and restrained saturation when supported. Only its background is translucent:
+text, sprites, the difficulty selector and grid mattes remain sharp and opaque.
+Its secondary text is mixed closer to the main ink to preserve contrast over
+the scenery. A CSS support query keeps the original opaque surface as a fallback.
+The compact chat retains its opaque `--world-panel` surface; both keep visible
+`--world-control` borders. The full Guide
 conversation has no enclosing surface. On Eyefox and SpellWar, `.project-reading`
 remains transparent, without a background, border, content-level shading or
 box-like padding and negative margins. Preserve the shared project layout:

@@ -941,6 +941,71 @@ test("mobile modal traps focus and Escape restores the launcher", async ({
   await expect(page.getByRole("button", { name: fr.guide_open })).toBeFocused()
 })
 
+test.describe("compact guide on short touch screens", () => {
+  test.use({
+    viewport: { width: 390, height: 568 },
+    isMobile: true,
+    hasTouch: true,
+  })
+
+  test("rotation keeps the composer reachable and closing releases navigation", async ({
+    page,
+  }) => {
+    let calls = 0
+    await page.route(endpoint, (route) => {
+      calls++
+      return route.fulfill({ json: answer })
+    })
+    await page.goto("about/")
+    const launcher = page.getByRole("button", {
+      name: fr.guide_open,
+      exact: true,
+    })
+    await expect(launcher).toBeEnabled()
+    await launcher.tap()
+    const dialog = page.getByRole("dialog", { name: fr.guide_title })
+    const composer = dialog.getByRole("textbox", { name: fr.guide_question })
+    const close = dialog.getByRole("button", {
+      name: fr.guide_close,
+      exact: true,
+    })
+    const send = dialog.getByRole("button", {
+      name: fr.guide_send,
+      exact: true,
+    })
+    await composer.fill("Présente SpellWar")
+    for (const control of [composer, close, send]) {
+      await expect(control).toBeInViewport({ ratio: 1 })
+    }
+
+    await page.setViewportSize({ width: 844, height: 390 })
+    await expect(composer).toHaveValue("Présente SpellWar")
+    for (const control of [composer, close, send]) {
+      await expect(control).toBeInViewport({ ratio: 1 })
+    }
+    await send.tap()
+    await expect(
+      dialog.locator(".guide-message-assistant .guide-markdown")
+    ).toHaveText(answer.answer)
+    await composer.fill("Et les collisions ?")
+    await close.tap()
+    await expect(dialog).toHaveCount(0)
+
+    await page.setViewportSize({ width: 390, height: 568 })
+    await launcher.tap()
+    await expect(composer).toHaveValue("Et les collisions ?")
+    await expect(close).toBeInViewport({ ratio: 1 })
+    await close.tap()
+    await page.locator(".nav-toggle").tap()
+    await page
+      .getByRole("navigation", { name: fr.navigation })
+      .getByRole("link", { name: fr.contact, exact: true })
+      .tap()
+    await expect(page).toHaveURL(/\/contact\/$/)
+    expect(calls).toBe(1)
+  })
+})
+
 test("corrupt and denied storage still allow a session without resuming or making requests", async ({
   page,
 }) => {

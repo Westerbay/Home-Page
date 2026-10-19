@@ -4,6 +4,43 @@ import en from "../../../packages/i18n/messages/en.json" with { type: "json" }
 
 test.use({ viewport: { width: 1440, height: 1000 } })
 
+test("mobile navigation and language links remain usable without JavaScript", async ({
+  browser,
+  baseURL,
+}) => {
+  if (!baseURL) throw new Error("The portfolio base URL must be configured")
+  const context = await browser.newContext({
+    javaScriptEnabled: false,
+    viewport: { width: 320, height: 568 },
+    isMobile: true,
+    hasTouch: true,
+  })
+  const page = await context.newPage()
+  for (const [locale, messages, otherLocale] of [
+    ["", fr, "en/"],
+    ["en/", en, ""],
+  ] as const) {
+    await page.goto(new URL(locale, baseURL).href)
+    const navigation = page.getByRole("navigation", {
+      name: messages.navigation,
+    })
+    await expect(page.locator(".nav-toggle")).toBeHidden()
+    await expect(navigation).toBeVisible()
+    await navigation
+      .getByRole("link", { name: messages.projects, exact: true })
+      .tap()
+    await expect(page).toHaveURL(new URL(`${locale}projects/`, baseURL).href)
+    // A cross-document snapshot briefly intercepts input. With JavaScript off,
+    // Playwright's in-page tap retry timer cannot advance after that interception.
+    await expect(page.locator(":root:active-view-transition")).toHaveCount(0)
+    await page.getByRole("link", { name: messages.language }).tap()
+    await expect(page).toHaveURL(
+      new URL(`${otherLocale}projects/`, baseURL).href
+    )
+  }
+  await context.close()
+})
+
 for (const [locale, messages] of [
   ["", fr],
   ["en/", en],
@@ -82,47 +119,115 @@ for (const [locale, messages] of [
     }
   })
 
-  test(`mobile navigation keeps project pages out of the compact menu: ${locale || "fr"}`, async ({
-    page,
-    baseURL,
-  }) => {
-    if (!baseURL) throw new Error("The portfolio base URL must be configured")
-    await page.setViewportSize({ width: 390, height: 900 })
-    await page.goto(locale || "./")
-    const navigation = page.getByRole("navigation", {
-      name: messages.navigation,
+  test.describe(`touch navigation: ${locale || "fr"}`, () => {
+    test.use({
+      viewport: { width: 320, height: 568 },
+      isMobile: true,
+      hasTouch: true,
     })
-    const currentPage = navigation.locator('[aria-current="page"]')
-    await expect(navigation.locator(".project-nav-branch")).toBeHidden()
-    await expect(currentPage).toHaveCount(1)
-    await expect(currentPage).toHaveText(messages.home)
-    await navigation
-      .getByRole("link", { name: messages.projects, exact: true })
-      .click()
-    await expect(page).toHaveURL(new URL(`${locale}projects/`, baseURL).href)
-    await page.locator('.project-card[href*="eyefox"]').click()
-    await expect(page).toHaveURL(
-      new URL(`${locale}projects/eyefox/`, baseURL).href
-    )
-    await expect(page.getByRole("heading", { level: 1 })).toHaveText(
-      "Eyefox Puzzle"
-    )
-    await expect(navigation.locator(".project-nav-branch")).toBeHidden()
-    await expect(
-      navigation.getByRole("link", { name: "Eyefox Puzzle", exact: true })
-    ).toHaveCount(0)
-    await expect(currentPage).toHaveCount(1)
-    await expect(currentPage).toHaveText("Eyefox Puzzle")
-    await navigation
-      .getByRole("link", { name: messages.about, exact: true })
-      .click()
-    await expect(currentPage).toHaveCount(1)
-    await expect(currentPage).toHaveText(messages.about)
-    expect(
-      await page.evaluate(
-        () => document.documentElement.scrollWidth <= innerWidth
+
+    test("menu supports project and language navigation, Escape, and desktop resizing", async ({
+      page,
+      baseURL,
+    }) => {
+      if (!baseURL) throw new Error("The portfolio base URL must be configured")
+      await page.goto(locale || "./")
+      const toggle = page.locator(".nav-toggle")
+      const menu = page.locator("#primary-navigation")
+      const navigation = page.getByRole("navigation", {
+        name: messages.navigation,
+      })
+      await expect(toggle).toBeVisible()
+      await expect(toggle).toHaveAccessibleName(messages.menu_open)
+      await expect(toggle).toHaveAttribute("aria-expanded", "false")
+      await expect(menu).toBeHidden()
+      await toggle.tap()
+      await expect(toggle).toHaveAccessibleName(messages.menu_close)
+      await expect(toggle).toHaveAttribute("aria-expanded", "true")
+      await expect(navigation).toBeVisible()
+      await expect(navigation.locator(".project-nav-branch")).toBeHidden()
+      for (const link of await navigation.getByRole("link").all()) {
+        await expect(link).toBeInViewport({ ratio: 1 })
+      }
+      await expect(
+        page.getByRole("link", { name: messages.language })
+      ).toBeInViewport({ ratio: 1 })
+      await expect(page.locator(".theme-button")).toBeInViewport({ ratio: 1 })
+      await navigation
+        .getByRole("link", { name: messages.projects, exact: true })
+        .tap()
+      await expect(page).toHaveURL(new URL(`${locale}projects/`, baseURL).href)
+      await expect(menu).toBeHidden()
+      await page.locator('.project-card[href*="eyefox"]').tap()
+      await expect(page).toHaveURL(
+        new URL(`${locale}projects/eyefox/`, baseURL).href
       )
-    ).toBe(true)
+      await expect(page.getByRole("heading", { level: 1 })).toHaveText(
+        "Eyefox Puzzle"
+      )
+      await expect(menu).toBeHidden()
+
+      await toggle.tap()
+      const projects = navigation.getByRole("link", {
+        name: messages.projects,
+        exact: true,
+      })
+      const home = navigation.getByRole("link", {
+        name: messages.home,
+        exact: true,
+      })
+      await expect(projects).toBeInViewport({ ratio: 1 })
+      // The mobile parent must distinguish the active project branch even though
+      // individual project links are only shown in the desktop summary.
+      expect(
+        await projects.evaluate((link) => getComputedStyle(link).color)
+      ).not.toBe(await home.evaluate((link) => getComputedStyle(link).color))
+      await expect(navigation.locator(".project-nav-branch")).toBeHidden()
+      await expect(
+        navigation.getByRole("link", { name: "Eyefox Puzzle", exact: true })
+      ).toHaveCount(0)
+      await page.getByRole("link", { name: messages.language }).tap()
+      const otherLocale = locale ? "" : "en/"
+      const otherMessages = locale ? fr : en
+      await expect(page).toHaveURL(
+        new URL(`${otherLocale}projects/eyefox/`, baseURL).href
+      )
+      await expect(toggle).toBeVisible()
+      await expect(toggle).toHaveAccessibleName(otherMessages.menu_open)
+      await expect(menu).toBeHidden()
+      await toggle.tap()
+      await page.locator(".theme-button").focus()
+      await page.keyboard.press("Escape")
+      await expect(menu).toBeHidden()
+      await expect(toggle).toBeFocused()
+      await expect(toggle).toHaveAttribute("aria-expanded", "false")
+
+      await page.setViewportSize({ width: 1440, height: 1000 })
+      await expect(toggle).toBeHidden()
+      const desktopNavigation = page.getByRole("navigation", {
+        name: otherMessages.navigation,
+      })
+      await expect(desktopNavigation).toBeVisible()
+      const projectLinks = desktopNavigation.locator(
+        ".project-nav-branch > li > a"
+      )
+      await expect(projectLinks).toHaveCount(6)
+      for (const link of await projectLinks.all())
+        await expect(link).toBeVisible()
+      await expect(
+        desktopNavigation.locator('[aria-current="page"]')
+      ).toHaveText("Eyefox Puzzle")
+
+      await page.setViewportSize({ width: 320, height: 568 })
+      await expect(toggle).toBeVisible()
+      await expect(toggle).toHaveAttribute("aria-expanded", "false")
+      await expect(menu).toBeHidden()
+      expect(
+        await page.evaluate(
+          () => document.documentElement.scrollWidth <= innerWidth
+        )
+      ).toBe(true)
+    })
   })
 
   test(`expanded project navigation remains keyboard-accessible in short windows: ${locale || "fr"}`, async ({
