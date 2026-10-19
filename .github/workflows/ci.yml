@@ -13,6 +13,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     strategy:
+      fail-fast: false
       matrix:
         base: ["/", "/Home-Page/"]
     env:
@@ -36,6 +37,8 @@ jobs:
       - run: pnpm check
       - run: pnpm test:html
       - run: pnpm exec playwright install --with-deps chromium
+      - run: node scripts/generate-social-previews.mjs --output-dir .cache/social-preview-cleanup
+        if: ${{ matrix.base == '/' }}
       - run: pnpm test:e2e
       - run: pnpm audit:lighthouse /
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
@@ -44,4 +47,10 @@ jobs:
           name: quality-audits-${{ strategy.job-index }}
           path: .cache/audits/
           include-hidden-files: true
+          retention-days: 14
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: failure()
+        with:
+          name: playwright-failures-${{ strategy.job-index }}
+          path: test-results/
           retention-days: 14

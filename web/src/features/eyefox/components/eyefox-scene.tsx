@@ -12,8 +12,9 @@ export function EyefoxScene() {
   const [Component, setComponent] =
     useState<ComponentType<EyefoxPuzzleProps> | null>(null)
   const [status, setStatus] = useState<"idle" | "loading" | "failed">("idle")
-  const { resolvedTheme } = useTheme()
   const locale = getLocale()
+  const { resolvedTheme } = useTheme()
+  const theme = resolvedTheme === "dark" ? "dark" : "light"
 
   useEffect(() => {
     let active = true
@@ -58,10 +59,7 @@ export function EyefoxScene() {
       data-state={Component ? "ready" : status}
     >
       {Component ? (
-        <Component
-          locale={locale}
-          theme={resolvedTheme === "dark" ? "dark" : "light"}
-        />
+        <Component locale={locale} theme={theme} />
       ) : (
         <div className="eyefox-placeholder">
           <img

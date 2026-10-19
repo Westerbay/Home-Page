@@ -65,7 +65,7 @@ test("interactive companion review with local responses", async ({
   })
   await page.goto("about/")
   await expect(
-    page.getByRole("button", { name: "Ouvrir l’assistant" })
+    page.getByRole("button", { name: "Ouvrir le guide IA" })
   ).toBeEnabled()
   console.info(
     "Local QA only: any question returns a sample answer; 'sleep' rests for 15s; 'error' simulates a generic error. No external requests are allowed."

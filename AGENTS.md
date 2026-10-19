@@ -8,7 +8,7 @@ Shared UI primitives belong in `packages/ui`. Maintain both French and English
 messages in `packages/i18n`. Do not add services, forms, remote requests or
 abstractions without an actual need.
 
-Keep the approved Atlas × Signal design. The portfolio is personal and
+Keep the approved visual direction described in `docs/DESIGN.md`. The portfolio is personal and
 understated, about enjoying development and showing projects. Do not display
 or link the secondary GitHub account. Follow the confirmed content rules in
 `docs/PRODUCT.md`; further content refinements do not block V1.

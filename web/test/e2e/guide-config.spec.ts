@@ -18,10 +18,10 @@ test("a disabled or invalidly configured guide exposes no interactive entry or r
   })
   await page.goto("about/")
   await expect(
-    page.getByRole("button", { name: "Ouvrir l’assistant" })
+    page.getByRole("button", { name: "Ouvrir le guide IA" })
   ).toHaveCount(0)
   await expect(
-    page.getByRole("navigation").getByRole("link", { name: "Assistant" })
+    page.getByRole("navigation").getByRole("link", { name: "Guide IA" })
   ).toHaveCount(0)
   for (const [route, explanation] of [
     [

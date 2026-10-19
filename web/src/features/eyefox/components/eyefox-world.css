@@ -1,0 +1,39 @@
+.project-detail[data-project="eyefox"] .portfolio-eyefox .eyefox {
+  --eyefox-bg: var(--world-panel);
+  --eyefox-surface: var(--raised);
+  --eyefox-ink: var(--ink);
+  --eyefox-muted: var(--secondary);
+  --eyefox-line: var(--line);
+  --eyefox-accent: var(--accent-fill);
+  --eyefox-focus: var(--accent);
+  width: min(100%, 1120px);
+  margin-inline: auto;
+  border: 1px solid var(--world-control);
+  padding: clamp(18px, 2cqi, 40px);
+  box-shadow: 0 16px 48px var(--world-shadow);
+}
+
+@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+  .project-detail[data-project="eyefox"] .portfolio-eyefox .eyefox {
+    --eyefox-bg: color-mix(in srgb, var(--world-panel) 78%, transparent);
+    --eyefox-muted: color-mix(in srgb, var(--ink) 84%, var(--world-panel));
+    -webkit-backdrop-filter: blur(18px) saturate(0.7);
+    backdrop-filter: blur(18px) saturate(0.7);
+  }
+}
+
+.project-detail[data-project="eyefox"] .eyefox-toolbar select,
+.project-detail[data-project="eyefox"] .eyefox-actions button:first-child {
+  border-color: var(--world-control);
+}
+
+.project-detail[data-project="eyefox"] .eyefox-placeholder {
+  border: 0;
+  background: transparent;
+}
+
+.project-detail[data-project="eyefox"] .eyefox .eyefox-grid {
+  border-color: var(--world-control);
+  background: var(--world-matte);
+  box-shadow: 0 6px 18px var(--world-shadow);
+}

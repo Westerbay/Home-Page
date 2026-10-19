@@ -16,16 +16,26 @@ function serverMotionSnapshot() {
   return true
 }
 
-function companionImage(
-  character: string,
-  animation: string,
-  expanded: boolean
-) {
+const LARGE_COMPANION_QUERY = "(min-width: 1101px) and (min-height: 651px)"
+
+function subscribeLargeCompanion(notify: () => void) {
+  const media = window.matchMedia(LARGE_COMPANION_QUERY)
+  media.addEventListener("change", notify)
+  return () => media.removeEventListener("change", notify)
+}
+function largeCompanionSnapshot() {
+  return window.matchMedia(LARGE_COMPANION_QUERY).matches
+}
+function serverLargeCompanionSnapshot() {
+  return false
+}
+
+function companionImage(character: string, animation: string, native: boolean) {
   const base = `assets/companion/${character}-${animation}`
-  const normal = assetUrl(`${base}${expanded ? "" : "-1x"}.webp`)
-  const retina = expanded ? normal : assetUrl(`${base}-2x.webp`)
-  const dense = expanded ? normal : assetUrl(`${base}-3x.webp`)
-  const imageSrcSet = expanded
+  const normal = assetUrl(`${base}${native ? "" : "-1x"}.webp`)
+  const retina = native ? normal : assetUrl(`${base}-2x.webp`)
+  const dense = native ? normal : assetUrl(`${base}-3x.webp`)
+  const imageSrcSet = native
     ? undefined
     : `${normal} 1x, ${retina} 2x, ${dense} 3x`
   preload(normal, {
@@ -56,10 +66,16 @@ export function GuideCompanion() {
     reducedMotionSnapshot,
     serverMotionSnapshot
   )
+  const largeCompanion = useSyncExternalStore(
+    subscribeLargeCompanion,
+    largeCompanionSnapshot,
+    serverLargeCompanionSnapshot
+  )
   const fromEyefox = /\/projects\/eyefox\/?$/.test(state.returnTo.pathname)
   const character = onEyefox || (onGuide && fromEyefox) ? "fox" : "adventurer"
-  const atlas = companionImage(character, "atlas", onGuide)
-  const talk = companionImage(character, "talk", onGuide)
+  const nativeArtwork = onGuide || largeCompanion
+  const atlas = companionImage(character, "atlas", nativeArtwork)
+  const talk = companionImage(character, "talk", nativeArtwork)
   let pose = state.companion
   if (reducedMotion && state.sleeping && pose !== "thinking") pose = "hidden"
   if (reducedMotion && pose === "speaking") pose = "idle"

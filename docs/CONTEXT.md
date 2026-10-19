@@ -30,16 +30,73 @@ these notes do not stand in for release verification.
 ## Approved design
 
 Mathis approved **Atlas × Signal** on 19 September 2026: soft orange
-`#e99245`, warm white `#fffefc`, and charcoal in dark mode. Small visual
-refinements can follow V1.
+`#e99245`, warm white `#fffefc`, and charcoal in dark mode. The October 2026
+refinement keeps the portfolio structure, replaces typography with locally
+served Jersey 10 for headings, navigation and actions, with Space Mono for body
+text, and moves desktop navigation to the left as plain text links. Eyefox uses
+the generated pixel-art forest; SpellWar has its own floating-platform landscape,
+with stone slabs, violet points and red trees. Both pair daylight and dusk
+versions of the same composition, crossfading over 900 ms (instant with reduced
+motion). SpellWar's brighter daytime setting is a decorative interpretation;
+its real screenshots and gameplay remain unchanged. Both pages' surfaces and
+controls follow the theme, with cream surfaces and dark text by day, graphite
+surfaces and light text at dusk, and amber primary actions in both modes. Article
+text stays white directly over each landscape and keeps the shared project layout:
+technologies on the left and introductory text on the right, then story headings
+beside their prose and captures below. It has no background, frame or content-level
+shading. Contrast comes from the fixed environment's veil and a restrained text
+shadow while content scrolls. The Eyefox game uses a translucent, backdrop-blurred
+panel with an opaque fallback; project
+captures and SpellWar's video retain a matching light or dark matte.
+The full Guide uses the normal portfolio background, with an unframed conversation
+beside the character. Other project content and visuals remain unchanged.
 
-Desktop content uses 90% of the viewport, capped at 2600 px. Typography and
-visuals adapt up to 3840 px. The container has no percentage padding that
-shrinks its usable width after the cap. The home illustration and Plants project page use the shared React/WebGL L-system component from the ABOP repository. Home shows compact controls; the project page includes the full editor and symbol-help modal. It is loaded only on the client when the scene approaches the viewport, with a static image in generated HTML.
+The desktop navigation sits against the left viewport edge. It scales from
+about 256 px wide at a 1440 px viewport to 416 px at 3840 px, with a 24–32 px
+left inset, larger type, avatar and spacing. From 1101 px, opaque white and pale
+grey paper with straight edges and thin stacked page edges on the right sits
+behind the real navigation links. The original texture is framed at 106% width,
+aligned to the right, so its left binding crease is outside the visible rail.
+The texture fills
+the existing rectangular rail, which keeps its surface background and subtle
+side shadow. It becomes dark graphite in
+dark mode, with a 500 ms filter transition that becomes
+instant with reduced motion. The desktop rail uses no backdrop blur. Project links stay expanded on every
+desktop page; the parent is emphasised only on project routes and the active
+page is identified separately. There are no internal section links. Mobile
+uses a compact 76 px header and a Menu disclosure without the paper texture or
+project branch. The menu contains navigation, language and theme controls, closes
+after navigation or Escape, and resets when crossing the desktop breakpoint.
+Static HTML keeps the links visible without JavaScript. The Projects parent stays
+visually active on project pages. Mobile footer links have larger touch targets.
+Navigation scrolls independently on short
+screens, with compact utility controls. The Guide remains a normal navigation
+link, while its companion floats at the bottom right outside the sidebar.
+Content is centered separately in the remaining space, capped at 2600 px.
+Footer links are centered in that content area. On narrow screens they stack
+at the center so the floating companion cannot cover the links.
+Typography and visuals adapt up to
+3840 px. The home illustration and Plants project page use the shared React/WebGL L-system component from the ABOP repository. Home shows compact controls; the project page includes the full editor and symbol-help modal. It is loaded only on the client when the scene approaches the viewport, with a static image in generated HTML.
 
 The theme follows the browser until a manual preference is saved. The
-sun/moon button switches between light and dark. Language labels stay in
+sun/moon button switches between light and dark on every page. On Eyefox and
+SpellWar it changes each project's scenery and interface palette; the
+Guide follows the ordinary portfolio theme. Palette colours transition over
+500 ms, including system theme changes; reduced motion makes this instant.
+Theme changes preserve game progress, conversation and draft. Language labels stay in
 FR / EN order, with the active locale distinguished and no flags.
+
+When the feature is enabled, the Guide link remains part of the navigation on
+desktop and mobile. It is available through Menu on hydrated mobile pages;
+static HTML shows the navigation links before hydration and without JavaScript. The
+floating companion and its speech-bubble launcher sit at the bottom right;
+there is no separate Guide call to action inside the sidebar. On the full Guide,
+the same character sits beside a conversation that fills the available height
+from the empty state, with the input at the bottom. The navigation link marks the
+active page. The floating sprite and its bubble grow on large screens, with
+smaller sizing on mobile and short desktop windows. Eyefox uses the
+fox, which stays with the visitor when expanding
+from Eyefox into the Guide. Other pages and direct Guide entry use the adventurer.
 
 ## Confirmed identity and tone
 
@@ -154,7 +211,9 @@ The versioned @westerbay/lsystem-react package comes from a GitHub release asset
 ## Interactive Eyefox puzzle
 
 The Eyefox project detail uses the shared `@westerbay/eyefox-react` component
-from the Eyefox-Puzzle repository. It loads on the client near the viewport and
-follows the portfolio language and theme. Prerendered HTML retains the existing
-Eyefox image. Home and Projects cards remain static. Keep the package as the
+from the Eyefox-Puzzle repository. It loads on the client near the viewport,
+follows the portfolio language and resolved light or dark theme. The theme is
+passed as a prop without a theme-dependent key, preserving the mounted puzzle
+and its game state when the theme changes. Prerendered HTML retains the
+existing Eyefox image. Home and Projects cards remain static. Keep the package as the
 source of game logic and upgrade its dependency when releasing changes.

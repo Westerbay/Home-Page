@@ -3,22 +3,28 @@ import { mkdir, readFile, stat } from "node:fs/promises"
 import { createRequire } from "node:module"
 import { dirname, join, resolve } from "node:path"
 import { fileURLToPath } from "node:url"
+import { parseArgs } from "node:util"
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..")
 const assets = join(root, "web/public/assets")
-const output = join(assets, "social")
+const { values } = parseArgs({
+  options: { "output-dir": { type: "string" } },
+})
+const output = values["output-dir"]
+  ? resolve(root, values["output-dir"])
+  : join(assets, "social")
 const uiRequire = createRequire(join(root, "packages/ui/package.json"))
 const dataUrl = async (path, mime) =>
   `data:${mime};base64,${(await readFile(path)).toString("base64")}`
-const geist = await dataUrl(
+const jersey = await dataUrl(
   uiRequire.resolve(
-    "@fontsource-variable/geist/files/geist-latin-wght-normal.woff2"
+    "@fontsource/jersey-10/files/jersey-10-latin-400-normal.woff2"
   ),
   "font/woff2"
 )
-const space = await dataUrl(
+const spaceMono = await dataUrl(
   uiRequire.resolve(
-    "@fontsource-variable/space-grotesk/files/space-grotesk-latin-wght-normal.woff2"
+    "@fontsource/space-mono/files/space-mono-latin-400-normal.woff2"
   ),
   "font/woff2"
 )
@@ -128,11 +134,11 @@ function document(preview, image, locale) {
   if (preview.large) titleClass = "large"
   return `<!doctype html>
 <html lang="${locale}"><head><meta charset="utf-8"><style>
-@font-face { font-family: Geist; src: url('${geist}'); font-weight: 100 900; }
-@font-face { font-family: Space; src: url('${space}'); font-weight: 300 700; }
+@font-face { font-family: 'Jersey 10'; src: url('${jersey}'); font-weight: 400; }
+@font-face { font-family: 'Space Mono'; src: url('${spaceMono}'); font-weight: 400; }
 * { box-sizing: border-box; }
 html, body { margin: 0; width: 1200px; height: 630px; overflow: hidden; }
-body { background: #fffefc; color: #242420; font-family: Geist, sans-serif; }
+body { background: #fffefc; color: #242420; font-family: 'Space Mono', monospace; }
 .page { width: 1200px; height: 630px; padding: 42px 48px 32px; }
 header { display: flex; align-items: center; justify-content: space-between;
   height: 40px; font-size: 22px; letter-spacing: -.6px; }
@@ -142,8 +148,8 @@ header { display: flex; align-items: center; justify-content: space-between;
 .rule { height: 1px; background: #dcd9d1; margin-top: 17px; }
 main { display: grid; grid-template-columns: 460px 1fr; gap: 26px; height: 430px; align-items: center; }
 .category { margin: 0 0 22px; font-size: 13px; color: #6d6b63; text-transform: uppercase; letter-spacing: 2px; }
-h1 { font: 500 64px/1.04 Space, sans-serif; letter-spacing: -3.3px; margin: 0; }
-h1.compact { font-size: 45px; line-height: 1.13; letter-spacing: -2px; }
+h1 { font: 400 64px/1.04 'Jersey 10', sans-serif; margin: 0; }
+h1.compact { font-size: 45px; line-height: 1.13; }
 h1.large { font-size: 76px; }
 .description { margin: 25px 0 0; color: #5f5d56; font-size: 21px; line-height: 1.55; letter-spacing: -.5px; }
 .frame { width: 618px; height: 356px; display: flex; justify-content: center; align-items: center;
@@ -181,21 +187,76 @@ try {
       await page.setContent(document(preview, image, locale), {
         waitUntil: "load",
       })
-      await page.evaluate(async () => {
+      const layoutErrors = await page.evaluate(async () => {
         await document.fonts.ready
         await Promise.all([...document.images].map((image) => image.decode()))
-      })
-      const overflow = await page
-        .locator(".copy")
-        .evaluate((element) =>
-          [...element.children].some(
-            (child) => child.scrollWidth > element.clientWidth
+        const errors = []
+        for (const family of ["Jersey 10", "Space Mono"]) {
+          const loaded = [...document.fonts].some(
+            (font) =>
+              font.family.replaceAll('"', "").replaceAll("'", "") === family &&
+              font.status === "loaded"
           )
-        )
-      if (overflow)
-        throw new Error(`Text overflows the ${preview.slug} preview`)
+          if (!loaded) errors.push(`${family} did not load`)
+        }
+        const regions = [
+          ".identity",
+          ".portfolio",
+          ".copy",
+          ".frame",
+          ".footer-detail",
+          ".arrow",
+        ].map((selector) => ({
+          selector,
+          rect: document.querySelector(selector).getBoundingClientRect(),
+        }))
+        for (const { selector, rect } of regions) {
+          if (
+            rect.left < 48 ||
+            rect.right > 1152 ||
+            rect.top < 42 ||
+            rect.bottom > 598
+          ) {
+            errors.push(`${selector} escapes the page padding`)
+          }
+        }
+        for (let first = 0; first < regions.length; first++) {
+          for (let second = first + 1; second < regions.length; second++) {
+            const a = regions[first]
+            const b = regions[second]
+            const width =
+              Math.min(a.rect.right, b.rect.right) -
+              Math.max(a.rect.left, b.rect.left)
+            const height =
+              Math.min(a.rect.bottom, b.rect.bottom) -
+              Math.max(a.rect.top, b.rect.top)
+            if (width > 1 && height > 1)
+              errors.push(`${a.selector} overlaps ${b.selector}`)
+          }
+        }
+        for (const element of document.querySelectorAll(
+          ".copy > *, .identity, .portfolio, .footer-detail"
+        )) {
+          if (element.scrollWidth > element.clientWidth)
+            errors.push(`${element.className || element.tagName} overflows`)
+        }
+        return errors
+      })
+      if (layoutErrors.length)
+        throw new Error(`${locale}/${preview.slug}: ${layoutErrors.join("; ")}`)
       const path = join(directory, `${preview.slug}.jpg`)
       await page.screenshot({ path, type: "jpeg", quality: 90 })
+      const dimensions = await page.evaluate(
+        async (source) => {
+          const image = new Image()
+          image.src = source
+          await image.decode()
+          return [image.naturalWidth, image.naturalHeight]
+        },
+        await dataUrl(path, "image/jpeg")
+      )
+      if (dimensions[0] !== 1200 || dimensions[1] !== 630)
+        throw new Error(`${locale}/${preview.slug}: unexpected JPEG dimensions`)
       console.log(
         `${locale}/${preview.slug}.jpg: ${(await stat(path)).size} bytes`
       )

@@ -10,7 +10,7 @@ import {
 import { ThemeProvider } from "next-themes"
 import { getLocale } from "@workspace/i18n/runtime"
 import { Toaster } from "@workspace/ui/components/sonner"
-import { geistFont, spaceGroteskFont } from "@workspace/ui/lib/fonts"
+import { jerseyFont, spaceMonoFont } from "@workspace/ui/lib/fonts"
 import { Header } from "../components/header"
 import { Footer } from "../components/footer"
 import { NotFound } from "../components/not-found"
@@ -33,14 +33,14 @@ export const Route = createRootRoute({
         rel: "preload",
         as: "font",
         type: "font/woff2",
-        href: geistFont,
+        href: jerseyFont,
         crossOrigin: "anonymous",
       },
       {
         rel: "preload",
         as: "font",
         type: "font/woff2",
-        href: spaceGroteskFont,
+        href: spaceMonoFont,
         crossOrigin: "anonymous",
       },
       {
@@ -76,11 +76,13 @@ function Layout() {
         </a>
         <div className="site-container">
           <Header />
-          <main id="main-content" tabIndex={-1}>
-            <Outlet />
-            <GuideDock />
-          </main>
-          <Footer />
+          <div className="site-content">
+            <main id="main-content" tabIndex={-1}>
+              <Outlet />
+              <GuideDock />
+            </main>
+            <Footer />
+          </div>
         </div>
       </div>
     </GuideProvider>
