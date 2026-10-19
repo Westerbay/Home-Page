@@ -274,7 +274,12 @@ for (const initialTheme of ["light", "dark"] as const) {
       name: "Eyefox Puzzle",
       exact: true,
     })
-    await page.emulateMedia({ colorScheme: initialTheme })
+    // This scenario checks system preference propagation and persistence.
+    // The dedicated transition scenario above exercises animated interpolation.
+    await page.emulateMedia({
+      colorScheme: initialTheme,
+      reducedMotion: "reduce",
+    })
     await page.goto("projects/eyefox/")
     await revealGame(page)
     await expect(html).toHaveClass(new RegExp(`\\b${initialTheme}\\b`))
