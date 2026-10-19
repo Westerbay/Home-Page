@@ -2,9 +2,11 @@
 
 The fourteen `web/public/assets/social/**/*.jpg` images are 1200 × 630 JPEGs,
 rendered at quality 90 by `scripts/generate-social-previews.mjs` on
-18 October 2026. Their typography and colours use the portfolio's existing
-Geist, Space Grotesk, warm white (`#fffefc`) and orange (`#e99245`).
-They do not change the website layout.
+18 October 2026. These committed, validated previews retain the typography used
+at generation time: Geist and Space Grotesk, with warm white (`#fffefc`) and
+orange (`#e99245`). The generator maintenance described below does not replace
+these JPEGs or change the website layout. The sizes in this document describe
+the committed images, not a new generation with the current fonts.
 
 French previews use `assets/social/{slug}.jpg`; English previews use
 `assets/social/en/{slug}.jpg`. Project screenshots remain authentic in both
@@ -29,18 +31,30 @@ StyleGAN preview contains actual model outputs from that project; no new
 AI imagery was generated for these compositions. Project-specific media
 documents describe the original captures, figures and attribution.
 
-Reproduce from the repository root after installing the existing workspace
-dependencies and the Playwright Chromium browser:
+The maintained generator uses the installed Jersey 10 and Space Mono regular
+faces, matching the current portfolio fonts. It keeps the same composition,
+colours and project imagery; its output is not a byte-for-byte reproduction of
+the earlier JPEGs. No retired font dependency is required.
+
+Validate a new generation from the repository root after installing the existing
+workspace dependencies and the Playwright Chromium browser:
 
 ```sh
-node scripts/generate-social-previews.mjs
+node scripts/generate-social-previews.mjs --output-dir .cache/social-preview-cleanup
 ```
 
+The option uses Node's native argument parser and resolves relative directories
+from the repository root. Without `--output-dir`, the destination remains
+`web/public/assets/social`; use that default only when deliberately replacing
+the public previews. CI runs the cache-only command after installing Chromium.
+
 The generator renders HTML/CSS in headless Chromium. It embeds local images
-and bundled fonts as data URLs, waits for fonts and images to decode, and
-rejects horizontally overflowing text before writing each JPEG. It makes
-no network requests. All fourteen outputs were visually inspected and their
-dimensions checked. Chromium/font versions may slightly affect JPEG bytes.
+and bundled fonts as data URLs, checks that both font faces loaded, waits for
+images to decode, and rejects overflowing text, content outside the page padding
+or overlapping composition regions. Each saved JPEG is decoded to verify its
+1200 × 630 dimensions. It makes no network requests. All fourteen French and
+English outputs from the maintained generator were also visually inspected in
+the cache directory. Chromium/font versions may slightly affect JPEG bytes.
 
 ## Shared delivery images
 
@@ -98,8 +112,9 @@ The script rejects any decoded RGBA or dimension difference:
 python scripts/optimize-portfolio-media.py --source-ref 724ba2d4ca52337cb6afc5b1125e9b9af54efc73 --companion-only
 ```
 
-The expanded Assistant page uses these native sheets. The compact 88 px dock
-uses density-specific copies with 96, 192 or 288 px per frame (1×, 2×, 3×).
+The full Guide page and floating companions in desktop viewports at least
+1101 px wide and 651 px high use these native sheets. Other floating companions
+use density-specific copies with 96, 192 or 288 px per frame (1×, 2×, 3×).
 These copies are Lanczos downscales of the original PNGs, encoded losslessly
 after resampling. They preserve the complete canvas, frame layout and alpha;
 they are not pixel-identical to the full-resolution sources. The encoder verifies
@@ -116,7 +131,9 @@ python scripts/optimize-portfolio-media.py --source-ref 724ba2d4ca52337cb6afc5b1
 
 `GuideCompanion` gives the browser CSS resolution variants and preload
 `imagesrcset` candidates, so it downloads the appropriate density instead of
-the native sheets on every page. Both animation sheets still preload at low
-priority, including speech before the first answer. Expanding switches to native
-artwork; minimizing reuses the compact variants. CSS sizes, frame steps, timing
-and state logic remain unchanged.
+the native sheets for small floating characters. Both animation sheets still
+preload at low priority, including speech before the first answer. Expanding
+uses native artwork; minimizing selects native or density-sized artwork for the
+current viewport. CSS canvas sizes and the mobile layout are documented in
+DESIGN.md. This delivery selection preserves the atlas frame layout, animation
+timing and companion state logic.

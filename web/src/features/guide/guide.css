@@ -933,14 +933,6 @@
     padding: 4px 4px 0 0;
   }
 }
-@container content (max-width: 380px) {
-  #main-content:has(.guide-page) {
-    --assistant-scene-size: 132px;
-  }
-  .guide-page-heading {
-    padding-left: 108px;
-  }
-}
 @media (max-width: 600px) {
   .site-container:has(.guide-page) {
     min-height: 0;
