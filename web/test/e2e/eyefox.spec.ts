@@ -85,19 +85,75 @@ test("Eyefox transitions its scenery and interface without resetting the game", 
     )
   }
   await expect.poll(readDuskOpacity).toBe(0)
+  // Capture the browser's real CSS transitions before a slow Playwright round
+  // trip can miss them. Seeking their midpoint does not change their keyframes.
+  const transitionSample = await page.evaluateHandle(() => {
+    const root = document.documentElement
+    const frame = document.querySelector(".site-frame")!
+    const surfaces = document.querySelectorAll(
+      ".site-header, .portfolio-eyefox .eyefox"
+    )
+    const sample = new Promise<{
+      opacity: number
+      sceneryDuration: number
+      backgrounds: string[]
+    }>((resolve, reject) => {
+      const observer = new MutationObserver(() => {
+        if (!root.classList.contains("dark")) return
+        observer.disconnect()
+        const transitions = document
+          .getAnimations()
+          .filter((animation): animation is CSSTransition => {
+            const effect = animation.effect as KeyframeEffect | null
+            return (
+              animation instanceof CSSTransition &&
+              (effect?.target === root ||
+                (effect?.target === frame &&
+                  effect.pseudoElement === "::after" &&
+                  animation.transitionProperty === "opacity"))
+            )
+          })
+        try {
+          for (const transition of transitions) {
+            transition.pause()
+            transition.currentTime =
+              Number(transition.effect!.getComputedTiming().duration) / 2
+          }
+          resolve({
+            opacity: Number.parseFloat(
+              getComputedStyle(frame, "::after").opacity
+            ),
+            sceneryDuration: Number(
+              transitions
+                .find(
+                  (transition) => transition.transitionProperty === "opacity"
+                )
+                ?.effect?.getComputedTiming().duration ?? 0
+            ),
+            backgrounds: Array.from(
+              surfaces,
+              (surface) => getComputedStyle(surface).backgroundColor
+            ),
+          })
+        } catch (error) {
+          reject(error)
+        } finally {
+          for (const transition of transitions) transition.play()
+        }
+      })
+      observer.observe(root, { attributes: true, attributeFilter: ["class"] })
+    })
+    return { sample }
+  })
   await page
     .getByRole("button", { name: fr.theme_to_dark, exact: true })
     .click()
   await expect(game).toHaveAttribute("data-theme", "dark")
-  await expect
-    .poll(
-      async () => {
-        const opacity = await readDuskOpacity()
-        return opacity > 0 && opacity < 1
-      },
-      { intervals: [16, 32, 50] }
-    )
-    .toBe(true)
+  const midpoint = await transitionSample.evaluate(({ sample }) => sample)
+  await transitionSample.dispose()
+  expect(midpoint.sceneryDuration).toBeGreaterThan(0)
+  expect(midpoint.opacity).toBeGreaterThan(0)
+  expect(midpoint.opacity).toBeLessThan(1)
   await expect.poll(readDuskOpacity).toBe(1)
   await expect
     .poll(async () => {
@@ -108,6 +164,11 @@ test("Eyefox transitions its scenery and interface without resetting the game", 
     })
     .toBe(true)
   const nightPalette = await readPalette()
+  expect(midpoint.backgrounds).toHaveLength(dayPalette.length)
+  for (const [index, background] of midpoint.backgrounds.entries()) {
+    expect(background).not.toBe(dayPalette[index].background)
+    expect(background).not.toBe(nightPalette[index].background)
+  }
 
   // Reversing a transition repeatedly must settle on the last requested scene.
   for (const label of [
