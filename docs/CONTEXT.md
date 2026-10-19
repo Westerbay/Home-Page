@@ -33,25 +33,27 @@ Mathis approved **Atlas × Signal** on 19 September 2026: soft orange
 `#e99245`, warm white `#fffefc`, and charcoal in dark mode. The October 2026
 refinement keeps the portfolio structure, replaces typography with locally
 served Jersey 10 for headings, navigation and actions, with Space Mono for body
-text, and moves desktop navigation to the left as plain text links. Only Eyefox
-uses the generated pixel-art forest: daylight in light mode and violet/rose
-twilight in dark mode, with more open sky in the same composition. The scenery
-uses a 900 ms crossfade (instant with reduced motion). Its game panel and controls
-also follow the theme, with cream surfaces and dark text by day, graphite
+text, and moves desktop navigation to the left as plain text links. Eyefox uses
+the generated pixel-art forest; SpellWar has its own floating-platform landscape,
+with stone slabs, violet points and red trees. Both pair daylight and dusk
+versions of the same composition, crossfading over 900 ms (instant with reduced
+motion). SpellWar's brighter daytime setting is a decorative interpretation;
+its real screenshots and gameplay remain unchanged. Both pages' surfaces and
+controls follow the theme, with cream surfaces and dark text by day, graphite
 surfaces and light text at dusk, and amber primary actions in both modes. Article
-text stays white directly over the forest and keeps the shared project layout:
+text stays white directly over each landscape and keeps the shared project layout:
 technologies on the left and introductory text on the right, then story headings
 beside their prose and captures below. It has no background, frame or content-level
 shading. Contrast comes from the fixed environment's veil and a restrained text
-shadow while content scrolls. The game retains its
-opaque panel and real Android captures retain a matching light or dark matte.
+shadow while content scrolls. The Eyefox game retains its opaque panel; project
+captures and SpellWar's video retain a matching light or dark matte.
 The full Guide uses the normal portfolio background, with an unframed conversation
 beside the character. Other project content and visuals remain unchanged.
 
 The desktop navigation sits against the left viewport edge. It scales from
 about 256 px wide at a 1440 px viewport to 416 px at 3840 px, with a 24–32 px
 left inset, larger type, avatar and spacing. Its nearly opaque, blurred surface
-is fully opaque on Eyefox. Project links stay expanded on every
+is fully opaque on Eyefox and SpellWar. Project links stay expanded on every
 desktop page; the parent is emphasised only on project routes and the active
 page is identified separately. There are no internal section links. Mobile
 keeps the project branch hidden. Navigation scrolls independently on short
@@ -62,8 +64,8 @@ Typography and visuals adapt up to
 3840 px. The home illustration and Plants project page use the shared React/WebGL L-system component from the ABOP repository. Home shows compact controls; the project page includes the full editor and symbol-help modal. It is loaded only on the client when the scene approaches the viewport, with a static image in generated HTML.
 
 The theme follows the browser until a manual preference is saved. The
-sun/moon button switches between light and dark, including on Eyefox and the
-Guide. On Eyefox it changes the forest image and game interface palette; the
+sun/moon button switches between light and dark on every page. On Eyefox and
+SpellWar it changes each project's scenery and interface palette; the
 Guide follows the ordinary portfolio theme. Palette colours transition over
 500 ms, including system theme changes; reduced motion makes this instant.
 Theme changes preserve game progress, conversation and draft. Language labels stay in

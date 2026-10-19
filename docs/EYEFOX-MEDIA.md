@@ -24,8 +24,10 @@ See the original [asset credits](https://github.com/Westerbay/Eyefox-Puzzle#asse
 ## Page environment
 
 The page uses a generated pixel-art forest, with daylight and twilight variants
-following the site's theme. This scenery is exclusive to Eyefox; the full Guide
-uses the normal portfolio background.
+following the site's theme. This forest is exclusive to Eyefox; SpellWar uses
+its own floating-platform landscape and the full Guide uses the normal portfolio
+background. The two project environments share `web/src/project-world.css` for
+their fixed scenery layers, palette and transition behavior.
 See [FOREST-MEDIA.md](FOREST-MEDIA.md) for the reference, prompts and asset paths.
 This scenery is portfolio artwork, not a capture of the Android game.
 

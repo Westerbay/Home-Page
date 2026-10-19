@@ -227,21 +227,22 @@ and confirm the full Guide stays on the normal background after entry from Eyefo
 Check that Eyefox, L-system controls and Contact copy notifications remain
 reachable. Automated checks do not imply human visual acceptance.
 
-### Forest scenery and themed interface
+### Project scenery and themed interface
 
 Palette colours are registered as inherited CSS colour properties with
 `@property`. Their variables transition on `:root` over 500 ms with ease-in-out
-timing, covering ordinary UI tokens and world tokens used by Eyefox and the
+timing, covering ordinary UI tokens and world tokens used by Eyefox, SpellWar and the
 compact chat. The theme class drives manual, system and synchronized preference
 changes; rapid toggles reverse the native CSS transition. This adds no View
 Transition, timer or effect and leaves local hover, focus and transform behavior
 intact. Reduced motion disables the palette transition. The next-themes script
 applies the initial preference before display; there is no JavaScript entrance
-animation. The forest's 900 ms opacity transition remains separate.
+animation. The scenery's 900 ms opacity transition remains separate.
 
-`web/src/forest-world.css` defines the light and dark interface palettes for
-Eyefox and the opaque compact chat. The forest itself is exclusive to Eyefox;
-the full Guide uses ordinary portfolio tokens and no scenery. Daylight uses
+`web/src/project-world.css` defines the light and dark interface palettes for
+Eyefox, SpellWar and the opaque compact chat. Eyefox uses the forest pair;
+SpellWar uses its own floating-platform pair. The full Guide uses ordinary
+portfolio tokens and no scenery. Daylight uses
 `#fffefc` surfaces, `#252525` text,
 `#625f5a` secondary text, `#f8f7f4` raised surfaces, `#8c857a` control borders
 and `#97531c` accent text. Dark mode retains the graphite palette. Primary action
@@ -251,9 +252,12 @@ Fixed `::before` and `::after` layers hold the day and dusk images. The `.dark`
 rule changes the dusk layer's opacity with a 900 ms ease-in-out transition and
 switches the interface tokens. The contrast veil stays constant. Reduced motion
 disables the scenery transition. Both layers use the same dimensions, top
-alignment and cover sizing to keep the scenery aligned. Only the Eyefox route maps
-world tokens onto the ordinary site tokens and uses the matching light or dark
-`color-scheme`. Text directly over the forest keeps white text in both modes.
+alignment and cover sizing to keep the scenery aligned. Eyefox and SpellWar map
+world tokens onto the ordinary site tokens and use the matching light or dark
+`color-scheme`. Each route supplies its own `--world-scenery-day` and
+`--world-scenery-dusk` URLs. Text directly over either landscape keeps white text
+in both modes. SpellWar's daytime setting is a decorative interpretation; its
+authentic screenshots and recorded gameplay must remain unchanged.
 The portalled Guide panel repeats the token mapping because it lives outside
 `.site-frame`.
 
@@ -264,28 +268,28 @@ themes: game progress, conversation and draft must persist.
 
 The game and compact chat use opaque `--world-panel` surfaces with visible
 `--world-control` borders. Child fills may be translucent over those opaque
-surfaces; the forest must not show through the main game panel. The full Guide
-conversation has no enclosing surface. Below the puzzle, `.project-reading`
+surfaces; the scenery must not show through the main game panel. The full Guide
+conversation has no enclosing surface. On Eyefox and SpellWar, `.project-reading`
 remains transparent, without a background, border, content-level shading or
 box-like padding and negative margins. Preserve the shared project layout:
 technologies on the left and introductory prose on the right, then story headings
 on the left, prose on the right and captures below. White text uses a restrained
 shadow; its main contrast comes from the fixed scenery veil, not a layer attached
-to the article. Android captures use a matte matching the current theme. Keep
+to the article. Project captures and SpellWar's video use a matte matching the current theme. Keep
 the scenery and veil fixed while the page scrolls.
 
 During manual and browser review, switch both system and saved themes. Confirm
 that UI and world colours interpolate over 500 ms, rapid toggles reverse cleanly,
 and reduced motion makes both the palette and scenery changes instant. Confirm
-that the forest image, computed text, panel, control colours and native colour
+that each project's scenery, computed text, panel, control colours and native colour
 scheme change together, while the veil, game progress, conversation and draft
-remain unchanged. Headings, links and article text directly over the forest must
+remain unchanged. Headings, links and article text directly over the scenery must
 remain white on transparent backgrounds. Check their contrast throughout the
 scroll across the shared project layout, including on narrow and 3840 px-wide
 screens.
 Repeat after reload and after leaving the scene. Check the compact portal on an
 ordinary page as well as the full Guide; neither route entry nor companion
-selection should bring the forest onto the full Guide. Use the linked contrast
+selection should bring either project landscape onto the full Guide. Use the linked contrast
 and hierarchy references
 in [DESIGN.md](DESIGN.md#contrast-and-visual-hierarchy-references) to assess text,
 input borders and focus indicators against their actual backgrounds.

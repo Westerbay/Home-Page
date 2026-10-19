@@ -8,6 +8,10 @@ interface and characters were removed first. The current pair extends that
 cleaned scene upward to reveal more sky, then changes its daylight into a
 clearly distinct violet and rose dusk. These generated decorations are separate
 from the original Eyefox game's artwork; the live fox sprite remains separate.
+The forest is used only on Eyefox. SpellWar's separate landscape is documented
+in [SPELLWAR-MEDIA.md](SPELLWAR-MEDIA.md); both environments use
+`web/src/project-world.css` for fixed scenery and theme transitions. The full
+Guide retains the normal portfolio background.
 
 ## Reference and source files
 

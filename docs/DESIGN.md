@@ -2,7 +2,8 @@
 
 The portfolio keeps the editorial layout and project grid of **Atlas × Signal**.
 The October 2026 refinement uses Jersey 10 and Space Mono, quiet text navigation on the left of
-desktop screens, and a forest setting reserved for Eyefox. The full AI Guide uses
+desktop screens, a forest setting reserved for Eyefox and a distinct floating-platform
+landscape for SpellWar. The full AI Guide uses
 the normal portfolio background. Preserve
 the existing content, media and interactive scenes; avoid large decorative
 panels or game-style frames around the site navigation.
@@ -20,17 +21,18 @@ The palette is centralized in `packages/ui/src/styles/globals.css`:
 - Space Mono is served locally for paragraphs, metadata and form input, with
   regular and bold weights and their italics. It keeps longer text readable
   alongside the pixel headings.
-- Eyefox uses a generated forest with daylight in light mode and violet/rose
-  twilight in dark mode. Its game interface follows the same theme.
+- Eyefox uses a generated forest and SpellWar a separate landscape of floating
+  stone platforms, violet points and red trees. Each has daylight and dusk
+  variants, with themed interface surfaces and media mattes.
   Daylight uses cream surfaces `#fffefc`, dark text `#252525`, secondary text
   `#625f5a`, raised surfaces `#f8f7f4`, control borders `#8c857a` and accent text
   `#97531c`. Dusk uses graphite `#19191c`, opaque panels `#27272b`, light text
   `#f7f4ee`, secondary text `#cac6c0` and control borders `#85858f`; `#55555e`
   is reserved for quieter separators. Primary action fills stay amber `#f2c66d`
   with dark text in both modes. These world tokens live in
-  `web/src/forest-world.css` and also supply the opaque compact chat. The full
+  `web/src/project-world.css` and also supply the opaque compact chat. The full
   Guide follows the ordinary portfolio tokens. Native controls follow the light
-  or dark colour scheme. Text directly over the forest remains white in both modes.
+  or dark colour scheme. Text directly over either landscape remains white in both modes.
 
 The public site uses this one direction. The comparison prototype is not
 part of the maintained implementation.
@@ -48,7 +50,7 @@ whole shell: that would push navigation away from the edge on large screens.
 Mobile spacing remains separate.
 
 The navigation has a nearly opaque surface, backdrop blur and a fine vertical
-rule; Eyefox uses an opaque cream or graphite surface matching the
+rule; Eyefox and SpellWar use an opaque cream or graphite surface matching the
 theme, without blur. Links
 remain plain text, with a stronger colour and fine underline on
 the current page. The six project links are always visible on desktop, on every
@@ -84,10 +86,11 @@ animation state machine. In the full Guide, both companions are mirrored to face
 the chat on their right; minimizing restores their compact orientation. A 420 ms
 half-turn accompanies the assistant transition, using the existing atlases. Reduced
 motion or an unavailable View Transition API applies the final direction immediately.
-The floating sprite canvas is 112 px on mobile, grows
-from 224 px at a 1440 px viewport to 360 px at 3840 px, and uses 128 px on desktop
-windows at most 650 px high. Its speech bubble scales with it. The compact chat
-keeps its opaque surface.
+Both floating companions use the same 12% size reduction. Their canvas is about
+99 px on mobile, grows from 197 px at a 1440 px viewport to 317 px at 3840 px,
+and uses 113 px on desktop windows at most 650 px high. The speech bubble and
+compact chat stay anchored above the smaller canvas. The full Guide keeps its
+original character size. The compact chat keeps its opaque surface.
 
 Type and visuals scale up to 3840 px. Paragraphs keep a limited reading width
 and the hero illustration remains proportionate to the text. The project
@@ -125,28 +128,31 @@ Copy is personal and direct, about coding for fun, games, AI and 3D rendering.
 It should not read like a sales pitch. Headings and short leads have no
 terminal full stop. The About lead is “Product & Software Engineer”.
 
-The warm palette remains the default outside Eyefox, including the full Guide.
-The Eyefox forest is decorative portfolio artwork, not an Android game screenshot.
-See `FOREST-MEDIA.md` for its source and generation prompts. The game keeps its real
+The warm palette remains the default outside Eyefox and SpellWar, including the
+full Guide. Their landscapes are decorative portfolio artwork. Eyefox's forest
+is documented in `FOREST-MEDIA.md`; SpellWar's separate floating-platform scene
+is documented in `SPELLWAR-MEDIA.md`. SpellWar's brighter daytime sky is an
+interpretation of the game's dark spatial setting, not a captured game state.
+The real screenshots and gameplay video remain unchanged. Eyefox keeps its real
 sprites, controls and readable grids in an opaque panel. The full Guide conversation
 uses the ordinary portfolio background without an enclosing panel; the compact
 chat remains opaque. Captures and grids have
 a light or dark matte matching the current theme, with a restrained shadow to
 separate them from the scenery. Existing
 companion animations and chat interactions are preserved.
-The forest and contrast veil stay fixed while content scrolls. The veil does not
+Each landscape and its contrast veil stay fixed while content scrolls. The veil does not
 change with the theme. The left side supports readable text while the right side
 reveals the expanded open sky. The saved/system theme crossfades between aligned
 day and twilight layers over 900 ms. The interface palette and embedded puzzle
 also follow the selected theme without resetting the puzzle, conversation or
 draft. Reduced motion makes the scenery change instant.
-Below the game, Eyefox's article is transparent: no reading surface, background
-box, border or content-level gradient. It retains the shared project layout,
+Eyefox and SpellWar articles are transparent: no reading surface, background
+box, border or content-level gradient. Both retain the shared project layout,
 with technologies on the left and introductory text on the right, then story
 headings on the left, prose on the right and captures underneath. The fixed
 scenery veil and a restrained text shadow support white text in both themes.
 The veil belongs to the environment and does not follow the article. Keep the
-forest visible behind headings, links and prose; the game panel and media mattes
+landscape visible behind headings, links and prose; the game panel and media mattes
 retain their themed surfaces.
 
 ### Contrast and visual hierarchy references
@@ -161,7 +167,7 @@ retain their themed surfaces.
   emphasis; input boundaries and focus indicators do.
 - [Nielsen Norman Group: 5 Principles of Visual Design in UX](https://www.nngroup.com/articles/principles-visual-design/)
   explains hierarchy through scale, spacing, placement and contrast. Here, a
-  clear title, one primary action and a readable game panel keep the forest
+  clear title, one primary action and readable media keep the landscape
   subordinate to the content. These references guide review; they
   are not a claim that the whole site has been audited for WCAG conformance.
 
