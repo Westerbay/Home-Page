@@ -52,14 +52,24 @@ beside the character. Other project content and visuals remain unchanged.
 
 The desktop navigation sits against the left viewport edge. It scales from
 about 256 px wide at a 1440 px viewport to 416 px at 3840 px, with a 24–32 px
-left inset, larger type, avatar and spacing. Its nearly opaque, blurred surface
-is fully opaque on Eyefox and SpellWar. Project links stay expanded on every
+left inset, larger type, avatar and spacing. From 1101 px, opaque white and pale
+grey paper with straight edges and thin stacked page edges on the right sits
+behind the real navigation links. The original texture is framed at 106% width,
+aligned to the right, so its left binding crease is outside the visible rail.
+The texture fills
+the existing rectangular rail, which keeps its surface background and subtle
+side shadow. It becomes dark graphite in
+dark mode, with a 500 ms filter transition that becomes
+instant with reduced motion. The desktop rail uses no backdrop blur. Project links stay expanded on every
 desktop page; the parent is emphasised only on project routes and the active
 page is identified separately. There are no internal section links. Mobile
-keeps the project branch hidden. Navigation scrolls independently on short
+keeps the ordinary header without the paper texture or project branch.
+Navigation scrolls independently on short
 screens, with compact utility controls. The Guide remains a normal navigation
 link, while its companion floats at the bottom right outside the sidebar.
 Content is centered separately in the remaining space, capped at 2600 px.
+Footer links are centered in that content area. On narrow screens they stack
+at the center so the floating companion cannot cover the links.
 Typography and visuals adapt up to
 3840 px. The home illustration and Plants project page use the shared React/WebGL L-system component from the ABOP repository. Home shows compact controls; the project page includes the full editor and symbol-help modal. It is loaded only on the client when the scene approaches the viewport, with a static image in generated HTML.
 

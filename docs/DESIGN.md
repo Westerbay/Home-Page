@@ -5,8 +5,10 @@ The October 2026 refinement uses Jersey 10 and Space Mono, quiet text navigation
 desktop screens, a forest setting reserved for Eyefox and a distinct floating-platform
 landscape for SpellWar. The full AI Guide uses
 the normal portfolio background. Preserve
-the existing content, media and interactive scenes; avoid large decorative
-panels or game-style frames around the site navigation.
+the existing content, media and interactive scenes. The desktop navigation uses
+opaque white and pale grey paper with straight edges and thin stacked page edges
+on the right, with no visible binding crease, keeping its text links
+clear and free of ornamental game-style frames.
 
 ## Colour and type
 
@@ -49,10 +51,17 @@ column is centered in the remaining space and capped at 2600 px. Do not center t
 whole shell: that would push navigation away from the edge on large screens.
 Mobile spacing remains separate.
 
-The navigation has a nearly opaque surface, backdrop blur and a fine vertical
-rule; Eyefox and SpellWar use an opaque cream or graphite surface matching the
-theme, without blur. Links
-remain plain text, with a stronger colour and fine underline on
+From 1101 px, the navigation sits on opaque white and pale grey paper with straight
+edges and thin stacked page edges on the right. The original image contains a
+left binding crease; right alignment at 106% width keeps it outside the visible
+rail while preserving the right-hand pages.
+The texture fills the existing rectangular rail, with a surface background and
+a subtle side shadow.
+The generated texture is decorative; the links,
+identity and controls remain real interface elements. Dark mode dims the paper
+to dark graphite, and its filter transitions over 500 ms, instantly with reduced
+motion. The desktop rail uses no backdrop blur. Links remain plain text, with
+a stronger colour and fine underline on
 the current page. The six project links are always visible on desktop, on every
 page. The parent branch is emphasised only inside Projects, and only the current
 page link receives `aria-current`. There are no internal page-section links. The link
@@ -67,7 +76,7 @@ sidebar Guide call to action. On the full Guide, the navigation link marks the
 active page and the character is part of the conversation scene.
 The theme switch remains available on every page.
 At 1100 px and below, the existing top navigation adapts across rows without the
-desktop project branch. Content
+paper texture or desktop project branch. Content
 container queries respond to the available column width rather than the full
 viewport, including the full Guide page.
 

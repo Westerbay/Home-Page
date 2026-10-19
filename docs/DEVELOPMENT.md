@@ -227,6 +227,29 @@ and confirm the full Guide stays on the normal background after entry from Eyefo
 Check that Eyefox, L-system controls and Contact copy notifications remain
 reachable. Automated checks do not imply human visual acceptance.
 
+### Desktop navigation texture
+
+At viewport widths of at least 1101 px, `.site-header::before` displays
+`web/public/assets/navigation/book-page.webp` behind the real navigation.
+The opaque white and pale grey paper has straight edges, a fine binding crease
+on the left and thin stacked page edges on the right. It is decorative,
+with no text or interactive content;
+the pseudo-element ignores pointer events and leaves links and focus indicators
+above it. The single texture uses `right center / 106% 100%` sizing, placing the
+source image's left binding crease outside the rail while keeping the right-hand
+page edges visible. The image file remains unchanged. The header keeps
+`background: var(--surface)` and `box-shadow: 6px 0 18px #00000018`.
+Keep the existing rail dimensions, navigation content and expanded Projects
+branch. The mobile header does not use this texture.
+
+Light mode uses `brightness(1)`; dark mode uses `brightness(0.19)` to produce
+dark graphite. The neutral source image needs no saturation filter.
+Only the texture's filter transitions over
+500 ms with ease-in-out timing, and reduced motion disables that transition.
+The desktop rail has no backdrop blur. Review keyboard focus, link contrast
+and independent navigation scrolling on short windows in both themes, including
+Eyefox and SpellWar; mobile layout and controls must remain unchanged.
+
 ### Project scenery and themed interface
 
 Palette colours are registered as inherited CSS colour properties with

@@ -455,16 +455,18 @@ svg {
 .site-footer {
   padding: 26px 0 28px;
   border-top: 1px solid var(--line);
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   align-items: center;
   gap: 25px;
   font-size: 10px;
   color: var(--secondary);
 }
 .footer-links {
+  grid-column: 2;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 23px;
   list-style: none;
   padding: 0;
@@ -1325,6 +1327,7 @@ svg {
   .site-footer {
     padding: 22px 0;
     display: block;
+    text-align: center;
   }
   .footer-name {
     font-size: 9px;
@@ -1525,6 +1528,12 @@ svg {
   }
   .skull-visual > strong {
     font-size: 78.75px;
+  }
+}
+@container screen (max-width:480px) {
+  .footer-links {
+    flex-direction: column;
+    gap: 12px;
   }
 }
 @container screen (max-width:350px) {
@@ -2441,11 +2450,34 @@ main {
     padding-inline: var(--sidebar-inset) calc(var(--sidebar-inset) - 4px);
     margin: 0;
     border: 0;
-    border-right: 1px solid var(--line);
+    --secondary: color-mix(in srgb, var(--ink) 78%, var(--surface));
+    --line: color-mix(in srgb, var(--ink) 24%, transparent);
     background: var(--surface);
-    background: color-mix(in srgb, var(--surface) 94%, transparent);
-    -webkit-backdrop-filter: blur(16px);
-    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    box-shadow: 6px 0 18px #00000018;
+  }
+  /* A decorative book leaf sits beneath the real navigation and its focus rings. */
+  .site-header::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    /* Crop out the binding crease while retaining the original right-hand leaves. */
+    background: url("/assets/navigation/book-page.webp") right center / 106%
+      100% no-repeat;
+    filter: brightness(1);
+    transition: filter 500ms ease-in-out;
+  }
+  .dark .site-header::before {
+    filter: brightness(0.19);
+  }
+  .site-header :focus-visible {
+    outline-color: var(--ink);
+  }
+  .main-nav a:focus-visible {
+    outline-offset: -2px;
   }
   .site-frame .identity {
     flex: 0 0 auto;
@@ -2485,6 +2517,7 @@ main {
   }
   .main-nav a.active::after {
     bottom: 5px;
+    background: currentColor;
   }
   .main-nav a.active {
     font-weight: 400;
@@ -2541,6 +2574,12 @@ main {
   .theme-button svg {
     width: clamp(18px, calc(0.25vw + 14.4px), 24px);
     height: clamp(18px, calc(0.25vw + 14.4px), 24px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-header::before {
+    transition: none;
   }
 }
 
