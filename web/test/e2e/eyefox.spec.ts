@@ -1,6 +1,16 @@
 import { test, expect } from "@playwright/test"
+import type { Page } from "@playwright/test"
 import fr from "../../../packages/i18n/messages/fr.json" with { type: "json" }
 import en from "../../../packages/i18n/messages/en.json" with { type: "json" }
+
+async function revealGame(page: Page) {
+  // The puzzle is lazy-loaded when its container approaches the viewport.
+  // Navigation and reload can restore a scroll position above that container.
+  await page.locator(".portfolio-eyefox").scrollIntoViewIfNeeded()
+  const game = page.getByRole("region", { name: "Eyefox Puzzle", exact: true })
+  await expect(game).toBeVisible()
+  return game
+}
 
 test("Eyefox keeps its localized preview without JavaScript", async ({
   browser,
@@ -38,13 +48,8 @@ test("Eyefox transitions its scenery and interface without resetting the game", 
 }) => {
   const errors: string[] = []
   page.on("pageerror", (error) => errors.push(error.message))
-  await page.goto("projects/")
-  const card = page.locator('.project-card[href*="eyefox"]')
-  await expect(card.locator("img")).toBeVisible()
-  await expect(page.locator(".portfolio-eyefox")).toHaveCount(0)
-  await card.click()
-  const game = page.getByRole("region", { name: "Eyefox Puzzle", exact: true })
-  await expect(game).toBeVisible()
+  await page.goto("projects/eyefox/")
+  const game = await revealGame(page)
   await expect(game).toHaveAttribute("data-locale", "fr")
   await expect(game).toHaveAttribute("data-theme", "light")
   await expect(
@@ -144,11 +149,30 @@ test("Eyefox transitions its scenery and interface without resetting the game", 
       buttons.map((button) => button.getAttribute("aria-pressed"))
     )
   ).toEqual(playedGrid)
+  expect(errors).toEqual([])
+})
 
+test("Eyefox preserves its locale and theme after language navigation, reload and exit", async ({
+  page,
+}) => {
+  const errors: string[] = []
+  page.on("pageerror", (error) => errors.push(error.message))
+  await page.goto("projects/")
+  const card = page.locator('.project-card[href*="eyefox"]')
+  await expect(card.locator("img")).toBeVisible()
+  await expect(page.locator(".portfolio-eyefox")).toHaveCount(0)
+  await page
+    .getByRole("button", { name: fr.theme_to_dark, exact: true })
+    .click()
+  await card.click()
+  const game = await revealGame(page)
+  await expect(game).toHaveAttribute("data-locale", "fr")
+  await expect(game).toHaveAttribute("data-theme", "dark")
   await page
     .getByRole("link", { name: "FR / EN · Switch to English", exact: true })
     .click()
   await expect(page).toHaveURL(/\/en\/projects\/eyefox\/?$/)
+  await revealGame(page)
   await expect(game).toHaveAttribute("data-locale", "en")
   await expect(game).toHaveAttribute("data-theme", "dark")
   await expect(
@@ -158,6 +182,7 @@ test("Eyefox transitions its scenery and interface without resetting the game", 
     game.getByRole("button", { name: "Retry", exact: true })
   ).toBeVisible()
   await page.reload()
+  await revealGame(page)
   await expect(game).toHaveAttribute("data-locale", "en")
   await expect(game).toHaveAttribute("data-theme", "dark")
   await expect(
@@ -190,6 +215,7 @@ for (const initialTheme of ["light", "dark"] as const) {
     })
     await page.emulateMedia({ colorScheme: initialTheme })
     await page.goto("projects/eyefox/")
+    await revealGame(page)
     await expect(html).toHaveClass(new RegExp(`\\b${initialTheme}\\b`))
     await expect(game).toHaveAttribute("data-theme", initialTheme)
     await expect.poll(readDuskOpacity).toBe(initialTheme === "dark" ? 1 : 0)
@@ -243,11 +269,13 @@ for (const initialTheme of ["light", "dark"] as const) {
     await navigation
       .getByRole("link", { name: "Eyefox Puzzle", exact: true })
       .click()
+    await revealGame(page)
     await expect(game).toHaveAttribute("data-theme", initialTheme)
     await page.emulateMedia({ colorScheme: initialTheme })
     await page.emulateMedia({ colorScheme: oppositeTheme })
     await expect(html).toHaveClass(new RegExp(`\\b${initialTheme}\\b`))
     await page.reload()
+    await revealGame(page)
     await expect(game).toHaveAttribute("data-theme", initialTheme)
     await expect(html).toHaveClass(new RegExp(`\\b${initialTheme}\\b`))
     await expect
@@ -290,10 +318,8 @@ test("Eyefox loads when visibility observation is unavailable", async ({
   await expect(page.locator(".eyefox-placeholder")).toHaveCount(0)
 })
 
-test("the Eyefox detail stays within the viewport", async ({ page }, info) => {
+test("Eyefox day and dusk scenery assets are available", async ({ page }) => {
   await page.goto("projects/eyefox/")
-  const game = page.getByRole("region", { name: "Eyefox Puzzle", exact: true })
-  await expect(game).toBeVisible()
   const frame = page.locator(".site-frame")
   const backgrounds = await frame.evaluate((element) =>
     ["::before", "::after"].map(
@@ -310,34 +336,50 @@ test("the Eyefox detail stays within the viewport", async ({ page }, info) => {
     expect(backgroundResponse.headers()["content-type"]).toMatch(/^image\//)
   }
   expect(backgrounds[0]).not.toBe(backgrounds[1])
-  function readDuskOpacity() {
-    return frame.evaluate((element) =>
-      Number.parseFloat(getComputedStyle(element, "::after").opacity)
-    )
-  }
-
-  for (const width of [320, 390, 768, 1100, 1101, 1440, 3840]) {
-    await page.setViewportSize({ width, height: 1000 })
-    expect(
-      await page.evaluate(
-        () => document.documentElement.scrollWidth <= innerWidth
-      )
-    ).toBe(true)
-    const box = await game.boundingBox()
-    expect(box).not.toBeNull()
-    expect(box!.x).toBeGreaterThanOrEqual(0)
-    expect(box!.x + box!.width).toBeLessThanOrEqual(width)
-    if (width === 390 || width === 1440 || width === 3840) {
-      await page.screenshot({ path: info.outputPath(`eyefox-${width}.png`) })
-      await page.emulateMedia({ colorScheme: "dark" })
-      await expect(page.locator("html")).toHaveClass(/dark/)
-      await expect.poll(readDuskOpacity).toBe(1)
-      await page.screenshot({
-        path: info.outputPath(`eyefox-dark-${width}.png`),
-      })
-      await page.emulateMedia({ colorScheme: "light" })
-      await expect(page.locator("html")).not.toHaveClass(/dark/)
-      await expect.poll(readDuskOpacity).toBe(0)
-    }
-  }
 })
+
+for (const width of [320, 390, 768, 1100, 1101, 1440, 3840]) {
+  const capture = width === 390 || width === 1440 || width === 3840
+  const themes: Array<"light" | "dark"> = capture
+    ? ["light", "dark"]
+    : ["light"]
+  for (const theme of themes) {
+    test(`Eyefox stays within the viewport at ${width}px in ${theme} mode`, async ({
+      page,
+    }, info) => {
+      await page.setViewportSize({ width, height: 1000 })
+      await page.emulateMedia({ colorScheme: theme })
+      await page.goto("projects/eyefox/")
+      const game = await revealGame(page)
+      await expect(game).toHaveAttribute("data-theme", theme)
+      await expect
+        .poll(() =>
+          page
+            .locator(".site-frame")
+            .evaluate((element) =>
+              Number.parseFloat(getComputedStyle(element, "::after").opacity)
+            )
+        )
+        .toBe(theme === "dark" ? 1 : 0)
+      expect(
+        await page.evaluate(
+          () => document.documentElement.scrollWidth <= innerWidth
+        )
+      ).toBe(true)
+      const box = await game.boundingBox()
+      expect(box).not.toBeNull()
+      expect(box!.x).toBeGreaterThanOrEqual(0)
+      expect(box!.x + box!.width).toBeLessThanOrEqual(width)
+      if (capture) {
+        await page.screenshot({
+          path: info.outputPath(
+            theme === "dark"
+              ? `eyefox-dark-${width}.png`
+              : `eyefox-${width}.png`
+          ),
+          animations: "disabled",
+        })
+      }
+    })
+  }
+}
