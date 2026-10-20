@@ -9,6 +9,8 @@ export default defineConfig({
   use: {
     baseURL: "http://127.0.0.1:4175" + base,
     browserName: "chromium",
+    // Avoid headless-shell stalls when creating contexts after scenery tests.
+    channel: "chromium",
     launchOptions: {
       args: ["--use-angle=swiftshader", "--enable-unsafe-swiftshader"],
     },

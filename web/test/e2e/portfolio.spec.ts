@@ -215,9 +215,9 @@ for (const width of [320, 390, 768, 1100, 1101, 1440, 1920, 3840]) {
           () => document.documentElement.scrollWidth <= innerWidth
         )
       ).toBe(true)
-      // Home previews and project galleries load as they enter the viewport.
+      // Project cards and galleries load as they enter the viewport.
       for (const image of await page
-        .locator(".project-story img, .home-projects img, .home-research img")
+        .locator(".project-story img, .project-card img, .home-research img")
         .all()) {
         await image.scrollIntoViewIfNeeded()
         await expect
