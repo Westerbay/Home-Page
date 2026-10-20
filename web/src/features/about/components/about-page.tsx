@@ -1,5 +1,4 @@
 import * as m from "@workspace/i18n/messages"
-import profile from "@workspace/config/profile" with { type: "json" }
 import { assetUrl } from "../../../lib/assets"
 import { JourneyTree } from "./journey-tree"
 import { SchoolMention } from "../../../components/school-mention"
@@ -17,20 +16,19 @@ export function AboutPage() {
         <h1>{m.about_title()}</h1>
       </header>
       <div className="about-content">
-        <figure className="profile-portrait">
+        <section className="about-personal" aria-labelledby="personal-title">
           <img
-            src={assetUrl(profile.avatar)}
-            alt={m.profile_alt()}
-            width="450"
-            height="450"
+            src={assetUrl("assets/about/grand-piano.webp")}
+            alt=""
+            width="1254"
+            height="1254"
           />
-          <figcaption>
-            <span>Mathis Dubuisson</span>
-            <SchoolMention />
-          </figcaption>
-        </figure>
+          <h2 id="personal-title">{m.about_personal_title()}</h2>
+          <p>{m.about_personal_body()}</p>
+        </section>
         <div className="about-prose">
           <p className="lead">{m.about_intro()}</p>
+          <SchoolMention />
           <p>{m.about_body()}</p>
           <p>{m.about_outro()}</p>
         </div>

@@ -95,8 +95,7 @@ h4 {
   min-width: 0;
 }
 .project-cover,
-.project-visual,
-.profile-portrait {
+.project-visual {
   margin: 0;
 }
 img {
@@ -139,17 +138,10 @@ svg {
 .identity {
   display: flex;
   align-items: center;
-  gap: 12px;
   font-size: 19.5px;
   font-weight: 400;
   line-height: 1.4;
   flex: 1;
-}
-.identity img {
-  border-radius: 50%;
-  width: 38px;
-  height: 38px;
-  object-fit: cover;
 }
 .identity-sub {
   display: block;
@@ -697,26 +689,29 @@ svg {
   align-items: start;
   margin: 50px 0 70px;
 }
-.profile-portrait {
-  max-width: 260px;
+.about-personal {
+  min-width: 0;
+  max-width: 400px;
 }
-.profile-portrait > img {
-  width: 100%;
-  aspect-ratio: 1;
-  object-fit: cover;
+.about-personal > img {
+  width: clamp(260px, 22cqi, 400px);
+  height: auto;
+  object-fit: contain;
+  margin-bottom: 24px;
 }
-.profile-portrait figcaption > span {
-  display: block;
-  font-size: 13px;
-  margin-top: 17px;
+.about-personal > h2 {
+  font-size: 33.75px;
+  line-height: 1.15;
+  margin-bottom: 14px;
 }
-.profile-portrait figcaption > .school-mention {
-  margin-top: 14px;
-}
+.about-personal > p,
 .about-prose p {
   font-size: 16px;
   line-height: 1.9;
   color: var(--secondary);
+}
+.about-prose > .school-mention,
+.about-prose p {
   margin-bottom: 23px;
 }
 .about-prose .lead {
@@ -1159,11 +1154,6 @@ svg {
   }
   .identity {
     font-size: 18px;
-    gap: 9px;
-  }
-  .identity img {
-    height: 32px;
-    width: 32px;
   }
   .identity-sub {
     font-size: 8px;
@@ -1407,37 +1397,24 @@ svg {
     gap: 30px;
     margin: 30px 0 35px;
   }
-  .profile-portrait {
-    display: grid;
-    grid-template-columns: 72px 1fr;
-    gap: 5px 18px;
+  .about-personal {
     max-width: none;
-    align-items: center;
   }
-  .profile-portrait > img {
-    width: 72px;
+  .about-personal > img {
+    width: clamp(220px, 60cqi, 280px);
   }
-  .profile-portrait figcaption {
-    display: grid;
-    gap: 5px;
-  }
-  .profile-portrait figcaption > span {
-    margin: 8px 0 0;
-  }
-  .profile-portrait figcaption > .school-mention {
-    margin: 0;
-    font-size: 10px;
-    gap: 9px;
-  }
-  .profile-portrait .school-logo {
-    width: 42px;
-    height: 42px;
+  .about-personal > h2 {
+    font-size: 30px;
   }
   .about-prose .lead {
     font-size: 20px;
   }
+  .about-personal > p,
   .about-prose p {
     font-size: 14px;
+  }
+  .about-prose > .school-mention,
+  .about-prose p {
     margin-bottom: 18px;
   }
   .approach-section {
@@ -1871,6 +1848,7 @@ main {
     max-height: 850px;
   }
   .detail-body p,
+  .about-personal > p,
   .about-prose p,
   .approach-steps p,
   .journey-copy > p:not(.journey-context),
@@ -1879,6 +1857,7 @@ main {
     max-width: 65ch;
   }
   .detail-body h2:not(.eyebrow),
+  .about-personal > h2,
   .approach-steps h3,
   .journey-copy h3,
   .contact-links strong {
@@ -1892,10 +1871,6 @@ main {
   .journey-heading h2 {
     font-size: clamp(28px, 1.8cqi, 46px);
   }
-  .profile-portrait {
-    max-width: clamp(260px, 22cqi, 500px);
-  }
-  .profile-portrait figcaption > span,
   .contact-links > li > a > span > span,
   .next-project > span {
     font-size: clamp(13px, 0.8cqi, 20px);
@@ -2425,13 +2400,8 @@ main {
     flex: 0 0 auto;
     flex-direction: column;
     align-items: flex-start;
-    gap: clamp(14px, 1vw, 24px);
     font-size: clamp(24px, calc(0.5vw + 16.8px), 36px);
     line-height: 1.6;
-  }
-  .identity img {
-    width: clamp(38px, calc(0.75vw + 27.2px), 56px);
-    height: clamp(38px, calc(0.75vw + 27.2px), 56px);
   }
   .site-frame .identity-sub {
     font-size: clamp(12px, calc(0.166667vw + 9.6px), 16px);
@@ -2546,12 +2516,7 @@ main {
     padding-block: 24px;
   }
   .site-frame .identity {
-    gap: 14px;
     font-size: 24px;
-  }
-  .identity img {
-    width: 38px;
-    height: 38px;
   }
   .site-frame .identity-sub {
     font-size: 12px;
@@ -2587,12 +2552,7 @@ main {
   .site-frame .identity {
     flex-direction: row;
     align-items: center;
-    gap: 10px;
     line-height: 1.2;
-  }
-  .identity img {
-    width: 28px;
-    height: 28px;
   }
   .site-frame .identity-sub {
     display: none;
@@ -2621,14 +2581,8 @@ main {
   }
   .site-frame .identity {
     min-width: 0;
-    gap: 10px;
     font-size: 24px;
     line-height: 1.2;
-  }
-  .identity img {
-    flex-shrink: 0;
-    width: 34px;
-    height: 34px;
   }
   .site-frame .identity-sub {
     font-size: 10px;

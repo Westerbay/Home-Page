@@ -59,7 +59,8 @@ beside the character. Other project content and visuals remain unchanged.
 
 The desktop navigation sits against the left viewport edge. It scales from
 about 256 px wide at a 1440 px viewport to 416 px at 3840 px, with a 24–32 px
-left inset, larger type, avatar and spacing. From 1101 px, opaque white and pale
+left inset, larger type and spacing. The identity keeps the name and role without
+a profile picture. From 1101 px, opaque white and pale
 grey paper with straight edges and thin stacked page edges on the right sits
 behind the real navigation links. The original texture is framed at 106% width,
 aligned to the right, so its left binding crease is outside the visible rail.
@@ -122,6 +123,15 @@ he enjoys learning different ways to solve problems and keeping software
 architecture clean. His interest in AI includes both model architecture
 and software that uses models. Making a game or telling a story could be
 a future interest, not a project already started.
+
+Outside coding, his interests include piano first and chess. The About
+introduction pairs a coloured-pencil and soft-pastel drawing of a wooden grand piano
+with this short personal note on the left; the existing biography and ENSICAEN
+mention sit on the right. The illustration has a transparent background and a
+small hand-drawn shadow beneath its feet. The piano remains fully visible without a frame or
+background panel. The three development interests and journey remain unchanged.
+The profile picture is absent from the navigation and About page; the favicon
+and social-preview avatar remain.
 
 Keep the voice personal, direct and understated. Avoid sales language,
 invented achievements and CV-style positioning. Do not use em dashes in

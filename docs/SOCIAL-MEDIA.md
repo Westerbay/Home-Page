@@ -59,16 +59,18 @@ and, for Plants, the social preview generator.
 
 | Source              | Delivery asset       | Dimensions | Quality |        Before |         After |
 | ------------------- | -------------------- | ---------- | ------: | ------------: | ------------: |
-| `avatar.png`        | `avatar.webp`        | 450 × 450  |      90 | 253,619 bytes |  29,428 bytes |
 | `avatar.png`        | `avatar-128.webp`    | 128 × 128  |      90 | 253,619 bytes |   6,744 bytes |
 | `ensicaen.png`      | `ensicaen.webp`      | 128 × 124  |      95 |  42,821 bytes |   8,164 bytes |
 | `plants-render.png` | `plants-render.webp` | 1200 × 900 |      95 | 352,880 bytes | 131,460 bytes |
 
-The header and favicon use the small avatar; About uses the full-size WebP.
+The favicon uses the small avatar; general social previews use the original PNG.
+Navigation and About no longer display the profile picture. The unused full-size
+WebP and its generation entry have been removed. About uses a separate transparent
+wooden grand-piano illustration (see ABOUT-MEDIA.md), without changing the social previews.
 The school mention and journey use the small ENSICAEN logo. Plants cards
 use the responsive variants described in RESPONSIVE-MEDIA.md; the scene
 placeholder uses the full-size Plants WebP. Visual checks cover
-the small portrait, logo and fine branches against their original PNGs.
+the favicon, logo and fine branches against their original PNGs.
 
 Reproduction (Python with Pillow, from the repository root):
 

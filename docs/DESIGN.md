@@ -46,7 +46,8 @@ part of the maintained implementation.
 Above 1100 px, the shell occupies the full viewport width. The sticky navigation
 rail grows from about 256 px at a 1440 px viewport to 416 px at 3840 px, while its
 left inset stays within 24–32 px. Main links grow from 24 to 42 px, project links
-from 21 to 33 px, and the avatar from 38 to 56 px. Link spacing scales with them.
+from 21 to 33 px. Link spacing scales with them. The navigation identity uses
+the name and role without a profile picture.
 The `--sidebar-width` token defines the navigation rail; the floating companion
 and compact Guide panel sit at the bottom right, independently of the rail. The content
 column is centered in the remaining space and capped at 2600 px. Do not center the
@@ -145,8 +146,19 @@ editorial rows, with small lazy-loaded thumbnails and one link per project.
 
 The home scene uses the original ABOP WebGL renderer through the shared L-system React package. Its compact controls switch presets and adjust the camera. The Plants detail page includes the full editor, with the symbol reference in a modal beside the parameter heading. Gallery cards retain static images. Scenes use neutral backgrounds by default; textured sky and ground are optional.
 
-The GitHub profile picture keeps its original colours, without a filter or
-desaturation. The ENSICAEN logo has its own copy in the frontend assets;
+The About introduction keeps its two-column grid, with a small personal section
+on the left and the existing biography on the right. A drawing of a wooden grand
+piano in coloured pencils and soft pastels sits above “Beyond coding” and a short
+note prioritising piano, with chess as another interest. Irregular pencil lines,
+grainy colour strokes and a small hatched shadow keep the drawing handmade.
+Its transparent background blends with either theme, with no frame or added
+surface; the whole illustration keeps its natural proportions.
+It scales from roughly 260 to 400 px on desktop and wide screens, and 220 to
+280 px when the introduction stacks on mobile. The ENSICAEN mention follows the
+role in the biography. The existing games, AI and 3D-rendering interests and
+journey remain unchanged. Navigation and About have no profile picture; the
+favicon and social-preview avatar retain their original appearance.
+The ENSICAEN logo has its own copy in the frontend assets;
 it keeps its colours and a white backing for dark-mode readability.
 
 ## Interaction and copy
