@@ -26,11 +26,18 @@ pnpm test:e2e
 ESLint, TypeScript and URL unit tests. Turbo builds Paraglide before the web
 application; building also generates the route tree on a fresh checkout.
 Browser tests serve the static output on port 4175.
+They use the bundled Chromium channel's full headless mode rather than headless
+shell, which stalled while creating subsequent contexts after scenery tests.
+See [Playwright's headless modes](https://playwright.dev/docs/browsers#chromium-new-headless-mode).
 They use one worker when `CI` is set and three locally. Software-rendered WebGL
 scenes and 4K captures should not compete for the limited CI runner resources;
 this follows [Playwright's CI guidance](https://playwright.dev/docs/ci#workers).
 Both base-path jobs finish independently. Failed runs retain Playwright traces,
 screenshots and error context in `playwright-failures-*` artifacts for 14 days.
+The publication workflow retains the same diagnostics in
+`playwright-failures-publish`. Project scenery tests separate project navigation
+from the optional Guide round trip so each scenario has its own 30-second budget,
+with theme and scenery assertions checked in both French and English.
 
 ### HTML, SEO and Lighthouse audits
 

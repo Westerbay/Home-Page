@@ -108,32 +108,50 @@ for (const [locale, messages] of [
     await expect(page).toHaveURL(spellwarURL)
     await expectScenery(page, baseURL, "spellwar", "dark")
 
-    if (guideEnabled) {
-      await navigation
-        .getByRole("link", { name: messages.guide_title, exact: true })
-        .click()
-      await expect(page).toHaveURL(new URL(`${locale}guide/`, baseURL).href)
-      await expect.poll(() => sceneryImages(page)).toEqual([null, null])
-      await expect(page.locator(".guide-companion")).toHaveAttribute(
-        "data-character",
-        "adventurer"
-      )
-      await expectTheme(page, "dark")
-      await page
-        .getByRole("button", { name: messages.guide_minimize, exact: true })
-        .click()
-      await expect(page).toHaveURL(spellwarURL)
-      await expectScenery(page, baseURL, "spellwar", "dark")
-      await page
-        .getByRole("button", { name: messages.guide_close, exact: true })
-        .click()
-    }
-
     await navigation
       .getByRole("link", { name: messages.projects, exact: true })
       .click()
     await expect(page).toHaveURL(new URL(`${locale}projects/`, baseURL).href)
     await expect.poll(() => sceneryImages(page)).toEqual([null, null])
     await expectTheme(page, "dark")
+  })
+
+  test(`guide round trip restores project scenery and theme: ${locale || "fr"}`, async ({
+    page,
+    baseURL,
+  }) => {
+    test.skip(!guideEnabled, "Requires an enabled assistant")
+    if (!baseURL) throw new Error("The portfolio base URL must be configured")
+    await page.route("**/v1/chat", (route) => route.abort())
+    await page.goto(`${locale}projects/spellwar/`)
+    const navigation = page.getByRole("navigation", {
+      name: messages.navigation,
+    })
+    const spellwarURL = new URL(`${locale}projects/spellwar/`, baseURL).href
+    await page
+      .getByRole("button", { name: messages.theme_to_dark, exact: true })
+      .click()
+    await expectScenery(page, baseURL, "spellwar", "dark")
+    await navigation
+      .getByRole("link", { name: messages.guide_title, exact: true })
+      .click()
+    await expect(page).toHaveURL(new URL(`${locale}guide/`, baseURL).href)
+    await expect.poll(() => sceneryImages(page)).toEqual([null, null])
+    await expect(page.locator(".guide-companion")).toHaveAttribute(
+      "data-character",
+      "adventurer"
+    )
+    await expectTheme(page, "dark")
+    await page
+      .getByRole("button", { name: messages.guide_minimize, exact: true })
+      .click()
+    await expect(page).toHaveURL(spellwarURL)
+    await expectScenery(page, baseURL, "spellwar", "dark")
+    await page
+      .getByRole("button", { name: messages.guide_close, exact: true })
+      .click()
+    await expect(page.locator(".guide-panel")).toHaveCount(0)
+    await expect(page).toHaveURL(spellwarURL)
+    await expectScenery(page, baseURL, "spellwar", "dark")
   })
 }
