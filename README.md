@@ -1,34 +1,17 @@
 # Mathis Dubuisson · portfolio
 
-Games, 3D rendering and other projects, with a few words about me.
+Games, 3D rendering and machine-learning projects, with a little about me.
 
-Public URL: [westerbay.github.io/Home-Page](https://westerbay.github.io/Home-Page/)
+**[Visit the portfolio](https://portfolio.mathis-db.com/)**
 
-The site is available in French and English. It includes a project gallery,
-individual project pages, an about page and links to GitHub and LinkedIn.
-The theme follows the browser preference until you choose light or dark mode.
-The homepage and Plants project page embed the original interactive WebGL
-scene through the reusable [L-system component](https://github.com/Westerbay/The-Algorithmic-Beauty-of-Plants).
-The Eyefox project page includes a playable puzzle using the reusable
-[Eyefox component](https://github.com/Westerbay/Eyefox-Puzzle/tree/web).
-Both integrations follow the site language and theme.
-[Booster Break](https://booster.mathis-db.com/) leads the project selection,
-with a screenshot, a project page and links to the live game and source.
-The catalogue includes personal and academic projects.
+The site is available in French and English, with light and dark themes, project
+galleries, playable Eyefox and L-system demos, and an optional AI guide.
+React and TanStack Start generate static HTML for GitHub Pages; the portfolio
+does not need an application server.
 
-## Stack
+## Run locally
 
-Node.js 24, pnpm 12, Turborepo, TypeScript, React, TanStack Start and Router,
-Tailwind CSS, Paraglide, Zod and Sonner. Pages are generated as static HTML
-for GitHub Pages.
-There is no application server to deploy.
-An optional TanStack AI guide connects directly to the existing public RAG Worker.
-It shares one conversation between a compact dialog and a full page, and is
-disabled by default. See [guide setup and local tests](docs/DEVELOPMENT.md#optional-ai-guide).
-
-## Development
-
-Use Node.js 24.15 and pnpm 12.4.1.
+Use Node.js 24 (see [.node-version](.node-version)) and pnpm 12.4.1.
 
 ```sh
 pnpm install --frozen-lockfile
@@ -38,53 +21,38 @@ pnpm dev
 Open [localhost:4174](http://127.0.0.1:4174/).
 
 ```sh
-pnpm format
 pnpm check
 pnpm exec playwright install chromium
 pnpm test:e2e
 ```
 
-`pnpm check` runs formatting checks, the production build, linting, type
-checking and unit tests. Browser tests run against the generated static site.
+`pnpm check` runs formatting checks, the production build, linting, type checking
+and unit tests. Browser tests run against the generated site. See the
+[development guide](docs/DEVELOPMENT.md) for previews, HTML validation, the
+optional guide and publishing.
 
-To build and preview the GitHub Pages path:
+## Repository
 
-```sh
-SITE_BASE_PATH=/Home-Page/ pnpm build
-SITE_BASE_PATH=/Home-Page/ pnpm preview
-```
+| Path              | Contents                                              |
+| ----------------- | ----------------------------------------------------- |
+| `web`             | Routes, page features, project data and public assets |
+| `packages/ui`     | Shared components, local fonts and theme styles       |
+| `packages/i18n`   | French and English messages and Paraglide generation  |
+| `packages/config` | Public profile and TypeScript configuration           |
+| `scripts`         | Static output, validation and media generation tools  |
 
-Open [localhost:4174/Home-Page](http://127.0.0.1:4174/Home-Page/).
-These environment variable examples use a POSIX shell; see the
-[development guide](docs/DEVELOPMENT.md) for PowerShell.
+The stack uses TypeScript, React, TanStack Start/Router, Tailwind CSS, Paraglide,
+Zod, Sonner and Turborepo. The interactive demos come from the upstream
+[L-system component](https://github.com/Westerbay/The-Algorithmic-Beauty-of-Plants)
+and [Eyefox component](https://github.com/Westerbay/Eyefox-Puzzle/tree/web).
 
-## Project structure
+## Contributing
 
-- `web`: routes, page features, project data and public assets.
-- `packages/ui`: shared components, fonts and theme styles.
-- `packages/i18n`: French and English messages and Paraglide configuration.
-- `packages/config`: public profile and shared TypeScript configuration.
-- `scripts`: static output preparation and the local preview server.
+Keep French and English content aligned, preserve keyboard navigation and reduced
+motion, and verify both themes when changing the UI. Run the relevant checks before
+opening a pull request. Project descriptions should reflect their linked sources;
+media credits and original project licences still apply.
 
-The frontend structure and tooling are adapted from
-[WebApp-Skull](https://github.com/Westerbay/WebApp-Skull). This portfolio
-keeps only the packages needed for a static site.
-
-Text lives in `packages/i18n/messages`. The project catalogue is in
-`web/src/features/projects/data/projects.ts`.
-
-## Publishing
-
-GitHub Pages must use **GitHub Actions** as its source. Run the
-**Publish portfolio** workflow manually from the Actions tab to publish V1
-or a later update. It builds and checks the site, runs browser tests, then
-publishes only `web/dist/client`.
-
-CI covers both `/` and `/Home-Page/`. The publishing workflow reads the path
-from GitHub Pages, so a future custom domain can use the same build pipeline.
-Compatibility redirects preserve the old `About.html`, `Project.html` and
-`Prototype.html` URLs. The old implementation and comparison prototype are
-not part of the maintained site.
-
-See the [architecture](docs/ARCHITECTURE.md), [design decisions](docs/DESIGN.md),
-[content rules](docs/PRODUCT.md) and [development guide](docs/DEVELOPMENT.md).
+- [Development and deployment](docs/DEVELOPMENT.md)
+- [Architecture and integration boundaries](docs/ARCHITECTURE.md)
+- [Media sources and regeneration](docs/MEDIA.md)

@@ -4,7 +4,7 @@ import { getPinnacleStory } from "./stories/pinnacle"
 import { getPlantsStory } from "./stories/plants"
 import { getSpellwarStory } from "./stories/spellwar"
 
-export interface ProjectStoryImage {
+interface ProjectStoryImage {
   src: string
   alt: string
   caption: string

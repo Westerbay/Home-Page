@@ -1,188 +1,86 @@
 # Architecture
 
-## Boundaries
+## Workspaces
 
-`web` is the sole application and combines React with TanStack Start and Router. Routes declare
-navigation and metadata; features own their components and project data in
-`src/features`. Small cross-cutting integrations live in `src/lib`.
+`web` is the only application. TanStack Router routes declare navigation and
+metadata; `web/src/features` owns page components and project data. Shared URL,
+asset and SEO helpers live in `web/src/lib`.
 
-`packages/ui` contains shared primitives: Button with Radix Slot and CVA,
-Sonner notifications, the `cn` helper, theme styles and local fonts.
-Feature-specific components stay with their features.
+- `packages/ui`: shared components, theme tokens and locally served fonts.
+- `packages/i18n`: French/English catalogues and Paraglide generation.
+- `packages/config`: public identity and shared TypeScript configuration.
 
-`packages/i18n` owns the French and English catalogues and Paraglide generation.
-`packages/config` shares the public profile and TypeScript configuration.
-pnpm workspaces link the packages and Turborepo orders builds and checks;
-the `web` build depends on generated translations.
-Project data is validated with Zod where it is consumed. There is no remote
-data layer or empty contracts package.
+pnpm links the workspaces. Turborepo builds translations before the application.
+Project data is validated with Zod. Filters use local React state.
 
-TanStack Query and Form can be added when a feature actually needs a remote
-request or a form. Project filters currently use local React state.
+## Static rendering and URLs
 
-## Rendering and languages
+TanStack Start prerenders the public routes into `web/dist/client`; only this
+directory is deployed. Server rendering supports development and static
+generation, not a production application server.
 
-TanStack Start generates 22 HTML pages at build time. Only `dist/client` is
-published. Server rendering is used for development and static generation;
-no application server or remote function is deployed.
+`web/src/lib/site.ts` owns the public origin, locales and route list used by the
+build, canonical URLs and sitemap. French uses the root path; English uses `/en/`.
+Paraglide middleware isolates locale state during concurrent prerendering.
+`lib/i18n/url-rewrite.ts` bridges Paraglide with the router's deployment prefix.
 
-Paraglide uses URL and base-locale strategies. Its middleware isolates locale
-state during concurrent prerendering. French uses the root, and English uses
-`/en/`. The language control is a real link to the equivalent translated static
-page, including without JavaScript. After hydration it retains the current
-query and fragment. Locale comes from the URL, not the visitor's browser language.
+Language controls link to equivalent static pages without JavaScript. After
+hydration they also retain the query and fragment. Asset URLs go through
+`lib/assets.ts`; avoid hard-coded root paths in components.
 
-`src/lib/seo.ts` supplies localized titles, descriptions, absolute canonical
-URLs, reciprocal French/English and x-default links, and Open Graph/Twitter
-metadata. Project social images are dedicated 1200 × 630 JPEG files. General pages use
-the favicon illustration from its 450 × 450 original PNG, with matching image
-metadata and a square Twitter summary card. Home and About
-have descriptive metadata separate from their short visible introductions.
+`scripts/prepare-pages.mjs` generates the sitemap, robots.txt, 404 page and legacy
+redirects. The preview server serves those files without an SPA fallback, so a
+missing page remains a real 404. Both `/` and `/Home-Page/` are tested.
 
-TanStack removes its base path before custom URL rewriting.
-`src/lib/i18n/url-rewrite.ts` temporarily restores that prefix for Paraglide,
-then lets the router add it back to public links. Tests cover both `/` and
-`/Home-Page/`.
+## UI and media
 
-The router enables native View Transitions for internal navigation, including
-back and forward. Global CSS fades in the new page over the previous one;
-same-origin document navigation also opts in so language changes use the same
-fade where supported. Reduced motion disables the animations, and unsupported
-browsers navigate normally. The assistant retains its separate dialogue and
-character transitions without remounting the shared session.
+`web/src/root.css` combines shared and feature styles in cascade order. Jersey 10
+and Space Mono are bundled locally. Theme colours interpolate at the root through
+registered CSS properties; project scenery crossfades independently. Reduced
+motion disables these transitions. Changing theme must not remount games or chat.
 
-`src/root.css` bundles the UI, page and guide styles in their existing cascade
-order as one cached stylesheet. The document preloads only the two Latin font
-files used above the fold; `packages/ui/src/lib/fonts.ts` exports their bundled
-URLs from the same font packages as the stylesheet.
+Project media share frame and caption styles. Project badges use the common theme
+palette, including on pages with scenery. Responsive images use the generated
+`features/projects/data/project-images.json` manifest. Sources, encoding and
+regeneration commands are documented in [MEDIA.md](MEDIA.md).
 
-Page introductions and content groups use native headings, headers, lists and
-figures. Project cards adapt their heading level to the page hierarchy. Layout
-containers remain neutral. The assistant scopes its header and composer footer
-inside its section, keeping the site banner and content information unique.
-Its live log contains an ordered list of messages; short Markdown response
-headings render as emphasized paragraphs without changing the page outline.
-Styled lists retain an explicit list role for Safari accessibility.
-The message-list renderer and Markdown parser are a lazy chunk requested when
-the chat opens, including for an empty history. The live-log wrapper, composer,
-focus handling and guide session remain mounted synchronously.
+Internal navigation uses native View Transitions where available; other browsers
+navigate normally. Semantic headings, lists and figures preserve the page outline.
 
-## Static assets and publishing
+## Interactive demos
 
-All maintained images are in `web/public/assets`. Components use
-`src/lib/assets.ts` to respect the deployment base path. They do not depend
-on the removed root asset directories or comparison prototype.
-Responsive project imagery and density-specific companion sheets reduce mobile
-transfers while keeping native sources available. See RESPONSIVE-MEDIA.md and
-SOCIAL-MEDIA.md for reproduction and fidelity limits. SpellWar's silent looping
-video starts loading within 160 px of the viewport; its native controls and source
-link remain available without JavaScript.
+The Eyefox and L-system feature wrappers load their versioned React packages only
+on the client, near the viewport. Prerendered HTML contains a static preview, which
+also remains available if the package cannot load. Without IntersectionObserver,
+the wrappers load on mount.
 
-`SITE_BASE_PATH` configures the build and preview server. The manual Pages
-workflow reads this path from `actions/configure-pages` and uploads only
-`web/dist/client`.
+The upstream packages own game state, controls, rendering and resource disposal.
+The portfolio supplies locale and theme. The homepage uses compact L-system
+controls; Plants exposes the full editor. Eyefox mounts only on its detail page.
 
-`src/lib/site.ts` owns the public origin and route list shared by Vite's
-prerendering and sitemap generation. Absolute URLs include `SITE_BASE_PATH`
-so both root and prefixed builds remain internally consistent.
-`scripts/prepare-pages.mjs` adds `.nojekyll`, a sitemap with reciprocal locale
-alternates, a robots.txt pointing to that sitemap, a static 404 page and redirects
-from `About.html`, `Project.html` and `Prototype.html`. It does not copy the
-old implementation. The preview server serves generated files directly;
-there is no SPA fallback masking a missing static page.
+## Optional AI guide
 
-The public project URL is `https://portfolio.mathis-db.com/`. The origin in
-`src/lib/site.ts` must stay consistent with the published domain.
+`features/guide` owns one TanStack AI session above the route outlet. The compact
+dialog and full Guide page share the conversation, draft and companion. No request
+is made merely by opening the guide. Public build settings enable the integration;
+see [setup and tests](DEVELOPMENT.md#optional-ai-guide).
 
-## Technical reference
+The transport posts directly to the configured service's `/v1/chat`, without
+credentials. It accepts SSE with a legacy JSON fallback. Streamed text is
+provisional until the final result validates, matches the accumulated text and the
+stream ends cleanly. Only validated replies enter history; raw HTML and Markdown
+images are not rendered. Citation metadata is validated internally.
 
-The frontend conventions and boundaries were informed by
-[WebApp-Skull](https://github.com/Westerbay/WebApp-Skull). This is an internal engineering
-reference, not a public portfolio link.
-Authentication and database features remain outside the portfolio.
+Requests have a 30-second timeout, a 256 KiB stream limit and a 64 KiB event/JSON
+limit. Errors, cancellation and malformed or truncated responses discard the
+preview. There is no automatic retry or reconnect. A validated sleeping response
+disables sending until its retry time; waking does not make a request.
 
-## Portfolio guide
+Bounded snapshots live in sessionStorage, scoped by deployment prefix. Interrupted
+requests are never replayed, and stopping or clearing invalidates late results.
+Unit and browser tests cover these boundaries with local response fixtures.
 
-`features/guide` owns one TanStack AI `useChat` instance above the route outlet.
-The compact dialog and `/guide/` page share that instance and a draft. The
-connection adapter posts the existing RAG JSON request directly to the public
-chat route of the existing Cloudflare Worker, without credentials or a portfolio
-backend. It requests `text/event-stream` and maps `delta` events into TanStack AI
-text chunks as they arrive. `eventsource-parser` handles SSE framing and split
-UTF-8 is decoded incrementally. A legacy JSON response remains supported.
-
-The streamed text is provisional until the final `result` passes the existing
-answer/citation validation, matches the accumulated text after trimming, and the
-stream ends cleanly. Only then does it receive a receipt and enter persisted
-history. A validated `sleeping` event uses the same sleep state as HTTP 503 JSON;
-errors, cancellation, malformed events and truncated streams remove the preview.
-The UI and persistence both filter unacknowledged assistant messages, so late
-SDK notifications cannot reinsert a discarded answer. Requests are bounded to
-30 seconds, 256 KiB of SSE and a 64 KiB event buffer; JSON remains limited to
-64 KiB. There is no automatic retry or reconnect.
-
-The versioned, size-limited snapshot uses `sessionStorage`, scoped by the deployment
-base. It is restored after hydration. Interrupted requests are never replayed;
-stopping or clearing invalidates late results. The Worker owns availability:
-only a validated HTTP 503 JSON response or SSE `sleeping` event blocks sending until `retry_at`.
-The local timer enables manual retry and never makes a request.
-
-The companion uses two transparent 4-column, 2-row atlases with native image
-loading and CSS frame steps. The normalized Eyefox route selects the fox in
-either language. Expanding from Eyefox keeps that character through the recorded
-return location; other routes and direct entry to the Assistant page use the adventurer.
-The shared session owns the short yawning, sleep and disappearance sequence,
-so route changes cannot restart it. Only availability is saved: a reload restores
-sleeping as a static hidden character. Reduced motion also skips the sequence.
-The speech bubble above the character opens a compact NPC-style dialog, with a
-tail pointing to the sprite below it. One persistent sprite stays at the same size
-and position when the compact dialog opens or closes. Expanding enlarges the same
-character inside the article: beside the conversation on desktop, and beside the
-heading on mobile. It stays within the main content and above the footer.
-Both sprite sheets are preloaded for the current character.
-The bubble remains focusable after the
-character disappears. Separate two-frame strips animate speech from the first
-text chunk until validated completion; the character thinks while waiting for
-that first chunk. Expanding and minimizing preserve the same stream and speaking
-state. Completion shows the accumulated answer immediately, without replaying it
-through a second typing animation. Legacy JSON responses retain the bounded local
-reveal. Reduced motion disables character animation, while network text still
-arrives progressively. Reload restores only complete answers, without replay.
-The live conversation is busy while text is provisional, delaying announcements
-until completion.
-The compact and expanded conversation surfaces share a native view-transition
-name, and the persistent character has its own transition name. Navigation captures
-the open panel and character before switching routes, then animates both into the
-article composition. The surrounding page fades separately, including when returning
-to the previous article. Reduced motion skips the transition,
-and browsers without the API navigate normally.
-There is no sprite engine, extra canvas or request on wake-up.
-Notifications move to the top center only while the guide feature is enabled.
-
-The optional guide is disabled unless both public build settings are valid.
-Only a sanitized service origin reaches browser assets. No password is accepted
-by the frontend. The interface calls the feature Assistant in both languages.
-Both chat formats link to the Cloudflare-RAG repository beneath the composer.
-Suggested questions send immediately through the same request path as the composer,
-without populating or clearing its draft.
-They are disabled until the session is ready, while a request is pending or during sleep.
-Citation metadata is validated internally but is not displayed with the answer.
-Markdown does not load images or execute raw HTML.
-
-## Embedded L-system
-
-The `features/lsystem` wrapper imports the shared `@westerbay/lsystem-react` library and stylesheet after mounting and visibility detection. This keeps WebGL out of prerendering and unrelated pages. The homepage uses compact controls; the Plants detail page uses the editor with symbol help. The component owns canvas events, GPU resources and rendering; unmounting a route disposes its scene. The wrapper supplies the current locale and resolved theme, and retains a static image if JavaScript or the library download is unavailable.
-
-## Embedded Eyefox puzzle
-
-The `features/eyefox` wrapper loads `@westerbay/eyefox-react` and its
-stylesheet only after mounting, when the Eyefox detail approaches the viewport.
-Browsers without IntersectionObserver load it on mount. The generated HTML
-contains the existing project image; that preview also remains available if the
-library cannot be downloaded, alongside a localized error message. Loading text
-appears only once the browser has started the import.
-
-The package owns the puzzle state and interaction. The portfolio passes its
-current locale and resolved light/dark theme, without copying the game logic.
-Only the Eyefox detail page mounts the game; Home and Projects cards keep their
-static thumbnails. The wrapper adds no backend, store links or downloads.
+The companion uses CSS sprite atlases. Eyefox selects the fox and carries it into
+the full Guide; other entries use the adventurer. The sprite and conversation
+persist while expanding or minimizing. The message renderer loads lazily when the
+chat opens; the session and focus management remain mounted.

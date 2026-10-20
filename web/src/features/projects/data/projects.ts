@@ -6,7 +6,7 @@ const projectSchema = z.object({
   title: z.string(),
   origin: z.enum(["academic", "personal"]),
   category: z.enum(["games", "generative", "engineering"]),
-  image: z.string().nullable(),
+  image: z.string(),
   imageCaption: z.string().optional(),
   repository: z.url(),
   demo: z.url().optional(),

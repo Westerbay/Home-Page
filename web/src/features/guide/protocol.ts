@@ -1,7 +1,7 @@
 import { z } from "zod"
 
 export const QUESTION_LIMIT = 1500
-export const REQUEST_BYTES = 16_384
+const REQUEST_BYTES = 16_384
 export const RESPONSE_BYTES = 65_536
 // SSE includes event framing and repeats the answer in its final receipt.
 export const STREAM_RESPONSE_BYTES = 262_144
@@ -17,7 +17,7 @@ export const messageSchema = z.object({
     .max(1),
 })
 export type GuideMessage = z.infer<typeof messageSchema>
-export const citationSchema = z
+const citationSchema = z
   .object({
     chunk_id: z.string().min(1).max(500),
     path: z.string().min(1).max(500),
