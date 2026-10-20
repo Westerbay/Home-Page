@@ -1,28 +1,26 @@
 # Agent instructions
 
-Read `docs/CONTEXT.md`, then the documents relevant to the change.
-Inspect `git status --short` and preserve existing work.
+Read README.md and the relevant guides in docs/ before making changes.
+Inspect git status and preserve unrelated work.
 
-Routes compose features; feature components belong in `web/src/features`.
-Shared UI primitives belong in `packages/ui`. Maintain both French and English
-messages in `packages/i18n`. Do not add services, forms, remote requests or
-abstractions without an actual need.
+## Structure
 
-Keep the approved visual direction described in `docs/DESIGN.md`. The portfolio is personal and
-understated, about enjoying development and showing projects. Do not display
-or link the secondary GitHub account. Follow the confirmed content rules in
-`docs/PRODUCT.md`; further content refinements do not block V1.
+- Routes compose features in web/src/features; shared UI lives in packages/ui.
+- Keep French and English messages aligned in packages/i18n/messages.
+- Use the asset and locale helpers so URLs work at both / and /Home-Page/.
+- Keep game logic in the versioned upstream Eyefox and L-system packages.
+- Preserve the static build, accessibility, reduced-motion behavior and game/chat
+  state across theme and route changes.
+- Reuse shared styles and existing components. Do not add unused abstractions.
 
-Removal of the old implementation and comparison prototype is authorized.
-Do not reintroduce legacy root HTML, shared asset folders or prototype code.
-Keep current assets in `web/public/assets` and preserve the generated
-redirects for `About.html`, `Project.html` and `Prototype.html`.
+## Content and validation
 
-Run checks proportional to the change and update the relevant documentation.
-Verify routing changes at both `/` and `/Home-Page/`, in French and English.
-Documentation and commit messages are in English. Use a commit prefix and
-scope, and prefer rebasing to merge commits.
-
-Publishing uses the manual `workflow_dispatch` GitHub Pages workflow.
-Do not claim a deployment succeeded until its workflow and public URL have
-been checked.
+- Keep project descriptions factual, attributable and consistent with their sources.
+- Preserve media credits; do not invent licences or individual contributions.
+- Keep personal notes, planning, private paths and credentials out of the repository.
+- Documentation and commits are in English; use a commit prefix and scope.
+- Run checks proportional to the change. Verify locale and base-path behavior when
+  changing routes, URLs or static output, and visually check UI changes.
+- Keep the legacy About.html, Project.html and Prototype.html redirects working.
+- Publishing uses the manual Publish portfolio workflow. Do not deploy or claim
+  deployment success without authorization and verification.

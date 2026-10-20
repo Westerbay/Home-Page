@@ -25,12 +25,12 @@ const snapshotSchema = z.object({
   interrupted: z.boolean().default(false),
 })
 type Snapshot = z.infer<typeof snapshotSchema>
-export interface GuideReturnLocation {
+interface GuideReturnLocation {
   pathname: string
   search: Record<string, unknown>
   hash: string
 }
-export type CompanionState =
+type CompanionState =
   | "idle"
   | "thinking"
   | "speaking"

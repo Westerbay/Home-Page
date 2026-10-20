@@ -1,6 +1,6 @@
 """Capture reproducible Cheap DiT outputs inside its pinned Docker image.
 
-Run with the command documented in docs/GENERATIVE-MEDIA.md.
+Run with the command documented in docs/MEDIA.md.
 This helper performs local inference only and does not train or change weights.
 """
 import argparse

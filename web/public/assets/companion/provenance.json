@@ -13,16 +13,12 @@
   ],
   "assets": [
     {
-      "file": "adventurer-atlas.png",
-      "prompt": "Use case: stylized-concept. Asset type: animated website companion sprite atlas. The attached image is an IDENTITY AND STYLE REFERENCE ONLY, not the layout to reproduce. Recreate this exact charming chibi adventurer: messy brown hair, plain orange cap with NO LOGO OR EMBLEM, dark charcoal jacket with cream trim, orange backpack, dark trousers and orange/brown sneakers. Preserve the reference face and proportions, friendly and discreet. Production PNG sprite atlas, exactly FOUR COLUMNS and TWO ROWS of equal square cells on a 2:1 canvas, ideally 2048 x 1024. Eight full-body frames total. The background is genuinely transparent alpha, not white and not a painted checkerboard. No text, labels, letters, numbering, borders, grid lines, floor, cast shadows or watermark. Every cell uses the same character scale, horizontally centered, same feet/ground baseline at 90% of cell height, with clear transparent padding at all cell boundaries. Two frames per animation, no extra characters. Row 1 columns 1-2: relaxed idle, eyes open then blink; row 1 columns 3-4: thinking/listening with subtle hand/paw movement. Row 2 columns 1-2: progressively tired and yawning; row 2 columns 3-4: seated/curling asleep with closed eyes, tiny breathing difference. Crisp deliberate pixel art with dark outlines and restrained shading, legible at 80px. Closely aligned frame pairs, no movement of the camera or variations in identity. Only the character pixels should be opaque. No floating punctuation or Z letters."
+      "file": "adventurer-atlas.png"
     },
     {
-      "file": "fox-atlas.png",
-      "prompt": "Use case: stylized-concept. Asset type: animated website companion sprite atlas. The attached image is an IDENTITY AND STYLE REFERENCE ONLY, not the layout to reproduce. Recreate this exact small pixel-art orange fox: black/dark charcoal outline, pointed ears, cream muzzle/chest/tail tip, dark paws, bushy orange tail. Preserve the reference simple game sprite character. In the thinking frames it sits with a front paw lifted, and in sleeping frames it curls up on its tail. Production PNG sprite atlas, exactly FOUR COLUMNS and TWO ROWS of equal square cells on a 2:1 canvas, ideally 2048 x 1024. Eight full-body frames total. The background is genuinely transparent alpha, not white and not a painted checkerboard. No text, labels, letters, numbering, borders, grid lines, floor, cast shadows or watermark. Every cell uses the same character scale, horizontally centered, same feet/ground baseline at 90% of cell height, with clear transparent padding at all cell boundaries. Two frames per animation, no extra characters. Row 1 columns 1-2: relaxed idle, eyes open then blink; row 1 columns 3-4: thinking/listening with subtle hand/paw movement. Row 2 columns 1-2: progressively tired and yawning; row 2 columns 3-4: seated/curling asleep with closed eyes, tiny breathing difference. Crisp deliberate pixel art with dark outlines and restrained shading, legible at 80px. Closely aligned frame pairs, no movement of the camera or variations in identity. Only the character pixels should be opaque. No floating punctuation or Z letters."
+      "file": "fox-atlas.png"
     }
   ],
-  "layoutRefinement": "Edit this transparent sprite atlas ONLY to correct the frame layout and safety padding. Preserve the exact eight character identities, poses, colors, dark pixel outlines and ordering. Same 4 columns x 2 rows on an exact 2:1 transparent canvas. Imagine eight equal square cells. Reduce EVERY sprite to fit entirely inside the CENTRAL 65% WIDTH and 72% HEIGHT of ITS OWN cell, including all tails/hair/hands. Each sprite must have generous fully transparent margins on all four sides. All frames must have the same foot baseline at 85% of their own cell height; sleeping poses stay at the same baseline. No part of any sprite may touch or cross a cell boundary. Make the paired frames precisely centered with matching scale so they animate without sliding sideways. Do NOT draw the cell grid. Keep completely transparent alpha outside the sprites, no stray pixels, no floor or shadows, no labels or text. Do not crop the overall canvas or automatically trim blank margins.",
-  "notes": "Generated from the two approved original companion concepts. Transparent RGBA, no logo, labels, floor or text. Images copied without pixel edits. Native CSS animates the frame pairs; no animation-engine dependency.",
   "talkAnimation": {
     "tool": "Built-in image_gen",
     "date": "2026-10-17",
@@ -36,18 +32,13 @@
     "assets": [
       {
         "file": "adventurer-talk.png",
-        "reference": "adventurer-atlas.png",
-        "prompt": "Use case: identity-preserve. Asset type: 2-frame talk animation sprite strip for an existing website character. Input image is the approved existing character atlas, identity/style reference; do not reproduce the eight-frame layout. Create EXACTLY TWO full-body frames in ONE horizontal row on an EXACT 2:1 transparent PNG canvas. Two equally sized SQUARE cells, same standing pose, same character scale, same head position and feet baseline at 85% of each cell height. Center each character at 25% and 75% of full canvas width. Each frame must fit inside the central 62% width and 72% height of its square cell, with generous fully transparent margins. Frame 1: eyes open, mouth closed, friendly calm expression, hand/paw gently lifted as if explaining. Frame 2: same pose and eyes, mouth slightly open as if speaking, hand/paw a tiny gesture. Difference is subtle, only mouth and hand/paw, no sliding, no scaling, no camera movement. Crisp deliberate pixel art and dark outlines, fully transparent alpha outside character, no white outline/halo, no scenery, floor or shadow, no grid, borders, labels, letters, punctuation, speech bubble or watermark. Do not trim transparent margins. Character MUST be the exact adventurer in reference: messy brown hair, plain orange cap WITH NO LOGO OR EMBLEM, dark charcoal jacket with cream trim and orange accents, orange backpack, dark trousers, orange/brown sneakers, amber eyes. Preserve existing face, proportions, outfit, palette and facing direction. Stand relaxed and talk.",
-        "alignmentPrompt": "Edit ONLY alignment of this two-frame transparent talk sprite strip. Keep exact existing characters, pixel style, colors, plain cap, poses, mouth closed/open difference and same character size. The canvas is 1774x887. It contains two square 887px cells. First character is too far right: move first character LEFT by 60 pixels. Second character is too far left: move second character RIGHT by 24 pixels. Their bounding boxes must match in local cell coordinates: both approximately x212..676 and y132..759 relative to each cell. They must have precisely the SAME local placement for animation, no lateral jump. Keep full 1774x887 canvas, no trimming, same foot baseline y759. Keep background fully transparent alpha, remove any nearly-transparent stray background pixels. Do not redraw or enlarge the characters. No text, grid, floor, shadows, labels or logo."
+        "reference": "adventurer-atlas.png"
       },
       {
         "file": "fox-talk.png",
-        "reference": "fox-atlas.png",
-        "prompt": "Use case: identity-preserve. Asset type: 2-frame talk animation sprite strip for an existing website character. Input image is the approved existing character atlas, identity/style reference; do not reproduce the eight-frame layout. Create EXACTLY TWO full-body frames in ONE horizontal row on an EXACT 2:1 transparent PNG canvas. Two equally sized SQUARE cells, same standing pose, same character scale, same head position and feet baseline at 85% of each cell height. Center each character at 25% and 75% of full canvas width. Each frame must fit inside the central 62% width and 72% height of its square cell, with generous fully transparent margins. Frame 1: eyes open, mouth closed, friendly calm expression, hand/paw gently lifted as if explaining. Frame 2: same pose and eyes, mouth slightly open as if speaking, hand/paw a tiny gesture. Difference is subtle, only mouth and hand/paw, no sliding, no scaling, no camera movement. Crisp deliberate pixel art and dark outlines, fully transparent alpha outside character, no white outline/halo, no scenery, floor or shadow, no grid, borders, labels, letters, punctuation, speech bubble or watermark. Do not trim transparent margins. Character MUST be the exact pixel fox in reference: orange coat, pointed ears, cream muzzle/chest/tail tip, dark charcoal pixel outlines/paws, bushy tail, very simple game sprite face. Preserve existing proportions, palette and left-facing direction. Stand as in the first reference frame and talk; tiny front paw gesture, not waving excessively.",
-        "alignmentPrompt": "Edit ONLY alignment of this two-frame transparent pixel fox talk sprite strip. Keep exact existing characters, pixel style, colors, poses, mouth closed/open difference and same character size. The canvas is 1774x887. It contains two square 887px cells. First character is too far right: move first character LEFT by 45 pixels. Second character is too far left: move second character RIGHT by 8 pixels. Their bounding boxes must match in local cell coordinates: both approximately x204..682 and y232..677 relative to each cell. They must have precisely the SAME local placement for animation, no lateral jump. Keep full 1774x887 canvas, no trimming, same foot baseline y677. Keep background fully transparent alpha, remove any nearly-transparent stray background pixels. Do not redraw or enlarge the characters. No text, grid, floor, shadows, labels or logo."
+        "reference": "fox-atlas.png"
       }
-    ],
-    "notes": "Separate transparent RGBA talk strips preserve the approved companion identities. Generated with the built-in image_gen tool and copied without pixel edits. Existing idle, thinking and sleeping atlases remain unchanged."
+    ]
   },
   "deliveryEncoding": {
     "date": "2026-10-18",
@@ -60,7 +51,6 @@
       "quality": 100,
       "method": 6
     },
-    "verification": "All four decoded RGBA byte arrays and 1774 x 887 dimensions are identical to their source PNGs, including RGB values under fully transparent pixels. Original PNGs are retained. Only delivery format and preload priority changed; CSS, frame layout, timing and animation logic are unchanged.",
     "assets": [
       {
         "source": "adventurer-atlas.png",
@@ -90,18 +80,27 @@
         "deliveryBytes": 204414,
         "decodedRgbaSha256": "ea206160ac1b5e2c232f2368e5dd144c67119b79fe5087e8eca9edec9202d35a"
       }
-    ]
+    ],
+    "decodedRgbaIdentical": true
   },
   "compactDeliveryEncoding": {
     "date": "2026-10-18",
     "script": "scripts/optimize-portfolio-media.py --compact-companion-only",
-    "sources": "The four original PNGs in this directory; native WebP versions remain in use on the expanded Assistant page.",
+    "sources": [
+      "adventurer-atlas.png",
+      "adventurer-talk.png",
+      "fox-atlas.png",
+      "fox-talk.png"
+    ],
     "framePixels": [96, 192, 288],
-    "renderedFramePixels": 88,
-    "resampling": "Lanczos, full canvas with the original frame grid and transparent padding",
-    "encoding": "WebP lossless=True, exact=True, method=6 after resizing",
-    "verification": "Decoded RGBA and dimensions equal each resized intermediate. These are resolution variants, not pixel-identical copies of the native PNGs. CSS sizes, frame coordinates, timing, speaking alignment and state logic are unchanged.",
+    "resampling": "Lanczos",
+    "encoding": {
+      "format": "WebP",
+      "lossless": true,
+      "exact": true,
+      "method": 6
+    },
     "filenames": "{character}-{atlas|talk}-{1|2|3}x.webp",
-    "documentation": "docs/SOCIAL-MEDIA.md"
+    "documentation": "docs/MEDIA.md"
   }
 }
