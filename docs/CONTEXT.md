@@ -62,7 +62,8 @@ the existing rectangular rail, which keeps its surface background and subtle
 side shadow. It becomes dark graphite in
 dark mode, with a 500 ms filter transition that becomes
 instant with reduced motion. The desktop rail uses no backdrop blur. Project links
-expand only on project detail pages on desktop; the parent is emphasised only on
+expand on project detail pages on desktop and on other pages when the full list
+fits without scrolling; the parent is emphasised only on
 project routes and the active page is identified separately. There are no internal section links. Mobile
 uses a compact 76 px header and a Menu disclosure without the paper texture or
 project branch. The menu contains navigation, language and theme controls, closes

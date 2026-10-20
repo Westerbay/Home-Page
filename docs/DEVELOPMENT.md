@@ -257,8 +257,11 @@ above it. The single texture uses `right center / 106% 100%` sizing, placing the
 source image's left binding crease outside the rail while keeping the right-hand
 page edges visible. The image file remains unchanged. The header keeps
 `background: var(--surface)` and `box-shadow: 6px 0 18px #00000018`.
-Keep the existing rail dimensions. The Projects branch appears only on project
-detail pages, and navigation links center vertically when they fit. Short windows
+Keep the existing rail dimensions. The Projects branch appears on project
+detail pages and on other pages when its measured full height fits without
+scrolling. ResizeObserver tracks navigation, list and link dimensions, including
+font and width changes. The folded list stays measurable but hidden and
+unfocusable. Navigation links center vertically when they fit. Short windows
 retain independent navigation scrolling. The mobile header does not use this texture.
 
 Light mode uses `brightness(1)`; dark mode uses `brightness(0.19)` to produce

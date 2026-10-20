@@ -62,9 +62,13 @@ identity and controls remain real interface elements. Dark mode dims the paper
 to dark graphite, and its filter transitions over 500 ms, instantly with reduced
 motion. The desktop rail uses no backdrop blur. Links remain plain text, with
 a stronger colour and fine underline on
-the current page. The six project links appear on desktop only while viewing a
-project detail page. The parent branch is emphasised only inside Projects, and only the current
-page link receives `aria-current`. There are no internal page-section links. The link
+the current page. The six project links appear on desktop while viewing a project
+detail page, or on any other page when the full navigation fits without scrolling. A
+ResizeObserver measures the available navigation height and the full list,
+including wrapped titles and gaps; resizing can expand or fold the branch.
+Project detail pages retain the branch even when scrolling is necessary. The
+parent branch is emphasised only inside Projects, and only the current page link
+receives `aria-current`. There are no internal page-section links. The link
 area centers its links vertically when they fit and scrolls independently on
 short screens; identity and utility controls remain
 visible. Below 650 px of viewport height, navigation type, spacing and tools use

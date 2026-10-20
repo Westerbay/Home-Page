@@ -45,7 +45,7 @@ for (const [locale, messages] of [
   ["", fr],
   ["en/", en],
 ] as const) {
-  test(`project navigation expands only on project details and preserves locale and active page: ${locale || "fr"}`, async ({
+  test(`project navigation expands on details or when it fits and preserves locale and active page: ${locale || "fr"}`, async ({
     page,
     baseURL,
   }) => {
@@ -55,7 +55,9 @@ for (const [locale, messages] of [
       name: messages.navigation,
     })
     const projectLinks = navigation.locator(".project-nav-branch > li > a")
-    await expect(projectLinks).toHaveCount(0)
+    await expect(projectLinks).toHaveCount(6)
+    for (const link of await projectLinks.all())
+      await expect(link).toBeVisible()
     const catalogueHrefs = await page
       .locator(".project-card")
       .evaluateAll((links) => links.map((link) => link.getAttribute("href")))
@@ -93,7 +95,7 @@ for (const [locale, messages] of [
     await expect(navigation.locator('a[href*="#"]')).toHaveCount(0)
 
     for (const width of [1440, 3840]) {
-      await page.setViewportSize({ width, height: 1000 })
+      await page.setViewportSize({ width, height: 1800 })
       for (const [route, label] of [
         ["", messages.home],
         ["about/", messages.about],
@@ -101,11 +103,28 @@ for (const [locale, messages] of [
       ]) {
         await navigation.getByRole("link", { name: label, exact: true }).click()
         await expect(page).toHaveURL(new URL(`${locale}${route}`, baseURL).href)
-        await expect(projectLinks).toHaveCount(0)
+        for (const link of await projectLinks.all())
+          await expect(link).toBeVisible()
+        expect(
+          await navigation.evaluate(
+            (element) => element.scrollHeight <= element.clientHeight
+          )
+        ).toBe(true)
         await expect(currentPage).toHaveCount(1)
         await expect(currentPage).toHaveText(label)
         await expect(navigation.locator('a[href*="#"]')).toHaveCount(0)
       }
+      await page.setViewportSize({ width, height: 500 })
+      for (const link of await projectLinks.all())
+        await expect(link).toBeHidden()
+      expect(
+        await navigation.evaluate(
+          (element) => element.scrollHeight <= element.clientHeight
+        )
+      ).toBe(true)
+      await page.setViewportSize({ width, height: 1800 })
+      for (const link of await projectLinks.all())
+        await expect(link).toBeVisible()
     }
   })
 

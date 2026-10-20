@@ -2466,8 +2466,18 @@ main {
     font-weight: 400;
   }
   .project-nav-group {
+    position: relative;
     display: block;
     flex-shrink: 0;
+  }
+  /* Keep the folded list measurable without adding overflow or focus targets. */
+  .project-nav-group[data-expanded="false"] .project-nav-branch {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
   }
   .main-nav .current-branch {
     color: var(--ink);
