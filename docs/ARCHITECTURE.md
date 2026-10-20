@@ -34,8 +34,9 @@ query and fragment. Locale comes from the URL, not the visitor's browser languag
 
 `src/lib/seo.ts` supplies localized titles, descriptions, absolute canonical
 URLs, reciprocal French/English and x-default links, and Open Graph/Twitter
-metadata. Social images are dedicated 1200 × 630 JPEG files; project pages use
-their own image and other pages use the portfolio preview. Home and About
+metadata. Project social images are dedicated 1200 × 630 JPEG files. General pages use
+the favicon illustration from its 450 × 450 original PNG, with matching image
+metadata and a square Twitter summary card. Home and About
 have descriptive metadata separate from their short visible introductions.
 
 TanStack removes its base path before custom URL rewriting.

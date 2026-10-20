@@ -1,60 +1,52 @@
 # Social preview images
 
-The fourteen `web/public/assets/social/**/*.jpg` images are 1200 × 630 JPEGs,
-rendered at quality 90 by `scripts/generate-social-previews.mjs` on
-18 October 2026. These committed, validated previews retain the typography used
-at generation time: Geist and Space Grotesk, with warm white (`#fffefc`) and
-orange (`#e99245`). The generator maintenance described below does not replace
-these JPEGs or change the website layout. The sizes in this document describe
-the committed images, not a new generation with the current fonts.
+## General pages
 
-French previews use `assets/social/{slug}.jpg`; English previews use
-`assets/social/en/{slug}.jpg`. Project screenshots remain authentic in both
-languages, while the surrounding title, description and category are localized.
+Home, Projects, About, Contact and the Assistant use the same illustration as
+the favicon, from its 450 × 450 original `assets/avatar.png`. Open Graph declares
+its PNG type and actual dimensions; Twitter uses a square `summary` card. French
+and English pages share the image and provide localized avatar alternative text.
+The unused `social/default.jpg` variants have been removed.
 
-| Preview                  | Existing visual source                 |  Output size |
-| ------------------------ | -------------------------------------- | -----------: |
-| `default.jpg`            | `assets/plants-render.png`             | 66,039 bytes |
-| `booster-break.jpg`      | `assets/booster-break/packs.webp`      | 76,120 bytes |
-| `spellwar.jpg`           | `assets/spellwar/engine-world.webp`    | 72,048 bytes |
-| `plants.jpg`             | `assets/plants-render.png`             | 66,869 bytes |
-| `eyefox.jpg`             | `assets/eyefox/android-game.webp`      | 82,529 bytes |
-| `pinnacle.jpg`           | `assets/pinnacle/cover.webp`           | 77,581 bytes |
-| `stylegan-cheap-dit.jpg` | `assets/stylegan-cheap-dit/cover.webp` | 95,009 bytes |
+## Project preview compositions
 
-English output sizes, in the same order: 66,504, 75,676, 72,917, 65,706,
-80,946, 77,482 and 93,071 bytes. They use the same source images and composition.
+The twelve `web/public/assets/social/**/*.jpg` images are 1200 × 630 JPEGs,
+rendered at quality 90 by `scripts/generate-social-previews.mjs`.
+Each project uses a dominant authentic visual without added titles, descriptions,
+branding or borders. The link preview already supplies the localized page title
+and description outside the image.
 
-All visuals come from the projects. The complete source image is contained
-inside its frame without cropping, colour adjustment or retouching. The
-StyleGAN preview contains actual model outputs from that project; no new
-AI imagery was generated for these compositions. Project-specific media
-documents describe the original captures, figures and attribution.
+French previews retain `assets/social/{slug}.jpg`; English previews retain
+`assets/social/en/{slug}.jpg`. Both versions are byte-identical because no
+localized text is baked into the composition.
 
-The maintained generator uses the installed Jersey 10 and Space Mono regular
-faces, matching the current portfolio fonts. It keeps the same composition,
-colours and project imagery; its output is not a byte-for-byte reproduction of
-the earlier JPEGs. No retired font dependency is required.
+| Preview                  | Visual source                             | Composition                                                      |
+| ------------------------ | ----------------------------------------- | ---------------------------------------------------------------- |
+| `booster-break.jpg`      | `booster-break/foil.webp`                 | Foil card reveal, full frame                                     |
+| `spellwar.jpg`           | `spellwar/gravity-transition-poster.webp` | Contained gameplay capture, preserving the source watermark      |
+| `plants.jpg`             | `plants-render.png`                       | Enlarged tree on warm white, cropping transparent canvas margins |
+| `eyefox.jpg`             | `eyefox/android-game.webp`                | Contained game screen with both grids                            |
+| `pinnacle.jpg`           | `pinnacle/regions-relu.webp`              | Contained activation-region figure on dark gray                  |
+| `stylegan-cheap-dit.jpg` | Four `dit-epoch-200/230` samples          | Four equal-width cropped panels of saved diffusion outputs       |
 
-Validate a new generation from the repository root after installing the existing
-workspace dependencies and the Playwright Chromium browser:
+The four diffusion files are `dit-epoch-200-01.webp`, `dit-epoch-200-03.webp`,
+`dit-epoch-230-01.webp` and `dit-epoch-230-07.webp`. No new model outputs or
+scientific figures are generated. Source colours and original media remain
+unchanged. Project media documents describe provenance and attribution.
+
+Reproduce from the repository root with the existing dependencies and Playwright
+Chromium installed:
 
 ```sh
 node scripts/generate-social-previews.mjs --output-dir .cache/social-preview-cleanup
 ```
 
-The option uses Node's native argument parser and resolves relative directories
-from the repository root. Without `--output-dir`, the destination remains
-`web/public/assets/social`; use that default only when deliberately replacing
-the public previews. CI runs the cache-only command after installing Chromium.
-
-The generator renders HTML/CSS in headless Chromium. It embeds local images
-and bundled fonts as data URLs, checks that both font faces loaded, waits for
-images to decode, and rejects overflowing text, content outside the page padding
-or overlapping composition regions. Each saved JPEG is decoded to verify its
-1200 × 630 dimensions. It makes no network requests. All fourteen French and
-English outputs from the maintained generator were also visually inspected in
-the cache directory. Chromium/font versions may slightly affect JPEG bytes.
+The output option uses Node's native argument parser and resolves paths from the
+repository root. Omitting it deliberately replaces the public project previews.
+CI uses the cache-only invocation. The generator embeds local images as data URLs,
+makes no network requests, waits for every image to decode, renders six JPEGs in
+Chromium, verifies their decoded dimensions and copies them to the English paths.
+All six public compositions were visually inspected after generation.
 
 ## Shared delivery images
 
