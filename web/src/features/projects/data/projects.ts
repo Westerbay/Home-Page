@@ -18,8 +18,11 @@ const projectSchema = z.object({
 })
 export type Project = z.infer<typeof projectSchema>
 
+// Titles are shared between the French and English pages.
+const projectTitleCollator = new Intl.Collator("en", { sensitivity: "base" })
+
 export function getProjects(): Project[] {
-  return z.array(projectSchema).parse([
+  const projects = z.array(projectSchema).parse([
     {
       slug: "booster-break",
       origin: "personal",
@@ -28,7 +31,15 @@ export function getProjects(): Project[] {
       image: "assets/booster-break/packs.webp",
       repository: "https://github.com/Westerbay/Booster-Break",
       demo: "https://booster.mathis-db.com/",
-      tags: ["TypeScript", "React", "WebGL", "Bun", "Elysia", "PostgreSQL"],
+      tags: [
+        "TypeScript",
+        "React",
+        "WebGL",
+        "Bun",
+        "Elysia",
+        "PostgreSQL",
+        "Prisma",
+      ],
       summary: m.booster_summary(),
       detail: m.booster_detail(),
       focus: m.booster_focus(),
@@ -54,7 +65,7 @@ export function getProjects(): Project[] {
       image: "assets/plants-render.webp",
       repository:
         "https://github.com/Westerbay/The-Algorithmic-Beauty-of-Plants",
-      tags: ["WebGL", "L-systems"],
+      tags: ["WebGL", "L-systems", "TypeScript", "React", "GLSL"],
       summary: m.plants_summary(),
       detail: m.plants_detail(),
       focus: m.plants_focus(),
@@ -67,7 +78,15 @@ export function getProjects(): Project[] {
       image: "assets/stylegan-cheap-dit/cover.webp",
       imageCaption: m.dit_cover_caption(),
       repository: "https://github.com/Westerbay/StyleGan-and-Cheap-DiT",
-      tags: ["Python", "PyTorch", "StyleGAN", "DiT", "VAE", "Docker"],
+      tags: [
+        "Python",
+        "PyTorch",
+        "StyleGAN",
+        "DiT",
+        "VAE",
+        "FastAPI",
+        "Docker",
+      ],
       summary: m.dit_summary(),
       detail: m.dit_detail(),
       focus: m.dit_focus(),
@@ -94,12 +113,15 @@ export function getProjects(): Project[] {
       category: "games",
       image: "assets/eyefox.png",
       repository: "https://github.com/Westerbay/Eyefox-Puzzle",
-      tags: ["Java", "Android"],
+      tags: ["Java", "Android", "TypeScript", "React"],
       summary: m.eyefox_summary(),
       detail: m.eyefox_detail(),
       focus: m.eyefox_focus(),
     },
   ])
+  return projects.sort((left, right) =>
+    projectTitleCollator.compare(left.title, right.title)
+  )
 }
 
 export const categoryName = (category: Project["category"]) =>

@@ -2,8 +2,8 @@
 
 The portfolio keeps the editorial layout and project grid of **Atlas × Signal**.
 The October 2026 refinement uses Jersey 10 and Space Mono, quiet text navigation on the left of
-desktop screens, a forest setting reserved for Eyefox and a distinct floating-platform
-landscape for SpellWar. The full AI Guide uses
+desktop screens, a forest setting reserved for Eyefox, a distinct floating-platform
+landscape for SpellWar and a pixel-art arena for Booster Break. The full AI Guide uses
 the normal portfolio background. Preserve
 the existing content, media and interactive scenes. The desktop navigation uses
 opaque white and pale grey paper with straight edges and thin stacked page edges
@@ -23,18 +23,20 @@ The palette is centralized in `packages/ui/src/styles/globals.css`:
 - Space Mono is served locally for paragraphs, metadata and form input, with
   regular and bold weights and their italics. It keeps longer text readable
   alongside the pixel headings.
-- Eyefox uses a generated forest and SpellWar a separate landscape of floating
-  stone platforms, violet points and red trees. Each has daylight and dusk
-  variants, with themed interface surfaces and media mattes.
-  Daylight uses cream surfaces `#fffefc`, dark text `#252525`, secondary text
+- Eyefox uses a generated forest, SpellWar a separate landscape of floating
+  stone platforms, violet points and red trees, and Booster Break a pixel-art
+  arena. Eyefox and SpellWar pair daylight and dusk, while Booster Break pairs
+  daylight and night. Each keeps the same composition, with themed interface
+  surfaces and story-media mattes.
+  Light mode uses cream surfaces `#fffefc`, dark text `#252525`, secondary text
   `#625f5a`, raised surfaces `#f8f7f4`, control borders `#8c857a` and accent text
-  `#97531c`. Dusk uses graphite `#19191c`, opaque panels `#27272b`, light text
+  `#97531c`. Dark mode uses graphite `#19191c`, opaque panels `#27272b`, light text
   `#f7f4ee`, secondary text `#cac6c0` and control borders `#85858f`; `#55555e`
   is reserved for quieter separators. Primary action fills stay amber `#f2c66d`
   with dark text in both modes. These world tokens live in
   `web/src/project-world.css` and also supply the opaque compact chat. The full
   Guide follows the ordinary portfolio tokens. Native controls follow the light
-  or dark colour scheme. Text directly over either landscape remains white in both modes.
+  or dark colour scheme. Text directly over these landscapes remains white in both modes.
 
 The public site uses this one direction. The comparison prototype is not
 part of the maintained implementation.
@@ -44,7 +46,8 @@ part of the maintained implementation.
 Above 1100 px, the shell occupies the full viewport width. The sticky navigation
 rail grows from about 256 px at a 1440 px viewport to 416 px at 3840 px, while its
 left inset stays within 24–32 px. Main links grow from 24 to 42 px, project links
-from 21 to 33 px, and the avatar from 38 to 56 px. Link spacing scales with them.
+from 21 to 33 px. Link spacing scales with them. The navigation identity uses
+the name and role without a profile picture.
 The `--sidebar-width` token defines the navigation rail; the floating companion
 and compact Guide panel sit at the bottom right, independently of the rail. The content
 column is centered in the remaining space and capped at 2600 px. Do not center the
@@ -141,10 +144,30 @@ editorial rows, with small lazy-loaded thumbnails and one link per project.
 
 ## Illustration and images
 
+Project detail covers, story captures, videos and generative-gallery images share
+Eyefox's 8–14 px matte, fine outline and restrained shadow. The frame follows the
+actual image bounds rather than filling unused space around it. The light and dark
+matte palettes live in the shared UI tokens. Captions share one type scale, spacing
+and 50-character reading width. Gallery stills link to their original image files.
+Project technology lists use one badge style across all pages, with a themed fill,
+border, text colour and responsive spacing; scenic pages keep the same readable
+badges rather than unframed white labels. Compact card metadata remains unchanged.
+
 The home scene uses the original ABOP WebGL renderer through the shared L-system React package. Its compact controls switch presets and adjust the camera. The Plants detail page includes the full editor, with the symbol reference in a modal beside the parameter heading. Gallery cards retain static images. Scenes use neutral backgrounds by default; textured sky and ground are optional.
 
-The GitHub profile picture keeps its original colours, without a filter or
-desaturation. The ENSICAEN logo has its own copy in the frontend assets;
+The About introduction keeps its two-column grid, with a small personal section
+on the left and the existing biography on the right. A drawing of a wooden grand
+piano in coloured pencils and soft pastels sits above “Beyond coding” and a short
+note prioritising piano, with chess as another interest. Irregular pencil lines,
+grainy colour strokes and a small hatched shadow keep the drawing handmade.
+Its transparent background blends with either theme, with no frame or added
+surface; the whole illustration keeps its natural proportions.
+It scales from roughly 260 to 400 px on desktop and wide screens, and 220 to
+280 px when the introduction stacks on mobile. The ENSICAEN mention follows the
+role in the biography. The existing games, AI and 3D-rendering interests and
+journey remain unchanged. Navigation and About have no profile picture; the
+favicon and social-preview avatar retain their original appearance.
+The ENSICAEN logo has its own copy in the frontend assets;
 it keeps its colours and a white backing for dark-mode readability.
 
 ## Interaction and copy
@@ -164,28 +187,36 @@ Copy is personal and direct, about coding for fun, games, AI and 3D rendering.
 It should not read like a sales pitch. Headings and short leads have no
 terminal full stop. The About lead is “Product & Software Engineer”.
 
-The warm palette remains the default outside Eyefox and SpellWar, including the
+The warm palette remains the default outside Eyefox, SpellWar and Booster Break, including the
 full Guide. Their landscapes are decorative portfolio artwork. Eyefox's forest
 is documented in `FOREST-MEDIA.md`; SpellWar's separate floating-platform scene
 is documented in `SPELLWAR-MEDIA.md`. SpellWar's brighter daytime sky is an
 interpretation of the game's dark spatial setting, not a captured game state.
+Booster Break's arena is decorative pixel art; its original screenshots remain
+unchanged. Its existing section layout, cover container dimensions and gaps
+stay intact. Its cover and story images use the shared
+8–14 px matte and subtle outline/shadow from Eyefox and SpellWar. The cover
+frame follows the actual image bounds, with the arena visible around it.
+The fixed scenery uses the same veil as Eyefox and SpellWar, without an
+additional Booster tint; the prose uses the short caption shadow for contrast.
 The real screenshots and gameplay video remain unchanged. Eyefox keeps its real
 sprites, controls and readable grids in a translucent panel that blurs the scenery
 behind it. Its tint follows the theme; grids and the difficulty selector stay opaque.
 Browsers without backdrop-filter support retain an opaque panel. The full Guide conversation
 uses the ordinary portfolio background without an enclosing panel; the compact
-chat remains opaque. Captures and grids have
+chat remains opaque. Story captures, grids and SpellWar's cover have
 a light or dark matte matching the current theme, with a restrained shadow to
 separate them from the scenery. Existing
 companion animations and chat interactions are preserved.
 Each landscape and its contrast veil stay fixed while content scrolls. The veil does not
 change with the theme. The left side supports readable text while the right side
 reveals the expanded open sky. The saved/system theme crossfades between aligned
-day and twilight layers over 900 ms. The interface palette and embedded puzzle
+day and dusk layers for Eyefox and SpellWar, and day and night layers for Booster
+Break, over 900 ms. The interface palette and embedded puzzle
 also follow the selected theme without resetting the puzzle, conversation or
 draft. Reduced motion makes the scenery change instant.
-Eyefox and SpellWar articles are transparent: no reading surface, background
-box, border or content-level gradient. Both retain the shared project layout,
+Eyefox, SpellWar and Booster Break articles are transparent: no reading surface,
+background box, border or content-level gradient. All three retain the shared project layout,
 with technologies on the left and introductory text on the right, then story
 headings on the left, prose on the right and captures underneath. The fixed
 scenery veil and a restrained text shadow support white text in both themes.

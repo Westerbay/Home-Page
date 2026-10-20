@@ -15,6 +15,9 @@
   --secondary: #686868;
   --accent: #e99245;
   --image: #f3f2ef;
+  --media-matte: #eee9df;
+  --media-line: #8c857a;
+  --media-shadow: #3028171f;
   --heading: "Jersey 10", sans-serif;
   --body: "Space Mono", monospace;
 }
@@ -28,6 +31,9 @@
   --secondary: #aaaaaa;
   --accent: #eaa566;
   --image: #2c2c2c;
+  --media-matte: #141417;
+  --media-line: #85858f;
+  --media-shadow: #0006;
 }
 .button {
   display: inline-flex;

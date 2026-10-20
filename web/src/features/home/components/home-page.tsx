@@ -58,9 +58,12 @@ export function HomePage() {
     },
     plants: { summary: m.home_plants_description() },
   }
-  const projects = getProjects()
-    .slice(0, 3)
-    .map((project) => ({ ...project, ...previews[project.slug] }))
+  const catalogue = getProjects()
+  const projects = Object.entries(previews).map(([slug, preview]) => {
+    const project = catalogue.find((item) => item.slug === slug)
+    if (!project) throw new Error(`Unknown homepage project: ${slug}`)
+    return { ...project, ...preview }
+  })
 
   return (
     <>

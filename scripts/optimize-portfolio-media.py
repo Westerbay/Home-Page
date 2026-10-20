@@ -22,7 +22,6 @@ def main():
         ("spellwar-gameplay.png", "spellwar/gameplay.webp", 90, None),
         ("pinnacle/density-tanh.webp", "pinnacle/density-tanh.webp", 98, None),
         ("pinnacle/regions-tanh.webp", "pinnacle/regions-tanh.webp", 92, None),
-        ("avatar.png", "avatar.webp", 90, None),
         ("avatar.png", "avatar-128.webp", 90, 128),
         ("ensicaen.png", "ensicaen.webp", 95, 128),
         ("plants-render.png", "plants-render.webp", 95, None),

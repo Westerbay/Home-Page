@@ -6,7 +6,6 @@ import { getLocale, localizeHref } from "@workspace/i18n/runtime"
 import { useTheme } from "next-themes"
 import { Menu, Moon, Sun, X } from "lucide-react"
 import profile from "@workspace/config/profile" with { type: "json" }
-import { assetUrl } from "../lib/assets"
 import { GUIDE_ENABLED } from "../features/guide/config"
 import { GuideLink } from "../features/guide/guide-link"
 import { ProjectNavigation } from "../features/projects/components/project-navigation"
@@ -122,12 +121,6 @@ export function Header() {
         to="/"
         aria-label={`${profile.name} · ${m.role()} · ${m.home()}`}
       >
-        <img
-          src={assetUrl(profile.avatarThumbnail)}
-          alt=""
-          width="38"
-          height="38"
-        />
         <span>
           Mathis Dubuisson<span className="identity-sub">{m.role()}</span>
         </span>
