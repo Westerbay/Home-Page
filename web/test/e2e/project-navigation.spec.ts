@@ -45,7 +45,7 @@ for (const [locale, messages] of [
   ["", fr],
   ["en/", en],
 ] as const) {
-  test(`project navigation stays expanded across pages and preserves locale and active page: ${locale || "fr"}`, async ({
+  test(`project navigation expands on details or when it fits and preserves locale and active page: ${locale || "fr"}`, async ({
     page,
     baseURL,
   }) => {
@@ -56,21 +56,16 @@ for (const [locale, messages] of [
     })
     const projectLinks = navigation.locator(".project-nav-branch > li > a")
     await expect(projectLinks).toHaveCount(6)
+    for (const link of await projectLinks.all())
+      await expect(link).toBeVisible()
     const catalogueHrefs = await page
       .locator(".project-card")
       .evaluateAll((links) => links.map((link) => link.getAttribute("href")))
-    expect(
-      await projectLinks.evaluateAll((links) =>
-        links.map((link) => link.getAttribute("href"))
-      )
-    ).toEqual(catalogueHrefs)
     const currentPage = navigation.locator('[aria-current="page"]')
     await expect(currentPage).toHaveCount(1)
     await expect(currentPage).toHaveText(messages.projects)
 
-    await navigation
-      .getByRole("link", { name: "Eyefox Puzzle", exact: true })
-      .click()
+    await page.locator(".project-card.project-eyefox").click()
     const projectURL = new URL(`${locale}projects/eyefox/`, baseURL)
     await expect(page).toHaveURL(projectURL.href)
     await expect(page.getByRole("heading", { level: 1 })).toHaveText(
@@ -79,6 +74,11 @@ for (const [locale, messages] of [
     await expect(currentPage).toHaveCount(1)
     await expect(currentPage).toHaveText("Eyefox Puzzle")
     await expect(projectLinks).toHaveCount(6)
+    expect(
+      await projectLinks.evaluateAll((links) =>
+        links.map((link) => link.getAttribute("href"))
+      )
+    ).toEqual(catalogueHrefs)
     await expect(navigation.locator('a[href*="#"]')).toHaveCount(0)
 
     await navigation
@@ -95,7 +95,7 @@ for (const [locale, messages] of [
     await expect(navigation.locator('a[href*="#"]')).toHaveCount(0)
 
     for (const width of [1440, 3840]) {
-      await page.setViewportSize({ width, height: 1000 })
+      await page.setViewportSize({ width, height: 1800 })
       for (const [route, label] of [
         ["", messages.home],
         ["about/", messages.about],
@@ -103,19 +103,28 @@ for (const [locale, messages] of [
       ]) {
         await navigation.getByRole("link", { name: label, exact: true }).click()
         await expect(page).toHaveURL(new URL(`${locale}${route}`, baseURL).href)
-        await expect(projectLinks).toHaveCount(6)
-        for (const projectLink of await projectLinks.all()) {
-          await expect(projectLink).toBeVisible()
-        }
+        for (const link of await projectLinks.all())
+          await expect(link).toBeVisible()
         expect(
-          await projectLinks.evaluateAll((links) =>
-            links.map((link) => link.getAttribute("href"))
+          await navigation.evaluate(
+            (element) => element.scrollHeight <= element.clientHeight
           )
-        ).toEqual(catalogueHrefs)
+        ).toBe(true)
         await expect(currentPage).toHaveCount(1)
         await expect(currentPage).toHaveText(label)
         await expect(navigation.locator('a[href*="#"]')).toHaveCount(0)
       }
+      await page.setViewportSize({ width, height: 500 })
+      for (const link of await projectLinks.all())
+        await expect(link).toBeHidden()
+      expect(
+        await navigation.evaluate(
+          (element) => element.scrollHeight <= element.clientHeight
+        )
+      ).toBe(true)
+      await page.setViewportSize({ width, height: 1800 })
+      for (const link of await projectLinks.all())
+        await expect(link).toBeVisible()
     }
   })
 

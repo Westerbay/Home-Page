@@ -163,6 +163,7 @@ export function Header() {
           </Link>
           <ProjectNavigation
             inProjects={Boolean(projectMatch || projectsMatch)}
+            showProjects={Boolean(projectMatch)}
           />
           <Link
             to="/about/"

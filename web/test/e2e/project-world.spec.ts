@@ -75,9 +75,7 @@ for (const [locale, messages] of [
     await page
       .getByRole("button", { name: messages.theme_to_dark, exact: true })
       .click()
-    await navigation
-      .getByRole("link", { name: "SpellWar", exact: true })
-      .click()
+    await page.locator(".project-card.project-spellwar").click()
     const spellwarURL = new URL(`${locale}projects/spellwar/`, baseURL).href
     await expect(page).toHaveURL(spellwarURL)
     await expectScenery(page, baseURL, "spellwar", "dark")
