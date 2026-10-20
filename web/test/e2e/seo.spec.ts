@@ -69,13 +69,19 @@ for (const locale of ["fr", "en"]) {
         locale === "fr" ? "en_GB" : "fr_FR"
       )
       const project = path.match(/^\/projects\/([^/]+)\/$/)
-      const imagePath = `assets/social/${prefix}${project?.[1] ?? "default"}.jpg`
+      const imagePath = project
+        ? `assets/social/${prefix}${project[1]}.jpg`
+        : "assets/avatar.png"
       expect(head.meta["og:image"]).toBe(origin + base + imagePath)
-      expect(head.meta["og:image:type"]).toBe("image/jpeg")
-      expect(head.meta["og:image:width"]).toBe("1200")
-      expect(head.meta["og:image:height"]).toBe("630")
+      expect(head.meta["og:image:type"]).toBe(
+        project ? "image/jpeg" : "image/png"
+      )
+      expect(head.meta["og:image:width"]).toBe(project ? "1200" : "450")
+      expect(head.meta["og:image:height"]).toBe(project ? "630" : "450")
       expect(head.meta["og:image:alt"]?.length).toBeGreaterThan(20)
-      expect(head.meta["twitter:card"]).toBe("summary_large_image")
+      expect(head.meta["twitter:card"]).toBe(
+        project ? "summary_large_image" : "summary"
+      )
       expect(head.meta["twitter:title"]).toBe(head.title)
       expect(head.meta["twitter:description"]).toBe(head.meta.description)
       expect(head.meta["twitter:image"]).toBe(head.meta["og:image"])
@@ -84,7 +90,9 @@ for (const locale of ["fr", "en"]) {
         // Check the future public image locally, never against production.
         const image = await request.get(new URL(imagePath, preview).href)
         expect(image.status(), imagePath).toBe(200)
-        expect(image.headers()["content-type"]).toContain("image/jpeg")
+        expect(image.headers()["content-type"]).toContain(
+          project ? "image/jpeg" : "image/png"
+        )
         checkedImages.add(imagePath)
       }
     }
