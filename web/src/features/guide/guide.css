@@ -1,8 +1,8 @@
 :root {
   --assistant-floating-size: 112px;
-  --assistant-size: calc(var(--assistant-floating-size) * 0.88);
+  --assistant-size: calc(var(--assistant-floating-size) * 0.75);
   --assistant-edge: max(24px, env(safe-area-inset-right));
-  --assistant-bottom: max(18px, env(safe-area-inset-bottom));
+  --assistant-bottom: max(8px, env(safe-area-inset-bottom));
 }
 .guide-dock {
   position: fixed;
@@ -46,8 +46,11 @@
   box-shadow: 3px 3px 0 var(--accent);
   transition: transform 150ms ease;
 }
+.guide-dock:has(.guide-companion[data-character="fox"]) {
+  --companion-ground-offset: 10.4%;
+}
 .guide-dock:has(.guide-companion[data-character="fox"]) .guide-launcher-bubble {
-  bottom: calc(76% + 8px);
+  bottom: calc(76% + 8px - var(--companion-ground-offset));
 }
 .guide-launcher-bubble::after {
   content: "";
@@ -97,6 +100,11 @@
   background-repeat: no-repeat;
   image-rendering: pixelated;
   animation: guide-idle 3.8s steps(1, end) infinite;
+}
+/* Idle feet sit at 83.2% of the fox cell and 93.6% of the adventurer cell.
+   Translate independently of the speaking transform and expanded mirroring. */
+.guide-companion[data-character="fox"] .guide-companion-sprite {
+  translate: 0 var(--companion-ground-offset);
 }
 @media (resolution > 1dppx) {
   .guide-companion-sprite {

@@ -62,10 +62,11 @@ identity and controls remain real interface elements. Dark mode dims the paper
 to dark graphite, and its filter transitions over 500 ms, instantly with reduced
 motion. The desktop rail uses no backdrop blur. Links remain plain text, with
 a stronger colour and fine underline on
-the current page. The six project links are always visible on desktop, on every
-page. The parent branch is emphasised only inside Projects, and only the current
+the current page. The six project links appear on desktop only while viewing a
+project detail page. The parent branch is emphasised only inside Projects, and only the current
 page link receives `aria-current`. There are no internal page-section links. The link
-area scrolls independently on short screens; identity and utility controls remain
+area centers its links vertically when they fit and scrolls independently on
+short screens; identity and utility controls remain
 visible. Below 650 px of viewport height, navigation type, spacing and tools use
 their compact sizes even on a wide screen.
 Language and theme controls sit at the bottom of the rail. When enabled, the
@@ -104,10 +105,14 @@ animation state machine. In the full Guide, both companions are mirrored to face
 the chat on their right; minimizing restores their compact orientation. A 420 ms
 half-turn accompanies the assistant transition, using the existing atlases. Reduced
 motion or an unavailable View Transition API applies the final direction immediately.
-Both floating companions use the same 12% size reduction. Their canvas is about
-81 px on phones and short landscape screens, grows from 197 px at a 1440 px viewport to 317 px at 3840 px,
-and uses 113 px on desktop windows at most 650 px high. The speech bubble and
-compact chat stay anchored above the smaller canvas. The full Guide keeps its
+Both floating companions use 75% of their responsive base size, about 15% smaller
+than the previous floating size. Their canvas is about 69 px on phones and short
+landscape screens, grows from 168 px at a 1440 px viewport to 270 px at 3840 px,
+and uses 96 px on desktop windows at most 650 px high. The speech bubble and
+compact chat stay anchored above the smaller canvas. The floating dock has an 8 px
+minimum bottom inset and respects the safe area. A 10.4% vertical sprite offset compensates for the fox
+atlas’s transparent foot padding, aligning its idle paws with the adventurer’s
+feet in both compact and expanded modes. Its launcher bubble follows that offset. The full Guide keeps its
 desktop character size. The compact chat keeps its opaque surface. On phones and
 short landscape screens it sits near the safe bottom edge and uses the available
 viewport height; the persistent floating character is hidden while this panel is

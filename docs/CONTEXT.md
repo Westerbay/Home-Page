@@ -61,16 +61,17 @@ The texture fills
 the existing rectangular rail, which keeps its surface background and subtle
 side shadow. It becomes dark graphite in
 dark mode, with a 500 ms filter transition that becomes
-instant with reduced motion. The desktop rail uses no backdrop blur. Project links stay expanded on every
-desktop page; the parent is emphasised only on project routes and the active
-page is identified separately. There are no internal section links. Mobile
+instant with reduced motion. The desktop rail uses no backdrop blur. Project links
+expand only on project detail pages on desktop; the parent is emphasised only on
+project routes and the active page is identified separately. There are no internal section links. Mobile
 uses a compact 76 px header and a Menu disclosure without the paper texture or
 project branch. The menu contains navigation, language and theme controls, closes
 after navigation or Escape, and resets when crossing the desktop breakpoint.
 Static HTML keeps the links visible without JavaScript. The Projects parent stays
 visually active on project pages. Mobile footer links have larger touch targets.
-Navigation scrolls independently on short
-screens, with compact utility controls. The Guide remains a normal navigation
+Navigation links are vertically centered between the identity and utility controls
+when space permits. Navigation scrolls independently on short screens, with compact
+utility controls. The Guide remains a normal navigation
 link, while its companion floats at the bottom right outside the sidebar.
 Content is centered separately in the remaining space, capped at 2600 px.
 Footer links are centered in that content area. On narrow screens they stack
@@ -93,8 +94,11 @@ floating companion and its speech-bubble launcher sit at the bottom right;
 there is no separate Guide call to action inside the sidebar. On the full Guide,
 the same character sits beside a conversation that fills the available height
 from the empty state, with the input at the bottom. The navigation link marks the
-active page. The floating sprite and its bubble grow on large screens, with
-smaller sizing on mobile and short desktop windows. Eyefox uses the
+active page. The floating sprite uses 75% of its responsive base size (about 15%
+smaller than the previous floating size), with smaller sizing on mobile and short desktop
+windows. The floating dock has an 8 px minimum bottom inset, respecting the safe area; a sprite offset
+aligns the fox’s paws with the adventurer’s feet. The full Guide character keeps
+its existing size. Eyefox uses the
 fox, which stays with the visitor when expanding
 from Eyefox into the Guide. Other pages and direct Guide entry use the adventurer.
 

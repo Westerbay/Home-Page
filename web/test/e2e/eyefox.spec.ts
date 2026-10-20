@@ -332,9 +332,7 @@ for (const initialTheme of ["light", "dark"] as const) {
       await page.evaluate(() => localStorage.getItem("portfolio-theme"))
     ).toBe(initialTheme)
 
-    await navigation
-      .getByRole("link", { name: "Eyefox Puzzle", exact: true })
-      .click()
+    await page.locator(".project-card.project-eyefox").click()
     await revealGame(page)
     await expect(game).toHaveAttribute("data-theme", initialTheme)
     await page.emulateMedia({ colorScheme: initialTheme })

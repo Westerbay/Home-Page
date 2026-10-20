@@ -210,7 +210,7 @@ Expanding moves and enlarges that same character into the article, to the left o
 the conversation on desktop and beside the heading on mobile. Minimizing restores
 its compact size and position. Check the conversation and character transitions
 with a cold cache as well as reduced motion, and verify that the enlarged sprite
-stays inside the main content above the footer. Before the shared 12% reduction,
+stays inside the main content above the footer. Before the shared 25% reduction,
 the floating sprite uses a 92 px canvas on phones and short landscape screens,
 112 px on tablets, scales from 224 px at a 1440 px viewport to 360 px at 3840 px,
 and uses 128 px on desktop when viewport height is at most 650 px. Its speech
@@ -257,8 +257,9 @@ above it. The single texture uses `right center / 106% 100%` sizing, placing the
 source image's left binding crease outside the rail while keeping the right-hand
 page edges visible. The image file remains unchanged. The header keeps
 `background: var(--surface)` and `box-shadow: 6px 0 18px #00000018`.
-Keep the existing rail dimensions, navigation content and expanded Projects
-branch. The mobile header does not use this texture.
+Keep the existing rail dimensions. The Projects branch appears only on project
+detail pages, and navigation links center vertically when they fit. Short windows
+retain independent navigation scrolling. The mobile header does not use this texture.
 
 Light mode uses `brightness(1)`; dark mode uses `brightness(0.19)` to produce
 dark graphite. The neutral source image needs no saturation filter.
