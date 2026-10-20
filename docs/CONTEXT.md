@@ -50,12 +50,17 @@ shading. Contrast comes from the fixed environment's veil and a restrained text
 shadow while content scrolls. The Eyefox game uses a translucent, backdrop-blurred
 panel with an opaque fallback; story captures and SpellWar's cover and video
 retain a matching light or dark matte.
-Booster Break retains its section layout, spacing, tags and cover container
+Booster Break retains its section layout, spacing and cover container
 dimensions. Its cover container is transparent; the same thin matte and shadow
 used for Eyefox's captures frame the actual Booster image and story captures.
 The sky uses the shared scenery veil without an additional Booster tint.
 The full Guide uses the normal portfolio background, with an unframed conversation
 beside the character. Other project content and visuals remain unchanged.
+
+Project detail media share Eyefox's thin matte, outline and shadow, including
+the research galleries and videos. Captions share one readable scale and width.
+Technology lists use the same themed badges on every project, with verified
+technologies listed in the catalogue data; home-card metadata keeps its compact form.
 
 The desktop navigation sits against the left viewport edge. It scales from
 about 256 px wide at a 1440 px viewport to 416 px at 3840 px, with a 24–32 px

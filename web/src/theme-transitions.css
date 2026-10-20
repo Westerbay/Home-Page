@@ -90,7 +90,7 @@
   initial-value: transparent;
 }
 
-@property --world-control {
+@property --media-line {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
@@ -114,13 +114,13 @@
   initial-value: transparent;
 }
 
-@property --world-matte {
+@property --media-matte {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
 }
 
-@property --world-shadow {
+@property --media-shadow {
   syntax: "<color>";
   inherits: true;
   initial-value: transparent;
@@ -130,9 +130,9 @@
   transition-property:
     --surface, --ink, --accent-fill, --on-accent, --line, --raised, --secondary,
     --accent, --image, --world-surface, --world-panel, --world-ink,
-    --world-secondary, --world-raised, --world-line, --world-control,
-    --world-accent, --world-accent-fill, --world-on-accent, --world-matte,
-    --world-shadow;
+    --world-secondary, --world-raised, --world-line, --media-line,
+    --world-accent, --world-accent-fill, --world-on-accent, --media-matte,
+    --media-shadow;
   transition-duration: 500ms;
   transition-timing-function: ease-in-out;
 }

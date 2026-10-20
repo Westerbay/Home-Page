@@ -144,6 +144,15 @@ editorial rows, with small lazy-loaded thumbnails and one link per project.
 
 ## Illustration and images
 
+Project detail covers, story captures, videos and generative-gallery images share
+Eyefox's 8–14 px matte, fine outline and restrained shadow. The frame follows the
+actual image bounds rather than filling unused space around it. The light and dark
+matte palettes live in the shared UI tokens. Captions share one type scale, spacing
+and 50-character reading width. Gallery stills link to their original image files.
+Project technology lists use one badge style across all pages, with a themed fill,
+border, text colour and responsive spacing; scenic pages keep the same readable
+badges rather than unframed white labels. Compact card metadata remains unchanged.
+
 The home scene uses the original ABOP WebGL renderer through the shared L-system React package. Its compact controls switch presets and adjust the camera. The Plants detail page includes the full editor, with the symbol reference in a modal beside the parameter heading. Gallery cards retain static images. Scenes use neutral backgrounds by default; textured sky and ground are optional.
 
 The About introduction keeps its two-column grid, with a small personal section
@@ -184,8 +193,8 @@ is documented in `FOREST-MEDIA.md`; SpellWar's separate floating-platform scene
 is documented in `SPELLWAR-MEDIA.md`. SpellWar's brighter daytime sky is an
 interpretation of the game's dark spatial setting, not a captured game state.
 Booster Break's arena is decorative pixel art; its original screenshots remain
-unchanged. Its existing section layout, cover container dimensions, gaps, tags
-and caption widths stay intact. Its cover and story images use the shared
+unchanged. Its existing section layout, cover container dimensions and gaps
+stay intact. Its cover and story images use the shared
 8–14 px matte and subtle outline/shadow from Eyefox and SpellWar. The cover
 frame follows the actual image bounds, with the arena visible around it.
 The fixed scenery uses the same veil as Eyefox and SpellWar, without an

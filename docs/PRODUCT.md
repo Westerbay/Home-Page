@@ -78,6 +78,16 @@ READMEs and Mathis's confirmed answers. He made the three academic projects hims
 fact as context without repeatedly stressing “entirely on my own”. Public
 copy should describe the projects and their techniques.
 
+Technology labels cover the main languages, rendering/runtime stack and major
+frameworks, without listing every dependency or equalising badge counts.
+Keep the first two labels stable because project cards use them as a short
+summary. Plants includes its maintained TypeScript/React component and GLSL
+renderer. Eyefox keeps Java/Android first, with TypeScript/React for the browser
+demo shipped in the project's `web` branch. These labels describe the upstream
+projects, not technology borrowed solely from the portfolio. Booster Break's
+database layer uses Prisma; the StyleGAN & Cheap DiT repository's inference API
+uses FastAPI.
+
 Feature Booster Break first on Home; Projects uses alphabetical order. Its page includes a real
 screenshot, links to the live game and source, and acknowledges colleagues'
 contributions without inventing an individual division of work. The homepage

@@ -42,13 +42,15 @@ export function GenerativeGallery() {
           {denoisingSteps.map((frame) => (
             <li key={frame.step}>
               <figure>
-                <img
-                  src={assetUrl(frame.image)}
-                  alt={m.dit_step_alt({ step: frame.step })}
-                  width={256}
-                  height={256}
-                  loading="lazy"
-                />
+                <a href={assetUrl(frame.image)}>
+                  <img
+                    src={assetUrl(frame.image)}
+                    alt={m.dit_step_alt({ step: frame.step })}
+                    width={256}
+                    height={256}
+                    loading="lazy"
+                  />
+                </a>
                 <figcaption>
                   {m.dit_step_caption({ step: frame.step })}
                 </figcaption>
@@ -64,13 +66,15 @@ export function GenerativeGallery() {
             <p>{m.dit_gan_intro()}</p>
           </header>
           <figure>
-            <img
-              src={assetUrl("assets/stylegan-cheap-dit/gan-epoch-400.webp")}
-              alt={m.dit_gan_alt()}
-              width={776}
-              height={518}
-              loading="lazy"
-            />
+            <a href={assetUrl("assets/stylegan-cheap-dit/gan-epoch-400.webp")}>
+              <img
+                src={assetUrl("assets/stylegan-cheap-dit/gan-epoch-400.webp")}
+                alt={m.dit_gan_alt()}
+                width={776}
+                height={518}
+                loading="lazy"
+              />
+            </a>
             <figcaption>{m.dit_gan_caption()}</figcaption>
           </figure>
         </section>
@@ -80,13 +84,15 @@ export function GenerativeGallery() {
             <p>{m.dit_vae_intro()}</p>
           </header>
           <figure>
-            <img
-              src={assetUrl("assets/stylegan-cheap-dit/vae-epoch-20.webp")}
-              alt={m.dit_vae_alt()}
-              width={518}
-              height={518}
-              loading="lazy"
-            />
+            <a href={assetUrl("assets/stylegan-cheap-dit/vae-epoch-20.webp")}>
+              <img
+                src={assetUrl("assets/stylegan-cheap-dit/vae-epoch-20.webp")}
+                alt={m.dit_vae_alt()}
+                width={518}
+                height={518}
+                loading="lazy"
+              />
+            </a>
             <figcaption>{m.dit_vae_caption()}</figcaption>
           </figure>
         </section>

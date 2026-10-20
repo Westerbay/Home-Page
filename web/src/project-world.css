@@ -7,12 +7,12 @@
   --world-secondary: #625f5a;
   --world-raised: #f8f7f4;
   --world-line: #dedcd7;
-  --world-control: #8c857a;
+  --world-control: var(--media-line);
   --world-accent: #97531c;
   --world-accent-fill: #f2c66d;
   --world-on-accent: #202024;
-  --world-matte: #eee9df;
-  --world-shadow: #3028171f;
+  --world-matte: var(--media-matte);
+  --world-shadow: var(--media-shadow);
   --world-veil-left: #101014b3;
   --world-veil-right: #10101400;
   --world-veil-bottom: #101014ed;
@@ -25,12 +25,9 @@
   --world-secondary: #cac6c0;
   --world-raised: #323237;
   --world-line: #55555e;
-  --world-control: #85858f;
   --world-accent: #f2c66d;
   --world-accent-fill: #f2c66d;
   --world-on-accent: #202024;
-  --world-matte: #141417;
-  --world-shadow: #0006;
 }
 .site-frame:has(.project-detail[data-project="eyefox"]) {
   --world-scenery-day: url("/assets/world/forest-day.webp");
@@ -218,13 +215,6 @@
     0 0 10px #050a12aa;
 }
 
-.project-detail:is([data-project="eyefox"], [data-project="spellwar"])
-  .story-images
-  figcaption,
-.project-detail[data-project="spellwar"] .story-video figcaption,
-.project-detail[data-project="spellwar"] .project-visual-caption {
-  max-width: 50ch;
-}
 .project-detail:is(
     [data-project="eyefox"],
     [data-project="spellwar"],
@@ -252,53 +242,4 @@
   .project-reading
   .action {
   text-shadow: none;
-}
-
-.project-detail:is(
-    [data-project="eyefox"],
-    [data-project="spellwar"],
-    [data-project="booster-break"]
-  )
-  .story-images
-  a,
-.project-detail:is([data-project="spellwar"], [data-project="booster-break"])
-  .detail-cover
-  > img,
-.project-detail[data-project="spellwar"] .story-video video {
-  border: 0;
-  padding: clamp(8px, 1cqi, 14px);
-  background: var(--world-matte);
-  box-shadow:
-    0 0 0 1px var(--world-control),
-    0 14px 32px var(--world-shadow);
-}
-
-/* Frame the actual screenshot, leaving the surrounding scenery visible. */
-.project-detail:is([data-project="spellwar"], [data-project="booster-break"])
-  .detail-cover {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: transparent;
-  overflow: visible;
-}
-.project-detail:is([data-project="spellwar"], [data-project="booster-break"])
-  .detail-cover
-  > img {
-  width: auto;
-  height: auto;
-  max-width: 100%;
-  max-height: 100%;
-}
-
-.project-detail:is([data-project="eyefox"], [data-project="spellwar"])
-  .tag-list
-  li {
-  border: 0;
-  padding-inline: 0;
-}
-
-.project-detail:is([data-project="eyefox"], [data-project="spellwar"])
-  .tag-list {
-  gap: 16px;
 }
