@@ -1,4 +1,4 @@
-/* Warm daylight surfaces and graphite dusk surfaces share the same scenery. */
+/* Warm light-mode surfaces and graphite dark-mode surfaces share the scenery. */
 :root {
   --world-color-scheme: light;
   --world-surface: #fffefc;
@@ -40,8 +40,16 @@
   --world-scenery-day: url("/assets/world/spellwar-day.webp");
   --world-scenery-dusk: url("/assets/world/spellwar-dusk.webp");
 }
+.site-frame:has(.project-detail[data-project="booster-break"]) {
+  --world-scenery-day: url("/assets/world/booster-break-day.webp");
+  --world-scenery-dusk: url("/assets/world/booster-break-night.webp");
+}
 .site-frame:has(
-  .project-detail:is([data-project="eyefox"], [data-project="spellwar"])
+  .project-detail:is(
+    [data-project="eyefox"],
+    [data-project="spellwar"],
+    [data-project="booster-break"]
+  )
 ) {
   isolation: isolate;
   color-scheme: var(--world-color-scheme);
@@ -59,10 +67,18 @@
 /* Both fixed images stay present so the theme can crossfade without moving
    the landscape. */
 .site-frame:has(
-    .project-detail:is([data-project="eyefox"], [data-project="spellwar"])
+    .project-detail:is(
+      [data-project="eyefox"],
+      [data-project="spellwar"],
+      [data-project="booster-break"]
+    )
   )::before,
 .site-frame:has(
-    .project-detail:is([data-project="eyefox"], [data-project="spellwar"])
+    .project-detail:is(
+      [data-project="eyefox"],
+      [data-project="spellwar"],
+      [data-project="booster-break"]
+    )
   )::after {
   content: "";
   position: fixed;
@@ -83,7 +99,11 @@
   background-size: cover;
 }
 .site-frame:has(
-    .project-detail:is([data-project="eyefox"], [data-project="spellwar"])
+    .project-detail:is(
+      [data-project="eyefox"],
+      [data-project="spellwar"],
+      [data-project="booster-break"]
+    )
   )::after {
   --world-scenery: var(--world-scenery-dusk);
   z-index: -1;
@@ -92,12 +112,20 @@
 }
 .dark
   .site-frame:has(
-    .project-detail:is([data-project="eyefox"], [data-project="spellwar"])
+    .project-detail:is(
+      [data-project="eyefox"],
+      [data-project="spellwar"],
+      [data-project="booster-break"]
+    )
   )::after {
   opacity: 1;
 }
 .site-frame:has(
-    .project-detail:is([data-project="eyefox"], [data-project="spellwar"])
+    .project-detail:is(
+      [data-project="eyefox"],
+      [data-project="spellwar"],
+      [data-project="booster-break"]
+    )
   )
   .site-header {
   background: var(--surface);
@@ -108,12 +136,24 @@
   min-height: clamp(180px, 18cqi, 360px);
 }
 /* Text directly over the scenery keeps its own contrast in both modes. */
-.project-detail:is([data-project="eyefox"], [data-project="spellwar"])
+.project-detail:is(
+    [data-project="eyefox"],
+    [data-project="spellwar"],
+    [data-project="booster-break"]
+  )
   > .back-link,
-.project-detail:is([data-project="eyefox"], [data-project="spellwar"])
+.project-detail:is(
+    [data-project="eyefox"],
+    [data-project="spellwar"],
+    [data-project="booster-break"]
+  )
   > .page-heading,
 .site-frame:has(
-    .project-detail:is([data-project="eyefox"], [data-project="spellwar"])
+    .project-detail:is(
+      [data-project="eyefox"],
+      [data-project="spellwar"],
+      [data-project="booster-break"]
+    )
   )
   .site-footer {
   --ink: #f7f4ee;
@@ -122,10 +162,18 @@
 }
 @media (max-width: 820px) {
   .site-frame:has(
-      .project-detail:is([data-project="eyefox"], [data-project="spellwar"])
+      .project-detail:is(
+        [data-project="eyefox"],
+        [data-project="spellwar"],
+        [data-project="booster-break"]
+      )
     )::before,
   .site-frame:has(
-      .project-detail:is([data-project="eyefox"], [data-project="spellwar"])
+      .project-detail:is(
+        [data-project="eyefox"],
+        [data-project="spellwar"],
+        [data-project="booster-break"]
+      )
     )::after {
     background-position: 68% top;
     background-image:
@@ -143,14 +191,22 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .site-frame:has(
-      .project-detail:is([data-project="eyefox"], [data-project="spellwar"])
+      .project-detail:is(
+        [data-project="eyefox"],
+        [data-project="spellwar"],
+        [data-project="booster-break"]
+      )
     )::after {
     transition: none;
   }
 }
 
 /* Keep the shared project layout and let the fixed landscape show through. */
-.project-detail:is([data-project="eyefox"], [data-project="spellwar"])
+.project-detail:is(
+    [data-project="eyefox"],
+    [data-project="spellwar"],
+    [data-project="booster-break"]
+  )
   .project-reading {
   --ink: #f7f4ee;
   --secondary: #e4e0d9;
@@ -168,6 +224,17 @@
 .project-detail[data-project="spellwar"] .story-video figcaption,
 .project-detail[data-project="spellwar"] .project-visual-caption {
   max-width: 50ch;
+}
+.project-detail:is(
+    [data-project="eyefox"],
+    [data-project="spellwar"],
+    [data-project="booster-break"]
+  )
+  .story-images
+  figcaption,
+.project-detail[data-project="booster-break"] .project-reading,
+.project-detail[data-project="spellwar"] .story-video figcaption,
+.project-detail[data-project="spellwar"] .project-visual-caption {
   color: #f7f4ee;
   text-shadow:
     1px 0 1px #050a12,
@@ -177,16 +244,26 @@
     0 0 8px #050a12;
 }
 
-.project-detail:is([data-project="eyefox"], [data-project="spellwar"])
+.project-detail:is(
+    [data-project="eyefox"],
+    [data-project="spellwar"],
+    [data-project="booster-break"]
+  )
   .project-reading
   .action {
   text-shadow: none;
 }
 
-.project-detail:is([data-project="eyefox"], [data-project="spellwar"])
+.project-detail:is(
+    [data-project="eyefox"],
+    [data-project="spellwar"],
+    [data-project="booster-break"]
+  )
   .story-images
   a,
-.project-detail[data-project="spellwar"] .detail-cover > img,
+.project-detail:is([data-project="spellwar"], [data-project="booster-break"])
+  .detail-cover
+  > img,
 .project-detail[data-project="spellwar"] .story-video video {
   border: 0;
   padding: clamp(8px, 1cqi, 14px);
@@ -197,14 +274,17 @@
 }
 
 /* Frame the actual screenshot, leaving the surrounding scenery visible. */
-.project-detail[data-project="spellwar"] .detail-cover {
+.project-detail:is([data-project="spellwar"], [data-project="booster-break"])
+  .detail-cover {
   display: flex;
   align-items: center;
   justify-content: center;
   background: transparent;
   overflow: visible;
 }
-.project-detail[data-project="spellwar"] .detail-cover > img {
+.project-detail:is([data-project="spellwar"], [data-project="booster-break"])
+  .detail-cover
+  > img {
   width: auto;
   height: auto;
   max-width: 100%;

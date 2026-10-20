@@ -18,8 +18,11 @@ const projectSchema = z.object({
 })
 export type Project = z.infer<typeof projectSchema>
 
+// Titles are shared between the French and English pages.
+const projectTitleCollator = new Intl.Collator("en", { sensitivity: "base" })
+
 export function getProjects(): Project[] {
-  return z.array(projectSchema).parse([
+  const projects = z.array(projectSchema).parse([
     {
       slug: "booster-break",
       origin: "personal",
@@ -100,6 +103,9 @@ export function getProjects(): Project[] {
       focus: m.eyefox_focus(),
     },
   ])
+  return projects.sort((left, right) =>
+    projectTitleCollator.compare(left.title, right.title)
+  )
 }
 
 export const categoryName = (category: Project["category"]) =>

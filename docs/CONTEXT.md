@@ -35,19 +35,25 @@ refinement keeps the portfolio structure, replaces typography with locally
 served Jersey 10 for headings, navigation and actions, with Space Mono for body
 text, and moves desktop navigation to the left as plain text links. Eyefox uses
 the generated pixel-art forest; SpellWar has its own floating-platform landscape,
-with stone slabs, violet points and red trees. Both pair daylight and dusk
-versions of the same composition, crossfading over 900 ms (instant with reduced
-motion). SpellWar's brighter daytime setting is a decorative interpretation;
-its real screenshots and gameplay remain unchanged. Both pages' surfaces and
-controls follow the theme, with cream surfaces and dark text by day, graphite
-surfaces and light text at dusk, and amber primary actions in both modes. Article
+with stone slabs, violet points and red trees; Booster Break uses a pixel-art
+arena. Eyefox and SpellWar pair daylight and dusk; Booster Break pairs daylight
+and night. Each keeps the same composition across its two versions, crossfading
+over 900 ms (instant with reduced motion). SpellWar's brighter daytime setting
+is a decorative interpretation; the real project screenshots and gameplay remain
+unchanged. All three pages' surfaces and controls follow the theme, with cream
+surfaces and dark text in light mode, graphite surfaces and light text in dark
+mode, and amber primary actions in both modes. Article
 text stays white directly over each landscape and keeps the shared project layout:
 technologies on the left and introductory text on the right, then story headings
 beside their prose and captures below. It has no background, frame or content-level
 shading. Contrast comes from the fixed environment's veil and a restrained text
 shadow while content scrolls. The Eyefox game uses a translucent, backdrop-blurred
-panel with an opaque fallback; project
-captures and SpellWar's video retain a matching light or dark matte.
+panel with an opaque fallback; story captures and SpellWar's cover and video
+retain a matching light or dark matte.
+Booster Break retains its section layout, spacing, tags and cover container
+dimensions. Its cover container is transparent; the same thin matte and shadow
+used for Eyefox's captures frame the actual Booster image and story captures.
+The sky uses the shared scenery veil without an additional Booster tint.
 The full Guide uses the normal portfolio background, with an unframed conversation
 beside the character. Other project content and visuals remain unchanged.
 
@@ -81,8 +87,8 @@ Typography and visuals adapt up to
 3840 px. The home illustration and Plants project page use the shared React/WebGL L-system component from the ABOP repository. Home shows compact controls; the project page includes the full editor and symbol-help modal. It is loaded only on the client when the scene approaches the viewport, with a static image in generated HTML.
 
 The theme follows the browser until a manual preference is saved. The
-sun/moon button switches between light and dark on every page. On Eyefox and
-SpellWar it changes each project's scenery and interface palette; the
+sun/moon button switches between light and dark on every page. On Eyefox,
+SpellWar and Booster Break it changes each project's scenery and interface palette; the
 Guide follows the ordinary portfolio theme. Palette colours transition over
 500 ms, including system theme changes; reduced motion makes this instant.
 Theme changes preserve game progress, conversation and draft. Language labels stay in
@@ -162,9 +168,10 @@ in `features/projects/data/drafts.ts`, outside the public catalogue, without
 a secondary-account URL.
 
 Booster Break is a personal, collaborative project with contributions from
-Mathis's colleagues. It appears first in the catalogue and in the three-project
-homepage selection, followed by SpellWar and Plants. Eyefox remains in the full
-catalogue. The detail page links to the live app at `https://booster.mathis-db.com/`
+Mathis's colleagues. The catalogue, project navigation, About project links and
+"next project" sequence use alphabetical order by full displayed title in both
+languages. Home independently selects Booster Break, SpellWar and Plants in that
+order; Eyefox remains in the full catalogue. The detail page links to the live app at `https://booster.mathis-db.com/`
 and the Westerbay repository. Describe the pack opening, collection, trading,
 three-card duels and WebGL effects without assigning colleagues' work to Mathis.
 Use a real public screenshot, not an embedded authenticated application.

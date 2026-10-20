@@ -45,6 +45,68 @@ for (const [locale, messages] of [
   ["", fr],
   ["en/", en],
 ] as const) {
+  test(`alphabetical project order preserves the homepage selection and next-project cycle: ${locale || "fr"}`, async ({
+    page,
+    baseURL,
+  }) => {
+    if (!baseURL) throw new Error("The portfolio base URL must be configured")
+    await page.route("**/v1/chat", (route) => route.abort())
+    await page.goto(locale || "./")
+    await expect(
+      page.locator("#selected .project-card").getByRole("heading")
+    ).toHaveText([
+      "Booster Break",
+      "SpellWar",
+      "The Algorithmic Beauty of Plants",
+    ])
+    const navigation = page.getByRole("navigation", {
+      name: messages.navigation,
+    })
+    await navigation
+      .getByRole("link", { name: messages.projects, exact: true })
+      .click()
+    const catalogueOrder = [
+      "Booster Break",
+      "Eyefox Puzzle",
+      "PINNacle",
+      "SpellWar",
+      "StyleGAN & Cheap DiT",
+      "The Algorithmic Beauty of Plants",
+    ]
+    await expect(navigation.locator(".project-nav-branch > li > a")).toHaveText(
+      catalogueOrder
+    )
+    const cardHeadings = page.locator(".project-card").getByRole("heading")
+    await expect(cardHeadings).toHaveText(catalogueOrder)
+    await page
+      .getByRole("button", { name: messages.games, exact: true })
+      .click()
+    await expect(cardHeadings).toHaveText([
+      "Booster Break",
+      "Eyefox Puzzle",
+      "SpellWar",
+    ])
+
+    await page.locator(".project-card.project-booster-break").click()
+    const nextProject = page.locator(".next-project")
+    await expect(nextProject.locator("strong")).toHaveText("Eyefox Puzzle")
+    await nextProject.click()
+    await expect(page).toHaveURL(
+      new URL(`${locale}projects/eyefox/`, baseURL).href
+    )
+    await navigation
+      .getByRole("link", {
+        name: "The Algorithmic Beauty of Plants",
+        exact: true,
+      })
+      .click()
+    await expect(nextProject.locator("strong")).toHaveText("Booster Break")
+    await nextProject.click()
+    await expect(page).toHaveURL(
+      new URL(`${locale}projects/booster-break/`, baseURL).href
+    )
+  })
+
   test(`project navigation expands on details or when it fits and preserves locale and active page: ${locale || "fr"}`, async ({
     page,
     baseURL,

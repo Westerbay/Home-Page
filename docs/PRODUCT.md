@@ -10,6 +10,8 @@ promises, invented metrics or a job-application pitch.
 The site includes Home, Projects, About and Contact. Public project pages
 cover Booster Break, SpellWar, The Algorithmic Beauty of Plants, StyleGAN & Cheap DiT, PINNacle and Eyefox Puzzle. This
 selection is confirmed. Filters separate games, generative projects and AI & science.
+The catalogue and project navigation are alphabetical by full displayed title;
+category filters and the "next project" links preserve that order.
 Skull remains an unpublished draft.
 
 French is the base language and English is available under `/en/`. Switching
@@ -76,7 +78,7 @@ READMEs and Mathis's confirmed answers. He made the three academic projects hims
 fact as context without repeatedly stressing “entirely on my own”. Public
 copy should describe the projects and their techniques.
 
-Feature Booster Break first on Home and Projects. Its page includes a real
+Feature Booster Break first on Home; Projects uses alphabetical order. Its page includes a real
 screenshot, links to the live game and source, and acknowledges colleagues'
 contributions without inventing an individual division of work. The homepage
 keeps three cards (Booster Break, SpellWar, Plants); Eyefox stays in Projects.

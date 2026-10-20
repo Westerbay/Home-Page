@@ -10,7 +10,12 @@ const builtHome = readFileSync(
 )
 const guideEnabled = /class="[^"]*\bguide-launcher\b/.test(builtHome)
 
-test.use({ viewport: { width: 1440, height: 900 } })
+// Routing checks cover settled scenery; Eyefox's dedicated motion test exercises
+// the shared crossfade with animations enabled.
+test.use({
+  viewport: { width: 1440, height: 900 },
+  reducedMotion: "reduce",
+})
 
 function sceneryImages(page: Page) {
   return page
@@ -35,13 +40,13 @@ async function expectTheme(page: Page, theme: "light" | "dark") {
 async function expectScenery(
   page: Page,
   baseURL: string,
-  scene: "spellwar" | "forest",
+  scene: "spellwar" | "booster-break" | "forest",
   theme: "light" | "dark"
 ) {
   await expect
     .poll(() => sceneryImages(page))
     .toEqual(
-      ["day", "dusk"].map(
+      ["day", scene === "booster-break" ? "night" : "dusk"].map(
         (time) => new URL(`assets/world/${scene}-${time}.webp`, baseURL).href
       )
     )
@@ -55,101 +60,120 @@ async function expectScenery(
     )
     .toBe(theme === "dark" ? 1 : 0)
   await expectTheme(page, theme)
+  if (scene === "booster-break") {
+    await expect(
+      page.locator(
+        '.project-detail[data-project="booster-break"] .detail-cover'
+      )
+    ).toHaveCSS("background-color", "rgba(0, 0, 0, 0)")
+  }
 }
 
 for (const [locale, messages] of [
   ["", fr],
   ["en/", en],
 ] as const) {
-  test(`project scenery follows routing and preserves theme: ${locale || "fr"}`, async ({
-    page,
-    baseURL,
-  }) => {
-    if (!baseURL) throw new Error("The portfolio base URL must be configured")
-    await page.route("**/v1/chat", (route) => route.abort())
-    await page.goto(`${locale}projects/`)
-    const navigation = page.getByRole("navigation", {
-      name: messages.navigation,
+  for (const [project, title] of [
+    ["spellwar", "SpellWar"],
+    ["booster-break", "Booster Break"],
+  ] as const) {
+    test(`${title} scenery follows routing and preserves theme: ${locale || "fr"}`, async ({
+      page,
+      baseURL,
+    }) => {
+      if (!baseURL) throw new Error("The portfolio base URL must be configured")
+      await page.route("**/v1/chat", (route) => route.abort())
+      await page.goto(`${locale}projects/`)
+      const navigation = page.getByRole("navigation", {
+        name: messages.navigation,
+      })
+      await expect.poll(() => sceneryImages(page)).toEqual([null, null])
+      await page
+        .getByRole("button", { name: messages.theme_to_dark, exact: true })
+        .click()
+      await page.locator(`.project-card.project-${project}`).click()
+      const projectURL = new URL(`${locale}projects/${project}/`, baseURL).href
+      await expect(page).toHaveURL(projectURL)
+      await expectScenery(page, baseURL, project, "dark")
+      for (const image of await sceneryImages(page)) {
+        if (!image) throw new Error("The project scenery is missing")
+        const response = await page.request.get(image)
+        expect(response.ok()).toBe(true)
+        expect(response.headers()["content-type"]).toMatch(/^image\//)
+      }
+
+      await page
+        .getByRole("button", { name: messages.theme_to_light, exact: true })
+        .click()
+      await expectScenery(page, baseURL, project, "light")
+      await navigation
+        .getByRole("link", { name: "Eyefox Puzzle", exact: true })
+        .click()
+      await expect(page).toHaveURL(
+        new URL(`${locale}projects/eyefox/`, baseURL).href
+      )
+      await expectScenery(page, baseURL, "forest", "light")
+      await page
+        .getByRole("button", { name: messages.theme_to_dark, exact: true })
+        .click()
+      await navigation.getByRole("link", { name: title, exact: true }).click()
+      await expect(page).toHaveURL(projectURL)
+      await expectScenery(page, baseURL, project, "dark")
+
+      await navigation
+        .getByRole("link", { name: "PINNacle", exact: true })
+        .click()
+      await expect(page).toHaveURL(
+        new URL(`${locale}projects/pinnacle/`, baseURL).href
+      )
+      await expect.poll(() => sceneryImages(page)).toEqual([null, null])
+      await expectTheme(page, "dark")
+
+      await navigation
+        .getByRole("link", { name: messages.projects, exact: true })
+        .click()
+      await expect(page).toHaveURL(new URL(`${locale}projects/`, baseURL).href)
+      await expect.poll(() => sceneryImages(page)).toEqual([null, null])
+      await expectTheme(page, "dark")
     })
-    await expect.poll(() => sceneryImages(page)).toEqual([null, null])
-    await page
-      .getByRole("button", { name: messages.theme_to_dark, exact: true })
-      .click()
-    await page.locator(".project-card.project-spellwar").click()
-    const spellwarURL = new URL(`${locale}projects/spellwar/`, baseURL).href
-    await expect(page).toHaveURL(spellwarURL)
-    await expectScenery(page, baseURL, "spellwar", "dark")
-    for (const image of await sceneryImages(page)) {
-      if (!image) throw new Error("The project scenery is missing")
-      const response = await page.request.get(image)
-      expect(response.ok()).toBe(true)
-      expect(response.headers()["content-type"]).toMatch(/^image\//)
-    }
 
-    await page
-      .getByRole("button", { name: messages.theme_to_light, exact: true })
-      .click()
-    await expectScenery(page, baseURL, "spellwar", "light")
-    await navigation
-      .getByRole("link", { name: "Eyefox Puzzle", exact: true })
-      .click()
-    await expect(page).toHaveURL(
-      new URL(`${locale}projects/eyefox/`, baseURL).href
-    )
-    await expectScenery(page, baseURL, "forest", "light")
-    await page
-      .getByRole("button", { name: messages.theme_to_dark, exact: true })
-      .click()
-    await navigation
-      .getByRole("link", { name: "SpellWar", exact: true })
-      .click()
-    await expect(page).toHaveURL(spellwarURL)
-    await expectScenery(page, baseURL, "spellwar", "dark")
-
-    await navigation
-      .getByRole("link", { name: messages.projects, exact: true })
-      .click()
-    await expect(page).toHaveURL(new URL(`${locale}projects/`, baseURL).href)
-    await expect.poll(() => sceneryImages(page)).toEqual([null, null])
-    await expectTheme(page, "dark")
-  })
-
-  test(`guide round trip restores project scenery and theme: ${locale || "fr"}`, async ({
-    page,
-    baseURL,
-  }) => {
-    test.skip(!guideEnabled, "Requires an enabled assistant")
-    if (!baseURL) throw new Error("The portfolio base URL must be configured")
-    await page.route("**/v1/chat", (route) => route.abort())
-    await page.goto(`${locale}projects/spellwar/`)
-    const navigation = page.getByRole("navigation", {
-      name: messages.navigation,
+    test(`guide round trip restores ${title} scenery and theme: ${locale || "fr"}`, async ({
+      page,
+      baseURL,
+    }) => {
+      test.skip(!guideEnabled, "Requires an enabled assistant")
+      if (!baseURL) throw new Error("The portfolio base URL must be configured")
+      await page.route("**/v1/chat", (route) => route.abort())
+      await page.goto(`${locale}projects/${project}/`)
+      const navigation = page.getByRole("navigation", {
+        name: messages.navigation,
+      })
+      const projectURL = new URL(`${locale}projects/${project}/`, baseURL).href
+      await page
+        .getByRole("button", { name: messages.theme_to_dark, exact: true })
+        .click()
+      await expectScenery(page, baseURL, project, "dark")
+      await navigation
+        .getByRole("link", { name: messages.guide_title, exact: true })
+        .click()
+      await expect(page).toHaveURL(new URL(`${locale}guide/`, baseURL).href)
+      await expect.poll(() => sceneryImages(page)).toEqual([null, null])
+      await expect(page.locator(".guide-companion")).toHaveAttribute(
+        "data-character",
+        "adventurer"
+      )
+      await expectTheme(page, "dark")
+      await page
+        .getByRole("button", { name: messages.guide_minimize, exact: true })
+        .click()
+      await expect(page).toHaveURL(projectURL)
+      await expectScenery(page, baseURL, project, "dark")
+      await page
+        .getByRole("button", { name: messages.guide_close, exact: true })
+        .click()
+      await expect(page.locator(".guide-panel")).toHaveCount(0)
+      await expect(page).toHaveURL(projectURL)
+      await expectScenery(page, baseURL, project, "dark")
     })
-    const spellwarURL = new URL(`${locale}projects/spellwar/`, baseURL).href
-    await page
-      .getByRole("button", { name: messages.theme_to_dark, exact: true })
-      .click()
-    await expectScenery(page, baseURL, "spellwar", "dark")
-    await navigation
-      .getByRole("link", { name: messages.guide_title, exact: true })
-      .click()
-    await expect(page).toHaveURL(new URL(`${locale}guide/`, baseURL).href)
-    await expect.poll(() => sceneryImages(page)).toEqual([null, null])
-    await expect(page.locator(".guide-companion")).toHaveAttribute(
-      "data-character",
-      "adventurer"
-    )
-    await expectTheme(page, "dark")
-    await page
-      .getByRole("button", { name: messages.guide_minimize, exact: true })
-      .click()
-    await expect(page).toHaveURL(spellwarURL)
-    await expectScenery(page, baseURL, "spellwar", "dark")
-    await page
-      .getByRole("button", { name: messages.guide_close, exact: true })
-      .click()
-    await expect(page.locator(".guide-panel")).toHaveCount(0)
-    await expect(page).toHaveURL(spellwarURL)
-    await expectScenery(page, baseURL, "spellwar", "dark")
-  })
+  }
 }
