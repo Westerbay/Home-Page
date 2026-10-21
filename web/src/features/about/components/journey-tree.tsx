@@ -20,7 +20,18 @@ export function JourneyTree() {
         m.journey_work_branch_1(),
         m.journey_work_branch_2(),
         m.journey_work_branch_3(),
-        m.journey_work_branch_4(),
+      ],
+      examples: [
+        {
+          name: "Autego",
+          url: "https://autego.fr/",
+          description: m.journey_work_autego(),
+        },
+        {
+          name: "Polygone Béziers",
+          url: "https://www.polygone-beziers.fr/",
+          description: m.journey_work_polygone(),
+        },
       ],
       projects: [],
     },
@@ -32,6 +43,7 @@ export function JourneyTree() {
       context: m.journey_engineering_school(),
       body: m.journey_engineering_body(),
       branches: [],
+      examples: [],
       projects: academicProjects,
     },
     {
@@ -42,6 +54,7 @@ export function JourneyTree() {
       context: m.journey_cs_school(),
       body: m.journey_cs_body(),
       branches: [],
+      examples: [],
       projects: [],
     },
     {
@@ -52,6 +65,7 @@ export function JourneyTree() {
       context: m.journey_math_school(),
       body: m.journey_math_body(),
       branches: [],
+      examples: [],
       projects: [],
     },
   ]
@@ -82,10 +96,26 @@ export function JourneyTree() {
                 <p className="journey-context">{milestone.context}</p>
               )}
               {milestone.body && <p>{milestone.body}</p>}
-              {milestone.branches.length > 0 && (
+              {(milestone.branches.length > 0 ||
+                milestone.examples.length > 0) && (
                 <ul className="journey-branches" role="list">
                   {milestone.branches.map((branch) => (
                     <li key={branch}>{branch}</li>
+                  ))}
+                  {milestone.examples.map((example) => (
+                    <li key={example.url}>
+                      <a
+                        className="journey-work-link"
+                        href={example.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        aria-label={`${example.name} (${m.external()})`}
+                      >
+                        {example.name}
+                      </a>
+                      {" · "}
+                      {example.description}
+                    </li>
                   ))}
                 </ul>
               )}

@@ -18,6 +18,12 @@ export function getSpellwarStory(): ProjectStorySection[] {
       ],
     },
     {
+      id: "models",
+      title: m.spellwar_story_models_title(),
+      paragraphs: [m.spellwar_story_models_p1(), m.spellwar_story_models_p2()],
+      images: [],
+    },
+    {
       id: "physics",
       title: m.spellwar_story_physics_title(),
       paragraphs: [

@@ -68,28 +68,26 @@ export function ProjectPage({ slug }: { slug: string }) {
               ))}
             </ul>
             <div className="project-links">
+              <a
+                href={project.repository}
+                target="_blank"
+                rel="noreferrer"
+                className="action primary-action"
+              >
+                {m.source()}
+                <ArrowUpRight size={17} />
+              </a>
               {project.demo && (
                 <a
                   href={project.demo}
                   target="_blank"
                   rel="noreferrer"
-                  className="action primary-action"
+                  className="action text-action"
                 >
-                  {m.play_project()}
+                  {m.visit_project({ project: project.title })}
                   <ArrowUpRight size={17} />
                 </a>
               )}
-              <a
-                href={project.repository}
-                target="_blank"
-                rel="noreferrer"
-                className={
-                  project.demo ? "action text-action" : "action primary-action"
-                }
-              >
-                {m.source()}
-                <ArrowUpRight size={17} />
-              </a>
             </div>
           </aside>
           <div>
