@@ -4,6 +4,15 @@ import type { ProjectStorySection } from "../project-stories"
 export function getPinnacleStory(): ProjectStorySection[] {
   return [
     {
+      id: "physical-problems",
+      title: m.pinnacle_story_physics_title(),
+      paragraphs: [
+        m.pinnacle_story_physics_p1(),
+        m.pinnacle_story_physics_p2(),
+      ],
+      images: [],
+    },
+    {
       id: "activation-regions",
       title: m.pinnacle_story_method_title(),
       paragraphs: [m.pinnacle_story_method_p1(), m.pinnacle_story_method_p2()],

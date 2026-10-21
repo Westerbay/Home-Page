@@ -39,14 +39,14 @@ test("navigation, language switch and direct reload preserve the project", async
     "Booster Break"
   )
   await expect(
-    page.getByRole("link", { name: "Jouer", exact: true })
+    page.getByRole("link", { name: "Découvrir Booster Break", exact: true })
   ).toHaveAttribute("href", "https://booster.mathis-db.com/")
   await expect(
     page.getByRole("link", { name: "Voir le code", exact: true })
   ).toHaveAttribute("href", "https://github.com/Westerbay/Booster-Break")
   await page.getByRole("link", { name: "Switch to English" }).click()
   await expect(
-    page.getByRole("link", { name: "Play", exact: true })
+    page.getByRole("link", { name: "Explore Booster Break", exact: true })
   ).toHaveAttribute("href", "https://booster.mathis-db.com/")
   await expect(page.locator(".language-current")).toHaveText("EN")
   await expect(page).toHaveURL(/\/en\/projects\/booster-break\/?$/)

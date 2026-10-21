@@ -866,13 +866,16 @@ svg {
   align-items: baseline;
   gap: 12px;
 }
-.journey-projects a:not(.journey-source) {
+.journey-projects a:not(.journey-source),
+.journey-work-link {
   text-decoration: underline;
   text-decoration-color: var(--line);
   text-underline-offset: 4px;
 }
 .journey-projects a:hover,
-.journey-projects a:focus-visible {
+.journey-projects a:focus-visible,
+.journey-work-link:hover,
+.journey-work-link:focus-visible {
   color: var(--ink);
   text-decoration-color: var(--accent);
 }

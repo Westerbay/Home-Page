@@ -98,6 +98,14 @@ The [script](../scripts/capture-plants-gallery.mjs) selects presets and waits fo
 
 Sources are the 40-page group defense, _Représentations géométriques dans les
 Physics Informed Neural Networks (PINNs)_, and the [setup branch](https://github.com/HadrienNU/PINNacle/tree/setup).
+The project description also covers the electromagnetic experiments in
+[projets3A](https://github.com/HadrienNU/PINNacle/tree/projets3A), which are
+included in the history of setup. The experimental framework supports MLP/KAN
+models and Deep Ritz; the activation extraction and C++/OpenGL viewer are in
+setup. The figures below illustrate activation analysis, not a verified comparison
+of those electromagnetic benchmarks. Public captions explain the figures;
+their source locations remain documented here.
+
 The PDF is not distributed here. Source SHA-256:
 3c5038af590befe0bca06809b8bbec4176ca642244769f648184bbda15bd6266.
 
